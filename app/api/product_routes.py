@@ -7,6 +7,15 @@ import app.s3 as s3
 
 product_routes = Blueprint('products', __name__)
 
+# @product_routes.route("")
+# def products():
+#     search_term = request.args.get("q", "")
+
+#     # Filter products based on search term
+#     products = Product.query.filter(Product.name.ilike(f"%{search_term}%")).all()
+
+#     return {product.id: product.to_dict() for product in products}
+
 # Get all products
 @product_routes.route("")
 def products():
