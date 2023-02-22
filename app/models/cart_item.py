@@ -11,8 +11,8 @@ class CartItem(db.Model):
     product_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("products.id")), nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
 
-    user = db.relationship("User", back_populates="cartitems")
-    product = db.relationship("Product", back_populates="cartitems")
+    user = db.relationship("User", back_populates="cart_items")
+    product = db.relationship("Product", back_populates="cart_items")
 
     def to_dict(self):
         return{
@@ -31,4 +31,3 @@ class CartItem(db.Model):
          "user": self.user.to_dict(),
          "product": self.product.to_dict()
         }
-
