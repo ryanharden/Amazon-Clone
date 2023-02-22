@@ -21,3 +21,13 @@ class CartItem(db.Model):
          "product_id": self.product_id,
          "quantity": self.quantity
         }
+
+    def to_dict_details(self):
+        return{
+         "id": self.id,
+         "user_id": self.user_id,
+         "product_id": self.product_id,
+         "quantity": self.quantity,
+         "user": self.user.to_dict(),
+         "product": self.product.to_dict()
+        }

@@ -15,7 +15,7 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
 
     products = db.relationship("Product", back_populates="seller")
-    
+
     @property
     def password(self):
         return self.hashed_password
@@ -30,7 +30,7 @@ class User(db.Model, UserMixin):
     def to_dict(self):
         return {
             'id': self.id,
-            'username': self.username,
+            'fullname': self.fullname,
             'email': self.email
         }
 
