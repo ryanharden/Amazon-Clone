@@ -20,6 +20,7 @@ class Product(db.Model):
     seller = db.relationship("User", back_populates="products")
     reviews = db.relationship("Review", back_populates="product", cascade="all, delete-orphan")
     product_images = db.relationship("ProductImage", back_populates="product", order_by="ProductImage.number", cascade="all, delete-orphan")
+    cart_items = db.relationship("CartItem", back_populates="product")
 
     def to_dict(self):
         return {
