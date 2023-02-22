@@ -18,7 +18,7 @@ def seed_users():
     ryans = User(
         fullname='Ryan Sellner', email='ryans@aa.io', password='password')
     vicky = User(
-        fullname='Vicky Chang', email='vikcy@aa.io', password='password')
+        fullname='Vicky Chang', email='vicky@aa.io', password='password')
     pgav = User(
         fullname='Patrick Gavin', email='patrick@aa.io', password='password')
 
