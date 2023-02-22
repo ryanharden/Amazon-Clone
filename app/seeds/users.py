@@ -18,11 +18,7 @@ def seed_users():
     ryans = User(
         first_name='Ryan', last_name='Sellner', email='ryans@aa.io', password='password')
     vicky = User(
-<<<<<<< HEAD
         first_name='Vicky', last_name='Chang', email='vicky@aa.io', password='password')
-=======
-        fullname='Vicky Chang', email='vicky@aa.io', password='password')
->>>>>>> dev
     pgav = User(
         first_name='Patrick', last_name='Gavin', email='patrick@aa.io', password='password')
 
