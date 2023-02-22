@@ -18,9 +18,11 @@ class Product(db.Model):
     updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow())
 
     seller = db.relationship("User", back_populates="products")
-    reviews = db.relationship("Review", back_populates="product", cascade="all, delete-orphan")
-    product_images = db.relationship("ProductImage", back_populates="product", order_by="ProductImage.number", cascade="all, delete-orphan")
-
+    reviews = db.relationship("Review", back_populates="product", cascade="all, delete")
+    product_images = db.relationship("ProductImage", back_populates="product", order_by="ProductImage.number", cascade="all, delete")
+    cart_items = db.relationship("CartItem", back_populates="product")
+    order_items = db.relationship("OrderItem", back_populates="product")
+    
     def to_dict(self):
         return {
             "id": self.id,

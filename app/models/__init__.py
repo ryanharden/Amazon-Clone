@@ -1,8 +1,8 @@
 from .db import db
 from .user import User
-from .address import Address
+# from .address import Address
 from .order_details import OrderDetail
-from .order import Order
+from .order_item import OrderItem
 from .product_images import ProductImage
 from .product import Product
 from .review import Review
