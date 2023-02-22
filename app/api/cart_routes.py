@@ -12,7 +12,7 @@ cart_routes = Blueprint("cart_items", __name__)
 @login_required
 def get_cart_items():
     cart_items = CartItem.query.filter(CartItem.user_id == current_user.id)
-    return [item.to_dict() for item in cart_items]
+    return {item.id: item.to_dict() for item in cart_items}
 
 
 # Add a cart item

@@ -31,3 +31,4 @@ class CartItem(db.Model):
          "user": self.user.to_dict(),
          "product": self.product.to_dict()
         }
+
