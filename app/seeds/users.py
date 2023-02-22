@@ -4,23 +4,23 @@ from app.models import db, User, environment, SCHEMA
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     demo = User(
-        fullname='Demo', email='demo@aa.io', password='password')
+        first_name='Demo', last_name="User", email='demo@aa.io', password='password')
     ryan = User(
-        fullname='Ryan Harden', email='ryan@aa.io', password='password')
+        first_name='Ryan', last_name='Harden', email='ryan@aa.io', password='password')
     gabe = User(
-        fullname='Gabriel Debaca', email='gabe@aa.io', password='password')
+        first_name='Gabriel', last_name='Debaca', email='gabe@aa.io', password='password')
     dave = User(
-        fullname='David Harden', email='dave@aa.io', password='password')
+        first_name='David', last_name='Harden', email='dave@aa.io', password='password')
     sheryl = User(
-        fullname='Sheryl Van Tassel', email='sheryl@aa.io', password='password')
+        first_name='Sheryl', last_name='Van Tassel', email='sheryl@aa.io', password='password')
     nicole = User(
-        fullname='Nicole Harden', email='nicole@aa.io', password='password')
+        first_name='Nicole', last_name='Harden', email='nicole@aa.io', password='password')
     ryans = User(
-        fullname='Ryan Sellner', email='ryans@aa.io', password='password')
+        first_name='Ryan', last_name='Sellner', email='ryans@aa.io', password='password')
     vicky = User(
-        fullname='Vicky Chang', email='vikcy@aa.io', password='password')
+        first_name='Vicky', last_name='Chang', email='vicky@aa.io', password='password')
     pgav = User(
-        fullname='Patrick Gavin', email='patrick@aa.io', password='password')
+        first_name='Patrick', last_name='Gavin', email='patrick@aa.io', password='password')
 
     db.session.add(demo)
     db.session.add(ryan)
