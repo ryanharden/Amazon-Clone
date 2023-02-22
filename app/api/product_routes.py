@@ -15,7 +15,7 @@ def products():
 
 
 # Get single product
-@product_routes.route("/<int:id")
+@product_routes.route("/<int:id>")
 def get_product(id):
     product = Product.query.get(id)
 
@@ -42,6 +42,7 @@ def create_product():
         )
         db.session.add(product)
         db.session.commit()
+        # returned as just an Object
         return product.to_dict()
 
 
@@ -116,5 +117,3 @@ def delete_product(id):
     db.session.commit()
 
     return {"message": "Delete Successful"}
-
-
