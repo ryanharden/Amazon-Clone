@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
-import { logout } from "../../store/session";
+import { logout, login } from "../../store/session";
+import { Link } from "react-router-dom";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
@@ -34,39 +35,64 @@ function ProfileButton({ user }) {
     dispatch(logout());
   };
 
+  // const handleLogin = (e) => {
+  //   e.preventDefault();
+  //   dispatch(login());
+  // }
+
+  const demoLogin = (e) => {
+    e.preventDefault();
+    dispatch(login("demo@aa.io", "password"))
+  }
+
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
   const closeMenu = () => setShowMenu(false);
 
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
-      </button>
-      <ul className={ulClassName} ref={ulRef}>
-        {user ? (
-          <>
-            <li>{user.username}</li>
-            <li>{user.email}</li>
-            <li>
-              <button onClick={handleLogout}>Log Out</button>
-            </li>
-          </>
-        ) : (
-          <>
-            <OpenModalButton
-              buttonText="Log In"
-              onItemClick={closeMenu}
-              modalComponent={<LoginFormModal />}
-            />
+      <div onClick={openMenu}>
+        <div className="hello-user">
+          {user ? `Hello, ${user?.first_name}` : "Hello, sign in"}
+        </div>
+        <div className="account-lists">
+          Account & Lists
+        </div>
+      </div>
+      <div className="dropdown-container">
+        <ul className={ulClassName} ref={ulRef}>
+          {user ? (
+            <>
+              <Link onClick={closeMenu} className="drop-link" to={`/users/${user.id}/products`}>
+                <div className="drop-products">
+                  Manage Your Products
+                </div>
+              </Link>
+              <Link onClick={closeMenu} className="drop-link" to={`/users/${user.id}/orders`}>
+                <div className="drop-orders">
+                  Manage Your Orders
+                </div>
+              </Link>
+              <div className="drop-logout" onClick={handleLogout}>Sign out</div>
 
-            <OpenModalButton
-              buttonText="Sign Up"
-              onItemClick={closeMenu}
-              modalComponent={<SignupFormModal />}
-            />
-          </>
-        )}
-      </ul>
+            </>
+          ) : (
+            <>
+              <Link className="drop-link" to={"/login"}>
+                <div className="drop-signin">
+                  Sign in
+                </div>
+              </Link>
+              <div className="drop-demo" onClick={demoLogin}>Demo User</div>
+              <div className="drop-signup">
+                <div className="new-cust">
+                  New customer?
+                </div>
+                <Link to={'/signup'}>Start here.</Link>
+              </div>
+            </>
+          )}
+        </ul>
+      </div>
     </>
   );
 }

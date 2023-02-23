@@ -1,5 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-import datetime
+from datetime import datetime
 
 class Product(db.Model):
     __tablename__ = 'products'
@@ -10,19 +10,19 @@ class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     seller_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     name = db.Column(db.String(255), nullable=False)
-    description = db.Column(db.String(500))
+    description = db.Column(db.String(5000))
     category = db.Column(db.String(30), nullable=False)
     price = db.Column(db.Float, nullable=False)
     inventory = db.Column(db.Integer, nullable=False)
-    created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow())
-    updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow())
+    created_at = db.Column(db.DateTime, default=datetime.utcnow())
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow(), onupdate=datetime.utcnow())
 
     seller = db.relationship("User", back_populates="products")
     reviews = db.relationship("Review", back_populates="product", cascade="all, delete")
     product_images = db.relationship("ProductImage", back_populates="product", order_by="ProductImage.number", cascade="all, delete")
     cart_items = db.relationship("CartItem", back_populates="product")
     order_items = db.relationship("OrderItem", back_populates="product")
-    
+
     def to_dict(self):
         return {
             "id": self.id,
