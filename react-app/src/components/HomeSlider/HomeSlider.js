@@ -1,18 +1,19 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProductsThunk } from '../store/products';
+import { getProductsThunk } from '../../store/products';
 import { Link } from 'react-router-dom';
 import chevleft from "../../assets/chevron-left.png";
 import chevright from "../../assets/chevron-right.png";
+import './HomeSlider.css';
 
 const HomeSlider = ({ slides }) => {
     const dispatch = useDispatch();
-    const allProducts = useSelector(state => state.products.allProducts);
+    // const allProducts = useSelector(state => state.products.allProducts);
     const [currentIndex, setCurrentIndex] = useState(0);
 
-    useEffect(() => {
-        dispatch(getProductsThunk());
-    }, [dispatch]);
+    // useEffect(() => {
+    //     dispatch(getProductsThunk());
+    // }, [dispatch]);
 
 
     useEffect(() => {
@@ -34,19 +35,19 @@ const HomeSlider = ({ slides }) => {
         setCurrentIndex(nextIndex);
     };
 
-    const getRandomProducts = (n, exclude) => {
-        const result = [];
-        const len = allProducts.length;
-        let i = 0;
-        while (i < n) {
-            const product = allProducts[Math.floor(Math.random() * len)];
-            if (exclude.indexOf(product) === -1) {
-                result.push(product);
-                i++;
-            }
-        }
-        return result;
-    };
+    // const getRandomProducts = (n, exclude) => {
+    //     const result = [];
+    //     const len = allProducts.length;
+    //     let i = 0;
+    //     while (i < n) {
+    //         const product = allProducts[Math.floor(Math.random() * len)];
+    //         if (exclude.indexOf(product) === -1) {
+    //             result.push(product);
+    //             i++;
+    //         }
+    //     }
+    //     return result;
+    // };
 
     const slideStyle = {
         width: '100%',
@@ -57,20 +58,20 @@ const HomeSlider = ({ slides }) => {
         transition: "ease-in-out .5s"
     }
 
-    const categoryProducts = Object.values(allProducts).filter(product => product.category === 'basics').slice(0, 4);
-    const newestProducts = Object.values(allProducts).sort((a, b) => new Date(b.created_at) - new Date(a.created_at)).slice(0, 4);
-    const trendingProducts = getRandomProducts(4, [...categoryProducts, ...newestProducts]);
-    const exploreEssentials = getRandomProducts(4, [...categoryProducts, ...newestProducts, ...trendingProducts]);
+    // const categoryProducts = Object.values(allProducts).filter(product => product.category === 'basics').slice(0, 4);
+    // const newestProducts = Object.values(allProducts).sort((a, b) => new Date(b.created_at) - new Date(a.created_at)).slice(0, 4);
+    // const trendingProducts = getRandomProducts(4, [...categoryProducts, ...newestProducts]);
+    // const exploreEssentials = getRandomProducts(4, [...categoryProducts, ...newestProducts, ...trendingProducts]);
 
     return (
         <div className='slider-image-container' style={slideStyle}>
-            <button className='slide-button' onClick={handlePrevSlide}>
-                <img src={chevleft} alt="Previous" />
-            </button>
-            <button className='slide-button' onClick={handleNextSlide}>
-                <img src={chevright} alt="Next" />
-            </button>
-            <div className="product-cards-container">
+            <div className='slide-button' onClick={handlePrevSlide}>
+                <img className="chev-left" src={chevleft} alt="Previous" />
+            </div>
+            <div className='slide-button' onClick={handleNextSlide}>
+                <img className="chev-right" src={chevright} alt="Next" />
+            </div>
+            {/* <div className="product-cards-container">
                 <div className="card-container">
                     <h2 className="card-title">Rainforest Basics</h2>
                     <div className="card-image-container">
@@ -81,7 +82,6 @@ const HomeSlider = ({ slides }) => {
                                 </Link>
                                 <div className="card-image-info">
                                     <h3>{product.name}</h3>
-                                    {/* <p>${product.price.toFixed(2)}</p> */}
                                 </div>
                             </div>
                         ))}
@@ -97,7 +97,6 @@ const HomeSlider = ({ slides }) => {
                                 </Link>
                                 <div className="card-image-info">
                                     <h3>{product.name}</h3>
-                                    {/* <p>${product.price.toFixed(2)}</p> */}
                                 </div>
                             </div>
                         ))}
@@ -113,7 +112,6 @@ const HomeSlider = ({ slides }) => {
                                 </Link>
                                 <div className="card-image-info">
                                     <h3>{product.name}</h3>
-                                    {/* <p>${product.price.toFixed(2)}</p> */}
                                 </div>
                             </div>
                         ))}
@@ -129,13 +127,12 @@ const HomeSlider = ({ slides }) => {
                                 </Link>
                                 <div className="card-image-info">
                                     <h3>{product.name}</h3>
-                                    {/* <p>${product.price.toFixed(2)}</p> */}
                                 </div>
                             </div>
                         ))}
                     </div>
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 };

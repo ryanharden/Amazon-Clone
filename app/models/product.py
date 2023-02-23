@@ -10,7 +10,7 @@ class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     seller_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     name = db.Column(db.String(255), nullable=False)
-    description = db.Column(db.String(500))
+    description = db.Column(db.String(5000))
     category = db.Column(db.String(30), nullable=False)
     price = db.Column(db.Float, nullable=False)
     inventory = db.Column(db.Integer, nullable=False)
@@ -22,7 +22,7 @@ class Product(db.Model):
     product_images = db.relationship("ProductImage", back_populates="product", order_by="ProductImage.number", cascade="all, delete")
     cart_items = db.relationship("CartItem", back_populates="product")
     order_items = db.relationship("OrderItem", back_populates="product")
-    
+
     def to_dict(self):
         return {
             "id": self.id,

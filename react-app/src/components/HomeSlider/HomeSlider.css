@@ -1,0 +1,26 @@
+.slider-container {
+    position: relative;
+    width: 100%;
+    height: 600px;
+}
+
+.slide-button {
+    background-color: transparent;
+    border: none;
+}
+
+.chev-left {
+    height: 40px;
+    position: absolute;
+    top: 150px;
+    left: 25px;
+    cursor: pointer;
+}
+
+.chev-right {
+    height: 40px;
+    cursor: pointer;
+    position: absolute;
+    top: 150px;
+    right: 25px;
+}

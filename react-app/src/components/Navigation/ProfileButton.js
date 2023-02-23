@@ -42,7 +42,7 @@ function ProfileButton({ user }) {
 
   const demoLogin = (e) => {
     e.preventDefault();
-    dispatch(login({ email: "demo@aa.io", password: "password" }))
+    dispatch(login("demo@aa.io", "password"))
   }
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
