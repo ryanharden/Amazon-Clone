@@ -2,6 +2,7 @@ from flask import Blueprint, request
 from flask_login import login_required, current_user
 from app.models import User, Product, ProductImage, db
 from app.forms import ProductForm
+from .user_routes import user_routes
 import app.s3 as s3
 # ( upload_file_to_s3, upload_image_file_to_s3, audio_file, get_unique_filename, image_file)
 
@@ -23,6 +24,18 @@ def products():
     return {product.id: product.to_dict() for product in products}
 
 
+# Get User Products
+@user_routes.route("/<int:id>/products")
+def get_user_products(id):
+    user = User.query.get(id)
+
+    if not user:
+        return {"errors": "User not found"}, 404
+
+    products = user.products
+    return {product.id: product.to_dict_details() for product in products}
+
+    
 # Get single product
 @product_routes.route("/<int:id>")
 def get_product(id):

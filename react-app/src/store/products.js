@@ -1,6 +1,7 @@
 // Constant Action Types
 
 const GET_PRODUCTS = "products/GET_PRODUCTS";
+const GET_USER_PRODUCTS = "products/GET_USER_PRODUCTS";
 const GET_PRODUCT = "products/GET_PRODUCT";
 const CREATE_PRODUCT = "products/CREATE_PRODUCT";
 const EDIT_PRODUCT = "products/EDIT_PRODUCT";
@@ -10,6 +11,11 @@ const DELETE_PRODUCT = "products/DELETE_PRODUCT";
 
 const getProducts = (products) => ({
     type: GET_PRODUCTS,
+    products
+})
+
+const getUserProducts = (products) => ({
+    type: GET_USER_PRODUCTS,
     products
 })
 
@@ -46,6 +52,23 @@ export const getProductsThunk = () => async (dispatch) => {
         return res;
     }
 }
+
+// Get User Products
+export const getUserProductsThunk = (userId) => async (dispatch) => {
+    const res = await fetch(`/api/users/${userId}/products`);
+
+    if (res.ok) {
+        const products = await res.json();
+        dispatch(getUserProducts(products));
+        return products
+    } else {
+        const data = await res.json();
+        if (data.errors) {
+            return data
+        }
+    }
+}
+
 
 // Get Product
 export const getProductThunk = (productId) => async (dispatch) => {
@@ -126,6 +149,7 @@ export const deleteProductThunk = (productId) => async (dispatch) => {
 const initialState = {
     allProducts: {},
     singleProduct: {},
+    userProducts: {},
 }
 
 // Product Reducer
@@ -138,6 +162,12 @@ export default function productReducer(state = initialState, action) {
             newState.allProducts = { ...action.products };
             return newState
 
+        // Get User Products
+        case GET_USER_PRODUCTS:
+            newState = { ...state }
+            newState.userProducts = { ...action.products }
+            return newState;
+            
         // Get Product
         case GET_PRODUCT:
             return { ...state, singleProduct: action.product };
