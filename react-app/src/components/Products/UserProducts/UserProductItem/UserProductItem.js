@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserProductsThunk } from "../../../../store/products";
 import { deleteProductThunk } from "../../../../store/products";
@@ -9,7 +9,7 @@ import moment from "moment";
 const UserProductItem = ({ product }) => {
     // const currentUser = useSelector(state => state.session.user);
     // const {userId} = useParams();
-
+    const dispatch = useDispatch();
     const deleteProduct = () => {
         dispatch(deleteProductThunk(product.id))
     };

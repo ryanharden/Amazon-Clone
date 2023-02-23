@@ -6,13 +6,15 @@ import { getProductsThunk } from '../../store/products';
 import { Link } from 'react-router-dom';
 import splashheader1 from "../../assets/amazon-outlet-splash-header.jpg";
 import splashheader2 from "../../assets/amazon-clinic-splash-header.jpg";
+import splashheader3 from "../../assets/amazon-healthcare.jpg";
 import "./HomePage.css";
 import HomeSlider from "../HomeSlider/HomeSlider";
+// import Navigation from "../Navigation/index";
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 
-export default function HomePage() {
+function HomePage() {
     const dispatch = useDispatch();
     const history = useHistory();
     const allProducts = useSelector(state => state.Products.allProducts);
@@ -22,7 +24,7 @@ export default function HomePage() {
     const slides = [
         { url: `${splashheader1}`, title: 'splash-1' },
         { url: `${splashheader2}`, title: 'splash-2' },
-        // { url: `${splashheader3}`, title: 'splash-3' },
+        { url: `${splashheader3}`, title: 'splash-3' },
         // { url: `${splashheader4}`, title: 'splash-4' }
     ]
 
@@ -75,3 +77,5 @@ export default function HomePage() {
         </div>
     )
 }
+
+export default HomePage;

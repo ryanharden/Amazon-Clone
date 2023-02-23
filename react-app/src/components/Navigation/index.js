@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
@@ -7,6 +7,9 @@ import flag from "../../assets/american-flag.png";
 
 function Navigation({ isLoaded }) {
 	const sessionUser = useSelector(state => state.session.user);
+	const location = useLocation();
+	const currentRoute = window.location.pathname;
+	const { userId } = useParams();
 
 	return (
 		<div className="nav-bar-container">
@@ -27,7 +30,7 @@ function Navigation({ isLoaded }) {
 					{isLoaded && (
 						<div className="lang-profile-orders-cart">
 							<div className='flag-lang'>
-								<img src={flag} alt="flag"/>
+								<img src={flag} alt="flag" />
 								<div className='en'>EN</div>
 							</div>
 							<div className="profile-button-container">
