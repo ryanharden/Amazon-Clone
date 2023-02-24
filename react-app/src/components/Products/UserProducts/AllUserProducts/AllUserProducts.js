@@ -9,7 +9,7 @@ const AllUserProducts = () => {
     const userProducts = useSelector(state => state.Products.userProducts);
 
     const currentUser = useSelector(state => state.session.user);
-
+    console.log("currentUser: ", currentUser)
     let userProductsArr;
     let userProductItems;
     if (Object.values(userProducts).length) {

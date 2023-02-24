@@ -1,1 +1,20 @@
 /* TODO Add site wide styles */
+
+@font-face {
+    font-family: "Amazon Ember";
+    font-weight: 400;
+    src: url('https://d1irxr40exwge2.cloudfront.net/AmazonEmber_Rg.ttf');
+}
+
+a {
+    /* color: #0066c0; */
+    text-decoration: none;
+    cursor: pointer;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+    font-family: "Amazon Ember", Arial, sans-serif;
+}

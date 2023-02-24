@@ -8,7 +8,8 @@ const CreateProduct = () => {
         description: "",
         category: "",
         price: 0,
-        inventory: 1
+        inventory: 1,
+        product_images: []
     }
 
     return (

@@ -19,7 +19,7 @@ const UserProductItem = ({ product }) => {
             <div className="user-product-image-container">
                 <Link className="image-link" to={`/products/${product.id}`}>
                     <img
-                        src={product.product_image_url}
+                        src={product?.product_images[0]?.product_image_url ? product?.product_images[0]?.product_image_url : "" }
                         alt={product.name}
                         className="user-product-image"
                     />
@@ -31,6 +31,14 @@ const UserProductItem = ({ product }) => {
                 </div>
                 <div className="product-name">
                     {product.name.slice(0, 50)}...
+                </div>
+            </div>
+            <div className="user-product-description-container">
+                <div className="description-header">
+                    Description
+                </div>
+                <div className="product-name">
+                    {product.description.slice(0, 50)}...
                 </div>
             </div>
             <div className="user-product-category-container">
@@ -46,7 +54,7 @@ const UserProductItem = ({ product }) => {
                     Price
                 </div>
                 <div className="product-price">
-                    {product.price.toFixed(2)}
+                    {product.price}
                 </div>
             </div>
             <div className="user-product-inventory-container">

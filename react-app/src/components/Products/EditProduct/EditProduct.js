@@ -2,24 +2,24 @@ import React, { useEffect }from "react";
 import { useParams } from "react-router-dom";
 import ProductForm from "../ProductForm/ProductForm";
 import { useSelector, useDispatch } from "react-redux";
-import { getProductsThunk} from "../../../store/products";
+import { getProductThunk} from "../../../store/products";
 
 
 const EditProduct = () =>{
 
     const {productId} = useParams();
 
-    const product = useSelector(state => state.Products[productId])
+    const product = useSelector(state => state.Products.singleProduct)
     const dispatch = useDispatch();
-
+    console.log("product: ", product);
 
     useEffect(() => {
-        dispatch(getProductsThunk());
-    }, [dispatch]);
+        dispatch(getProductThunk(productId));
+    }, [dispatch, productId]);
 
 
 
-    if(!product) return null
+    if(!(Object.values(product)).length) return null
 
     const newProduct={
         id: product.id,
@@ -29,7 +29,7 @@ const EditProduct = () =>{
         category: product.category,
         price: product.price,
         inventory: product.inventory,
-        // imageUrl: product.imageUrl,
+        product_images: product.product_images,
     }
 
     return (

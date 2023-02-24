@@ -3,7 +3,6 @@ import botocore
 import os
 import uuid
 
-MUSIC_BUCKET = os.environ.get("S3_MUSIC_BUCKET")
 PHOTO_BUCKET = os.environ.get("S3_PHOTO_BUCKET")
 
 S3_PHOTO_LOCATION = f"https://{PHOTO_BUCKET}.s3.amazonaws.com/"
