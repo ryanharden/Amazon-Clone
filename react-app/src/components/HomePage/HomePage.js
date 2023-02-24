@@ -45,7 +45,7 @@ function HomePage() {
             <div className='slider-container'>
                 <HomeSlider slides={slides} />
             </div>
-            <div className="book-carousel-container">
+            {/* <div className="book-carousel-container">
                 <h2 className="book-carousel-title">Explore Rainforest Books</h2>
                 <Carousel showThumbs={false}>
                     {pages.map((page, i) => (
@@ -73,7 +73,7 @@ function HomePage() {
                         </div>
                     ))}
                 </Carousel>
-            </div>
+            </div> */}
         </div>
     )
 }
