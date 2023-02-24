@@ -6,6 +6,7 @@ import { getUserProductsThunk } from '../../../../store/products';
 // import AllUserProducts from '../AllUserProducts/AllUserProducts';
 // import CreateProduct from '../../CreateProduct/CreateProduct';
 // import EditProduct from '../Product/EditProduct';
+import "./UserProductsPage.css";
 
 
 const UserProductPage = () => {

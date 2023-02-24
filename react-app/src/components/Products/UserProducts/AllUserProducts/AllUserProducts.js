@@ -28,7 +28,7 @@ const AllUserProducts = () => {
     return (
         <div className="all-user-products-header">
             <div className="all-user-products-container">
-                {userProductItems}
+                {userProductItems ? userProductItems : "No Products Listed Yet!"}
             </div>
         </div>
     )

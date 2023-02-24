@@ -20,6 +20,15 @@
   color: white;
 }
 
+.nav-bar-nav-link {
+  text-decoration: none;
+  color: white;
+}
+
+.logo {
+  margin-left: 10px;
+}
+
 .lang-profile-orders-cart {
   display: flex;
   margin-right: 200px;
