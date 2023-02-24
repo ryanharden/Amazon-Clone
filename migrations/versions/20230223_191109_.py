@@ -1,16 +1,20 @@
 """empty message
 
-Revision ID: 1a4dc4147e7c
-Revises: 
-Create Date: 2023-02-22 15:12:28.236003
+Revision ID: c559c4925243
+Revises:
+Create Date: 2023-02-23 19:11:09.269285
 
 """
 from alembic import op
 import sqlalchemy as sa
 
+import os
+environment = os.getenv("FLASK_ENV")
+SCHEMA = os.environ.get("SCHEMA")
+
 
 # revision identifiers, used by Alembic.
-revision = '1a4dc4147e7c'
+revision = 'c559c4925243'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -40,9 +44,9 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('seller_id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=255), nullable=False),
-    sa.Column('description', sa.String(length=500), nullable=True),
+    sa.Column('description', sa.String(length=5000), nullable=True),
     sa.Column('category', sa.String(length=30), nullable=False),
-    sa.Column('price', sa.Float(), nullable=False),
+    sa.Column('price', sa.DECIMAL(precision=50, scale=2), nullable=False),
     sa.Column('inventory', sa.Integer(), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
@@ -72,8 +76,6 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('product_id', sa.Integer(), nullable=False),
     sa.Column('product_image_url', sa.String(length=255), nullable=False),
-    sa.Column('preview', sa.Boolean(), nullable=False),
-    sa.Column('number', sa.Integer(), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['product_id'], ['products.id'], ),
     sa.PrimaryKeyConstraint('id')
@@ -92,6 +94,9 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+
+    if environment == "production":
+        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###
 
 

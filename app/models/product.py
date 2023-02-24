@@ -12,14 +12,14 @@ class Product(db.Model):
     name = db.Column(db.String(255), nullable=False)
     description = db.Column(db.String(5000))
     category = db.Column(db.String(30), nullable=False)
-    price = db.Column(db.Float, nullable=False)
+    price = db.Column(db.DECIMAL(50, 2), nullable=False)
     inventory = db.Column(db.Integer, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
     updated_at = db.Column(db.DateTime, default=datetime.utcnow(), onupdate=datetime.utcnow())
 
     seller = db.relationship("User", back_populates="products")
     reviews = db.relationship("Review", back_populates="product", cascade="all, delete")
-    product_images = db.relationship("ProductImage", back_populates="product", order_by="ProductImage.number", cascade="all, delete")
+    product_images = db.relationship("ProductImage", back_populates="product", cascade="all, delete")
     cart_items = db.relationship("CartItem", back_populates="product")
     order_items = db.relationship("OrderItem", back_populates="product")
 
@@ -29,21 +29,23 @@ class Product(db.Model):
             "seller": self.seller.to_dict(),
             "name": self.name,
             "description": self.description,
-            "price": self.price
+            "price": str(self.price),
+            "inventory": self.inventory
         }
 
     def to_dict_details(self):
-        product_images = [image.product_image_url for image in sorted(self.product_images, key=lambda x: x.number)]
-        preview_images = [image for image in self.product_images if image.preview]
+        # product_images = [image.product_image_url for image in sorted(self.product_images, key=lambda x: x.number)]
+        # preview_images = [image for image in self.product_images if image.preview]
 
         return {
             "id": self.id,
             "seller": self.seller.to_dict_product(),
             "name": self.name,
             "description": self.description,
-            "price": self.price,
-            "num_ratings": len(self.reviews),
-            "avg_rating": sum([review.rating for review in self.reviews]) / len(self.reviews) if len(self.reviews) > 0 else None,
-            "preview_image": preview_images[0].product_image_url if len(preview_images) else None,
-            "product_images": [image.to_dict_product() for image in product_images]
+            "price": str(self.price),
+            "inventory": self.inventory,
+            # "num_ratings": len(self.reviews),
+            # "avg_rating": sum([review.rating for review in self.reviews]) / len(self.reviews) if len(self.reviews) > 0 else None,
+            # "preview_image": preview_images[0].product_image_url if len(preview_images) else None,
+            "product_images": [image.to_dict_product() for image in self.product_images]
         }

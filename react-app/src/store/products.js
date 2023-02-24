@@ -88,10 +88,10 @@ export const getProductThunk = (productId) => async (dispatch) => {
 
 // Create a Product
 export const createProductThunk = (productData) => async (dispatch) => {
-    const res = await fetch("/api/products", {
+    const res = await fetch('/api/products', {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: productData
+        body: JSON.stringify(productData)
     });
 
     if (res.ok) {
@@ -113,6 +113,7 @@ export const editProductThunk = (product) => async (dispatch) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(product)
     });
+    console.log("storeRes: ", res)
 
     if (res.ok) {
         const product = await res.json();
@@ -167,7 +168,7 @@ export default function productReducer(state = initialState, action) {
             newState = { ...state }
             newState.userProducts = { ...action.products }
             return newState;
-            
+
         // Get Product
         case GET_PRODUCT:
             return { ...state, singleProduct: action.product };
@@ -186,6 +187,8 @@ export default function productReducer(state = initialState, action) {
         case DELETE_PRODUCT:
             newState = { ...state }
             newState.allProducts = { ...state.allProducts }
+            newState.userProducts = { ...state.userProducts }
+            delete newState.userProducts[action.productId]
             delete newState.allProducts[action.productId]
             return newState
 
