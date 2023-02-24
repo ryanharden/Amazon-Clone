@@ -64,6 +64,21 @@ const HomeSlider = ({ slides }) => {
     // const exploreEssentials = getRandomProducts(4, [...categoryProducts, ...newestProducts, ...trendingProducts]);
 
     return (
+        <>
+        <div className='home-header'>
+            <div className='links-bar-wrapper'>
+                <Link className='links-bar-link'>All</Link>
+                <Link className='links-bar-link'>Books</Link>
+                <Link className='links-bar-link'>Clothing, Shoes</Link>
+                <Link className='links-bar-link'>Electronics</Link>
+                <Link className='links-bar-link'>Home & Kitchen</Link>
+                <Link className='links-bar-link'>Rainforest Basics</Link>
+                <Link className='links-bar-link'>Sports & Outdoors</Link>
+                <Link className='links-bar-link'>Toys</Link>
+                <a rel="noreferrer" className='my-links' href="https://www.linkedin.com/in/ryan-harden-0a8b6821a/">LinkedIn</a>
+                <a rel="noreferrer" className='my-links' href="https://github.com/ryanharden">Github</a>
+            </div>
+        </div>
         <div className='slider-image-container' style={slideStyle}>
             <div className='slide-button' onClick={handlePrevSlide}>
                 <img className="chev-left" src={chevleft} alt="Previous" />
@@ -134,6 +149,7 @@ const HomeSlider = ({ slides }) => {
                 </div>
             </div> */}
         </div>
+        </>
     );
 };
 
