@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createProductThunk, editProductThunk } from "../../../store/products";
-
+import "./ProductForm.css";
 
 const categories = [
     "Automotive",
@@ -32,7 +32,7 @@ const ProductForm = ({ formType, product }) => {
     const history = useHistory();
     const [errors, setErrors] = useState([]);
     const user = useSelector(state => state.session.user)
-    const {productId} = useParams();
+    const { productId } = useParams();
 
     // Define initial state values for the form fields
     const [name, setName] = useState(product?.name || "");
@@ -214,89 +214,91 @@ const ProductForm = ({ formType, product }) => {
 
     return (
         <div className="product-create-edit-container">
-            <h2>{formType === "create" ? "List a Product" : "Edit Product"}</h2>
-            <form onSubmit={handleImageSubmit} className="pic-upload" encType="multipart/form-data">
-                <div className="form-input">
-                    <label htmlFor="images[]">Upload Your Product Images</label>
-                    <input
-                        type="file"
-                        name="images[]"
-                        multiple
-                        accept="image/*"
-                        onChange={handleImages}
-                    />
-                </div>
-                {previewImages}
-                <button type="submit" className="submit-images-button">Upload Image(s)</button>
+            <div className="forms-wrapper">
+                <h2>{formType === "create" ? "List a Product" : "Edit Product"}</h2>
+                <form onSubmit={handleImageSubmit} className="pic-upload" encType="multipart/form-data">
+                    <div className="form-input">
+                        <label htmlFor="images[]">Upload Your Product Images</label>
+                        <input
+                            type="file"
+                            name="images[]"
+                            multiple
+                            accept="image/*"
+                            onChange={handleImages}
+                        />
+                    </div>
+                    {previewImages}
+                    <button type="submit" className="submit-images-button">Upload Image(s)</button>
 
-            </form>
-            <form onSubmit={formType === "create" ? handleCreateSubmit : handleEditSubmit}>
-                {errors.length > 0 && (
-                    <ul>
-                        {errors.map((error, idx) => (
-                            <li key={idx}>{error}</li>
-                        ))}
-                    </ul>
-                )}
-                <div className="form-input">
-                    <label htmlFor="name">Name</label>
-                    <input
-                        id="name"
-                        type="text"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                    />
-                </div>
-                <div className="form-input">
-                    <label htmlFor="description">Description</label>
-                    <textarea
-                        id="description"
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                    />
-                </div>
-                <div className="form-input">
-                    <label htmlFor="category">Category</label>
-                    <select
-                        id="category"
-                        value={category}
-                        onChange={(e) => setCategory(e.target.value)}
-                    >
-                        <option value="">--Select a Category--</option>
-                        {categories.map((ele, indx) => (
-                            <option key={indx} value={ele}>
-                                {ele}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-                <div className="form-input">
-                    <label htmlFor="price">Price</label>
-                    <input
-                        id="price"
-                        type="number"
-                        min="0"
-                        value={price}
-                        onChange={(e) => setPrice(e.target.value)}
-                    />
-                </div>
-                <div className="form-input">
-                    <label htmlFor="inventory">Inventory</label>
-                    <input
-                        id="inventory"
-                        type="number"
-                        min="0"
-                        value={inventory}
-                        onChange={(e) => setInventory(e.target.value)}
-                    />
-                </div>
-                <div className="product-form-button-container">
-                    <button type="submit">{formType === "create" ? "Create" : "Save"}</button>
-                    <button type="button" onClick={() => history.push(`users/${user.id}/products`)}>
-                        Cancel
-                    </button>
-                </div>
-            </form>
+                </form>
+                <form onSubmit={formType === "create" ? handleCreateSubmit : handleEditSubmit}>
+                    {errors.length > 0 && (
+                        <ul>
+                            {errors.map((error, idx) => (
+                                <li key={idx}>{error}</li>
+                            ))}
+                        </ul>
+                    )}
+                    <div className="form-input">
+                        <label htmlFor="name">Name</label>
+                        <input
+                            id="name"
+                            type="text"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                        />
+                    </div>
+                    <div className="form-input">
+                        <label htmlFor="description">Description</label>
+                        <textarea
+                            id="description"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                        />
+                    </div>
+                    <div className="form-input">
+                        <label htmlFor="category">Category</label>
+                        <select
+                            id="category"
+                            value={category}
+                            onChange={(e) => setCategory(e.target.value)}
+                        >
+                            <option value="">--Select a Category--</option>
+                            {categories.map((ele, indx) => (
+                                <option key={indx} value={ele}>
+                                    {ele}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                    <div className="form-input">
+                        <label htmlFor="price">Price</label>
+                        <input
+                            id="price"
+                            type="number"
+                            min="0"
+                            value={price}
+                            onChange={(e) => setPrice(e.target.value)}
+                        />
+                    </div>
+                    <div className="form-input">
+                        <label htmlFor="inventory">Inventory</label>
+                        <input
+                            id="inventory"
+                            type="number"
+                            min="0"
+                            value={inventory}
+                            onChange={(e) => setInventory(e.target.value)}
+                        />
+                    </div>
+                    <div className="product-form-button-container">
+                        <button className="form-submit" type="submit">{formType === "create" ? "Create" : "Save"}</button>
+                        <button className="form-cancel" type="button" onClick={() => history.push(`users/${user.id}/products`)}>
+                            Cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     )
 }

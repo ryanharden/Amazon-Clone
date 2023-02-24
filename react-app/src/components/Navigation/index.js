@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, useLocation, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
@@ -16,9 +16,9 @@ function Navigation({ isLoaded }) {
 			<div className="nav-bar">
 				<div className="header-left">
 					<div className="logo">
-						<NavLink className="nav-bar-nav-link" exact to="/">
+						<Link className="nav-bar-nav-link" exact to="/">
 							Rainforest Retail
-						</NavLink>
+						</Link>
 					</div>
 					{/* <div className='deliver-to-address'>
 					</div> */}

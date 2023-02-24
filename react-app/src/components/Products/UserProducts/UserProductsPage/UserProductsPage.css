@@ -1,0 +1,25 @@
+.user-product-page-container {
+    margin: 0px 40px;
+    color: black;
+}
+
+.user-product-page-header {
+    display: flex;
+    /* width: 85vw; */
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 1px solid rgb(0, 0, 0, 0.2);
+}
+
+.all-user-products {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0px;
+}
+
+.user-product-page-link {
+    text-decoration: none;
+    color: black;
+}
+
+
