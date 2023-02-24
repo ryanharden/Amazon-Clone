@@ -1,9 +1,37 @@
+.home-header {
+    height: 40px;
+    background-color: #232F3E;
+    z-index: 4;
+    width: 100%;
+}
+
+.links-bar-wrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    overflow: hidden;
+}
+
+.links-bar-link {
+    color: white;
+    font-size: 14px;
+    line-height: 12px;
+}
+
+.my-links {
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    line-height: 12px;
+}
+
 .slider-container {
     position: relative;
     width: 100%;
     max-width: 1500px;
     height: 600px;
-    
+
 }
 
 .slide-button {
@@ -14,15 +42,28 @@
 .chev-left {
     height: 40px;
     position: absolute;
-    top: 150px;
-    left: 25px;
+    top: 50px;
+    left: 20px;
     cursor: pointer;
+    padding: 100px 20px;
 }
 
 .chev-right {
     height: 40px;
     cursor: pointer;
     position: absolute;
-    top: 150px;
-    right: 25px;
+    top: 50px;
+    right: 20px;
+    padding: 100px 20px;
+}
+
+
+.chev-left:active {
+    border: 2px solid #232F3E;
+    border-radius: 3px;
+}
+
+.chev-right:active {
+    border: 2px solid #232F3E;
+    border-radius: 3px;
 }

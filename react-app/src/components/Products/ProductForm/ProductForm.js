@@ -3,6 +3,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createProductThunk, editProductThunk } from "../../../store/products";
 import "./ProductForm.css";
+import emptyImage from "../../../assets/emtpy-image.jpeg";
 
 const categories = [
     "Automotive",
@@ -227,7 +228,7 @@ const ProductForm = ({ formType, product }) => {
                             onChange={handleImages}
                         />
                     </div>
-                    {previewImages}
+                    {previewImages ? previewImages : <img src={emptyImage} alt="default"/>}
                     <button type="submit" className="submit-images-button">Upload Image(s)</button>
 
                 </form>
