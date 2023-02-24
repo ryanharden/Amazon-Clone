@@ -143,24 +143,28 @@ const ProductForm = ({ formType, product }) => {
     // Handle form submission for uploading product images
     const handleImageSubmit = async (e) => {
         e.preventDefault();
-        // const formData = new FormData();
-        // console.log("images :", images);
+        const formData = new FormData();
+        console.log("images :", images);
+        Array.from(images).forEach((image) => {
+            formData.append("image", image);
+        })
+        console.log("images :", images);
         // console.log("images 0 name :", images[0].name)
 
         // images.forEach((image, index) => {
         //     formData.append(`image_${index}`, image);
         // });
         // formData.append("image[]", images ? images : image);
-        // console.log("formData: ", formData)
+        console.log("formData: ", formData)
         setImageLoading(true);
         const res = await fetch('/api/images', {
             method: "POST",
-            body: images,
+            body: formData,
         });
         if (res.ok) {
             const data = await res.json();
             console.log(data)
-            setImageLoading(false);
+            // setImageLoading(false);
             // setImage(data)
         }
     };
@@ -197,6 +201,8 @@ const ProductForm = ({ formType, product }) => {
 
         if (form.price === "" || parseFloat(form.price) === 0 || parseFloat(form.price) > 99999.99) {
             errors.push("Price must be a number greater than 0 and less than 99999.99");
+        } else if (isNaN(form.price)) {
+            errors.push("Price must be a number")
         }
 
         if (form.inventory === "" || parseInt(form.inventory) < 1) {

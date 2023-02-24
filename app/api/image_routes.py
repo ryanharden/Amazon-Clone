@@ -41,10 +41,10 @@ image_routes = Blueprint('images', __name__)
 @login_required
 def upload_product_image():
 
-    if "images[]" not in request.files:
+    if "image" not in request.files:
         return {"errors": "Image required"}, 400
 
-    images = request.files.getlist("images[]")
+    images = request.files.getlist("image")
     print("images-routes: ", images)
     for image in images:
         print("image :", image)
@@ -54,7 +54,7 @@ def upload_product_image():
         image.filename = s3.get_unique_filename(image.filename)
 
         upload = s3.upload_image_file_to_s3(image)
-
+        print("upload :", upload)
         if "url" not in upload:
             return {"errors": upload}, 400
 

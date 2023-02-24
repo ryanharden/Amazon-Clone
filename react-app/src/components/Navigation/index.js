@@ -30,7 +30,7 @@ function Navigation({ isLoaded }) {
 					{isLoaded && (
 						<div className="lang-profile-orders-cart">
 							<div className='flag-lang'>
-								<img src={flag} alt="flag" />
+								<img className="flag" src={flag} alt="flag" />
 								<div className='en'>EN</div>
 							</div>
 							<div className="profile-button-container">
