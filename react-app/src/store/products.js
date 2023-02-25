@@ -87,7 +87,7 @@ export const getProductThunk = (productId) => async (dispatch) => {
 }
 
 // Create a Product
-export const createProductThunk = (productData) => async (dispatch) => {
+export const createProductThunk = (productData, productImages) => async (dispatch) => {
     const res = await fetch('/api/products', {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -96,8 +96,28 @@ export const createProductThunk = (productData) => async (dispatch) => {
 
     if (res.ok) {
         const product = await res.json();
-        dispatch(createProduct(product));
-        return product
+        // console.log("product: ", product);
+        const formData = new FormData();
+        Array.from(productImages).forEach((image) => {
+            formData.append("image", image);
+        })
+        console.log("formData: ", formData)
+        const res2 = await fetch(`/api/products/${product.id}/images`, {
+            method: "POST",
+            body: formData,
+        });
+
+        // console.log("product: ", product)
+        console.log("res2: ", res2);
+        console.log("productImages: ", productImages);
+
+        if (res2.ok) {
+            const data = await res2.json();
+            console.log("data: ", data)
+            product.product_images = data
+            dispatch(createProduct(product));
+            return product
+        }
     } else {
         const data = await res.json();
         if (data.errors) {
@@ -156,7 +176,7 @@ const initialState = {
 // Product Reducer
 export default function productReducer(state = initialState, action) {
     let newState;
-    switch(action.type) {
+    switch (action.type) {
         // Get All Products
         case GET_PRODUCTS:
             newState = { ...state }

@@ -7,6 +7,7 @@ import { ModalProvider, Modal } from "./context/Modal";
 import configureStore from "./store";
 import * as sessionActions from "./store/session";
 import * as productActions from "./store/products";
+import * as cartItemActions from "./store/cartitem";
 
 import App from "./App";
 

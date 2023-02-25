@@ -19,7 +19,7 @@ class ProductImage(db.Model):
     def to_dict(self):
         return {
             "id": self.id,
-            # "product_id": self.product_id,
+            "product_id": self.product_id,
             "product_image_url": self.product_image_url,
             # "preview": self.preview
         }

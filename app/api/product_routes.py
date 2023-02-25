@@ -3,6 +3,7 @@ from flask_login import login_required, current_user
 from app.models import User, Product, ProductImage, db
 from app.forms import ProductForm
 from .user_routes import user_routes
+from .image_routes import upload_product_images
 import app.s3 as s3
 # ( upload_file_to_s3, upload_image_file_to_s3, audio_file, get_unique_filename, image_file)
 
@@ -73,6 +74,7 @@ def create_product():
             price = form.data["price"],
             inventory = form.data["inventory"]
         )
+
         db.session.add(product)
         db.session.commit()
 
@@ -81,71 +83,69 @@ def create_product():
     if form.errors:
         return {"errors": validation_errors_to_error_messages(form.errors)}, 400
 
-
-# Upload Image to Product
+# Add image to Product
 # @product_routes.route("/<int:id>/images", methods=["POST"])
 # @login_required
-# def upload_product_image(id):
+# def add_product_images(id):
 
 #     if "image" not in request.files:
 #         return {"errors": "Image required"}, 400
 
-#     image = request.files["image"]
+#     images = request.files.getlist("image")
+#     print("images: ", images)
+#     image_list = []
+#     for image in images:
+#         url = image.product_image_url
+#         product_image = ProductImage(
+#             product_image_url = url,
+#             product_id = id,
+#         )
 
-#     if not s3.image_file(image.filename):
-#         return {"errors": "file type not permitted"}, 400
+#         db.session.add(product_image)
+#         db.session.commit()
 
-#     image.filename = s3.get_unique_filename(image.filename)
+        # image_dict = {"product_image_url": image_url}
+    #     image_list.append(product_image.to_dict());
+    # return image_list
+    #This is the data being return from res2
 
-#     upload = s3.upload_image_file_to_s3(image)
+@product_routes.route("/<int:id>/images", methods=["POST"])
+@login_required
+def add_product_images(id):
 
-#     if "url" not in upload:
-#         return {"errors": upload}, 400
+    if "images" not in request.files:
+        return {"errors": "Image required"}, 400
 
-#     image_url = upload["url"]
+    images = request.files.getlist("images")
+    print("req.files: ", request.files)
+    print("images-routes: ", images)
+    image_list = []
+    for image in images:
+        print("image :", image)
+        if not s3.image_file(image.filename):
+            return {"errors": "file type not permitted"}, 400
 
-#     product_image = ProductImage(
-#         product_id = id,
-#         product_image_url = image_url,
-#         number = request.form['number'] if request.form['number'] else None
-#     )
+        image.filename = s3.get_unique_filename(image.filename)
 
-#     db.session.add(product_image)
-#     db.session.commit()
-#     return product_image.to_dict()
+        upload = s3.upload_image_file_to_s3(image)
+        print("upload :", upload)
+        if "url" not in upload:
+            return {"errors": upload}, 400
 
-# Upload Images to Product
-# @product_routes.route("/<int:id>/images", methods=["POST"])
-# @login_required
-# def upload_product_images(id):
+        image_url = upload["url"]
 
-#     if "image" not in request.files:
-#         return {"errors": "Image required"}, 400
+        product_image = ProductImage(
+            product_image_url = image_url,
+            product_id = id
+            # number = request.form['number'] if request.form['number'] else None
+        )
 
-#     image = request.files["image"]
+        db.session.add(product_image)
+        db.session.commit()
 
-#     if not s3.image_file(image.filename):
-#         return {"errors": "file type not permitted"}, 400
-
-#     image.filename = s3.get_unique_filename(image.filename)
-
-#     upload = s3.upload_image_file_to_s3(image)
-
-#     if "url" not in upload:
-#         return {"errors": upload}, 400
-
-#     image_url = upload["url"]
-
-#     product_image = ProductImage(
-#         product_id = id,
-#         product_image_url = image_url,
-#         preview = request.form["preview"] == 'true',
-#         number = request.form['number'] if request.form['number'] else None
-#     )
-
-#     db.session.add(product_image)
-#     db.session.commit()
-#     return product_image.to_dict()
+        image_dict = {"product_image_url": image_url}
+        image_list.append(image_dict)
+    return image_list
 
 # Edit Product
 @product_routes.route("/<int:id>", methods=["PUT"])

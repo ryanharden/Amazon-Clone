@@ -43,6 +43,8 @@ const ProductForm = ({ formType, product }) => {
     const [inventory, setInventory] = useState(product?.inventory || "");
     const [image, setImage] = useState(product?.product_images || null);
     const [images, setImages] = useState(product?.product_images || []);
+    const [prevImages, setPrevImages] = useState([]);
+    const [prevImage, setPrevImage] = useState(null);
     const [imageLoading, setImageLoading] = useState(false);
     // const imageRef = useRef(null)
 
@@ -56,20 +58,35 @@ const ProductForm = ({ formType, product }) => {
             category,
             price,
             inventory,
-            product_images: images,
-            image
+            // product_images: images,
+            // image
         };
+        console.log("newProduct: ", newProduct)
 
         const validationErrors = validateForm(newProduct);
         if (validationErrors.length > 0) {
             setErrors(validationErrors);
             return;
         }
+        // const formData = new FormData();
+        // Array.from(images).forEach((image) => {
+        //     formData.append("image", image);
+        // })
+        // const res = await fetch('/api/images', {
+        //     method: "POST",
+        //     body: formData,
+        // });
+        // if (res.ok) {
+        //     const data = await res.json();
+        //     console.log("data: ",data)
+        //     setImages(data)
+        // }
 
-        dispatch(createProductThunk(newProduct))
+        // console.log("images: ", Array.from(images));
+        dispatch(createProductThunk(newProduct, images))
             .then(() => history.push(`/users/${user.id}/products`))
             .catch(async (res) => {
-                console.log('res:', res);
+                // console.log('res:', res);
                 const data = await res.json();
                 if (data && data.errors) setErrors(data.errors)
             });
@@ -107,17 +124,20 @@ const ProductForm = ({ formType, product }) => {
 
     const handleImages = (e) => {
         const files = e.target.files;
-        if (files.length === 1) setImage(e.target.files[0]);
-        else setImage(null);
-        setImages([...images, ...files]);
+        // const filesArr = Array.from(files);
+        if (files.length === 1) setPrevImage(e.target.files[0]);
+        else setPrevImage(null);
+        setPrevImages([...prevImages, ...files]);
+        setImages([...images, ...files])
+        // console.log("files: ", Array.from(files));
     }
 
     let previewImages;
 
-    if (images.length) {
+    if (prevImages.length) {
         previewImages = (
             <div className={'preview-images-container'}>
-                {images.map((image, i) => {
+                {prevImages.map((image, i) => {
                     return (
                         <div key={i} className={'preview-image-container'}>
                             <button
@@ -142,37 +162,29 @@ const ProductForm = ({ formType, product }) => {
     }
 
     // Handle form submission for uploading product images
-    const handleImageSubmit = async (e) => {
-        e.preventDefault();
-        const formData = new FormData();
-        console.log("images :", images);
-        Array.from(images).forEach((image) => {
-            formData.append("image", image);
-        })
-        console.log("images :", images);
-        // console.log("images 0 name :", images[0].name)
-
-        // images.forEach((image, index) => {
-        //     formData.append(`image_${index}`, image);
-        // });
-        // formData.append("image[]", images ? images : image);
-        console.log("formData: ", formData)
-        setImageLoading(true);
-        const res = await fetch('/api/images', {
-            method: "POST",
-            body: formData,
-        });
-        if (res.ok) {
-            const data = await res.json();
-            console.log(data)
-            // setImageLoading(false);
-            // setImage(data)
-        }
-    };
+    // const handleImageSubmit = async (e) => {
+    //     e.preventDefault();
+    //     const formData = new FormData();
+    //     console.log("images :", images);
+    //     Array.from(images).forEach((image) => {
+    //         formData.append("image", image);
+    //     })
+    //     console.log("images :", images);
+    //     console.log("formData: ", formData)
+    //     const res = await fetch('/api/images', {
+    //         method: "POST",
+    //         body: formData,
+    //     });
+    //     if (res.ok) {
+    //         const data = await res.json();
+    //         console.log("data: ",data)
+    //         setImages(data)
+    //     }
+    // };
 
     const handleImageRemove = (e, i) => {
         e.preventDefault();
-        const newImages = [...images];
+        const newImages = [...prevImages];
         newImages.splice(i, 1);
         setImages(newImages);
         if (newImages.length === 1) {
@@ -217,22 +229,33 @@ const ProductForm = ({ formType, product }) => {
         <div className="product-create-edit-container">
             <div className="forms-wrapper">
                 <h2>{formType === "create" ? "List a Product" : "Edit Product"}</h2>
-                <form onSubmit={handleImageSubmit} className="pic-upload" encType="multipart/form-data">
+                {/* <form onSubmit={handleImageSubmit} className="pic-upload" encType="multipart/form-data">
                     <div className="form-input">
-                        <label htmlFor="images[]">Upload Your Product Images</label>
+                        <label htmlFor="images">Upload Your Product Images</label>
                         <input
                             type="file"
-                            name="images[]"
+                            name="images"
                             multiple
                             accept="image/*"
                             onChange={handleImages}
                         />
                     </div>
-                    {previewImages ? previewImages : <img src={emptyImage} alt="default"/>}
+                    {previewImages ? previewImages : <img src={emptyImage} alt="default" />}
                     <button type="submit" className="submit-images-button">Upload Image(s)</button>
 
-                </form>
+                </form> */}
                 <form onSubmit={formType === "create" ? handleCreateSubmit : handleEditSubmit}>
+                    <div className="form-input">
+                        <label htmlFor="images">Upload Your Product Images</label>
+                        <input
+                            type="file"
+                            name="images"
+                            multiple
+                            accept="image/*"
+                            onChange={handleImages}
+                        />
+                    </div>
+                    {previewImages ? previewImages : <img src={emptyImage} alt="default" />}
                     {errors.length > 0 && (
                         <ul>
                             {errors.map((error, idx) => (

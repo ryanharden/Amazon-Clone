@@ -39,13 +39,15 @@ image_routes = Blueprint('images', __name__)
 
 @image_routes.route("", methods=["POST"])
 @login_required
-def upload_product_image():
+def upload_product_images():
 
-    if "image" not in request.files:
+    if "images" not in request.files:
         return {"errors": "Image required"}, 400
 
-    images = request.files.getlist("image")
+    images = request.files.getlist("images")
+    print("req.files: ", request.files)
     print("images-routes: ", images)
+    image_list = []
     for image in images:
         print("image :", image)
         if not s3.image_file(image.filename):
@@ -68,4 +70,6 @@ def upload_product_image():
         db.session.add(product_image)
         db.session.commit()
 
-        return {"product_image_url": image_url}
+        image_dict = {"product_image_url": image_url}
+        image_list.append(image_dict)
+    return image_list
