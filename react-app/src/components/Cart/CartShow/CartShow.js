@@ -30,10 +30,6 @@ const CartShow = () => {
         }
     }
 
-    const proceed = async () => {
-        history.push('/checkout')
-    }
-
     if (!cartItems && !cartItemsArr.length)
         return (
             <div className='empty-cart-container'>
@@ -73,9 +69,9 @@ const CartShow = () => {
                 <div className='right-cart-header'>
                     Subtotal ({cartItemsArr.length} item{cartItemsArr.length > 1 && "s"}): ${parseFloat(getTotal(cartItemsArr)).toFixed(2)}
                 </div>
-                <div className='proceed-to-checkout' onClick={proceed}>
+                <Link to={"/checkout"} className="cart-show-link">
                     Proceed to checkout
-                </div>
+                </Link>
             </div>
         </div>
     )
