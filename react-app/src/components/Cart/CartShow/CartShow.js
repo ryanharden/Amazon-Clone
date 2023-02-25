@@ -16,7 +16,7 @@ const CartShow = () => {
 
     useEffect(() => {
         dispatch(getCartItemsThunk());
-    }, [dispatch])
+    }, [dispatch, cartItems])
 
     // const numCartItems = sum(cartItemsArr)
 
