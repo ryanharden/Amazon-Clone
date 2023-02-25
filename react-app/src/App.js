@@ -9,6 +9,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import CreateProduct from "./components/Products/CreateProduct/CreateProduct";
 import EditProduct from "./components/Products/EditProduct/EditProduct";
+import CartShow from "./components/Cart/CartShow/CartShow";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,6 +40,9 @@ function App() {
           </Route>
           <Route path="/editproduct/:productId">
             <EditProduct />
+          </Route>
+          <Route path="/cart">
+            <CartShow />
           </Route>
           {/* <Route path={["/users/:userId/products", "/createproduct", "/editproduct/:productId"]}>
             <UserProductPage />

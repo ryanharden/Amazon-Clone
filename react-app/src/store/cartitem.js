@@ -41,6 +41,7 @@ export const getCartItemsThunk = () => async (dispatch) => {
         const cartItems = await res.json();
         dispatch(getCartItems(cartItems));
         return cartItems
+        // {item.id: item.to_dict() for item in cart_items}
     } else {
         const data = await res.json();
         if (data.errors) {

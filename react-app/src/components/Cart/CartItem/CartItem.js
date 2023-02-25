@@ -6,7 +6,7 @@ import Quantity from "./Quantity/Quantity";
 
 const CartItem = ({ product, quantity }) => {
     const dispatch = useDispatch();
-    cosnt [isDeleted, setIsDeleted] = useState(false);
+    const [isDeleted, setIsDeleted] = useState(false);
 
     const deleteItem = () => {
         dispatch(deleteCartItemThunk(product.id));
