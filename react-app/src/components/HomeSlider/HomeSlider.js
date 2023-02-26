@@ -86,68 +86,68 @@ const HomeSlider = ({ slides }) => {
             <div className='slide-button' onClick={handleNextSlide}>
                 <img className="chev-right" src={chevright} alt="Next" />
             </div>
-            {/* <div className="product-cards-container">
+            <div className="product-cards-container">
                 <div className="card-container">
                     <h2 className="card-title">Rainforest Basics</h2>
-                    <div className="card-image-container">
+                    {/* <div className="card-image-container">
                         {categoryProducts.map(product => (
                             <div className="card-image" key={product.id}>
                                 <Link to={`/products/${product.id}`}>
-                                    <img src={product.product_images[0]?.product_image_url} alt={product.name} />
+                                    <img className="card-actual-image" src={product.product_images[0]?.product_image_url} alt={product.name} />
                                 </Link>
                                 <div className="card-image-info">
                                     <h3>{product.name}</h3>
                                 </div>
                             </div>
                         ))}
-                    </div>
+                    </div> */}
                 </div>
                 <div className="card-container">
                     <h2 className="card-title">Newest Products</h2>
-                    <div className="card-image-container">
+                    {/* <div className="card-image-container">
                         {newestProducts.map(product => (
                             <div className="card-image" key={product.id}>
                                 <Link to={`/products/${product.id}`}>
-                                    <img src={product.product_images[0]?.product_image_url} alt={product.name} />
+                                    <img className="card-actual-image" src={product.product_images[0]?.product_image_url} alt={product.name} />
                                 </Link>
                                 <div className="card-image-info">
                                     <h3>{product.name}</h3>
                                 </div>
                             </div>
                         ))}
-                    </div>
+                    </div> */}
                 </div>
                 <div className="card-container">
                     <h2 className="card-title">Trending Products</h2>
-                    <div className="card-image-container">
+                    {/* <div className="card-image-container">
                         {trendingProducts.map(product => (
                             <div className="card-image" key={product.id}>
                                 <Link to={`/products/${product.id}`}>
-                                    <img src={product.product_images[0]?.product_image_url} alt={product.name} />
+                                    <img className="card-actual-image" src={product.product_images[0]?.product_image_url} alt={product.name} />
                                 </Link>
                                 <div className="card-image-info">
                                     <h3>{product.name}</h3>
                                 </div>
                             </div>
                         ))}
-                    </div>
+                    </div> */}
                 </div>
                 <div className="card-container">
                     <h2 className="card-title">Explore Essentials</h2>
-                    <div className="card-image-container">
+                    {/* <div className="card-image-container">
                         {exploreEssentials.map(product => (
                             <div className="card-image" key={product.id}>
                                 <Link to={`/products/${product.id}`}>
-                                    <img src={product.product_images[0]?.product_image_url} alt={product.name} />
+                                    <img className="card-actual-image" src={product.product_images[0]?.product_image_url} alt={product.name} />
                                 </Link>
                                 <div className="card-image-info">
                                     <h3>{product.name}</h3>
                                 </div>
                             </div>
                         ))}
-                    </div>
+                    </div> */}
                 </div>
-            </div> */}
+            </div>
         </div>
         </>
     );

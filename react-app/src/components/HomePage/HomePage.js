@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import splashheader1 from "../../assets/amazon-outlet-splash-header.jpg";
 import splashheader2 from "../../assets/amazon-clinic-splash-header.jpg";
 import splashheader3 from "../../assets/amazon-healthcare.jpg";
+import splashheader4 from "../../assets/amazon-card-splash.jpg";
 import "./HomePage.css";
 import HomeSlider from "../HomeSlider/HomeSlider";
 // import Navigation from "../Navigation/index";
@@ -25,7 +26,7 @@ function HomePage() {
         { url: `${splashheader1}`, title: 'splash-1' },
         { url: `${splashheader2}`, title: 'splash-2' },
         { url: `${splashheader3}`, title: 'splash-3' },
-        // { url: `${splashheader4}`, title: 'splash-4' }
+        { url: `${splashheader4}`, title: 'splash-4' }
     ]
 
     useEffect(() => {
