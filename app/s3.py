@@ -2,6 +2,7 @@ import boto3
 import botocore
 import os
 import uuid
+# from werkzeug.utils import secure_filename
 
 PHOTO_BUCKET = os.environ.get("S3_PHOTO_BUCKET")
 
@@ -53,3 +54,28 @@ def remove_image_file_from_s3(key):
         )
     except Exception as e:
         return { "errors": str(e) }
+
+# def upload_image_to_bucket_from_url(url, acl="public-read"):
+#     image_name = secure_filename(os.path.basename(url))
+#     bucket_url = f"{CLOUDFRONT_LOCATION}{image_name}"
+
+#     # Don't bother the third party if we already have the image
+#     try:
+#         s3.head_object(Bucket=BUCKET_NAME, Key=image_name)
+#     except Exception:
+#         print("Downloading", url)
+#         response = requests.get(url, stream=True)
+#         try:
+#             s3.upload_fileobj(
+#                 response.raw,
+#                 BUCKET_NAME,
+#                 image_name,
+#                 ExtraArgs={
+#                     "ACL": acl,
+#                 }
+#             )
+#         except Exception as e:
+#             # in case the our s3 upload fails
+#             return {"errors": str(e)}
+
+#     return bucket_url

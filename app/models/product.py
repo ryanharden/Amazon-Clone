@@ -9,7 +9,7 @@ class Product(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     seller_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
-    name = db.Column(db.String(255), nullable=False)
+    name = db.Column(db.String(300), nullable=False)
     description = db.Column(db.String(5000))
     category = db.Column(db.String(30), nullable=False)
     price = db.Column(db.DECIMAL(50, 2), nullable=False)
