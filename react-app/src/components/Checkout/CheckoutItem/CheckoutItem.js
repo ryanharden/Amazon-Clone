@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Quantity from "../../Cart/CartItem/Quantity/Quantity";
 import "./CheckoutItem.css";
-import prime from "../../../../assets/prime-icon.png";
+import prime from "../../../assets/prime-icon.png";
 
 const CheckoutItem = ({ product, quantity }) => {
     if (!product) return null;
@@ -37,4 +37,3 @@ const CheckoutItem = ({ product, quantity }) => {
 };
 
 export default CheckoutItem;
-

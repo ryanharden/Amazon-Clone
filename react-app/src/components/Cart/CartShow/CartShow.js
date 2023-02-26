@@ -1,13 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from "react";
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import CartItem from '../CartItem/CartItem';
 import { getProductThunk } from '../../../store/products';
 import { getCartItemsThunk } from '../../../store/cartitem';
 
 const CartShow = () => {
     const dispatch = useDispatch();
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const product = useSelector(state => state.Products.singleProduct);
     const sessionUser = useSelector(state => state.session.user);

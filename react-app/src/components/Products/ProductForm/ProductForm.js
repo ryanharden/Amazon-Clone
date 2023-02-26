@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createProductThunk, editProductThunk } from "../../../store/products";
 import "./ProductForm.css";
@@ -30,7 +30,7 @@ const categories = [
 
 const ProductForm = ({ formType, product }) => {
     const dispatch = useDispatch();
-    const history = useHistory();
+    const navigate = useNavigate();
     const [errors, setErrors] = useState([]);
     const user = useSelector(state => state.session.user)
     const { productId } = useParams();
@@ -84,7 +84,7 @@ const ProductForm = ({ formType, product }) => {
 
         // console.log("images: ", Array.from(images));
         dispatch(createProductThunk(newProduct, images))
-            .then(() => history.push(`/users/${user.id}/products`))
+            .then(() => navigate(`/users/${user.id}/products`))
             .catch(async (res) => {
                 // console.log('res:', res);
                 const data = await res.json();
@@ -114,7 +114,7 @@ const ProductForm = ({ formType, product }) => {
         }
         console.log("editedProduct: ", editedProduct)
         dispatch(editProductThunk(editedProduct))
-            .then(() => history.push(`/users/${user.id}/products`))
+            .then(() => navigate(`/users/${user.id}/products`))
             .catch(async (res) => {
                 console.log("res: ", res);
                 const data = await res.json();
@@ -317,7 +317,7 @@ const ProductForm = ({ formType, product }) => {
                     </div>
                     <div className="product-form-button-container">
                         <button className="form-submit" type="submit">{formType === "create" ? "Create" : "Save"}</button>
-                        <button className="form-cancel" type="button" onClick={() => history.push(`users/${user.id}/products`)}>
+                        <button className="form-cancel" type="button" onClick={() => navigate(`users/${user.id}/products`)}>
                             Cancel
                         </button>
                     </div>

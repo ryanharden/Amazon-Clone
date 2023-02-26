@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { getProductsThunk } from '../../store/products';
 import { Link } from 'react-router-dom';
 import splashheader1 from "../../assets/amazon-outlet-splash-header.jpg";
@@ -16,7 +16,7 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 function HomePage() {
     const dispatch = useDispatch();
-    const history = useHistory();
+    const navigate = useNavigate();
     const allProducts = useSelector(state => state.Products.allProducts);
     const allProductsArr = Object.values(allProducts);
     // console.log(allProductsArr);

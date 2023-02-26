@@ -25,9 +25,6 @@ const CartConfirmation = () => {
         }
     }
 
-    const proceed = async () => {
-        history.push('/checkout')
-    }
 
     useEffect(() => {
         dispatch(getProductThunk(productId))

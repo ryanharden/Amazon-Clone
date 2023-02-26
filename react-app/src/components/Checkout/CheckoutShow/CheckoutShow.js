@@ -145,3 +145,4 @@ const CheckoutShow = () => {
         </>
     )
 }
+export default CheckoutShow;

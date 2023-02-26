@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Route, Switch } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import UserProductPage from "./components/Products/UserProducts/UserProductsPage/UserProductsPage";
@@ -10,6 +10,8 @@ import Navigation from "./components/Navigation";
 import CreateProduct from "./components/Products/CreateProduct/CreateProduct";
 import EditProduct from "./components/Products/EditProduct/EditProduct";
 import CartShow from "./components/Cart/CartShow/CartShow";
+import CheckoutShow from "./components/Checkout/CheckoutShow/CheckoutShow";
+import CartConfirmation from "./components/Cart/CartConfirmation/CartConfirmation";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,32 +27,28 @@ function App() {
     <>
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
-        <Switch>
-          <Route path="/login" >
-            <LoginFormPage />
-          </Route>
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route>
-          <Route path="/users/:userId/products">
-            <UserProductPage />
-          </Route>
-          <Route path="/createproduct">
-            <CreateProduct />
-          </Route>
-          <Route path="/editproduct/:productId">
-            <EditProduct />
-          </Route>
-          <Route path="/cart">
-            <CartShow />
-          </Route>
+        <Routes>
+          <Route path="/login" element={<LoginFormPage />}/>
+
+          <Route path="/signup" element={<SignupFormPage />}/>
+
+          <Route path="/users/:userId/products" element={<UserProductPage />}/>
+
+          <Route path="/createproduct" element={<CreateProduct />}/>
+
+          <Route path="/editproduct/:productId" element={<EditProduct />}/>
+
+          <Route paht="/cart-confirmation" element={<CartConfirmation />}/>
+
+          <Route path="/cart" element={<CartShow />}/>
+
+          <Route path="/checkout" element={<CheckoutShow />}/>
+
           {/* <Route path={["/users/:userId/products", "/createproduct", "/editproduct/:productId"]}>
             <UserProductPage />
           </Route> */}
-          <Route path="/">
-            <HomePage/>
-          </Route>
-        </Switch>
+          <Route path="/" element={<HomePage/>}/>
+        </Routes>
       )}
     </>
   );
