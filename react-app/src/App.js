@@ -12,6 +12,7 @@ import EditProduct from "./components/Products/EditProduct/EditProduct";
 import CartShow from "./components/Cart/CartShow/CartShow";
 import CheckoutShow from "./components/Checkout/CheckoutShow/CheckoutShow";
 import CartConfirmation from "./components/Cart/CartConfirmation/CartConfirmation";
+import ProductShow from "./components/Products/ProductShow/ProductShow";
 
 function App() {
   const dispatch = useDispatch();
@@ -33,6 +34,8 @@ function App() {
           <Route path="/signup" element={<SignupFormPage />}/>
 
           <Route path="/users/:userId/products" element={<UserProductPage />}/>
+
+          <Route path="/products/:productId" element={<ProductShow />}/>
 
           <Route path="/createproduct" element={<CreateProduct />}/>
 

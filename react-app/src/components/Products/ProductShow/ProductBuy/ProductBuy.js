@@ -2,7 +2,7 @@ import "./ProductBuy.css";
 
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import OpenModalButton from "../../../OpenModalButton";
 import prime from "../../../../assets/prime-icon.png";
 
@@ -12,18 +12,18 @@ import { addCartItemThunk } from "../../../../store/cartitem";
 
 const ProductBuy = ({ product }) => {
     const dispatch = useDispatch();
-    const history = useHistory();
+    const navigate = useNavigate();
 
-    const sessionUser = useSelector(state => state.session.user);
+    const currentUser = useSelector(state => state.session.user);
 
     const [quantity, setQuantity] = useState(1);
 
     const addToCart = async () => {
         if (!currentUser) {
-            history.push("/signin")
+            navigate("/signin")
         } else {
             dispatch(addCartItemThunk(product.id, quantity))
-            history.push(`/cart-confirmation?productId=${product.id}&quantity=${quantity}`);
+            navigate(`/cart-confirmation?productId=${product.id}&quantity=${quantity}`);
         }
     };
 
@@ -49,7 +49,7 @@ const ProductBuy = ({ product }) => {
                 In Stock.
             </div>
             <div className="buy-card-quantity">
-                <Quantity quantity={quantity} setQuantity={setQuantity} />
+                <QuantityShow quantity={quantity} setQuantity={setQuantity} />
             </div>
             <div className="add-to-cart-button" onClick={addToCart}>
                 Add to Cart

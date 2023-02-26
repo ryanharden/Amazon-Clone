@@ -57,7 +57,7 @@ const BuyFormModal = () => {
                     Total
                 </div>
                 <div className="total-price">
-                    ${parseFloat(product.price * quantity).toFixed(2)}
+                    ${parseFloat(product.price /* * quantity*/).toFixed(2)}
                 </div>
                 <div className="tax">
                     (includes tax)
@@ -67,8 +67,8 @@ const BuyFormModal = () => {
                 By placing your order, you agree to Rainforest retails privacy notice and conditions of use.
             </div>
             <div className="place-order">
-                <div className="place-order-button" onClick={handleSubmit}>
-                    Place yor order
+                <div className="place-order-button">
+                    Place your order
                 </div>
             </div>
         </div>
