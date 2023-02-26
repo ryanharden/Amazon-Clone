@@ -33,7 +33,7 @@ def validation_errors_to_error_messages(validation_errors):
 @product_routes.route("")
 def products():
     products = Product.query.all()
-    return {product.id: product.to_dict() for product in products}
+    return {product.id: product.to_dict_details() for product in products}
 
 
 # Get User Products

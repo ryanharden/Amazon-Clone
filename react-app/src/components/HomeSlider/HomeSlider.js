@@ -8,7 +8,9 @@ import './HomeSlider.css';
 
 const HomeSlider = ({ slides }) => {
     const dispatch = useDispatch();
-    // const allProducts = useSelector(state => state.products.allProducts);
+    // const allProducts = useSelector(state => state.Products.allProducts);
+    // console.log(allProducts);
+    // const allProductsArr = Object.values(allProducts);
     const [currentIndex, setCurrentIndex] = useState(0);
 
     // useEffect(() => {
@@ -37,10 +39,10 @@ const HomeSlider = ({ slides }) => {
 
     // const getRandomProducts = (n, exclude) => {
     //     const result = [];
-    //     const len = allProducts.length;
+    //     const len = allProductsArr.length;
     //     let i = 0;
     //     while (i < n) {
-    //         const product = allProducts[Math.floor(Math.random() * len)];
+    //         const product = allProductsArr[Math.floor(Math.random() * len)];
     //         if (exclude.indexOf(product) === -1) {
     //             result.push(product);
     //             i++;
