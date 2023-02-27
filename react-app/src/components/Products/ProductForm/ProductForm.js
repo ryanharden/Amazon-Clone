@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { createProductThunk, editProductThunk } from "../../../store/products";
+import { createProductThunk, editProductThunk, getProductThunk } from "../../../store/products";
 import "./ProductForm.css";
 import emptyImage from "../../../assets/emtpy-image.jpeg";
+import { postProductImages } from "../../../store/products";
 
 const categories = [
     "Automotive",
@@ -30,51 +31,48 @@ const categories = [
 
 const ProductForm = ({ formType, product }) => {
     const dispatch = useDispatch();
-    const history = useHistory();
+    const navigate = useNavigate();
     const [errors, setErrors] = useState([]);
     const user = useSelector(state => state.session.user)
     const { productId } = useParams();
 
     // Define initial state values for the form fields
-    const [name, setName] = useState(product?.name || "");
-    const [description, setDescription] = useState(product?.description || "");
-    const [category, setCategory] = useState(product?.category || "");
-    const [price, setPrice] = useState(product?.price || "");
-    const [inventory, setInventory] = useState(product?.inventory || "");
-    const [image, setImage] = useState(product?.product_images || null);
-    const [images, setImages] = useState(product?.product_images || []);
+    // const [name, setName] = useState(product?.name || "");
+    // const [description, setDescription] = useState(product?.description || "");
+    // const [category, setCategory] = useState(product?.category || "");
+    // const [price, setPrice] = useState(product?.price || "");
+    // const [inventory, setInventory] = useState(product?.inventory || "");
+    // const [image, setImage] = useState(product?.images || null);
+    // const [images, setImages] = useState(product?.images || []);
+    // const [prevImages, setPrevImages] = useState([]);
+    // const [prevImage, setPrevImage] = useState(null);
+    const [name, setName] = useState("");
+    const [description, setDescription] = useState("");
+    const [category, setCategory] = useState("");
+    const [price, setPrice] = useState("");
+    const [inventory, setInventory] = useState("");
+    const [image, setImage] = useState(null);
+    const [images, setImages] = useState([]);
+    const [prevImages, setPrevImages] = useState([]);
+    const [prevImage, setPrevImage] = useState(null);
     const [imageLoading, setImageLoading] = useState(false);
+    // const product = useSelector(state => state.Products.singleProduct);
     // const imageRef = useRef(null)
 
-    // Handle form submission for creating a new product
-    const handleCreateSubmit = async (e) => {
-        e.preventDefault();
+    useEffect(() => {
+        setName(product?.name || "");
+        setDescription(product?.description || "");
+        setCategory(product?.category || "");
+        setPrice(product?.price || "");
+        setInventory(product?.inventory || "");
+        setImage(product?.images || null);
+        setImages(product?.images || []);
+        setPrevImages([]);
+        setPrevImage(null);
+        setErrors([]);
+    }, [product]);
 
-        const newProduct = {
-            name,
-            description,
-            category,
-            price,
-            inventory,
-            product_images: images,
-            image
-        };
 
-        const validationErrors = validateForm(newProduct);
-        if (validationErrors.length > 0) {
-            setErrors(validationErrors);
-            return;
-        }
-
-        dispatch(createProductThunk(newProduct))
-            .then(() => history.push(`/users/${user.id}/products`))
-            .catch(async (res) => {
-                console.log('res:', res);
-                const data = await res.json();
-                if (data && data.errors) setErrors(data.errors)
-            });
-
-    }
     // Handle form submission for editing an existing product
     const handleEditSubmit = async (e) => {
         e.preventDefault();
@@ -86,8 +84,6 @@ const ProductForm = ({ formType, product }) => {
             category,
             price,
             inventory,
-            product_images: images,
-            image
         };
 
         const validationErrors = validateForm(editedProduct);
@@ -95,29 +91,98 @@ const ProductForm = ({ formType, product }) => {
             setErrors(validationErrors);
             return;
         }
-        console.log("editedProduct: ", editedProduct)
-        dispatch(editProductThunk(editedProduct))
-            .then(() => history.push(`/users/${user.id}/products`))
-            .catch(async (res) => {
-                console.log("res: ", res);
+        // console.log("editedProduct: ", editedProduct)
+        const newNewProduct = await dispatch(editProductThunk(editedProduct));
+        // .then(() => navigate(`/users/${user.id}/products`))
+        // .catch(async (res) => {
+        //     console.log("res: ", res);
+        //     const data = await res.json();
+        //     if (data && data.errors) setErrors(data.errors)
+        // });
+        console.log("newNewProduct: ", newNewProduct)
+        if (newNewProduct.images.length) {
+            try {
+                if (images.length && newNewProduct) {
+                    const formData = new FormData();
+                    images.forEach((image) => {
+                        formData.append("images", image);
+                    })
+                    await dispatch(postProductImages(newNewProduct.id, formData))
+                }
+            }
+            catch (res) {
+                // console.log('res:', res);
                 const data = await res.json();
                 if (data && data.errors) setErrors(data.errors)
-            });
+            };
+            navigate(`/users/${user.id}/products`)
+        }
     };
 
-    const handleImages = (e) => {
+    const handleImages = async (e) => {
         const files = e.target.files;
-        if (files.length === 1) setImage(e.target.files[0]);
-        else setImage(null);
-        setImages([...images, ...files]);
+        console.log("files: ", files);
+
+        if (files.length === 1) setPrevImage(e.target.files[0]);
+        else setPrevImage(null);
+
+        setPrevImages([...prevImages, ...files]);
+        setImages([...images, ...files])
+        // if (formType === "edit") {
+        //     setImages(product.images)
+        // }
+    }
+
+    // Handle form submission for creating a new product
+    const handleCreateSubmit = async (e) => {
+        e.preventDefault();
+
+        const newProduct = {
+            name,
+            description,
+            category,
+            price,
+            inventory,
+            images
+            // image
+        };
+        console.log("newProduct: ", newProduct)
+
+        const validationErrors = validateForm(newProduct);
+        if (validationErrors.length > 0) {
+            setErrors(validationErrors);
+            return;
+        }
+
+        console.log("images: ", images);
+        if (images.length) {
+            try {
+                const newProductId = await dispatch(createProductThunk(newProduct))
+                if (images.length && newProductId) {
+                    console.log("im here: ", images);
+                    const formData = new FormData();
+                    images.forEach((image) => {
+                        formData.append("images", image);
+                    })
+                    await dispatch(postProductImages(newProductId, formData))
+                }
+            }
+            catch (res) {
+                // console.log('res:', res);
+                const data = await res.json();
+                if (data && data.errors) setErrors(data.errors)
+            };
+            navigate(`/users/${user.id}/products`)
+        }
+
     }
 
     let previewImages;
 
-    if (images.length) {
+    if (prevImages.length) {
         previewImages = (
             <div className={'preview-images-container'}>
-                {images.map((image, i) => {
+                {prevImages.map((image, i) => {
                     return (
                         <div key={i} className={'preview-image-container'}>
                             <button
@@ -141,43 +206,49 @@ const ProductForm = ({ formType, product }) => {
         )
     }
 
-    // Handle form submission for uploading product images
-    const handleImageSubmit = async (e) => {
-        e.preventDefault();
-        const formData = new FormData();
-        console.log("images :", images);
-        Array.from(images).forEach((image) => {
-            formData.append("image", image);
-        })
-        console.log("images :", images);
-        // console.log("images 0 name :", images[0].name)
-
-        // images.forEach((image, index) => {
-        //     formData.append(`image_${index}`, image);
-        // });
-        // formData.append("image[]", images ? images : image);
-        console.log("formData: ", formData)
-        setImageLoading(true);
-        const res = await fetch('/api/images', {
-            method: "POST",
-            body: formData,
-        });
-        if (res.ok) {
-            const data = await res.json();
-            console.log(data)
-            // setImageLoading(false);
-            // setImage(data)
-        }
-    };
+    let productImages;
+    if (product && product.images.length) {
+        productImages = (
+            <div className="preview-images-container">
+                {product.images.map((image, i) => {
+                    return (
+                        <div key={i} className="preview-image-container">
+                            <button
+                                className="preview-image-btn"
+                                onClick={(e) => handleImageRemoveEdit(e, i)}
+                            >x</button>
+                            <img
+                                className="preview-images-image"
+                                src={image.url}
+                                alt="preview"
+                            />
+                        </div>
+                    )
+                })}
+            </div>
+        )
+    }
 
     const handleImageRemove = (e, i) => {
         e.preventDefault();
         const newImages = [...images];
+        const newPrevImages = [...prevImages];
+        console.log(newImages);
         newImages.splice(i, 1);
         setImages(newImages);
+
+        newPrevImages.splice(i, 1);
+        setPrevImages(newPrevImages);
         if (newImages.length === 1) {
             setImage(newImages[0])
         }
+    }
+
+    const handleImageRemoveEdit = (e, i) => {
+        e.preventDefault();
+        const currentImages = product.images;
+        currentImages.splice(i, 1);
+        setImages(currentImages);
     }
 
     // Validate the form fields and return an array of error messages
@@ -217,22 +288,34 @@ const ProductForm = ({ formType, product }) => {
         <div className="product-create-edit-container">
             <div className="forms-wrapper">
                 <h2>{formType === "create" ? "List a Product" : "Edit Product"}</h2>
-                <form onSubmit={handleImageSubmit} className="pic-upload" encType="multipart/form-data">
+                {/* <form onSubmit={handleImageSubmit} className="pic-upload" encType="multipart/form-data">
                     <div className="form-input">
-                        <label htmlFor="images[]">Upload Your Product Images</label>
+                        <label htmlFor="images">Upload Your Product Images</label>
                         <input
                             type="file"
-                            name="images[]"
+                            name="images"
                             multiple
                             accept="image/*"
                             onChange={handleImages}
                         />
                     </div>
-                    {previewImages ? previewImages : <img src={emptyImage} alt="default"/>}
+                    {previewImages ? previewImages : <img src={emptyImage} alt="default" />}
                     <button type="submit" className="submit-images-button">Upload Image(s)</button>
 
-                </form>
-                <form onSubmit={formType === "create" ? handleCreateSubmit : handleEditSubmit}>
+                </form> */}
+                <form onSubmit={formType === "create" ? handleCreateSubmit : handleEditSubmit} encType="multipart/form-data">
+                    <div className="form-input">
+                        <label htmlFor="images">Upload Your Product Images</label>
+                        <input
+                            type="file"
+                            name="images"
+                            multiple
+                            accept="image/*"
+                            onChange={handleImages}
+                        />
+                    </div>
+                    {formType === "edit" ? productImages : previewImages}
+                    {/* {previewImages ? previewImages : <img src={emptyImage} alt="default" />} */}
                     {errors.length > 0 && (
                         <ul>
                             {errors.map((error, idx) => (
@@ -264,7 +347,7 @@ const ProductForm = ({ formType, product }) => {
                             value={category}
                             onChange={(e) => setCategory(e.target.value)}
                         >
-                            <option value="">--Select a Category--</option>
+                            <option>--Select a Category--</option>
                             {categories.map((ele, indx) => (
                                 <option key={indx} value={ele}>
                                     {ele}
@@ -294,7 +377,7 @@ const ProductForm = ({ formType, product }) => {
                     </div>
                     <div className="product-form-button-container">
                         <button className="form-submit" type="submit">{formType === "create" ? "Create" : "Save"}</button>
-                        <button className="form-cancel" type="button" onClick={() => history.push(`users/${user.id}/products`)}>
+                        <button className="form-cancel" type="button" onClick={() => navigate(`/users/${user.id}/products`)}>
                             Cancel
                         </button>
                     </div>

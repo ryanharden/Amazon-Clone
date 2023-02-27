@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import flag from "../../assets/american-flag.png";
+import CartButton from './CartButton/CartButton';
+import OrdersButton from './OrdersButton/OrdersButton';
 
 function Navigation({ isLoaded }) {
 	const sessionUser = useSelector(state => state.session.user);
@@ -33,13 +35,9 @@ function Navigation({ isLoaded }) {
 								<img className="flag" src={flag} alt="flag" />
 								<div className='en'>EN</div>
 							</div>
-							<div className="profile-button-container">
-								<ProfileButton user={sessionUser} />
-							</div>
-							{/* <div className='orders-button-container'>
-							</div> */}
-							{/* <div className='cart-button-container'>
-							</div> */}
+							<ProfileButton user={sessionUser} />
+							<OrdersButton />
+							<CartButton />
 						</div>
 					)}
 				</div>

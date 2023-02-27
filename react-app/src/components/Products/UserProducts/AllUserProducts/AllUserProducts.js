@@ -9,12 +9,13 @@ const AllUserProducts = () => {
     const userProducts = useSelector(state => state.Products.userProducts);
 
     const currentUser = useSelector(state => state.session.user);
-    console.log("currentUser: ", currentUser)
+    // console.log("currentUser: ", currentUser)
     let userProductsArr;
     let userProductItems;
     if (Object.values(userProducts).length) {
         userProductsArr = Object.values(userProducts);
         userProductItems = userProductsArr.map(product => {
+            // console.log("product: ", product)
             return <UserProductItem key={product.id} product={product} />
         });
     }

@@ -11,7 +11,7 @@ const EditProduct = () =>{
 
     const product = useSelector(state => state.Products.singleProduct)
     const dispatch = useDispatch();
-    console.log("product: ", product);
+    // console.log("product: ", product);
 
     useEffect(() => {
         dispatch(getProductThunk(productId));
@@ -21,7 +21,7 @@ const EditProduct = () =>{
 
     if(!(Object.values(product)).length) return null
 
-    const newProduct={
+    const currentProduct={
         id: product.id,
         seller_id: product.seller_id,
         name: product.name,
@@ -29,11 +29,11 @@ const EditProduct = () =>{
         category: product.category,
         price: product.price,
         inventory: product.inventory,
-        product_images: product.product_images,
+        images: product.images,
     }
 
     return (
-        <ProductForm product={newProduct} formType="edit"/>
+        <ProductForm product={currentProduct} formType="edit"/>
     )
 }
 

@@ -41,6 +41,7 @@ export const getCartItemsThunk = () => async (dispatch) => {
         const cartItems = await res.json();
         dispatch(getCartItems(cartItems));
         return cartItems
+        // {item.id: item.to_dict() for item in cart_items}
     } else {
         const data = await res.json();
         if (data.errors) {
@@ -131,7 +132,7 @@ export default function cartItemReducer(state = initialState, action) {
         // Add Cart Item & Edit Cart Item
         case ADD_CARTITEM:
         case EDIT_CARTITEM:
-            return { ...state, [action.cartItem.id]: action.cartItem }
+            return { ...state, [action.cartItem.product_id]: action.cartItem }
 
         // Delete Cart Item
         case DELETE_CARTITEM:

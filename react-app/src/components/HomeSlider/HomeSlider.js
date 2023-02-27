@@ -8,7 +8,9 @@ import './HomeSlider.css';
 
 const HomeSlider = ({ slides }) => {
     const dispatch = useDispatch();
-    // const allProducts = useSelector(state => state.products.allProducts);
+    // const allProducts = useSelector(state => state.Products.allProducts);
+    // console.log(allProducts);
+    // const allProductsArr = Object.values(allProducts);
     const [currentIndex, setCurrentIndex] = useState(0);
 
     // useEffect(() => {
@@ -37,10 +39,10 @@ const HomeSlider = ({ slides }) => {
 
     // const getRandomProducts = (n, exclude) => {
     //     const result = [];
-    //     const len = allProducts.length;
+    //     const len = allProductsArr.length;
     //     let i = 0;
     //     while (i < n) {
-    //         const product = allProducts[Math.floor(Math.random() * len)];
+    //         const product = allProductsArr[Math.floor(Math.random() * len)];
     //         if (exclude.indexOf(product) === -1) {
     //             result.push(product);
     //             i++;
@@ -86,68 +88,68 @@ const HomeSlider = ({ slides }) => {
             <div className='slide-button' onClick={handleNextSlide}>
                 <img className="chev-right" src={chevright} alt="Next" />
             </div>
-            {/* <div className="product-cards-container">
+            <div className="product-cards-container">
                 <div className="card-container">
                     <h2 className="card-title">Rainforest Basics</h2>
-                    <div className="card-image-container">
+                    {/* <div className="card-image-container">
                         {categoryProducts.map(product => (
                             <div className="card-image" key={product.id}>
                                 <Link to={`/products/${product.id}`}>
-                                    <img src={product.product_images[0]?.product_image_url} alt={product.name} />
+                                    <img className="card-actual-image" src={product.images[0]?.url} alt={product.name} />
                                 </Link>
                                 <div className="card-image-info">
                                     <h3>{product.name}</h3>
                                 </div>
                             </div>
                         ))}
-                    </div>
+                    </div> */}
                 </div>
                 <div className="card-container">
                     <h2 className="card-title">Newest Products</h2>
-                    <div className="card-image-container">
+                    {/* <div className="card-image-container">
                         {newestProducts.map(product => (
                             <div className="card-image" key={product.id}>
                                 <Link to={`/products/${product.id}`}>
-                                    <img src={product.product_images[0]?.product_image_url} alt={product.name} />
+                                    <img className="card-actual-image" src={product.images[0]?.url} alt={product.name} />
                                 </Link>
                                 <div className="card-image-info">
                                     <h3>{product.name}</h3>
                                 </div>
                             </div>
                         ))}
-                    </div>
+                    </div> */}
                 </div>
                 <div className="card-container">
                     <h2 className="card-title">Trending Products</h2>
-                    <div className="card-image-container">
+                    {/* <div className="card-image-container">
                         {trendingProducts.map(product => (
                             <div className="card-image" key={product.id}>
                                 <Link to={`/products/${product.id}`}>
-                                    <img src={product.product_images[0]?.product_image_url} alt={product.name} />
+                                    <img className="card-actual-image" src={product.images[0]?.url} alt={product.name} />
                                 </Link>
                                 <div className="card-image-info">
                                     <h3>{product.name}</h3>
                                 </div>
                             </div>
                         ))}
-                    </div>
+                    </div> */}
                 </div>
                 <div className="card-container">
                     <h2 className="card-title">Explore Essentials</h2>
-                    <div className="card-image-container">
+                    {/* <div className="card-image-container">
                         {exploreEssentials.map(product => (
                             <div className="card-image" key={product.id}>
                                 <Link to={`/products/${product.id}`}>
-                                    <img src={product.product_images[0]?.product_image_url} alt={product.name} />
+                                    <img className="card-actual-image" src={product.images[0]?.url} alt={product.name} />
                                 </Link>
                                 <div className="card-image-info">
                                     <h3>{product.name}</h3>
                                 </div>
                             </div>
                         ))}
-                    </div>
+                    </div> */}
                 </div>
-            </div> */}
+            </div>
         </div>
         </>
     );

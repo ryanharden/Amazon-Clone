@@ -31,30 +31,37 @@
     width: 100%;
     max-width: 1500px;
     height: 600px;
-
 }
 
 .slide-button {
     background-color: transparent;
-    border: none;
+    border: 1px solid transparent;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .chev-left {
     height: 40px;
     position: absolute;
-    top: 50px;
-    left: 20px;
+    top: 40px;
+    left: 0px;
     cursor: pointer;
-    padding: 100px 20px;
+    padding: 100px 28px;
+    border: 1px solid transparent;
+    text-shadow: white 2px 0px;
 }
 
 .chev-right {
     height: 40px;
     cursor: pointer;
     position: absolute;
-    top: 50px;
-    right: 20px;
-    padding: 100px 20px;
+    top: 40px;
+    right: 0px;
+    padding: 100px 28px;
+    border: 1px solid transparent;
+    text-shadow: white -2px 0px;
 }
 
 
@@ -66,4 +73,34 @@
 .chev-right:active {
     border: 2px solid #232F3E;
     border-radius: 3px;
+}
+
+.product-cards-container {
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    flex-direction: row;
+    gap: 2vw;
+    top: 47.3%;
+    padding-left: 22px;
+    padding-right: 22px;
+    max-height: 64%;
+}
+
+.card-container {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    width: 20.5vw;
+    padding: 1vw;
+    gap:15px;
+    overflow-y: hidden;
+    height: 29vw
+}
+
+.card-actual-image {
+    height: 150px;
+    width: 100%;
+    object-fit: scale-down;
 }

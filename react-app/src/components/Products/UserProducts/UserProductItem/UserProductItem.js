@@ -19,7 +19,7 @@ const UserProductItem = ({ product }) => {
             <div className="user-product-image-container">
                 <Link className="image-link" to={`/products/${product.id}`}>
                     <img
-                        src={product?.product_images[0]?.product_image_url ? product?.product_images[0]?.product_image_url : "" }
+                        src={product?.images[0]?.url ? product?.images[0]?.url : "" }
                         alt={product.name}
                         className="user-product-image"
                     />

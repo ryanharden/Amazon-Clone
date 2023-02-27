@@ -76,6 +76,7 @@ export const getProductThunk = (productId) => async (dispatch) => {
 
     if (res.ok) {
         const product = await res.json();
+        console.log("product-store: ", product);
         dispatch(getProduct(product));
         return product
     } else {
@@ -96,14 +97,33 @@ export const createProductThunk = (productData) => async (dispatch) => {
 
     if (res.ok) {
         const product = await res.json();
+        // console.log("product: ", product);
         dispatch(createProduct(product));
-        return product
+        return product.id;
     } else {
         const data = await res.json();
         if (data.errors) {
             return data
         }
     }
+}
+
+// Post Product Images
+export const postProductImages = (productId, formData) => async dispatch => {
+    const res = await fetch(`/api/products/${productId}/images`, {
+        method: "POST",
+        body: formData,
+    });
+    if (res.ok) {
+        const images = await res.json();
+        return images
+    } else {
+        console.log("res: ", res);
+        return res.errors;
+    }
+
+
+    // console.log("product: ", product)
 }
 
 // Edit a Product
@@ -113,7 +133,7 @@ export const editProductThunk = (product) => async (dispatch) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(product)
     });
-    console.log("storeRes: ", res)
+    // console.log("storeRes: ", res)
 
     if (res.ok) {
         const product = await res.json();
@@ -156,7 +176,7 @@ const initialState = {
 // Product Reducer
 export default function productReducer(state = initialState, action) {
     let newState;
-    switch(action.type) {
+    switch (action.type) {
         // Get All Products
         case GET_PRODUCTS:
             newState = { ...state }
@@ -177,6 +197,7 @@ export default function productReducer(state = initialState, action) {
         case CREATE_PRODUCT:
             newState = { ...state }
             newState.allProducts = { ...state.allProducts, [action.product.id]: action.product }
+            newState.userProducts = {...state.userProducts, [action.product.id]: action.product}
             return newState;
 
         // Edit Product

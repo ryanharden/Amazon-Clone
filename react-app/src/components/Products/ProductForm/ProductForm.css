@@ -66,14 +66,22 @@
 
 .preview-image-btn {
     background-color: transparent;
-    border: none;
+    border: 1px solid transparent;
     cursor: pointer;
     position: relative;
     bottom: 90px;
+    padding: 0 5px;
+}
+
+.preview-image-btn:hover {
+    border: 1px solid black;
+    border-radius: 50%;
+    background: linear-gradient(0deg, rgba(240, 194, 77, 1) 0%, rgba(246, 221, 160, 1) 100%);
 }
 
 .preview-images-image {
     height: 100px;
     width: fit-content;
+    max-width: 100px;
     margin: 0px 5px;
 }
