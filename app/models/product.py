@@ -37,7 +37,6 @@ class Product(db.Model):
     def to_dict_details(self):
         # product_images = [image.product_image_url for image in sorted(self.product_images, key=lambda x: x.number)]
         # preview_images = [image for image in self.product_images if image.preview]
-
         return {
             "id": self.id,
             "seller": self.seller.to_dict_product(),
