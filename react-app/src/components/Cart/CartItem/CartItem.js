@@ -29,7 +29,7 @@ const CartItem = ({ product, quantity }) => {
             <div className="cart-item-container">
                 <div className="cart-item-left-container">
                     <Link to={`/products/${product.id}`}>
-                        <img src={product.product_images[0].product_image_url} className="cart-item-image"></img>
+                        <img src={product.images[0].url} className="cart-item-image"></img>
                     </Link>
                 </div>
                 <div className="cart-item-middle-container">

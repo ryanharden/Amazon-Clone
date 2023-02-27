@@ -112,17 +112,19 @@ def create_product():
 @product_routes.route("/<int:id>/images", methods=["POST"])
 @login_required
 def add_product_images(id):
-
+    print("hi im here")
     if "images" not in request.files:
+        print("No files found in request.")
         return {"errors": "Image required"}, 400
 
     images = request.files.getlist("images")
     print("req.files: ", request.files)
-    print("images-routes: ", images)
+    print("product-routes: ", images)
     image_list = []
     for image in images:
         print("image :", image)
         if not s3.image_file(image.filename):
+            print("File type not permitted:", image.filename)
             return {"errors": "file type not permitted"}, 400
 
         image.filename = s3.get_unique_filename(image.filename)
@@ -130,12 +132,13 @@ def add_product_images(id):
         upload = s3.upload_image_file_to_s3(image)
         print("upload :", upload)
         if "url" not in upload:
+            print("Upload failed:", upload)
             return {"errors": upload}, 400
 
         image_url = upload["url"]
 
         product_image = ProductImage(
-            product_image_url = image_url,
+            url = image_url,
             product_id = id
             # number = request.form['number'] if request.form['number'] else None
         )
@@ -143,7 +146,7 @@ def add_product_images(id):
         db.session.add(product_image)
         db.session.commit()
 
-        image_dict = {"product_image_url": image_url}
+        image_dict = {"url": image_url}
         image_list.append(image_dict)
     return image_list
 

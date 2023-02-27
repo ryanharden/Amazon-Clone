@@ -59,7 +59,7 @@ function HomePage() {
                                         onClick={() => history.push(`/products/${product.id}`)}
                                     >
                                         <img
-                                            src={product.product_images[0].product_image_url}
+                                            src={product.images[0].url}
                                             alt={product.name}
                                             className="book-carousel-product-image"
                                         />

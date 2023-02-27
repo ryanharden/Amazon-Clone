@@ -45,8 +45,8 @@ def upload_product_images():
         return {"errors": "Image required"}, 400
 
     images = request.files.getlist("images")
-    print("req.files: ", request.files)
-    print("images-routes: ", images)
+    # print("req.files: ", request.files)
+    # print("images-routes: ", images)
     image_list = []
     for image in images:
         print("image :", image)
@@ -63,13 +63,13 @@ def upload_product_images():
         image_url = upload["url"]
 
         product_image = ProductImage(
-            product_image_url = image_url,
+            url = image_url,
             # number = request.form['number'] if request.form['number'] else None
         )
 
         db.session.add(product_image)
         db.session.commit()
 
-        image_dict = {"product_image_url": image_url}
+        image_dict = {"url": image_url}
         image_list.append(image_dict)
     return image_list

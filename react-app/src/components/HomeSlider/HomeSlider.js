@@ -95,7 +95,7 @@ const HomeSlider = ({ slides }) => {
                         {categoryProducts.map(product => (
                             <div className="card-image" key={product.id}>
                                 <Link to={`/products/${product.id}`}>
-                                    <img className="card-actual-image" src={product.product_images[0]?.product_image_url} alt={product.name} />
+                                    <img className="card-actual-image" src={product.images[0]?.url} alt={product.name} />
                                 </Link>
                                 <div className="card-image-info">
                                     <h3>{product.name}</h3>
@@ -110,7 +110,7 @@ const HomeSlider = ({ slides }) => {
                         {newestProducts.map(product => (
                             <div className="card-image" key={product.id}>
                                 <Link to={`/products/${product.id}`}>
-                                    <img className="card-actual-image" src={product.product_images[0]?.product_image_url} alt={product.name} />
+                                    <img className="card-actual-image" src={product.images[0]?.url} alt={product.name} />
                                 </Link>
                                 <div className="card-image-info">
                                     <h3>{product.name}</h3>
@@ -125,7 +125,7 @@ const HomeSlider = ({ slides }) => {
                         {trendingProducts.map(product => (
                             <div className="card-image" key={product.id}>
                                 <Link to={`/products/${product.id}`}>
-                                    <img className="card-actual-image" src={product.product_images[0]?.product_image_url} alt={product.name} />
+                                    <img className="card-actual-image" src={product.images[0]?.url} alt={product.name} />
                                 </Link>
                                 <div className="card-image-info">
                                     <h3>{product.name}</h3>
@@ -140,7 +140,7 @@ const HomeSlider = ({ slides }) => {
                         {exploreEssentials.map(product => (
                             <div className="card-image" key={product.id}>
                                 <Link to={`/products/${product.id}`}>
-                                    <img className="card-actual-image" src={product.product_images[0]?.product_image_url} alt={product.name} />
+                                    <img className="card-actual-image" src={product.images[0]?.url} alt={product.name} />
                                 </Link>
                                 <div className="card-image-info">
                                     <h3>{product.name}</h3>

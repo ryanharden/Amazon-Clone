@@ -5,7 +5,10 @@
     align-items: center;
 }
 
-
+.user-product-image {
+    height: 50px;
+    width: 50px;
+}
 
 .edit-product-container {
     width: 60px;

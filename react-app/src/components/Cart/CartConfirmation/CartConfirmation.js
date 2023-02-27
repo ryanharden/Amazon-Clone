@@ -36,7 +36,7 @@ const CartConfirmation = () => {
             <div className="cart-confirm-left">
                 <div className="cart-confirm-image">
                     <Link className="cart-confirm-link" to={`/products/${productId}`}>
-                        <img src={product?.product_images[0]?.product_image_url} alt={product.name} />
+                        <img src={product?.images[0]?.url} alt={product.name} />
                     </Link>
                 </div>
                 <div className="cart-confirm-added-name">

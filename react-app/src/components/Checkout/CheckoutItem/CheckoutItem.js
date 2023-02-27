@@ -10,7 +10,7 @@ const CheckoutItem = ({ product, quantity }) => {
         <div className="checkout-item-container">
             <div className="checkout-item-left">
                 <Link to={`/products/${product.id}`} className="checkout-link">
-                    <img src={product.product_images[0]?.product_image_url} className="checkout-image" alt={product.name} />
+                    <img src={product.images[0]?.url} className="checkout-image" alt={product.name} />
                 </Link>
             </div>
             <div className="checkout-item-right">

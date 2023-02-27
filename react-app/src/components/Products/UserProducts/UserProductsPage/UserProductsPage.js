@@ -17,7 +17,7 @@ const UserProductPage = () => {
     const userProducts = useSelector(state => state.Products.userProducts);
 
     useEffect(() => {
-        dispatch(getUserProductsThunk(userProducts))
+        dispatch(getUserProductsThunk(currentUser.id))
     }, [dispatch, ])
     return (
         <div className='user-product-page-container'>

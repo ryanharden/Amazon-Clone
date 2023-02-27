@@ -19,7 +19,7 @@ class Product(db.Model):
 
     seller = db.relationship("User", back_populates="products")
     reviews = db.relationship("Review", back_populates="product", cascade="all, delete")
-    product_images = db.relationship("ProductImage", back_populates="product", cascade="all, delete")
+    images = db.relationship("ProductImage", back_populates="product", cascade="all, delete")
     cart_items = db.relationship("CartItem", back_populates="product")
     order_items = db.relationship("OrderItem", back_populates="product")
 
@@ -29,6 +29,7 @@ class Product(db.Model):
             "seller": self.seller.to_dict(),
             "name": self.name,
             "description": self.description,
+            "category": self.category,
             "price": str(self.price),
             "inventory": self.inventory
         }
@@ -42,10 +43,11 @@ class Product(db.Model):
             "seller": self.seller.to_dict_product(),
             "name": self.name,
             "description": self.description,
+            "category": self.category,
             "price": str(self.price),
             "inventory": self.inventory,
             # "num_ratings": len(self.reviews),
             # "avg_rating": sum([review.rating for review in self.reviews]) / len(self.reviews) if len(self.reviews) > 0 else None,
             # "preview_image": preview_images[0].product_image_url if len(preview_images) else None,
-            "product_images": [image.to_dict_product() for image in self.product_images]
+            "images": [image.to_dict_product() for image in self.images]
         }
