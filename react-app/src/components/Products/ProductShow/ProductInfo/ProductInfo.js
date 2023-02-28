@@ -17,7 +17,7 @@ const ProductInfo = ({ product }) => {
                 </div>
             </div> */}
             <div className="product-price">
-                Price: ${product.price} ({product.price} / count)
+                Price: ${product.price} <span className="price-count">({product.price} / count)</span>
             </div>
             <div className="prime">
                 <img src={prime} className="prime-icon" alt="prime"/>
@@ -27,7 +27,7 @@ const ProductInfo = ({ product }) => {
             </div>
             <div className="promo">
                 <div className="get-a">
-                    Get a $100 Gift Card: Pay <span className="zero">$0.00</span> upon approval for the Rainforest Prime Rewards Visa Card. No annual fee.
+                    Get a $100 Gift Card: <span className="pay">Pay</span> <span className="zero">$0.00</span> upon approval for the Rainforest Prime Rewards Visa Card. No annual fee.
                 </div>
             </div>
             <div className="about-item">
@@ -35,7 +35,7 @@ const ProductInfo = ({ product }) => {
                     About this item
                 </div>
                 <div className="product-description">
-                    <ul>{product.description.split("\n").map((bullet, i) => {return <li key={i}>{bullet}</li>})}</ul>
+                    <ul className="ul-description">{product.description.split("\n").map((bullet, i) => {return <li key={i}>{bullet}</li>})}</ul>
                 </div>
             </div>
         </div>

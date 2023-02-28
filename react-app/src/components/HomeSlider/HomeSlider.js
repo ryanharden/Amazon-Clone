@@ -36,7 +36,7 @@ const HomeSlider = ({ slides }) => {
     }, [dispatch]);
 
     useEffect(() => {
-        const { allProductsArr, categoryProducts, /*trendingProducts, exploreEssentials, newestProducts*/ } = filterProducts(allProducts);
+        const { allProductsArr, categoryProducts,/* trendingProducts, exploreEssentials, newestProducts*/ } = filterProducts(allProducts);
         setCategoryProducts(categoryProducts);
         // setTrendingProducts(trendingProducts);
         // setExploreEssentials(exploreEssentials);
@@ -119,6 +119,7 @@ const HomeSlider = ({ slides }) => {
     //     return !inCategory && !inTrending && !inExploreEssentials;
     // }).sort((a, b) => new Date(b.created_at) - new Date(a.created_at)).slice(0, 4);
     // console.log("newestProducts: ", newestProducts)
+
     return (
         <>
             <div className='home-header'>
@@ -179,7 +180,7 @@ const HomeSlider = ({ slides }) => {
                             {trendingProducts.map(product => (
                                 <div className="card-image" key={product.id}>
                                     <Link to={`/products/${product.id}`}>
-                                        <img className="card-actual-image" src={product.images[0]?.url} alt={product.name} />
+                                        <img className="card-actual-image" src={product?.images[0]?.url} alt={product.name} />
                                     </Link>
                                     <div className="card-image-info">
                                         <div>{product.name.substring(0, 20)}...</div>

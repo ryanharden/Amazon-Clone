@@ -65,7 +65,7 @@ const CartConfirmation = () => {
                     Cart Subtotal: ${parseFloat(totalPrice).toFixed(2)}
                 </div>
                 <Link to={'/checkout'} className="cart-confirm-link-proceed">
-                    Proceed to checkout ({cartItemsArr.length} item{cartItemsArr.length > 1 && "s"})
+                    Proceed to checkout ({numCartItems} item{numCartItems > 1 && "s"})
                 </Link>
                 <Link to={'/cart'} className="cart-confirm-link-go-to-cart">
                     Go to Cart
