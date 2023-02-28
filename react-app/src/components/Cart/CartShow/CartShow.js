@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import CartItem from '../CartItem/CartItem';
 import { getProductsThunk } from '../../../store/products';
-import { getCartItemsThunk } from '../../../store/cartitem';
+import { getCartItemsThunk, deleteCartItemThunk } from '../../../store/cartitem';
 
 const CartShow = () => {
     const dispatch = useDispatch();
@@ -11,13 +11,13 @@ const CartShow = () => {
     const [totalPrice, setTotalPrice] = useState(0);
     const [numCartItems, setNumCartItems] = useState(0);
 
-    const product = useSelector(state => state.Products.singleProduct);
-    const sessionUser = useSelector(state => state.session.user);
+    // const product = useSelector(state => state.Products.singleProduct);
+    // const sessionUser = useSelector(state => state.session.user);
     const cartItems = useSelector(state => state.CartItems);
     const cartItemsArr = Object.values(cartItems);
     const products = useSelector(state => state.Products.allProducts);
 
-    // console.log(cartItemsArr);
+    console.log("cartItemsArr: ", cartItemsArr);
 
     useEffect(() => {
         dispatch(getProductsThunk());
@@ -26,18 +26,21 @@ const CartShow = () => {
 
     useEffect(() => {
         let total = 0;
-        const updatedCartItemsArr = Object.values(cartItems).filter(item => item.quantity > 0);
-        updatedCartItemsArr.forEach(item => {
-          const product = products[item.product_id];
-          if (product) {
-            total += product.price * item.quantity;
-          }
+        cartItemsArr.forEach(item => {
+            const product = products[item.product_id];
+            console.log("total-product", product);
+            if (product) {
+                total += product.price * item.quantity;
+                console.log("total: ", total);
+            }
         });
         setTotalPrice(total);
-        setNumCartItems(updatedCartItemsArr.reduce((acc, curr) => acc + curr.quantity, 0));
-      }, [cartItems, products]);
+        setNumCartItems(cartItemsArr.reduce((acc, curr) => acc + curr.quantity, 0));
+    }, [cartItems, products]);
 
-    if (!cartItems && !cartItemsArr.length)
+    console.log("cartItems(show):", cartItems);
+
+    if (!cartItemsArr.length)
         return (
             <div className='empty-cart-container'>
                 <div className='empty-cart-header'>
@@ -47,11 +50,20 @@ const CartShow = () => {
             </div>
         )
 
+    const handleDelete = async (cartItemId) => {
+        const deletedItem = await dispatch(deleteCartItemThunk(cartItemId));
+        if (deletedItem) {
+            setNumCartItems(numCartItems - deletedItem.quantity);
+            setTotalPrice(totalPrice - deletedItem.product.price * deletedItem.quantity);
+        }
+    };
+
     const cartItemsWithProduct = cartItemsArr.map(cartitem => {
         const product = products[cartitem.product_id];
         if (!product) return null;
-        return <CartItem key={cartitem.id} product={product} quantity={cartitem.quantity} />
+        return <CartItem key={cartitem.id} cartitem={cartitem} product={product} quantity={cartitem.quantity} handleDelete={handleDelete} />
     })
+    console.log("cartItemswithProduct: ", cartItemsWithProduct)
 
     return (
         <div className="cart-container">

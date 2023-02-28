@@ -86,7 +86,7 @@ def edit_cart_item(id):
 @cart_routes.route("/cartitems/<int:id>", methods=["DELETE"])
 @login_required
 def delete_cart_item(id):
-    cart_item = CartItem.query.get(id)
+    cart_item = CartItem.query.filter(CartItem.id == id, CartItem.user_id == current_user.id).first()
 
     if not cart_item:
         return {
@@ -95,4 +95,11 @@ def delete_cart_item(id):
 
     db.session.delete(cart_item)
     db.session.commit()
-    return {"id": cart_item.id}
+    print("Successfully Deleted")
+    return cart_item.to_dict_details()
+
+@cart_routes.route("/cartitems/quantity")
+@login_required
+def get_cart_items_quantity():
+    cart_items = CartItem.query.filter(CartItem.user_id == current_user.id).all()
+    return {"quantity": sum(item.quantity for item in cart_items)}

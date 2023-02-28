@@ -9,9 +9,12 @@ import primeCard from "../../../assets/amazon-prime-card.png";
 
 const CheckoutShow = () => {
     const dispatch = useDispatch();
-    const cartItems = useSelector(state => state.Cartitems);
+    const cartItems = useSelector(state => state.CartItems);
     const currentUser = useSelector(state => state.session.user);
     const cartItemsArr = Object.values(cartItems);
+    const [totalPrice, setTotalPrice] = useState(0);
+    const [numCartItems, setNumCartItems] = useState(0);
+    const products = useSelector(state => state.Products.allProducts);
 
     useEffect(() => {
         cartItemsArr.forEach(item => {
@@ -19,16 +22,20 @@ const CheckoutShow = () => {
         })
     }, [dispatch, cartItems])
 
-    const getTotal = (Arr) => {
+    useEffect(() => {
         let total = 0;
-        if (Arr.length) {
-            Arr.forEach(item => {
-                total += item.price * item.quantity
-            })
-            return total;
-        }
-    }
-    const subtotal = parseFloat(getTotal(cartItemsArr)).toFixed(2);
+        cartItemsArr.forEach(item => {
+            const product = products[item.product_id];
+            console.log("total-product", product);
+            if (product) {
+                total += product.price * item.quantity;
+                console.log("total: ", total);
+            }
+        });
+        setTotalPrice(total);
+        setNumCartItems(cartItemsArr.reduce((acc, curr) => acc + curr.quantity, 0));
+    }, [cartItems, products])
+    // const subtotal = parseFloat(getTotal(cartItemsArr)).toFixed(2);
 
     const numItems = cartItems.length
 
@@ -86,7 +93,7 @@ const CheckoutShow = () => {
                                         <img src={primeCard} alt="prime-card" className='prime-card-image' />
                                     </div>
                                     <div className='card-title'>
-                                        Rainforest Retail Prime Rewards Visa Signature Card <span className='ending-in'>ending in 4819</span>
+                                        Rainforest Retail Prime Rewards Visa Signature Card <span className='ending-in'> ending in 4819</span>
                                     </div>
                                     <div className='earns'>
                                         Earns 5% cash back
@@ -129,7 +136,7 @@ const CheckoutShow = () => {
                             </div>
                             <div className='checkout-order-total'>
                                 <div className='order-total-title'>
-                                    Order total: ${parseFloat(getTotal(cartItemsArr)).toFixed(2)}
+                                    Order total: ${parseFloat(totalPrice).toFixed(2)}
                                 </div>
                                 <div className='by-conditions'>
                                     By placing your order, you agree to Rainforest Retail's privacy notice and conditions of use.
@@ -139,7 +146,7 @@ const CheckoutShow = () => {
                     </div>
                 </div>
                 <div className='checkout-right-container'>
-                    <OrderCard numItems={numItems} subtotal={subtotal} />
+                    <OrderCard numItems={numItems} subtotal={totalPrice} />
                 </div>
             </div>
         </>

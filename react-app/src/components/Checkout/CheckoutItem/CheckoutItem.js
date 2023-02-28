@@ -4,13 +4,13 @@ import "./CheckoutItem.css";
 import prime from "../../../assets/prime-icon.png";
 
 const CheckoutItem = ({ product, quantity }) => {
-    if (!product) return null;
+    if (!product || !product.images) return null;
 
     return (
         <div className="checkout-item-container">
             <div className="checkout-item-left">
                 <Link to={`/products/${product.id}`} className="checkout-link">
-                    <img src={product.images[0]?.url} className="checkout-image" alt={product.name} />
+                    <img src={product?.images[0]?.url} className="checkout-image" alt={product.name} />
                 </Link>
             </div>
             <div className="checkout-item-right">

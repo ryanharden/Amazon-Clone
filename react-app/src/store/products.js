@@ -76,7 +76,7 @@ export const getProductThunk = (productId) => async (dispatch) => {
 
     if (res.ok) {
         const product = await res.json();
-        console.log("product-store: ", product);
+        // console.log("product-store: ", product);
         dispatch(getProduct(product));
         return product
     } else {
