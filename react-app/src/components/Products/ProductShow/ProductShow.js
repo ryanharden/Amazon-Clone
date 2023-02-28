@@ -10,7 +10,7 @@ import { getProductThunk } from "../../../store/products";
 const ProductShow = () => {
     const dispatch = useDispatch();
 
-    const { productId } = useParams;
+    const { productId } = useParams();
 
     const product = useSelector(state => state.Products.singleProduct);
 
@@ -18,7 +18,7 @@ const ProductShow = () => {
         dispatch(getProductThunk(productId))
     }, [dispatch, productId])
 
-    if (!product) return null;
+    if (!product || !product.images || !product.images.length) return null;
 
     return (
         <div className="product-show-container">

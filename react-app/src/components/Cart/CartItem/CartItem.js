@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { deleteCartItemThunk } from "../../../store/cartitem";
@@ -13,7 +13,7 @@ const CartItem = ({ product, quantity }) => {
         setIsDeleted(true);
     }
 
-    if (!product) return;
+    if (!product) return null;
 
     if (isDeleted) return <>
         <div className="item-deleted">
@@ -29,7 +29,9 @@ const CartItem = ({ product, quantity }) => {
             <div className="cart-item-container">
                 <div className="cart-item-left-container">
                     <Link to={`/products/${product.id}`}>
-                        <img src={product.images[0].url} className="cart-item-image"></img>
+                        {product.images && product.images.length > 0 &&
+                            <img src={product.images[0].url} className="cart-item-image" alt={product.name}></img>
+                        }
                     </Link>
                 </div>
                 <div className="cart-item-middle-container">
@@ -37,7 +39,7 @@ const CartItem = ({ product, quantity }) => {
                         {product.name}
                     </div>
                     <div className="by-seller">
-                        by {product.seller}
+                        by {`${product.seller.first_name} ${product.seller.last_name}`}
                     </div>
                     <div className="stock">
                         In Stock
@@ -47,7 +49,7 @@ const CartItem = ({ product, quantity }) => {
                     </div>
                     <div className="qty-delete">
                         <div className="qty">
-                            <Quantity productId={product.id} quantity={quantity}/>
+                            <Quantity productId={product.id} quantity={quantity} />
                         </div>
                         <div onClick={deleteItem} className="cart-item-delete">
                             Delete

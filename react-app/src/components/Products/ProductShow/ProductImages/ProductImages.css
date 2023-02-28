@@ -1,0 +1,38 @@
+.product-images-container {
+    display: flex;
+}
+
+.small-images-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.small-image {
+    width: 42px;
+    height: 42px;
+    cursor: pointer;
+    border: 1px solid #a2a6ac;
+    border-radius: 1px;
+    object-fit: scale-down;
+}
+
+.image-hover {
+    border-color: #e77601;
+    box-shadow: 0 0 3px 2px rgb(228 121 17 / 50%);
+}
+
+.main-image-container {
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+
+.main-image {
+    width: 350px;
+    height: 350px;
+}
+
+/* .scaleDown {
+    transform: scale(0.5);
+} */

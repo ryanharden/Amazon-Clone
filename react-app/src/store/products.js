@@ -191,13 +191,17 @@ export default function productReducer(state = initialState, action) {
 
         // Get Product
         case GET_PRODUCT:
-            return { ...state, singleProduct: action.product };
+            // return { ...state, singleProduct: action.product };
+            newState = { ...state };
+            newState.singleProduct = {};
+            newState.singleProduct = { ...action.product };
+            return newState;
 
         // Create Product
         case CREATE_PRODUCT:
             newState = { ...state }
             newState.allProducts = { ...state.allProducts, [action.product.id]: action.product }
-            newState.userProducts = {...state.userProducts, [action.product.id]: action.product}
+            newState.userProducts = { ...state.userProducts, [action.product.id]: action.product }
             return newState;
 
         // Edit Product
