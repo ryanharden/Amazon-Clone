@@ -5,7 +5,7 @@ import { deleteCartItemThunk } from "../../../store/cartitem";
 import Quantity from "./Quantity/Quantity";
 import "./CartItem.css";
 
-const CartItem = ({ product, quantity, cartitem, handleDelete }) => {
+const CartItem = ({ product, quantity, cartitem, handleDelete, updatedQuantity }) => {
     const dispatch = useDispatch();
     const [isDeleted, setIsDeleted] = useState(false);
 
@@ -58,7 +58,7 @@ const CartItem = ({ product, quantity, cartitem, handleDelete }) => {
                     </div>
                     <div className="qty-delete">
                         <div className="qty">
-                            <Quantity productId={product.id} quantity={quantity} />
+                            <Quantity productId={product.id} cartitem={cartitem} quantity={quantity} updatedQuantity={updatedQuantity} />
                         </div>
                         <div onClick={deleteItem} className="cart-item-delete">
                             Delete

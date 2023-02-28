@@ -54,7 +54,7 @@ const CartShow = () => {
         const deletedItem = await dispatch(deleteCartItemThunk(cartItemId));
         if (deletedItem) {
             setNumCartItems(numCartItems - deletedItem.quantity);
-            setTotalPrice(totalPrice - deletedItem.product.price * deletedItem.quantity);
+            setTotalPrice(totalPrice - deletedItem.product?.price * deletedItem.quantity);
         }
     };
 

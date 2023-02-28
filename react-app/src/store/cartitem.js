@@ -133,8 +133,11 @@ export default function cartItemReducer(state = initialState, action) {
 
         // Add Cart Item & Edit Cart Item
         case ADD_CARTITEM:
-        case EDIT_CARTITEM:
             return { ...state, [action.cartItem.product_id]: action.cartItem }
+
+        case EDIT_CARTITEM:
+            const editedCartItem = { ...state[action.cartItem.product_id], ...action.cartItem };
+            return { ...state, [action.cartItem.id]: editedCartItem };
 
         // Delete Cart Item
         case DELETE_CARTITEM:

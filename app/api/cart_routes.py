@@ -64,10 +64,19 @@ def add_cart_item(id):
 @cart_routes.route("/cartitems/<int:id>", methods=["PUT"])
 @login_required
 def edit_cart_item(id):
-    form = CartItemForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-
     cart_item = CartItem.query.get(id)
+
+    if not cart_item:
+        return {"errors": ["Cart item not found"]}, 404
+
+    if cart_item.user_id != current_user.id:
+        return {"errors": ["Unauthorized"]}, 401
+
+    data = request.json
+
+    form = CartItemForm(data=data)
+
+    form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
         product = Product.query.get(cart_item.product_id)
@@ -77,7 +86,7 @@ def edit_cart_item(id):
                     "errors": "The requested quantity exceeds this products stock"
                 }
         cart_item.quantity = form.data["quantity"]
-        db.session.add(cart_item)
+        # db.session.add(cart_item)
         db.session.commit()
         return cart_item.to_dict_details()
 
