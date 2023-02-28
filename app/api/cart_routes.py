@@ -11,7 +11,7 @@ cart_routes = Blueprint("cart_items", __name__)
 @cart_routes.route("/cartitems")
 @login_required
 def get_cart_items():
-    cart_items = CartItem.query.filter(CartItem.user_id == current_user.id)
+    cart_items = CartItem.query.filter(CartItem.user_id == current_user.id).all()
     return {item.id: item.to_dict() for item in cart_items}
 
 
@@ -95,4 +95,4 @@ def delete_cart_item(id):
 
     db.session.delete(cart_item)
     db.session.commit()
-    return {"message": "Successfully deleted"}
+    return {"id": cart_item.id}

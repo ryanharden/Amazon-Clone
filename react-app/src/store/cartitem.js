@@ -54,7 +54,7 @@ export const addCartItemThunk = (productId, quantity) => async (dispatch) => {
     const res = await fetch(`/api/products/${productId}/cartitems`, {
         method: "POST",
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({quantity})
+        body: JSON.stringify({ quantity })
     })
 
     if (res.ok) {
@@ -73,7 +73,7 @@ export const editCartItemThunk = (cartItemId, quantity) => async (dispatch) => {
     const res = await fetch(`/api/cartitems/${cartItemId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({quantity})
+        body: JSON.stringify({ quantity })
     });
 
     if (res.ok) {
@@ -95,7 +95,7 @@ export const deleteCartItemThunk = (cartItemId) => async (dispatch) => {
 
     if (res.ok) {
         const cartItem = await res.json();
-        dispatch(deleteCartItem(cartItem));
+        dispatch(deleteCartItem(cartItem.id));
         return cartItem
     } else {
         const data = await res.json();
@@ -120,13 +120,14 @@ export const emptyCartThunk = () => async (dispatch) => {
 const initialState = {}
 
 export default function cartItemReducer(state = initialState, action) {
-    switch(action.type) {
+    let newState;
+    switch (action.type) {
         // Get Cart Items
         case GET_CARTITEMS:
             // newState = { ...state }
             // newState.cartItems = action.cartItems
             // return newState;
-            return { ...state, ...action.cartItems }
+            return { ...action.cartItems }
 
 
         // Add Cart Item & Edit Cart Item
@@ -136,9 +137,15 @@ export default function cartItemReducer(state = initialState, action) {
 
         // Delete Cart Item
         case DELETE_CARTITEM:
-            const newState = { ...state }
+            newState = { ...state }
             delete newState[action.cartItemId];
             return newState;
+
+
+        // case DELETE_USERITEM:
+        //     newState = { ...state }
+        //     newState = {}
+        //     return newState
 
         // Empty Cart
         case EMPTY_CART:

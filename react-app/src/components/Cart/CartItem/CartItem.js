@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { deleteCartItemThunk } from "../../../store/cartitem";
 import Quantity from "./Quantity/Quantity";
+import "./CartItem.css";
 
 const CartItem = ({ product, quantity }) => {
     const dispatch = useDispatch();
@@ -49,7 +50,7 @@ const CartItem = ({ product, quantity }) => {
                     </div>
                     <div className="qty-delete">
                         <div className="qty">
-                            <Quantity productId={product.id} quantity={quantity} />
+                            <Quantity productId={product.id} quantity={quantity}/>
                         </div>
                         <div onClick={deleteItem} className="cart-item-delete">
                             Delete
