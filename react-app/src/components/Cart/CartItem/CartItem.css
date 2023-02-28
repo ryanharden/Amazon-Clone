@@ -1,4 +1,18 @@
+/* .cart-item-container {
+    display: flex;
+} */
+
 .cart-item-image {
     height: 50px;
     width: 50px;
+}
+
+.cart-item-delete {
+    color: #007185;
+    font-size: 12px;
+}
+
+.cart-item-delete:hover {
+    cursor: pointer;
+    text-decoration: underline;
 }

@@ -96,10 +96,10 @@ const ProductBuy = ({ product }) => {
                         Add at checkout
                     </div>
                 </div>
+            </div>
                 <div className="return-policy">
                     Return policy: <span className="eligible">Eligible for Refund or Replacement</span>
                 </div>
-            </div>
         </div>
     )
 }

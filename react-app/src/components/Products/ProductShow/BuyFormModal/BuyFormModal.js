@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { useModal } from "../../../../context/Modal";
+import "./BuyFormModal.css";
 
 const BuyFormModal = () => {
     // const dispatch = useDispatch();
@@ -25,7 +26,7 @@ const BuyFormModal = () => {
             </div>
             <div className="buy-form-product">
                 <div className="buy-form-product-image">
-                    <img src={product.images[0]?.url} alt={product.name} />
+                    <img className="buy-modal-image" src={product?.images[0]?.url} alt={product.name} />
                 </div>
                 <div className="buy-info">
                     <div className="arriving">

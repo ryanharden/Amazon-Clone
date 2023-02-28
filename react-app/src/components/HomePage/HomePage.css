@@ -10,3 +10,15 @@
     justify-content: center;
     width: 100%;
 } */
+
+.book-carousel-slide {
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.book-carousel-product-image {
+    width: 100px;
+    height: 100px;
+    object-fit: scale-down;
+}
