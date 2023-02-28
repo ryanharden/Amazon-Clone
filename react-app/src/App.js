@@ -41,7 +41,7 @@ function App() {
 
           <Route path="/editproduct/:productId" element={<EditProduct />}/>
 
-          <Route paht="/cart-confirmation" element={<CartConfirmation />}/>
+          <Route path="/cart-confirmation" element={<CartConfirmation />}/>
 
           <Route path="/cart" element={<CartShow />}/>
 

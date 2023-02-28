@@ -22,7 +22,7 @@ const ProductBuy = ({ product }) => {
         if (!currentUser) {
             navigate("/signin")
         } else {
-            dispatch(addCartItemThunk(product.id, quantity))
+            await dispatch(addCartItemThunk(product.id, quantity))
             navigate(`/cart-confirmation?productId=${product.id}&quantity=${quantity}`);
         }
     };
@@ -33,33 +33,37 @@ const ProductBuy = ({ product }) => {
 
     return (
         <div className="buy-card-container">
-            <div className="buy-card-price">
-                ${product.price} ({product.price} / count)
+            <div className="buy-card-top">
+                <div className="buy-card-price">
+                    ${product.price} ({product.price} / count)
+                </div>
+                <div className="prime">
+                    <img src={prime} className="prime-icon" alt="prime" />
+                </div>
+                <div className="free-returns">
+                    Free Returns
+                </div>
+                <div className="buy-card-deliverydate">
+                    Free delivery <span className="deliverydate">{deliveryDate}.</span> Order within <span className="within">15 hrs 10 mins</span>
+                </div>
+                <div className="stock">
+                    In Stock.
+                </div>
+                <div className="buy-card-quantity">
+                    <QuantityShow quantity={quantity} setQuantity={setQuantity} />
+                </div>
             </div>
-            <div className="prime">
-                <img src={prime} className="prime-icon" alt="prime" />
-            </div>
-            <div className="free-returns">
-                Free Returns
-            </div>
-            <div className="buy-card-deliverydate">
-                Free delivery <span className="deliverydate">{deliveryDate}.</span> Order within <span className="within">15 hrs 10 mins</span>
-            </div>
-            <div className="stock">
-                In Stock.
-            </div>
-            <div className="buy-card-quantity">
-                <QuantityShow quantity={quantity} setQuantity={setQuantity} />
-            </div>
-            <div className="add-to-cart-button" onClick={addToCart}>
-                Add to Cart
-            </div>
-            <div className="buy-now-button-container">
-                <OpenModalButton
-                    className="buy-now"
-                    modalComponent={<BuyFormModal />}
-                    buttonText="Buy Now"
-                />
+            <div className="buy-card-buttons">
+                <div className="add-to-cart-button" onClick={addToCart}>
+                    Add to Cart
+                </div>
+                <div className="buy-now-button-container">
+                    <OpenModalButton
+                        className="buy-now"
+                        modalComponent={<BuyFormModal />}
+                        buttonText="Buy Now"
+                    />
+                </div>
             </div>
             <div className="secure-container">
                 <div className="lock">
@@ -86,7 +90,7 @@ const ProductBuy = ({ product }) => {
                         Rainforest Retail
                     </div>
                     <div className="card-seller">
-                        {product.seller.first_name} {product.seller.last_name}
+                        {product.seller?.first_name} {product.seller?.last_name}
                     </div>
                     <div className="card-gift-opt">
                         Add at checkout

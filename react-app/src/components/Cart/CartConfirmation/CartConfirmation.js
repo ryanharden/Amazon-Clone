@@ -7,7 +7,7 @@ import { getCartItemsThunk } from "../../../store/cartitem";
 
 const CartConfirmation = () => {
     const dispatch = useDispatch();
-    const searchParams = useSearchParams();
+    const searchParams = useSearchParams()[0];
     const productId = searchParams.get('productId');
     const quantity = searchParams.get('quantity');
 
@@ -19,7 +19,7 @@ const CartConfirmation = () => {
         let total = 0;
         if (Arr.length) {
             Arr.forEach(item => {
-                total += item.price * quantity
+                total += item.price * item.quantity
             })
             return total;
         }
@@ -29,7 +29,7 @@ const CartConfirmation = () => {
     useEffect(() => {
         dispatch(getProductThunk(productId))
         dispatch(getCartItemsThunk())
-    }, [dispatch, productId, cartItems]);
+    }, [dispatch, productId]);
 
     return (
         <div className="cart-confirm-container">

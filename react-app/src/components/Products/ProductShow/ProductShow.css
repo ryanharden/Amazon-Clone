@@ -1,0 +1,8 @@
+.product-show-container {
+    width: 100%;
+}
+
+.product-show-top {
+    display: flex;
+    flex-direction: row;
+}

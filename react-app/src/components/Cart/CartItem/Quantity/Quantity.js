@@ -4,7 +4,7 @@ import { editCartItemThunk } from "../../../../store/cartitem";
 const Quantity = ({ productId, quantity }) => {
     const dispatch = useDispatch();
 
-    const nums = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
+    const nums = Array.from({ length: 10 }, (_, i) => i + 1);
     return (
         <div className="quantity-container">
             <select
