@@ -162,17 +162,54 @@ def edit_product(id):
     form = ProductForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        # product.name = form.data["name"],
-        # product.description = form.data["description"],
-        # product.category = form.data["category"],
-        # product.price = form.data["price"],
-        # product.inventory = form.data["inventory"]
         form.populate_obj(product)
+
         db.session.add(product)
         db.session.commit()
         return product.to_dict_details()
     if form.errors:
         return {"errors": validation_errors_to_error_messages(form.errors)}, 400
+# Edit Product
+# @product_routes.route("/<int:id>", methods=["PUT"])
+# @login_required
+# def edit_product(id):
+#     product = Product.query.get(id)
+
+#     if not product:
+#         return {"errors": "Product Not Found"}
+
+#     form = ProductForm()
+#     form['csrf_token'].data = request.cookies['csrf_token']
+#     if form.validate_on_submit():
+#         form.populate_obj(product)
+
+#         images_to_delete = request.files.getlist("deletedImages")
+#         if images_to_delete:
+#             for image_id in images_to_delete:
+#                 image = ProductImage.query.get(image_id)
+#                 if image:
+#                     db.session.delete(image)
+#                      # Add new images
+#         images = request.files.getlist("images")
+#         for image in images:
+#             if not s3.image_file(image.filename):
+#                 return {"errors": "file type not permitted"}, 400
+#             image.filename = s3.get_unique_filename(image.filename)
+#             upload = s3.upload_image_file_to_s3(image)
+#             if "url" not in upload:
+#                 return {"errors": upload}, 400
+#             image_url = upload["url"]
+#             product_image = ProductImage(
+#                 url=image_url,
+#                 product_id=id
+#             )
+#             db.session.add(product_image)
+#         # db.session.commit()
+#         # db.session.add(product)
+#         db.session.commit()
+#         return product.to_dict_details()
+#     if form.errors:
+#         return {"errors": validation_errors_to_error_messages(form.errors)}, 400
 
 # Delete Product
 @product_routes.route("/<int:id>", methods=["DELETE"])

@@ -34,7 +34,7 @@ function HomePage() {
     }, [dispatch]);
 
     const bookProducts = allProductsArr.filter(product => product.category === "Books")
-    console.log(bookProducts);
+    // console.log(bookProducts);
     const productsPerPage = 5;
     const numPages = Math.ceil(bookProducts.length / productsPerPage);
 

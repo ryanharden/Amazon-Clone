@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { createProductThunk, editProductThunk, getProductThunk } from "../../../store/products";
+import { createProductThunk, deleteImageThunk, editProductThunk, getProductThunk } from "../../../store/products";
 import "./ProductForm.css";
 import emptyImage from "../../../assets/emtpy-image.jpeg";
 import { postProductImages } from "../../../store/products";
@@ -128,9 +128,6 @@ const ProductForm = ({ formType, product }) => {
 
         setPrevImages([...prevImages, ...files]);
         setImages([...images, ...files])
-        // if (formType === "edit") {
-        //     setImages(product.images)
-        // }
     }
 
     // Handle form submission for creating a new product
@@ -244,11 +241,20 @@ const ProductForm = ({ formType, product }) => {
         }
     }
 
-    const handleImageRemoveEdit = (e, i) => {
+    const handleImageRemoveEdit = async (e, i) => {
         e.preventDefault();
-        const currentImages = product.images;
-        currentImages.splice(i, 1);
-        setImages(currentImages);
+        const currentImages = [...product.images]
+        const deletedImage = currentImages.splice(i, 1);
+        console.log("deletedImage: ", deletedImage);
+
+        const updatedProduct = { ...product, images: currentImages };
+        // console.log("updatedProduct: ", updatedProduct)
+        // const formData = new FormData();
+        // formData.append("imagesToDelete", deletedImage[0].id)
+        // const newProduct = await dispatch(editProductThunk(updatedProduct));
+        await dispatch(deleteImageThunk(deletedImage[0].id))
+        console.log("updatedProduct-images: ", updatedProduct.images);
+        setImages(product.images);
     }
 
     // Validate the form fields and return an array of error messages
@@ -288,21 +294,6 @@ const ProductForm = ({ formType, product }) => {
         <div className="product-create-edit-container">
             <div className="forms-wrapper">
                 <h2>{formType === "create" ? "List a Product" : "Edit Product"}</h2>
-                {/* <form onSubmit={handleImageSubmit} className="pic-upload" encType="multipart/form-data">
-                    <div className="form-input">
-                        <label htmlFor="images">Upload Your Product Images</label>
-                        <input
-                            type="file"
-                            name="images"
-                            multiple
-                            accept="image/*"
-                            onChange={handleImages}
-                        />
-                    </div>
-                    {previewImages ? previewImages : <img src={emptyImage} alt="default" />}
-                    <button type="submit" className="submit-images-button">Upload Image(s)</button>
-
-                </form> */}
                 <form onSubmit={formType === "create" ? handleCreateSubmit : handleEditSubmit} encType="multipart/form-data">
                     <div className="form-input">
                         <label htmlFor="images">Upload Your Product Images</label>

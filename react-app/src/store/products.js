@@ -6,6 +6,7 @@ const GET_PRODUCT = "products/GET_PRODUCT";
 const CREATE_PRODUCT = "products/CREATE_PRODUCT";
 const EDIT_PRODUCT = "products/EDIT_PRODUCT";
 const DELETE_PRODUCT = "products/DELETE_PRODUCT";
+const DELETE_IMAGE = "products/DELETE_IMAGE";
 
 // Action Creators
 
@@ -37,6 +38,11 @@ const editProduct = (product) => ({
 const deleteProduct = (productId) => ({
     type: DELETE_PRODUCT,
     productId
+})
+
+const deleteImage = (imageId) => ({
+    type: DELETE_IMAGE,
+    imageId
 })
 
 // Thunk Action Creators
@@ -137,8 +143,26 @@ export const editProductThunk = (product) => async (dispatch) => {
 
     if (res.ok) {
         const product = await res.json();
+        console.log("store-product: ", product)
         dispatch(editProduct(product));
         return product
+    } else {
+        const data = await res.json();
+        if (data.errors) {
+            return data;
+        }
+    }
+}
+
+// Delete Product Image
+export const deleteImageThunk = (imageId) => async (dispatch) => {
+    const res = await fetch(`/api/images/${imageId}`, {
+        method: "DELETE"
+    });
+    // console.log("storeRes: ", res)
+
+    if (res.ok) {
+        dispatch(deleteImage(imageId));
     } else {
         const data = await res.json();
         if (data.errors) {
@@ -206,8 +230,9 @@ export default function productReducer(state = initialState, action) {
 
         // Edit Product
         case EDIT_PRODUCT:
-            return { ...state, singleProduct: action.product }
-
+            // return { ...state, singleProduct: action.product }
+            const updatedSingleProduct = action.product.id === state.singleProduct?.id ? action.product : state.singleProduct;
+            return { ...state, singleProduct: updatedSingleProduct}
         // Delete Product
         case DELETE_PRODUCT:
             newState = { ...state }
