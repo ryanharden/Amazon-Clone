@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createProductThunk, deleteImageThunk, editProductThunk, getProductThunk } from "../../../store/products";
@@ -36,16 +36,6 @@ const ProductForm = ({ formType, product }) => {
     const user = useSelector(state => state.session.user)
     const { productId } = useParams();
 
-    // Define initial state values for the form fields
-    // const [name, setName] = useState(product?.name || "");
-    // const [description, setDescription] = useState(product?.description || "");
-    // const [category, setCategory] = useState(product?.category || "");
-    // const [price, setPrice] = useState(product?.price || "");
-    // const [inventory, setInventory] = useState(product?.inventory || "");
-    // const [image, setImage] = useState(product?.images || null);
-    // const [images, setImages] = useState(product?.images || []);
-    // const [prevImages, setPrevImages] = useState([]);
-    // const [prevImage, setPrevImage] = useState(null);
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [category, setCategory] = useState("");
@@ -55,9 +45,6 @@ const ProductForm = ({ formType, product }) => {
     const [images, setImages] = useState([]);
     const [prevImages, setPrevImages] = useState([]);
     const [prevImage, setPrevImage] = useState(null);
-    const [imageLoading, setImageLoading] = useState(false);
-    // const product = useSelector(state => state.Products.singleProduct);
-    // const imageRef = useRef(null)
 
     useEffect(() => {
         setName(product?.name || "");
@@ -93,12 +80,6 @@ const ProductForm = ({ formType, product }) => {
         }
         // console.log("editedProduct: ", editedProduct)
         const newNewProduct = await dispatch(editProductThunk(editedProduct));
-        // .then(() => navigate(`/users/${user.id}/products`))
-        // .catch(async (res) => {
-        //     console.log("res: ", res);
-        //     const data = await res.json();
-        //     if (data && data.errors) setErrors(data.errors)
-        // });
         console.log("newNewProduct: ", newNewProduct)
         if (newNewProduct.images.length) {
             try {
@@ -111,7 +92,6 @@ const ProductForm = ({ formType, product }) => {
                 }
             }
             catch (res) {
-                // console.log('res:', res);
                 const data = await res.json();
                 if (data && data.errors) setErrors(data.errors)
             };
@@ -121,10 +101,11 @@ const ProductForm = ({ formType, product }) => {
 
     const handleImages = async (e) => {
         const files = e.target.files;
-        console.log("files: ", files);
-
-        if (files.length === 1) setPrevImage(e.target.files[0]);
-        else setPrevImage(null);
+        // console.log("files: ", files);
+        if (images.length + files.length > 6) {
+            setErrors(["A product can have a max of 6 images"]);
+            return;
+        }
 
         setPrevImages([...prevImages, ...files]);
         setImages([...images, ...files])
@@ -141,7 +122,6 @@ const ProductForm = ({ formType, product }) => {
             price,
             inventory,
             images
-            // image
         };
         console.log("newProduct: ", newProduct)
 
@@ -165,30 +145,27 @@ const ProductForm = ({ formType, product }) => {
                 }
             }
             catch (res) {
-                // console.log('res:', res);
                 const data = await res.json();
                 if (data && data.errors) setErrors(data.errors)
             };
             navigate(`/users/${user.id}/products`)
         }
-
     }
 
     let previewImages;
-
     if (prevImages.length) {
         previewImages = (
             <div className={'preview-images-container'}>
                 {prevImages.map((image, i) => {
                     return (
-                        <div key={i} className={'preview-image-container'}>
+                        <div key={i} className='preview-image-container' >
                             <button
                                 className={'preview-image-btn'}
                                 onClick={(e) => handleImageRemove(e, i)}
                             >x</button>
                             <img
                                 className={'preview-images-image'}
-                                src={URL.createObjectURL(image)}
+                                src={image.url ? image.url : URL.createObjectURL(image)}
                                 alt={'preview'}
                             />
                         </div>
@@ -197,17 +174,14 @@ const ProductForm = ({ formType, product }) => {
             </div>
         )
     } else {
-        previewImages = (
-            <>
-            </>
-        )
+        previewImages = <img className="empty-image" src={emptyImage} alt="default" />;
     }
 
     let productImages;
     if (product && product.images.length) {
         productImages = (
             <div className="preview-images-container">
-                {product.images.map((image, i) => {
+                {images.map((image, i) => {
                     return (
                         <div key={i} className="preview-image-container">
                             <button
@@ -216,7 +190,7 @@ const ProductForm = ({ formType, product }) => {
                             >x</button>
                             <img
                                 className="preview-images-image"
-                                src={image.url}
+                                src={image.url ? image.url : URL.createObjectURL(image)}
                                 alt="preview"
                             />
                         </div>
@@ -245,16 +219,12 @@ const ProductForm = ({ formType, product }) => {
         e.preventDefault();
         const currentImages = [...product.images]
         const deletedImage = currentImages.splice(i, 1);
-        console.log("deletedImage: ", deletedImage);
+        // console.log("deletedImage: ", deletedImage);
 
-        const updatedProduct = { ...product, images: currentImages };
-        // console.log("updatedProduct: ", updatedProduct)
-        // const formData = new FormData();
-        // formData.append("imagesToDelete", deletedImage[0].id)
-        // const newProduct = await dispatch(editProductThunk(updatedProduct));
         await dispatch(deleteImageThunk(deletedImage[0].id))
-        console.log("updatedProduct-images: ", updatedProduct.images);
-        setImages(product.images);
+        const updatedImages = currentImages.filter(image => image.id !== deletedImage[0].id);
+        // console.log("updatedImages: ", updatedImages);
+        setImages(updatedImages);
     }
 
     // Validate the form fields and return an array of error messages

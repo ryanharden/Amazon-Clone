@@ -85,3 +85,10 @@
     max-width: 100px;
     margin: 0px 5px;
 }
+
+.empty-image {
+    height: 100px;
+    width: fit-content;
+    max-width: 100px;
+    margin: 0px 5px;
+}
