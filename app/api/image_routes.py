@@ -73,3 +73,11 @@ def upload_product_images():
         image_dict = {"url": image_url}
         image_list.append(image_dict)
     return image_list
+
+@image_routes.route("/<int:id>", methods=["DELETE"])
+@login_required
+def delete_image(id):
+    product_image = ProductImage.query.get(id)
+    db.session.delete(product_image)
+    db.session.commit()
+    return {"message": "Successfully Deleted"}
