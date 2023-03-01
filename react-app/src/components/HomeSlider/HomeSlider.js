@@ -14,21 +14,32 @@ const HomeSlider = ({ slides }) => {
     // console.log("allProductsArr: ", allProductsArr);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [categoryProducts, setCategoryProducts] = useState([]);
-    // const [trendingProducts, setTrendingProducts] = useState([]);
-    // const [exploreEssentials, setExploreEssentials] = useState([]);
+    const [trendingProducts, setTrendingProducts] = useState([]);
+    const [exploreEssentials, setExploreEssentials] = useState([]);
+    const [exclude, setExclude] = useState([]);
     // const [newestProducts, setNewestProducts] = useState([]);
 
     const filterProducts = (allProducts) => {
         const allProductsArr = Object.values(allProducts);
-        const categoryProducts = allProductsArr.filter(product => product.category === 'Rainforest Basics').slice(0, 4);
-        // const trendingProducts = getRandomProducts(4, categoryProducts, allProductsArr);
-        // const exploreEssentials = getRandomProducts(4, [...categoryProducts, ...trendingProducts], allProductsArr);
-        // const newestProducts = allProductsArr
-        //     .filter(product => !categoryProducts.includes(product) && !trendingProducts.includes(product) && !exploreEssentials.includes(product))
-        //     .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
-        //     .slice(0, 4);
+        if (allProductsArr.length > 1) {
+            const categoryProductsArr = allProductsArr.filter(product => product.category === 'Rainforest Basics').slice(0, 4);
+            setCategoryProducts(categoryProductsArr);
+            const trendingProductsArr = getRandomProducts(4, categoryProductsArr, allProductsArr)
+            setTrendingProducts(trendingProductsArr);
+            console.log("trendingProducts: ", trendingProducts)
+            const excludeArr = [...categoryProductsArr, ...trendingProductsArr]
+            setExclude(excludeArr);
+            console.log("exclude", exclude)
+            const exploreEssentialsArr = getRandomProducts(4, exclude, allProductsArr)
+            setExploreEssentials(exploreEssentialsArr);
+            console.log("exploreEssentials: ", exploreEssentials);
+            // const newestProducts = allProductsArr
+            //     .filter(product => !categoryProducts.includes(product) && !trendingProducts.includes(product) && !exploreEssentials.includes(product))
+            //     .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+            //     .slice(0, 4);
 
-        return { allProductsArr, categoryProducts, /*trendingProducts, exploreEssentials, newestProducts*/ };
+            return { allProductsArr, categoryProducts: categoryProductsArr, trendingProducts: trendingProductsArr, exploreEssentials: exploreEssentialsArr }/* newestProducts*/;
+        }
     };
 
     useEffect(() => {
@@ -36,11 +47,7 @@ const HomeSlider = ({ slides }) => {
     }, [dispatch]);
 
     useEffect(() => {
-        const { allProductsArr, categoryProducts,/* trendingProducts, exploreEssentials, newestProducts*/ } = filterProducts(allProducts);
-        setCategoryProducts(categoryProducts);
-        // setTrendingProducts(trendingProducts);
-        // setExploreEssentials(exploreEssentials);
-        // setNewestProducts(newestProducts);
+        filterProducts(allProducts);
     }, [allProducts]);
 
 
@@ -63,40 +70,40 @@ const HomeSlider = ({ slides }) => {
         setCurrentIndex(nextIndex);
     };
 
+    // const getRandomProducts = (n, exclude, allProductsArr) => {
+    //     console.log("allProductsArr: ", allProductsArr);
+    //     const result = [];
+    //     const len = allProductsArr.length;
+    //     let i = 0;
+    //     if (allProductsArr.length) {
+    //         while (i < n) {
+    //             const product = allProductsArr[Math.floor(Math.random() * len)];
+    //             console.log("random-product: ", product);
+    //             if (!exclude.includes(product)) {
+    //                 result.push(product);
+    //                 console.log("resultArr: ", result);
+    //                 i++;
+    //             }
+    //         }
+    //         console.log("endResult: ", result);
+    //         return result;
+    //     }
+
+    // };
     const getRandomProducts = (n, exclude, allProductsArr) => {
         const result = [];
         const len = allProductsArr.length;
         let i = 0;
-        while (i < n) {
-            const product = allProductsArr[Math.floor(Math.random() * len)];
-            if (!exclude.includes(product)) {
+        while (i < n && result.length < len) {
+            const randomIndex = Math.floor(Math.random() * len);
+            const product = allProductsArr[randomIndex];
+            if (!exclude.includes(product) && !result.includes(product)) {
                 result.push(product);
                 i++;
             }
         }
         return result;
     };
-
-    // const getRandomProducts = (n, exclude, allProductsArr) => {
-    //     const result = [];
-    //     const len = allProductsArr.length;
-    //     let i = 0;
-    //     while (i < n) {
-    //         const product = allProductsArr[Math.floor(Math.random() * len)];
-    //         if (exclude.indexOf(product) === -1) {
-    //             result.push(product);
-    //             i++;
-    //         }
-    //     }
-    //     return result;
-    // };
-
-    // const getNewestProducts = (n, products, exclude) => {
-    //     const excludedSet = new Set(exclude.map(p => p.id));
-    //     return products.filter(p => !excludedSet.has(p.id))
-    //                    .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
-    //                    .slice(0, n);
-    // };
 
     const slideStyle = {
         width: '100%',
@@ -106,19 +113,6 @@ const HomeSlider = ({ slides }) => {
         backgroundImage: `url(${slides[currentIndex].url})`,
         transition: "ease-in-out .5s"
     }
-
-    // const categoryProducts = Object.values(allProducts).filter(product => product.category === 'Rainforest Basics').slice(0, 4);
-    // console.log(categoryProducts);
-    // const newestProducts = Object.values(allProducts).sort((a, b) => new Date(b.created_at) - new Date(a.created_at)).slice(0, 4);
-    // const trendingProducts = getRandomProducts(4, categoryProducts);
-    // const exploreEssentials = getRandomProducts(4, [...categoryProducts, ...trendingProducts]);
-    // const newestProducts = allProductsArr.filter(product => {
-    //     const inCategory = categoryProducts.some(p => p.id === product.id);
-    //     const inTrending = trendingProducts.some(p => p.id === product.id);
-    //     const inExploreEssentials = exploreEssentials.some(p => p.id === product.id);
-    //     return !inCategory && !inTrending && !inExploreEssentials;
-    // }).sort((a, b) => new Date(b.created_at) - new Date(a.created_at)).slice(0, 4);
-    // console.log("newestProducts: ", newestProducts)
 
     return (
         <>
@@ -148,12 +142,12 @@ const HomeSlider = ({ slides }) => {
                         <div className="card-title">Rainforest Basics</div>
                         <div className="card-image-container">
                             {categoryProducts.map(product => (
-                                <div className="card-image" key={product.id}>
+                                <div className="card-image" key={product?.id}>
                                     <Link className="card-image-link" to={`/products/${product.id}`}>
-                                        <img className="card-actual-image" src={product.images[0]?.url} alt={product.name} />
+                                        <img className="card-actual-image" src={product?.images[0]?.url} alt={product?.name} />
                                     </Link>
                                     <div className="card-image-info">
-                                        <div>{product.name.substring(0, 20)}...</div>
+                                        <div>{product?.name.substring(0, 20)}...</div>
                                     </div>
                                 </div>
                             ))}
@@ -176,33 +170,33 @@ const HomeSlider = ({ slides }) => {
                     </div>
                     <div className="card-container">
                         <div className="card-title">Trending Products</div>
-                        {/* <div className="card-image-container">
+                        <div className="card-image-container">
                             {trendingProducts.map(product => (
-                                <div className="card-image" key={product.id}>
-                                    <Link to={`/products/${product.id}`}>
-                                        <img className="card-actual-image" src={product?.images[0]?.url} alt={product.name} />
+                                <div className="card-image" key={product?.id}>
+                                    <Link to={`/products/${product?.id}`}>
+                                        <img className="card-actual-image" src={product?.images[0]?.url} alt={product?.name} />
                                     </Link>
                                     <div className="card-image-info">
-                                        <div>{product.name.substring(0, 20)}...</div>
+                                        <div>{product?.name.substring(0, 20)}...</div>
                                     </div>
                                 </div>
                             ))}
-                        </div> */}
+                        </div>
                     </div>
                     <div className="card-container">
                         <div className="card-title">Explore Essentials</div>
-                        {/* <div className="card-image-container">
-                            {exploreEssentials.map(product => (
-                                <div className="card-image" key={product.id}>
-                                    <Link to={`/products/${product.id}`}>
-                                        <img className="card-actual-image" src={product.images[0]?.url} alt={product.name} />
+                        <div className="card-image-container">
+                            {exploreEssentials?.map(product => (
+                                <div className="card-image" key={product?.id}>
+                                    <Link to={`/products/${product?.id}`}>
+                                        <img className="card-actual-image" src={product?.images[0]?.url} alt={product?.name} />
                                     </Link>
                                     <div className="card-image-info">
-                                        <div>{product.name.substring(0, 20)}...</div>
+                                        <div>{product?.name.substring(0, 20)}...</div>
                                     </div>
                                 </div>
                             ))}
-                        </div> */}
+                        </div>
                     </div>
                 </div>
             </div>

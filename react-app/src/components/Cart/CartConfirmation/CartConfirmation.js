@@ -43,12 +43,14 @@ const CartConfirmation = () => {
             <div className="cart-confirm-left">
                 <div className="cart-confirm-image">
                     <Link className="cart-confirm-link" to={`/products/${productId}`}>
-                        <img className="cart-confirm-image" src={product?.images[0]?.url} alt={product.name} />
+                        {product?.images?.length > 0 &&
+                            <img className="cart-confirm-image" src={product.images[0].url} alt={product.name} />
+                        }
                     </Link>
                 </div>
                 <div className="cart-confirm-added-name">
                     <div className="added-to-cart-check">
-                        <div className="checkmark"/>
+                        <div className="checkmark" />
                         <div className="added-to-cart">
                             Added to Cart
                         </div>

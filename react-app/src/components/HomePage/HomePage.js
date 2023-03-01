@@ -61,11 +61,11 @@ function HomePage() {
                                         className="book-carousel-product"
                                         onClick={() => navigate(`/products/${product.id}`)}
                                     >
-                                        <img
-                                            src={product?.images[0]?.url}
-                                            alt={product.name}
-                                            className="book-carousel-product-image"
-                                        />
+                                            <img
+                                                src={product?.images[0]?.url}
+                                                alt={product.name}
+                                                className="book-carousel-product-image"
+                                            />
                                         <div className="book-carousel-product-details">
                                             <p className="book-carousel-product-title">
                                                 {product.name.substring(0, 20)}...

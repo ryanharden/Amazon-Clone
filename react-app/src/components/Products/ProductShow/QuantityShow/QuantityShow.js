@@ -11,13 +11,12 @@ const QuantityShow = ({ setQuantity, quantity }) => {
                 value={quantity}
                 onChange={(e) => setQuantity(e.target.value)}
             >
-            Qty:
             {nums.map(num => (
                 <option
                     key={num}
                     value={num}
                 >
-                {num}
+                Qty: {num}
                 </option>
             ))}
             </select>
