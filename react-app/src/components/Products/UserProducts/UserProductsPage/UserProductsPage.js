@@ -49,17 +49,32 @@ const UserProductPage = () => {
                     </div>
                 </Link>
             </div>
-            {/* <Switch>
-                <Route exact path={"/createproduct"}>
-                    <CreateProduct />
-                </Route>
-                <Route path={"/editproduct/:productId"}>
-                    <EditProduct/>
-                </Route>
-                <Route exact path ={"/users/:userId/products"}>
-                    <AllUserProducts />
-                </Route>
-            </Switch> */}
+            <div className='user-products-page-header'>
+                <div className='products-image header'>
+                    Product Image
+                </div>
+                <div className='products-name header'>
+                    Product Name
+                </div>
+                <div className='products-description header'>
+                    Description
+                </div>
+                <div className='producs-category header'>
+                    Category
+                </div>
+                <div className='products-price header'>
+                    Price
+                </div>
+                <div className='products-inventory header'>
+                    Inventory
+                </div>
+                <div className='products-date-listed header'>
+                    Date Listed
+                </div>
+                <div className='edit-delete header'>
+                    Edit or Delete
+                </div>
+            </div>
             <div className='all-user-products'>
                 <AllUserProducts />
             </div>
