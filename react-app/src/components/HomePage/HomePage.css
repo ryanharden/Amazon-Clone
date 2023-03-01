@@ -11,10 +11,13 @@
     width: 100%;
 } */
 
+.book-carousel-container {
+    margin-top: -40px;
+}
+
 .book-carousel-slide {
     display: flex;
     justify-content: space-around;
-
 }
 
 .book-carousel-product-image {

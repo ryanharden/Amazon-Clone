@@ -11,7 +11,7 @@
     word-break: break-word;
     line-height: 32px;
     text-rendering: optimizeLegibility;
-    width: 20vw;
+    width: 100%
 }
 
 .product-sold-by {

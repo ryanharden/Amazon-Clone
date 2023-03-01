@@ -13,6 +13,8 @@ import HomeSlider from "../HomeSlider/HomeSlider";
 // import Navigation from "../Navigation/index";
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import chevleft from "../../assets/chevron-left.png";
+import chevright from "../../assets/chevron-right.png";
 
 
 function HomePage() {
