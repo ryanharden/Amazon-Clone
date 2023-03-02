@@ -31,7 +31,8 @@ class Product(db.Model):
             "description": self.description,
             "category": self.category,
             "price": str(self.price),
-            "inventory": self.inventory
+            "inventory": self.inventory,
+            "created_at": self.created_at,
         }
 
     def to_dict_details(self):
@@ -45,6 +46,7 @@ class Product(db.Model):
             "category": self.category,
             "price": str(self.price),
             "inventory": self.inventory,
+            "created_at": self.created_at,
             # "num_ratings": len(self.reviews),
             # "avg_rating": sum([review.rating for review in self.reviews]) / len(self.reviews) if len(self.reviews) > 0 else None,
             # "preview_image": preview_images[0].product_image_url if len(preview_images) else None,

@@ -7,6 +7,7 @@ from .image_routes import upload_product_images
 import app.s3 as s3
 # ( upload_file_to_s3, upload_image_file_to_s3, audio_file, get_unique_filename, image_file)
 
+import datetime
 product_routes = Blueprint('products', __name__)
 
 
@@ -72,7 +73,8 @@ def create_product():
             description = form.data["description"],
             category = form.data["category"],
             price = form.data["price"],
-            inventory = form.data["inventory"]
+            inventory = form.data["inventory"],
+            created_at = datetime.datetime.utcnow()
         )
 
         db.session.add(product)
