@@ -13,9 +13,12 @@ import CartShow from "./components/Cart/CartShow/CartShow";
 import CheckoutShow from "./components/Checkout/CheckoutShow/CheckoutShow";
 import CartConfirmation from "./components/Cart/CartConfirmation/CartConfirmation";
 import ProductShow from "./components/Products/ProductShow/ProductShow";
+import { useLocation } from "react-router";
+
 
 function App() {
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -23,10 +26,13 @@ function App() {
     dispatch(authenticate()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
+  const hideNavigation = location.pathname === "/checkout" ||
+    location.pathname === "/login" ||
+    location.pathname === "/signup";
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
+      {!hideNavigation && <Navigation isLoaded={isLoaded} />}
       {isLoaded && (
         <Routes>
           <Route path="/login" element={<LoginFormPage />}/>

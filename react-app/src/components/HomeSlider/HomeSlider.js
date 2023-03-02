@@ -17,7 +17,8 @@ const HomeSlider = ({ slides }) => {
     const [trendingProducts, setTrendingProducts] = useState([]);
     const [exploreEssentials, setExploreEssentials] = useState([]);
     const [exclude, setExclude] = useState([]);
-    // const [newestProducts, setNewestProducts] = useState([]);
+    const [excludeYou, setExcludeYou] = useState([]);
+    const [forYou, setForYou] = useState([]);
 
     const filterProducts = (allProducts) => {
         const allProductsArr = Object.values(allProducts);
@@ -32,13 +33,12 @@ const HomeSlider = ({ slides }) => {
             console.log("exclude", exclude)
             const exploreEssentialsArr = getRandomProducts(4, exclude, allProductsArr)
             setExploreEssentials(exploreEssentialsArr);
+            const excludeYouArr = [...categoryProducts, ...trendingProducts, ...exploreEssentials]
+            setExcludeYou(excludeYouArr)
             console.log("exploreEssentials: ", exploreEssentials);
-            // const newestProducts = allProductsArr
-            //     .filter(product => !categoryProducts.includes(product) && !trendingProducts.includes(product) && !exploreEssentials.includes(product))
-            //     .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
-            //     .slice(0, 4);
-
-            return { allProductsArr, categoryProducts: categoryProductsArr, trendingProducts: trendingProductsArr, exploreEssentials: exploreEssentialsArr }/* newestProducts*/;
+            const forYouArr = getRandomProducts(4, excludeYou, allProductsArr);
+            setForYou(forYouArr)
+            return { allProductsArr, categoryProducts: categoryProductsArr, trendingProducts: trendingProductsArr, exploreEssentials: exploreEssentialsArr, forYou: forYouArr }
         }
     };
 
@@ -55,7 +55,7 @@ const HomeSlider = ({ slides }) => {
         const timer = setTimeout(() => {
             const nextIndex = (currentIndex + 1) % slides.length;
             setCurrentIndex(nextIndex);
-        }, 10000);
+        }, 5000);
 
         return () => clearTimeout(timer);
     }, [currentIndex, slides.length]);
@@ -154,9 +154,9 @@ const HomeSlider = ({ slides }) => {
                         </div>
                     </div>
                     <div className="card-container">
-                        <div className="card-title">Newest Products</div>
-                        {/* <div className="card-image-container">
-                        {newestProducts.map(product => (
+                        <div className="card-title">Selected For You</div>
+                        <div className="card-image-container">
+                        {forYou.map(product => (
                             <div className="card-image" key={product.id}>
                                 <Link to={`/products/${product.id}`}>
                                     <img className="card-actual-image" src={product.images[0]?.url} alt={product.name} />
@@ -166,7 +166,7 @@ const HomeSlider = ({ slides }) => {
                                 </div>
                             </div>
                         ))}
-                    </div> */}
+                    </div>
                     </div>
                     <div className="card-container">
                         <div className="card-title">Trending Products</div>

@@ -18,7 +18,7 @@ const UserProductPage = () => {
 
     useEffect(() => {
         dispatch(getUserProductsThunk(currentUser.id))
-    }, [dispatch, ])
+    }, [dispatch])
     return (
         <div className='user-product-page-container'>
             {/* <div className='user-product-page-nav-bar'>
