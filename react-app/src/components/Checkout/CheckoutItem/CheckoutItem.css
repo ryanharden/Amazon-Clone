@@ -1,0 +1,62 @@
+.checkout-items {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+.checkout-item-container {
+    display: flex;
+    gap: 10px;
+}
+
+.checkout-item-left {
+    display: flex;
+    gap: 50px;
+}
+
+.checkout-image {
+    height: 90px;
+    width: 90px;
+    object-fit: scale-down;
+}
+
+.checkout-link {
+    text-decoration: none;
+    color: black;
+}
+
+.checkout-item-right {
+    margin-left: 30px;
+    width: 500px;
+}
+
+.checkout-item-name {
+    width: 255px;
+    word-break: normal;
+    color: #0F1111;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 700;
+}
+
+.checkout-prime {
+    background-image: url("https://d1irxr40exwge2.cloudfront.net/labels.png");
+    width: 53px;
+    height: 15px;
+    background-position: -185px -182px;
+}
+
+.checkout-sold-by {
+    color: #565959;
+    font-size: 12px;
+    line-height: 16px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.checkout-price {
+    color: #B12704;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 20px;
+}

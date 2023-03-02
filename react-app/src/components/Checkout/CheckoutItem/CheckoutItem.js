@@ -3,8 +3,8 @@ import Quantity from "../../Cart/CartItem/Quantity/Quantity";
 import "./CheckoutItem.css";
 import prime from "../../../assets/prime-icon.png";
 
-const CheckoutItem = ({ product, quantity }) => {
-    if (!product || !product.images) return null;
+const CheckoutItem = ({ cartItem, product, quantity }) => {
+    if (!product || !product.images.length) return null;
 
     return (
         <div className="checkout-item-container">
@@ -24,10 +24,10 @@ const CheckoutItem = ({ product, quantity }) => {
                         ${product.price}
                     </div>
                     <div className="checkout-prime">
-                        <img src={prime} className="checkout-prime-icon" alt="prime" />
+                        {/* <img src={prime} className="checkout-prime-icon" alt="prime" /> */}
                     </div>
                 </div>
-                <Quantity product_id={product.id} quantity={quantity}/>
+                <Quantity cartitem={cartItem} quantity={cartItem.quantity}/>
                 <div className="checkout-sold-by">
                     Sold by: {product.seller.first_name} {product.seller.last_name}
                 </div>

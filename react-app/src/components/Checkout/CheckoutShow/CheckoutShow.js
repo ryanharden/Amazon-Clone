@@ -17,9 +17,10 @@ const CheckoutShow = () => {
     const products = useSelector(state => state.Products.allProducts);
 
     useEffect(() => {
-        cartItemsArr.forEach(item => {
+        const productsInCart = cartItemsArr.forEach(item => {
             dispatch(getProductThunk(item.product_id))
         })
+        console.log(productsInCart);
     }, [dispatch, cartItems])
 
     useEffect(() => {
@@ -39,12 +40,13 @@ const CheckoutShow = () => {
 
     const numItems = cartItems.length
 
-    let items;
-    if (cartItems && cartItemsArr.length) {
-        items = cartItemsArr.map(cartitem => {
-            return <CheckoutItem key={cartitem.id} product={cartitem} quantity={cartitem.quantity} />
-        })
-    }
+    const cartItemsWithProduct = cartItemsArr.map(cartitem => {
+        const product = products[cartitem.product_id];
+        if (!product) return null;
+        return <CheckoutItem key={cartitem.id} product={product} quantity={cartitem.quantity} cartItem={cartitem} />
+    });
+
+    console.log("cartItemsArr: ", cartItemsArr)
 
     return (
         <>
@@ -92,11 +94,13 @@ const CheckoutShow = () => {
                                     <div className='prime-card'>
                                         <img src={primeCard} alt="prime-card" className='prime-card-image' />
                                     </div>
-                                    <div className='card-title'>
-                                        Rainforest Retail Prime Rewards Visa Signature Card <span className='ending-in'> ending in 4819</span>
-                                    </div>
-                                    <div className='earns'>
-                                        Earns 5% cash back
+                                    <div className='card-earns'>
+                                        <div className='card-title'>
+                                            Rainforest Retail Prime Rewards Visa Signature Card <span className='ending-in'> ending in 4819</span>
+                                        </div>
+                                        <div className='earns'>
+                                            Earns 5% cash back
+                                        </div>
                                     </div>
                                 </div>
                                 <div className='billing-shipping-add'>
@@ -127,7 +131,7 @@ const CheckoutShow = () => {
                                 </div>
                             </div>
                             <div className='checkout-items'>
-                                {items}
+                                {cartItemsWithProduct}
                             </div>
                         </div>
                         <div className='bottom-place-order'>

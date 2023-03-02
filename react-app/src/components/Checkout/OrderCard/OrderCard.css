@@ -1,0 +1,117 @@
+.order-card-container {
+    width: 270px;
+    border: 1px #D5D9D9 solid;
+    border-radius: 8px;
+    padding: 15px 20px;
+}
+
+.place-order-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+    background: #FFD814;
+    border: 1px solid #FCD200;
+    cursor: pointer;
+    font-size: 13px;
+    line-height: 29px;
+    color: #0F1111;
+    text-align: center;
+    border-radius: 7px;
+    padding: 2px 10px 2px 10px;
+}
+
+.place-order-button:hover {
+    background: #F7CA00;
+    border-color: #F2C200;
+}
+
+.conditions {
+    font-size: 12px;
+    line-height: 16px;
+    color: #565959;
+    margin-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgb(0, 0, 0, 0.1);
+}
+
+.order-summary {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid rgb(0, 0, 0, 0.1);
+}
+
+.order-summary-title {
+    color: #0F1111;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    padding-top: 10px;
+}
+
+.order-summary-body {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    line-height: 14px;
+    color: #0F1111;
+    margin-top: 5px;
+    padding-bottom: 10px;
+    /* align-items: center; */
+}
+
+.order-left-column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.order-left-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+
+.order-right-top {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: flex-end;
+}
+
+.order-right-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: -6px;
+}
+.order-left-top {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.order-right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-end;
+}
+
+.order-line {
+    height: 1px;
+    width: 70px;
+    background-color:  rgb(0, 0, 0, 0.1);
+}
+
+.order-total {
+    display: flex;
+    justify-content: space-between;
+    color: #B12704;
+    text-rendering: optimizeLegibility;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 700;
+    padding-top: 10px;
+}
