@@ -85,32 +85,6 @@ def create_product():
     if form.errors:
         return {"errors": validation_errors_to_error_messages(form.errors)}, 400
 
-# Add image to Product
-# @product_routes.route("/<int:id>/images", methods=["POST"])
-# @login_required
-# def add_product_images(id):
-
-#     if "image" not in request.files:
-#         return {"errors": "Image required"}, 400
-
-#     images = request.files.getlist("image")
-#     print("images: ", images)
-#     image_list = []
-#     for image in images:
-#         url = image.product_image_url
-#         product_image = ProductImage(
-#             product_image_url = url,
-#             product_id = id,
-#         )
-
-#         db.session.add(product_image)
-#         db.session.commit()
-
-        # image_dict = {"product_image_url": image_url}
-    #     image_list.append(product_image.to_dict());
-    # return image_list
-    #This is the data being return from res2
-
 @product_routes.route("/<int:id>/images", methods=["POST"])
 @login_required
 def add_product_images(id):
@@ -171,47 +145,6 @@ def edit_product(id):
         return product.to_dict_details()
     if form.errors:
         return {"errors": validation_errors_to_error_messages(form.errors)}, 400
-# Edit Product
-# @product_routes.route("/<int:id>", methods=["PUT"])
-# @login_required
-# def edit_product(id):
-#     product = Product.query.get(id)
-
-#     if not product:
-#         return {"errors": "Product Not Found"}
-
-#     form = ProductForm()
-#     form['csrf_token'].data = request.cookies['csrf_token']
-#     if form.validate_on_submit():
-#         form.populate_obj(product)
-
-#         images_to_delete = request.files.getlist("deletedImages")
-#         if images_to_delete:
-#             for image_id in images_to_delete:
-#                 image = ProductImage.query.get(image_id)
-#                 if image:
-#                     db.session.delete(image)
-#                      # Add new images
-#         images = request.files.getlist("images")
-#         for image in images:
-#             if not s3.image_file(image.filename):
-#                 return {"errors": "file type not permitted"}, 400
-#             image.filename = s3.get_unique_filename(image.filename)
-#             upload = s3.upload_image_file_to_s3(image)
-#             if "url" not in upload:
-#                 return {"errors": upload}, 400
-#             image_url = upload["url"]
-#             product_image = ProductImage(
-#                 url=image_url,
-#                 product_id=id
-#             )
-#             db.session.add(product_image)
-#         # db.session.commit()
-#         # db.session.add(product)
-#         db.session.commit()
-#         return product.to_dict_details()
-#     if form.errors:
-#         return {"errors": validation_errors_to_error_messages(form.errors)}, 400
 
 # Delete Product
 @product_routes.route("/<int:id>", methods=["DELETE"])
