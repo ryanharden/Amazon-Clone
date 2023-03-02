@@ -95,7 +95,7 @@ const CheckoutShow = () => {
                                         <img src={primeCard} alt="prime-card" className='prime-card-image' />
                                     </div>
                                     <div className='card-earns'>
-                                        <div className='card-title'>
+                                        <div className='checkout-card-title'>
                                             Rainforest Retail Prime Rewards Visa Signature Card <span className='ending-in'> ending in 4819</span>
                                         </div>
                                         <div className='earns'>
