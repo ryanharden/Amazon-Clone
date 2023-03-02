@@ -12,7 +12,12 @@ function LoginFormPage() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
-  if (sessionUser) return <Navigate to="/"/>
+  if (sessionUser) return <Navigate to="/" />
+
+  const demoLogin = (e) => {
+    e.preventDefault();
+    dispatch(login("demo@aa.io", "password"))
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,33 +29,46 @@ function LoginFormPage() {
 
   return (
     <>
-      <h1>Sign In</h1>
-      <form onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
-        <label>
-          Email
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <button type="submit">Log In</button>
-      </form>
+      <div className="sign-in-page-container">
+        <div className="logo-sign-in">
+          Rainforest Retail
+        </div>
+        <form className="sign-in-form" onSubmit={handleSubmit}>
+          <div className="sign-in-header">
+            Sign in
+          </div>
+          <ul>
+            {errors.map((error, idx) => (
+              <li key={idx}>{error}</li>
+            ))}
+          </ul>
+          <label className="sign-in-label">
+            Email
+            <input
+              className="sign-in-input"
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </label>
+          <label className="sign-in-label">
+            Password
+            <input
+              className="sign-in-input"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </label>
+          <button className="continue-button" type="submit">Continue</button>
+          <div className="sign-in-terms">
+          By continuing, you agree to Rainforest Retail's Conditions of Use and Privacy Notice.
+          </div>
+          <div className="sign-in-demo" onClick={demoLogin}>Sign in as Demo User</div>
+        </form>
+      </div>
     </>
   );
 }

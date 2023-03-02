@@ -8,6 +8,7 @@ import splashheader1 from "../../assets/amazon-outlet-splash-header.jpg";
 import splashheader2 from "../../assets/amazon-clinic-splash-header.jpg";
 import splashheader3 from "../../assets/amazon-healthcare.jpg";
 import splashheader4 from "../../assets/amazon-card-splash.jpg";
+import splashheader5 from "../../assets/amazon-plants-splash.jpg";
 import "./HomePage.css";
 import HomeSlider from "../HomeSlider/HomeSlider";
 // import Navigation from "../Navigation/index";
@@ -28,7 +29,8 @@ function HomePage() {
         { url: `${splashheader1}`, title: 'splash-1' },
         { url: `${splashheader2}`, title: 'splash-2' },
         { url: `${splashheader3}`, title: 'splash-3' },
-        { url: `${splashheader4}`, title: 'splash-4' }
+        { url: `${splashheader4}`, title: 'splash-4' },
+        { url: `${splashheader5}`, title: 'splash-5' }
     ]
 
     useEffect(() => {
@@ -61,11 +63,11 @@ function HomePage() {
                                         className="book-carousel-product"
                                         onClick={() => navigate(`/products/${product.id}`)}
                                     >
-                                        <img
-                                            src={product?.images[0]?.url}
-                                            alt={product.name}
-                                            className="book-carousel-product-image"
-                                        />
+                                            <img
+                                                src={product?.images[0]?.url}
+                                                alt={product.name}
+                                                className="book-carousel-product-image"
+                                            />
                                         <div className="book-carousel-product-details">
                                             <p className="book-carousel-product-title">
                                                 {product.name.substring(0, 20)}...

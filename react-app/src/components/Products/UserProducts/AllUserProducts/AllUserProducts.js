@@ -21,9 +21,10 @@ const AllUserProducts = () => {
     }
 
     useEffect(() => {
-        dispatch(getUserProductsThunk(currentUser.id))
-    }, [dispatch, currentUser.id])
+        dispatch(getUserProductsThunk(currentUser?.id))
+    }, [dispatch, currentUser?.id])
 
+    if (!currentUser) return null;
     if (!Object.values(currentUser).length) return null;
 
     return (

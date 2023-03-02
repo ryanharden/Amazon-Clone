@@ -63,6 +63,11 @@ const ProductForm = ({ formType, product }) => {
     // Handle form submission for editing an existing product
     const handleEditSubmit = async (e) => {
         e.preventDefault();
+        
+        if (document.getElementsByClassName("preview-images-image").length === 0) {
+            setErrors(["Product must have at least one image"]);
+            return;
+        }
 
         const editedProduct = {
             id: product.id,
@@ -78,10 +83,12 @@ const ProductForm = ({ formType, product }) => {
             setErrors(validationErrors);
             return;
         }
+
+
         // console.log("editedProduct: ", editedProduct)
         const newNewProduct = await dispatch(editProductThunk(editedProduct));
         console.log("newNewProduct: ", newNewProduct)
-        if (newNewProduct.images.length) {
+        if (images.length > 0 && newNewProduct) {
             try {
                 if (images.length && newNewProduct) {
                     const formData = new FormData();
@@ -95,8 +102,8 @@ const ProductForm = ({ formType, product }) => {
                 const data = await res.json();
                 if (data && data.errors) setErrors(data.errors)
             };
-            navigate(`/users/${user.id}/products`)
         }
+        navigate(`/users/${user.id}/products`)
     };
 
     const handleImages = async (e) => {
@@ -110,6 +117,25 @@ const ProductForm = ({ formType, product }) => {
         setPrevImages([...prevImages, ...files]);
         setImages([...images, ...files])
     }
+
+    // const handleImages = async (e) => {
+    //     const files = e.target.files;
+    //     // Check if any of the files are already in the prevImages array
+    //     const duplicateFiles = Array.from(files).filter((file) => {
+    //         return prevImages.some((prevFile) => prevFile.name === file.name);
+    //     });
+    //     if (images.length + files.length - duplicateFiles.length > 6) {
+    //         setErrors(["A product can have a max of 6 images"]);
+    //         return;
+    //     }
+    //     // Add only the non-duplicate files to the prevImages array
+    //     setPrevImages([...prevImages, ...Array.from(files).filter((file) => {
+    //         return !duplicateFiles.includes(file);
+    //     })]);
+    //     setImages([...images, ...Array.from(files).filter((file) => {
+    //         return !duplicateFiles.includes(file);
+    //     })]);
+    // };
 
     // Handle form submission for creating a new product
     const handleCreateSubmit = async (e) => {
@@ -129,6 +155,10 @@ const ProductForm = ({ formType, product }) => {
         if (validationErrors.length > 0) {
             setErrors(validationErrors);
             return;
+        }
+
+        if (!images.length) { // check if at least one image is uploaded
+            setErrors(["Must upload at least one image along with product"]);
         }
 
         console.log("images: ", images);
@@ -165,6 +195,7 @@ const ProductForm = ({ formType, product }) => {
                             >x</button>
                             <img
                                 className={'preview-images-image'}
+                                // src={image.url ? `${image.url}?${Date.now()}` : URL.createObjectURL(image)}
                                 src={image.url ? image.url : URL.createObjectURL(image)}
                                 alt={'preview'}
                             />
@@ -215,17 +246,55 @@ const ProductForm = ({ formType, product }) => {
         }
     }
 
-    const handleImageRemoveEdit = async (e, i) => {
-        e.preventDefault();
-        const currentImages = [...product.images]
-        const deletedImage = currentImages.splice(i, 1);
-        // console.log("deletedImage: ", deletedImage);
+    // const handleImageRemoveEdit = async (e, i) => {
+    //     e.preventDefault();
+    //     const currentImages = [...product.images]
+    //     const deletedImage = currentImages.splice(i, 1);
+    //     // console.log("deletedImage: ", deletedImage);
 
-        await dispatch(deleteImageThunk(deletedImage[0].id))
-        const updatedImages = currentImages.filter(image => image.id !== deletedImage[0].id);
-        // console.log("updatedImages: ", updatedImages);
-        setImages(updatedImages);
-    }
+    //     await dispatch(deleteImageThunk(deletedImage[0].id))
+    //     const updatedImages = currentImages.filter(image => image.id !== deletedImage[0].id);
+    //     // console.log("updatedImages: ", updatedImages);
+    //     setImages(updatedImages);
+    // }
+
+    const handleImageRemoveEdit = (e, i) => {
+        e.preventDefault();
+        const newImages = [...images];
+        const newProductImages = [...product.images];
+        console.log(newImages);
+        const deletedImage = newImages.splice(i, 1)[0];
+        let deletedImageId;
+        if (deletedImage.id) {
+            deletedImageId = deletedImage.id;
+        } else {
+            const deletedImageUrl = deletedImage.url;
+            const matchingProductImage = newProductImages.find((img) => img.url === deletedImageUrl);
+            deletedImageId = matchingProductImage?.id;
+        }
+        newProductImages.splice(i, 1);
+        setImages(newImages);
+        dispatch(deleteImageThunk(deletedImageId));
+        if (newImages.length === 1) {
+            setImage(newImages[0])
+        }
+
+        const previewImageContainers = document.getElementsByClassName('preview-image-container');
+        if (previewImageContainers.length === newProductImages.length) {
+            setPrevImage(newProductImages[0]);
+        }
+        const updatedPreviewImages = Array.from(previewImageContainers);
+        updatedPreviewImages.splice(i, 1);
+        updatedPreviewImages.forEach((container, idx) => {
+            const img = container.querySelector('.preview-images-image');
+            if (img.src === deletedImage?.url) {
+                setPrevImage(updatedPreviewImages[idx]?.querySelector('.preview-images-image') || updatedPreviewImages[idx - 1]?.querySelector('.preview-images-image') || null);
+                newImages.splice(idx, 0, deletedImage);
+            }
+            container.querySelector('.preview-image-btn').setAttribute('onclick', `handleImageRemoveEdit(event, ${idx})`);
+        });
+        setPrevImages(newProductImages?.map(image => ({ url: image.url })));
+    };
 
     // Validate the form fields and return an array of error messages
     const validateForm = (form) => {
@@ -276,7 +345,6 @@ const ProductForm = ({ formType, product }) => {
                         />
                     </div>
                     {formType === "edit" ? productImages : previewImages}
-                    {/* {previewImages ? previewImages : <img src={emptyImage} alt="default" />} */}
                     {errors.length > 0 && (
                         <ul>
                             {errors.map((error, idx) => (
@@ -322,6 +390,7 @@ const ProductForm = ({ formType, product }) => {
                             id="price"
                             type="number"
                             min="0"
+                            step="0.01"
                             value={price}
                             onChange={(e) => setPrice(e.target.value)}
                         />
@@ -338,7 +407,14 @@ const ProductForm = ({ formType, product }) => {
                     </div>
                     <div className="product-form-button-container">
                         <button className="form-submit" type="submit">{formType === "create" ? "Create" : "Save"}</button>
-                        <button className="form-cancel" type="button" onClick={() => navigate(`/users/${user.id}/products`)}>
+                        <button className="form-cancel" type="button" onClick={() => {
+                            if (!images.length && !product.images.length && formType === "edit") {
+                                setErrors(["Cannot Cancel without having at least one image"]);
+                            } else {
+                                navigate(`/users/${user.id}/products`);
+                            }
+                        }}
+                        >
                             Cancel
                         </button>
                     </div>

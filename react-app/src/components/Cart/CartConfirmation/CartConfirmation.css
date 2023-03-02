@@ -1,15 +1,60 @@
 .cart-confirm-container {
     display: flex;
+    padding: 15px 20px;
+    gap: 20px;
+    background-color: rgb(0, 0, 0, 0.04);
+    height: 100%;
+    padding-bottom: 1200px;
 }
 
 .cart-confirm-left {
     display: flex;
+    flex-grow: 1;
+    background-color: white;
+    gap: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50vw;
+}
+
+.cart-confirm-added-name {
+    display: flex;
+    flex-direction: column;
+}
+
+.added-to-cart-check {
+    display: flex;
+    gap: 10px;
+}
+
+.added-to-cart {
+    font-weight: 700;
+    font-size: 20px;
 }
 
 .cart-confirm-right {
     display: flex;
     flex-direction: column;
+    padding: 20px;
+    background-color: white;
+    width: 25vw;
+    gap: 10px;
 }
+
+.confirm-right-header {
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 700;
+}
+
+.cart-confirm-name {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #0F1111;
+}
+
+
 .checkmark {
     background-image: url("https://d1irxr40exwge2.cloudfront.net/stars.png");
     height: 18px;
@@ -28,7 +73,6 @@
     background: #FFD814;
     border: 1px solid #FCD200;
     cursor: pointer;
-
     font-size: 13px;
     line-height: 29px;
     color: #0F1111;
@@ -46,4 +90,9 @@
     text-align: center;
     color: #0F1111;
     padding: 3px 10px;
+}
+
+.cart-confirm-link {
+    text-decoration: none;
+    color: black
 }

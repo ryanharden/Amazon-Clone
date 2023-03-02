@@ -92,7 +92,7 @@
     top: 48.7%;
     padding-left: 22px;
     padding-right: 22px;
-    max-height: 64%;
+    max-height: 68%;
     justify-content: space-evenly;
     overflow-y: visible;
     z-index: 2;
@@ -136,7 +136,8 @@
     padding-top: 20px;
     margin: 0;
     font-size: 20px;
-    margin-bottom: 10px
+    margin-bottom: 10px;
+    font-weight: 800;
 }
 
 .card-image-container {

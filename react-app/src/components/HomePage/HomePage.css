@@ -25,3 +25,7 @@
     height: 100px;
     object-fit: scale-down;
 }
+
+.book-carousel-product {
+    cursor: pointer;
+}

@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import CartItem from '../CartItem/CartItem';
 import { getProductsThunk } from '../../../store/products';
 import { getCartItemsThunk, deleteCartItemThunk } from '../../../store/cartitem';
+import "./CartShow.css";
 
 const CartShow = () => {
     const dispatch = useDispatch();
