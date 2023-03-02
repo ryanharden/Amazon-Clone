@@ -20,7 +20,7 @@ function ProfileButton({ user }) {
     if (!showMenu) return;
 
     const closeMenu = (e) => {
-      if (!ulRef.current.contains(e.target)) {
+      if (ulRef.current && !ulRef.current.contains(e.target)) {
         setShowMenu(false);
       }
     };
@@ -88,7 +88,7 @@ function ProfileButton({ user }) {
               </>
             ) : (
               <>
-                <Link onClick={closeMenu} className="drop-link" to={"/login"}>
+                <Link className="drop-link" to={"/login"}>
                   <div className="drop-signin">
                     Sign in
                   </div>

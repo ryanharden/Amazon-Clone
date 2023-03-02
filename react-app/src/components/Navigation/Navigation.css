@@ -171,6 +171,11 @@
 }
 
 .start-here-link {
-  color: black;
+  /* color: black; */
   font-size: 10px;
+  color: #0066c0;
+}
+
+.start-here:hover {
+  text-decoration: underline;
 }

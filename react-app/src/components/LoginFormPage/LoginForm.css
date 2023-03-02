@@ -1,0 +1,81 @@
+.sign-in-page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 15px;
+}
+
+.logo-sign-in {
+    padding-bottom: 20px;
+    padding-top: 5px;
+}
+
+.sign-in-header {
+    font-size: 28px;
+}
+
+.sign-in-form {
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 20px 25px;
+}
+
+.sign-in-label {
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.sign-in-input {
+    height: 31px;
+    width: 100%;
+    margin-top: 2px;
+    border: 1px solid #a6a6a6;
+    border-top-color: #949494;
+    border-radius: 3px;
+    text-indent: 7px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+.sign-in-input:focus {
+    outline: none;
+    border: 1px solid #e77601;
+    filter: drop-shadow(0px 0px 2px #e88420);
+}
+
+.continue-button {
+    width: 100%;
+    padding: 5px 6px;
+    margin-bottom: 20px;
+    border: 1px solid #a88734;
+    border-radius: 3px;
+    background: linear-gradient(0deg, rgba(240, 194, 77, 1) 0%, rgba(246, 221, 160, 1) 100%);
+    color: #111111;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.continue-button:hover {
+    background: linear-gradient(0deg, rgba(238, 186, 53, 1) 0%, rgba(244, 213, 137, 1) 100%);
+}
+
+.sign-in-terms {
+    font-size: 12px;
+    color: #111111;
+    margin-bottom: 15px;
+}
+
+.sign-in-demo {
+    cursor: pointer;
+    font-size: 13px;
+    color: #0066c0;
+}
+
+.sign-demo:hover {
+    color: #c45500;
+    text-decoration: underline;
+}
