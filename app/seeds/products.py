@@ -636,7 +636,7 @@ def seed_products():
     db.session.add(basic4)
     db.session.add_all([ automotive1, automotive2, automotive3, automotive4, automotive5, appliance1, appliance2, appliance3, appliance4, appliance5, baby1, baby2, baby3, beauty1, beauty2, beauty3, beauty4, book1, book2, book3, book4, book5, phone1, phone2, phone3, phone4, clothing1, clothing2, clothing3, clothing4, clothing5, clothing6, computer1, computer2, computer3, electronic1, electronic2, electronic3, electronic4, electronic5,])
     db.session.add_all([book6, book7])
-    db.session.add_all([productImage236, productImage237, productImage238, productImage239, productImage239, productImage239, productImage239, productImage239,])
+    db.session.add_all([productImage236, productImage237, productImage238, ])
     db.session.commit()
 
 
