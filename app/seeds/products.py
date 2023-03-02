@@ -348,10 +348,10 @@ def seed_products():
     productImage236 = ProductImage(product_id=45, url="https://amazon-clone-images2.s3.us-west-1.amazonaws.com/Amazon+Seed+Images/45/rich-dad-book.jpg")
     productImage237 = ProductImage(product_id=46, url="https://amazon-clone-images2.s3.us-west-1.amazonaws.com/Amazon+Seed+Images/46/book-seed.jpg")
     productImage238 = ProductImage(product_id=46, url="https://amazon-clone-images2.s3.us-west-1.amazonaws.com/Amazon+Seed+Images/46/book-seed3.jpg")
-    productImage239 = ProductImage(product_id=47, url="https://amazon-clone-images2.s3.us-west-1.amazonaws.com/Amazon+Seed+Images/44/51%2BvJkbGtJL._AC_SX679_.jpg")
-    productImage239 = ProductImage(product_id=47, url="https://amazon-clone-images2.s3.us-west-1.amazonaws.com/Amazon+Seed+Images/47/41zOCbizrZL.jpg")
-    productImage239 = ProductImage(product_id=47, url="https://amazon-clone-images2.s3.us-west-1.amazonaws.com/Amazon+Seed+Images/47/81XiYFe9qwL.jpg")
-    productImage239 = ProductImage(product_id=48, url="https://amazon-clone-images2.s3.us-west-1.amazonaws.com/Amazon+Seed+Images/48/51Ppi-8kISL._SY346_.jpg")
+    # productImage239 = ProductImage(product_id=47, url="https://amazon-clone-images2.s3.us-west-1.amazonaws.com/Amazon+Seed+Images/44/51%2BvJkbGtJL._AC_SX679_.jpg")
+    # productImage239 = ProductImage(product_id=47, url="https://amazon-clone-images2.s3.us-west-1.amazonaws.com/Amazon+Seed+Images/47/41zOCbizrZL.jpg")
+    # productImage239 = ProductImage(product_id=47, url="https://amazon-clone-images2.s3.us-west-1.amazonaws.com/Amazon+Seed+Images/47/81XiYFe9qwL.jpg")
+    # productImage239 = ProductImage(product_id=48, url="https://amazon-clone-images2.s3.us-west-1.amazonaws.com/Amazon+Seed+Images/48/51Ppi-8kISL._SY346_.jpg")
     # productImage239 = ProductImage(product_id=49, url="https://amazon-clone-images2.s3.us-west-1.amazonaws.com/Amazon+Seed+Images/49/518nz4ldWqL._SX342_BO1%2C204%2C203%2C200_.jpg")
 
 
