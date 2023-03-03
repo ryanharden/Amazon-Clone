@@ -14,6 +14,7 @@ import CheckoutShow from "./components/Checkout/CheckoutShow/CheckoutShow";
 import CartConfirmation from "./components/Cart/CartConfirmation/CartConfirmation";
 import ProductShow from "./components/Products/ProductShow/ProductShow";
 import { useLocation } from "react-router";
+import Footer from "./components/Footer/Footer";
 
 
 function App() {
@@ -29,6 +30,8 @@ function App() {
   const hideNavigation = location.pathname === "/checkout" ||
     location.pathname === "/login" ||
     location.pathname === "/signup";
+
+  const hideFooter = location.pathname === "/login" || location.pathname === "/signup"
 
   return (
     <>
@@ -59,6 +62,8 @@ function App() {
           <Route path="/" element={<HomePage/>}/>
         </Routes>
       )}
+      {!hideFooter && <Footer/>}
+      {/* <Footer /> */}
     </>
   );
 }

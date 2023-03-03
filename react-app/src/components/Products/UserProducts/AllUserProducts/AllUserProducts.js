@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserProductsThunk } from "../../../../store/products";
 import UserProductItem from "../UserProductItem/UserProductItem";
@@ -30,10 +30,28 @@ const AllUserProducts = () => {
     return (
         <div className="all-user-products-header">
             <div className="all-user-products-container">
-                {userProductItems ? userProductItems : "No Products Listed Yet!"}
+                {userProductItems ? userProductItems : (
+                    <div className="no-products-container">
+                        <div className="no-products-header">
+                            You don't have any products listed yet!
+                        </div>
+                        <div className="instructions-arrow">
+                            <div className="instructions">
+                                Click below for a quick and easy listing process
+                            </div>
+                            <div className="down-arrow"><i className="fa-solid fa-turn-down"></i></div>
+                        </div>
+                        <Link to={"/createproduct"} className="create-product-big-link">
+                            <div className='create-product-big'>
+                                List a Product
+                            </div>
+                        </Link>
+                    </div>
+                )}
             </div>
         </div>
     )
 };
+
 
 export default AllUserProducts;

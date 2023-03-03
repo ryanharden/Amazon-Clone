@@ -34,7 +34,7 @@ const UserProductItem = ({ product }) => {
                 </div> */}
                 <Link className="image-link" to={`/products/${product.id}`}>
                     <div className="product-item-name">
-                        {product.name.slice(0, 50)}...
+                        {product.name.slice(0, 45)}...
                     </div>
                 </Link>
             </div>
@@ -43,7 +43,7 @@ const UserProductItem = ({ product }) => {
                     Description
                 </div> */}
                 <div className="product-item-description">
-                    {product.description.slice(0, 50)}...
+                    {product.description.slice(0, 40)}...
                 </div>
             </div>
             <div className="user-product-category-container">

@@ -143,7 +143,7 @@ const HomeSlider = ({ slides }) => {
                         <div className="card-image-container">
                             {categoryProducts.map(product => (
                                 <div className="card-image" key={product?.id}>
-                                    <Link className="card-image-link" to={`/products/${product.id}`}>
+                                    <Link to={`/products/${product.id}`}>
                                         <img className="card-actual-image" src={product?.images[0]?.url} alt={product?.name} />
                                     </Link>
                                     <div className="card-image-info">
@@ -159,7 +159,7 @@ const HomeSlider = ({ slides }) => {
                         {forYou.map(product => (
                             <div className="card-image" key={product.id}>
                                 <Link to={`/products/${product.id}`}>
-                                    <img className="card-actual-image" src={product.images[0]?.url} alt={product.name} />
+                                    <img className="card-actual-image" src={product?.images[0]?.url} alt={product.name} />
                                 </Link>
                                 <div className="card-image-info">
                                     <div>{product.name.substring(0, 20)}...</div>

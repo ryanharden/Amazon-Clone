@@ -16,13 +16,119 @@
     margin-top: 35px;
 }
 
-.h2 {
-    font-size: 28px;
-    margin-bottom: 15px;
+.form {
+    width: 700px;
 }
 
-.form-input {
+.h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.product-errors {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    list-style: none;
+    color: red;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 5px 0;
+}
+
+.li-error {
+    display: flex;
+    justify-content: center;
+    font-weight: 700;
+    box-sizing: border-box;
+    margin-bottom: 7px;
+}
+
+.product-image-input {
+    display: flex;
+    justify-content: center;
+}
+
+.error-icon {
+    height: 20px;
+    width: 20px;
+    margin-bottom: 10px;
+}
+
+.product-image-label {
+    /* width: 100px; */
+    padding: 7px 20px;
+    border: 1px solid #a88734;
+    border-radius: 3px;
+    background: linear-gradient(0deg, rgba(240, 194, 77, 1) 0%, rgba(246, 221, 160, 1) 100%);
+    color: #111111;
+    font-size: 14px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+#images.file-input {
+    border: none;
+    display: none;
+}
+
+.product-form-input {
     padding: 10px 0px;
+}
+
+.product-form-input input {
+    height: 31px;
+    width: 100%;
+    margin-top: 2px;
+    box-sizing: border-box;
+    border: 1px solid #a6a6a6;
+    border-top-color: #949494;
+    border-radius: 3px;
+    text-indent: 7px;
+}
+
+.product-form-input select {
+    height: 31px;
+    width: 100%;
+    margin-top: 2px;
+    box-sizing: border-box;
+    border: 1px solid #a6a6a6;
+    border-top-color: #949494;
+    border-radius: 3px;
+
+    text-indent: 7px;
+}
+
+.product-form-input input:focus {
+    outline: none;
+    border: 1px solid #e77601;
+    filter: drop-shadow(0px 0px 2px #e88420);
+}
+
+textarea {
+    height: 200px;
+    width: 100%;
+    margin-top: 2px;
+    box-sizing: border-box;
+    border: 1px solid #a6a6a6;
+    border-top-color: #949494;
+    border-radius: 3px;
+    padding-left: 7px;
+    padding-top: 5px;
+}
+
+textarea:focus {
+    outline: none;
+    border: 1px solid #e77601;
+    filter: drop-shadow(0px 0px 2px #e88420);
+}
+
+.product-form-button-container {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .form-submit {
@@ -62,6 +168,8 @@
     max-width: 800px;
     border: 1px solid #ddd;
     border-radius: 4px;
+    display: flex;
+    justify-content: center;
 }
 
 .preview-image-btn {
@@ -91,4 +199,9 @@
     width: fit-content;
     max-width: 100px;
     margin: 0px 5px;
+}
+
+.empty-image-div {
+    display: flex;
+    justify-content: center;
 }

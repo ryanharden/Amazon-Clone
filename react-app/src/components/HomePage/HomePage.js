@@ -50,38 +50,40 @@ function HomePage() {
     );
 
     return (
-        <div className='home-page-container'>
-            <div className='slider-container'>
-                <HomeSlider slides={slides} />
-            </div>
-            <div className="book-carousel-container">
-                <h2 className="book-carousel-title">Explore Rainforest Books</h2>
-                <Carousel showThumbs={false}>
-                    {pages.map((page, i) => (
-                        <div key={i}>
-                            <div className="book-carousel-slide">
-                                {page.map((product) => (
-                                    <div
-                                        key={product.id}
-                                        className="book-carousel-product"
-                                        onClick={() => navigate(`/products/${product.id}`)}
-                                    >
+        <div className='home-page-wrapper'>
+            <div className='home-page-container'>
+                <div className='slider-container'>
+                    <HomeSlider slides={slides} />
+                </div>
+                <div className="book-carousel-container">
+                    <h2 className="book-carousel-title">Explore Rainforest Books</h2>
+                    <Carousel showThumbs={false}>
+                        {pages.map((page, i) => (
+                            <div key={i}>
+                                <div className="book-carousel-slide">
+                                    {page.map((product) => (
+                                        <div
+                                            key={product.id}
+                                            className="book-carousel-product"
+                                            onClick={() => navigate(`/products/${product.id}`)}
+                                        >
                                             <img
                                                 src={product?.images[0]?.url}
                                                 alt={product.name}
                                                 className="book-carousel-product-image"
                                             />
-                                        <div className="book-carousel-product-details">
-                                            <p className="book-carousel-product-title">
-                                                {product.name.substring(0, 20)}...
-                                            </p>
+                                            <div className="book-carousel-product-details">
+                                                <p className="book-carousel-product-title">
+                                                    {product.name.substring(0, 20)}...
+                                                </p>
+                                            </div>
                                         </div>
-                                    </div>
-                                ))}
+                                    ))}
+                                </div>
                             </div>
-                        </div>
-                    ))}
-                </Carousel>
+                        ))}
+                    </Carousel>
+                </div>
             </div>
         </div>
     )

@@ -45,7 +45,7 @@ const UserProductPage = () => {
                 </div>
                 <Link to={"/createproduct"} className="user-product-page-link">
                     <div className='create-product'>
-                        List Your Product
+                        List a Product
                     </div>
                 </Link>
             </div>
