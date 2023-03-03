@@ -9,6 +9,7 @@
     flex-direction: row;
     padding: 20px 40px;
     gap: 30px;
+    justify-content: center;
 }
 
 .shipping-address-container {

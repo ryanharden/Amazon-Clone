@@ -4,7 +4,7 @@ import "./CheckoutItem.css";
 import prime from "../../../assets/prime-icon.png";
 
 const CheckoutItem = ({ cartItem, product, quantity }) => {
-    if (!product || !product.images.length) return null;
+    if (!product) return null;
 
     return (
         <div className="checkout-item-container">

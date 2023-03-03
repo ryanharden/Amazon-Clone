@@ -5,9 +5,12 @@
     src: url('https://d1irxr40exwge2.cloudfront.net/AmazonEmber_Rg.ttf');
 }
 
-/* #root {
-    background-color: #E3E6E6;
-} */
+#root {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
 
 a {
     /* color: #0066c0; */
@@ -17,6 +20,7 @@ a {
 
 html,
 body {
+    height: 100%;
     margin: 0;
     padding: 0;
     overflow: auto;

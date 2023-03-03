@@ -15,7 +15,7 @@ import CartConfirmation from "./components/Cart/CartConfirmation/CartConfirmatio
 import ProductShow from "./components/Products/ProductShow/ProductShow";
 import { useLocation } from "react-router";
 import Footer from "./components/Footer/Footer";
-
+import styles from "./App.css";
 
 function App() {
   const dispatch = useDispatch();

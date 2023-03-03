@@ -24,7 +24,7 @@
 }
 
 .empty-cart-container {
-    min-height: 125vw;
+    /* min-height: 100%; */
     background-color: #eaeded;
     display: flex;
     flex-direction: column;
