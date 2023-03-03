@@ -20,7 +20,7 @@ const ProductBuy = ({ product }) => {
 
     const addToCart = async () => {
         if (!currentUser) {
-            navigate("/signin")
+            navigate("/login")
         } else {
             await dispatch(addCartItemThunk(product.id, quantity))
             navigate(`/cart-confirmation?productId=${product.id}&quantity=${quantity}`);

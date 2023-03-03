@@ -50,3 +50,31 @@
     height: 14px;
     background: linear-gradient(to bottom, rgba(0, 0, 0, .14), rgba(0, 0, 0, .03) 3px, transparent);
 }
+.error-icon-container {
+    display: flex;
+    justify-content: center;
+}
+
+.sign-up-errors {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    list-style: none;
+    color: red;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 5px 0;
+}
+
+.li-error {
+    width: 100%;
+    font-weight: 700;
+}
+
+.error-icon {
+    height: 20px;
+    width: 20px;
+    margin-bottom: 10px;
+}

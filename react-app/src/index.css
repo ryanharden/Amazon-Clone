@@ -2,9 +2,12 @@
 
 @font-face {
     font-family: "Amazon Ember";
-    font-weight: 400;
     src: url('https://d1irxr40exwge2.cloudfront.net/AmazonEmber_Rg.ttf');
 }
+
+/* #root {
+    background-color: #E3E6E6;
+} */
 
 a {
     /* color: #0066c0; */
@@ -12,7 +15,8 @@ a {
     cursor: pointer;
 }
 
-html, body {
+html,
+body {
     margin: 0;
     padding: 0;
     overflow: auto;

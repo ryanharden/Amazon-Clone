@@ -1,0 +1,42 @@
+.footer-wrapper {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 80px;
+    font-size: 14px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #232f3e;
+    color: white;
+    height: 80px;
+}
+
+.footer-body {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 800px;
+}
+
+.link {
+    display: flex;
+    gap: 5px;
+    color: white;
+}
+
+.github-mark {
+    height: 30px;
+}
+
+.github-logo {
+    height: 30px;
+}
+
+
+.linked-in-logo {
+    height: 25px;
+}

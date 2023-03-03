@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Navigate, Link } from "react-router-dom";
 import { signUp } from "../../store/session";
 import './SignupForm.css';
+import error from "../../assets/dialog-error.248x256.png";
 
 function SignupFormPage() {
   const dispatch = useDispatch();
@@ -27,6 +28,18 @@ function SignupFormPage() {
     } else {
       setErrors(['Confirm Password field must be the same as the Password field']);
     }
+
+    const validateEmail = (email) => {
+      const emailPattern = /\S+@\S+\.\S+/;
+      return emailPattern.test(email);
+    }
+
+    if (!email) {
+      setErrors(["Please enter your email"]);
+    } else if (!validateEmail(email)) {
+      setErrors(["Invalid email address. Please try again."]);
+    }
+
   };
 
   return (
@@ -36,11 +49,14 @@ function SignupFormPage() {
           Rainforest Retail
         </div>
         <form className="sign-up-form" onSubmit={handleSubmit}>
+          <div className="error-icon-container">
+            {errors.length ? <img src={error} className="error-icon" /> : ""}
+          </div>
           <div className="sign-in-header">
             Create an account
           </div>
-          <ul>
-            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+          <ul className="sign-up-errors">
+            {errors.map((error, idx) => <li className="li-error" key={idx}>{error}</li>)}
           </ul>
           <label className="sign-up-label">
             Email

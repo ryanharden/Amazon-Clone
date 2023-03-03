@@ -1,18 +1,37 @@
-/* @media screen and (min-width: 1500px) {
+@media screen and (min-width: 1500px) {
     .home-page-container {
-        padding: 0 40px;
+        margin: 0 auto;
+        width: 1500px;
     }
-} */
 
-/* .home-page-container {
+    .product-card-container {
+        margin: 0 auto;
+    }
+}
+
+.home-page-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 100%;
-} */
+    background-color: #E3E6E6;
+    padding-bottom: 200px;
+}
+
+.home-page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 1500px;
+    /* background-color: rgb(0, 0, 0, 0.1); */
+    /* background-color: #E3E6E6; */
+    background-image: linear-gradient(to top, rgba(227, 230, 230, 0.8) 0%, rgba(227, 230, 230, 0.1) 600px, rgba(227, 230, 230, 0) 100%);
+    /* background: linear-gradient(to bottom, rgba(227,230,230,0.9) 0%, rgba(227,230,230,0.7) 20%, rgba(227,230,230,0.5) 50%, rgba(227,230,230,0.3) 80%, rgba(227,230,230,0) 100%); */
+}
 
 .book-carousel-container {
-    margin-top: -40px;
+    margin-top: -60px;
+    padding: 0 20px;
+    background-color: white;
 }
 
 .book-carousel-slide {
@@ -21,8 +40,8 @@
 }
 
 .book-carousel-product-image {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     object-fit: scale-down;
 }
 

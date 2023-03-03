@@ -5,6 +5,7 @@ import { createProductThunk, deleteImageThunk, editProductThunk, getProductThunk
 import "./ProductForm.css";
 import emptyImage from "../../../assets/emtpy-image.jpeg";
 import { postProductImages } from "../../../store/products";
+import error from "../../../assets/dialog-error.248x256.png";
 
 const categories = [
     "Automotive",
@@ -63,7 +64,7 @@ const ProductForm = ({ formType, product }) => {
     // Handle form submission for editing an existing product
     const handleEditSubmit = async (e) => {
         e.preventDefault();
-        
+
         if (document.getElementsByClassName("preview-images-image").length === 0) {
             setErrors(["Product must have at least one image"]);
             return;
@@ -205,7 +206,7 @@ const ProductForm = ({ formType, product }) => {
             </div>
         )
     } else {
-        previewImages = <img className="empty-image" src={emptyImage} alt="default" />;
+        previewImages = <div className="empty-image-div"><img className="empty-image" src={emptyImage} alt="default" /></div>;
     }
 
     let productImages;
@@ -229,6 +230,8 @@ const ProductForm = ({ formType, product }) => {
                 })}
             </div>
         )
+    } else {
+        previewImages = <div className="empty-image-div"><img className="empty-image" src={emptyImage} alt="default" /></div>;
     }
 
     const handleImageRemove = (e, i) => {
@@ -333,26 +336,31 @@ const ProductForm = ({ formType, product }) => {
         <div className="product-create-edit-container">
             <div className="forms-wrapper">
                 <h2>{formType === "create" ? "List a Product" : "Edit Product"}</h2>
-                <form onSubmit={formType === "create" ? handleCreateSubmit : handleEditSubmit} encType="multipart/form-data">
-                    <div className="form-input">
-                        <label htmlFor="images">Upload Your Product Images</label>
+                <div className="error-icon-container">
+                    {errors.length ? <img src={error} className="error-icon" /> : ""}
+                </div>
+                {errors.length > 0 && (
+                        <ul className="product-errors">
+                            {errors.map((error, idx) => (
+                                <li className="li-error" key={idx}>{error}</li>
+                            ))}
+                        </ul>
+                    )}
+                <form className="form" onSubmit={formType === "create" ? handleCreateSubmit : handleEditSubmit} encType="multipart/form-data">
+                    <div className="product-image-input">
+                        <label className="product-image-label" htmlFor="images">Select Product Images</label>
                         <input
                             type="file"
                             name="images"
                             multiple
                             accept="image/*"
+                            id="images"
                             onChange={handleImages}
+                            className="file-input"
                         />
                     </div>
                     {formType === "edit" ? productImages : previewImages}
-                    {errors.length > 0 && (
-                        <ul>
-                            {errors.map((error, idx) => (
-                                <li key={idx}>{error}</li>
-                            ))}
-                        </ul>
-                    )}
-                    <div className="form-input">
+                    <div className="product-form-input">
                         <label htmlFor="name">Name</label>
                         <input
                             id="name"
@@ -361,7 +369,7 @@ const ProductForm = ({ formType, product }) => {
                             onChange={(e) => setName(e.target.value)}
                         />
                     </div>
-                    <div className="form-input">
+                    <div className="product-form-input">
                         <label htmlFor="description">Description</label>
                         <textarea
                             id="description"
@@ -369,7 +377,7 @@ const ProductForm = ({ formType, product }) => {
                             onChange={(e) => setDescription(e.target.value)}
                         />
                     </div>
-                    <div className="form-input">
+                    <div className="product-form-input">
                         <label htmlFor="category">Category</label>
                         <select
                             id="category"
@@ -384,7 +392,7 @@ const ProductForm = ({ formType, product }) => {
                             ))}
                         </select>
                     </div>
-                    <div className="form-input">
+                    <div className="product-form-input">
                         <label htmlFor="price">Price</label>
                         <input
                             id="price"
@@ -395,7 +403,7 @@ const ProductForm = ({ formType, product }) => {
                             onChange={(e) => setPrice(e.target.value)}
                         />
                     </div>
-                    <div className="form-input">
+                    <div className="product-form-input">
                         <label htmlFor="inventory">Inventory</label>
                         <input
                             id="inventory"
