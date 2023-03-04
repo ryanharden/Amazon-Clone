@@ -17,10 +17,9 @@ const ProductInfo = ({ product }) => {
                 </div>
             </div> */}
             <div className="product-price">
-                Price: ${product.price} <span className="price-count">({product.price} / count)</span>
+                Price: <div className="dollars">${product.price}</div> <span className="price-count">({product.price} / count)</span>
             </div>
-            <div className="prime">
-                <img src={prime} className="prime-icon" alt="prime"/>
+            <div className="product-info-prime">
             </div>
             <div className="free-returns">
                 Free Returns

@@ -1,0 +1,32 @@
+.quantity-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 30px;
+    padding-left: 4px;
+    border: 1px solid #D5D9D9;
+    border-radius: 8px;
+    color: #0F1111;
+    background: #F0F2F2;
+    box-shadow: 0 2px 5px 0 rgb(213 217 217 / 90%);
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.qty-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2px;
+    font-size: 13px;
+}
+
+.qty-select {
+    border: none;
+    background: #F0F2F2;
+    cursor: pointer;
+}
+
+.qty-select:focus {
+    background: #F0F2F2;
+}

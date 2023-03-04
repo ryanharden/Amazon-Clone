@@ -42,26 +42,29 @@ const CartItem = ({ product, quantity, cartitem, handleDelete, updatedQuantity }
                             <img src={product.images[0].url} className="cart-item-image" alt={product.name}></img>
                         }
                     </Link>
-                </div>
-                <div className="cart-item-middle-container">
-                    <div className="cart-item-name">
-                        {product.name}
-                    </div>
-                    <div className="by-seller">
-                        by {`${product.seller.first_name} ${product.seller.last_name}`}
-                    </div>
-                    <div className="stock">
-                        In Stock
-                    </div>
-                    <div className="gift-opt">
-                        Gift options not available.
-                    </div>
-                    <div className="qty-delete">
-                        <div className="qty">
-                            <Quantity productId={product.id} cartitem={cartitem} quantity={quantity} updatedQuantity={updatedQuantity} />
+                    <div className="cart-item-middle-container">
+                        <div className="cart-item-name">
+                            {product.name}
                         </div>
-                        <div onClick={deleteItem} className="cart-item-delete">
-                            Delete
+                        <div className="by-seller">
+                            by {`${product.seller.first_name} ${product.seller.last_name}`}
+                        </div>
+                        <div className="stock">
+                            In Stock
+                        </div>
+                        <div className="cart-item-prime">
+                        </div>
+                        <div className="gift-opt">
+                            Gift options not available.
+                        </div>
+                        <div className="qty-delete">
+                            <div className="qty">
+                                <Quantity productId={product.id} cartitem={cartitem} quantity={quantity} updatedQuantity={updatedQuantity} />
+                            </div>
+                            <div className="line"></div>
+                            <div onClick={deleteItem} className="cart-item-delete">
+                                Delete
+                            </div>
                         </div>
                     </div>
                 </div>

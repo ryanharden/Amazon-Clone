@@ -1,5 +1,5 @@
 .product-info-container {
-    width: 35vw;
+    width: 30vw;
     display: flex;
     flex-direction: column;
     margin-right: 25px;
@@ -14,10 +14,20 @@
     width: 100%
 }
 
+.product-info-prime {
+    background-image: url("https://d1irxr40exwge2.cloudfront.net/labels.png");
+    width: 53px;
+    height: 15px;
+    background-position: -185px -182px;
+    margin: 10px 0;
+}
+
 .product-sold-by {
     font-size: 14px;
     line-height: 20px;
     color: #007185;
+    border-bottom: 1px solid rgb(0, 0, 0, 0.08);
+    padding-bottom: 5px;
 }
 
 .product-price {
@@ -25,6 +35,11 @@
     gap: 8px;
     color: #0F1111;
     font-size: 18px;
+    padding-top: 5px;
+}
+
+.dollars {
+    color: #B12704;
 }
 
 .price-count {
@@ -44,6 +59,8 @@
     color: rgb(15, 17, 17);
     font-size: 14px;
     line-height: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgb(0, 0, 0, 0.08);
 }
 
 .get-a {
@@ -80,5 +97,5 @@
     flex-direction: column;
     align-items: flex-start;
     margin: 0;
-    padding-left: 0;
+    padding-left: 13px;
 }

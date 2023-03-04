@@ -1,18 +1,70 @@
 .cart-container {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
     gap: 20px;
     background-color: white;
-    width: 80vw;
     padding: 20px;
+    height: 100%;
+    background-color: #eaeded;
+}
+
+.left-cart-container {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: 77vw;
+    height: fit-content;
+    padding: 20px;
+}
+
+.right-cart-container {
+    width: 23vw;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    height: fit-content;
+    padding: 20px;
+}
+
+.right-cart-header {
+    font-size: 18px;
+    line-height: 24px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.right-cart-subtotal {
+    display: flex;
+    gap: 3px;
+    font-size: 18px;
+    line-height: 24px;
+}
+
+.cart-dollars {
+    font-weight: 1000;
+}
+
+.cart-right-subtotal {
+    font-weight: 500
+}
+
+.cart-footer-subtotal {
+    font-weight: 500;
+}
+
+.cart-footer {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 18px;
+    line-height: 24px;
+    text-align: right;
+    gap: 3px;
 }
 
 .shopping-cart {
     font-weight: 400;
     font-size: 28px;
     line-height: 36px;
-    border-bottom: 1px solid rgb(0, 0, 0, 0.08);
     padding-bottom: 20px;
 }
 
@@ -21,6 +73,7 @@
     text-align: right;
     font-size: 14px;
     line-height: 20px;
+    border-bottom: 1px solid rgb(0, 0, 0, 0.08);
 }
 
 .empty-cart-container {
@@ -29,6 +82,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 100%;
 }
 
 .empty-cart-header {
@@ -54,16 +108,17 @@
 .recommended-for-you {
     font-size: 20px;
     margin-top: 180px;
-    font-weight: 700;
+    font-weight: 800;
 }
+
 .empty-cart-cards-container {
     width: 98%;
-    position: absolute;
+    /* position: absolute; */
     z-index: 1;
     display: flex;
     flex-direction: row;
     gap: 1vw;
-    top: 400px;
+    margin-top: 20px;
     /* padding-left: 22px;
     padding-right: 22px; */
     margin-left: 40px;
@@ -74,4 +129,17 @@
     overflow-y: visible;
     z-index: 2;
     max-width: 1500px;
+}
+
+.cart-show-link {
+    background: #FFD814;
+    border: 1px solid #FCD200;
+    cursor: pointer;
+    font-size: 13px;
+    line-height: 29px;
+    color: #0F1111;
+    padding: 0 10px 0 11px;
+    text-align: center;
+    border-radius: 7px;
+    margin-top: 20px;
 }

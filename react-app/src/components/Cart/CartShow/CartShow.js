@@ -72,17 +72,17 @@ const CartShow = () => {
                     <div className="card-container">
                         <div className="card-title">Electronics</div>
                         <div className="card-image-container">
-                        {electronicsArr.map(product => (
-                            <div className="card-image" key={product.id}>
-                                <Link to={`/products/${product.id}`}>
-                                    <img className="card-actual-image" src={product.images[0]?.url} alt={product.name} />
-                                </Link>
-                                <div className="card-image-info">
-                                    <div>{product.name.substring(0, 20)}...</div>
+                            {electronicsArr.map(product => (
+                                <div className="card-image" key={product.id}>
+                                    <Link to={`/products/${product.id}`}>
+                                        <img className="card-actual-image" src={product.images[0]?.url} alt={product.name} />
+                                    </Link>
+                                    <div className="card-image-info">
+                                        <div>{product.name.substring(0, 20)}...</div>
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
-                    </div>
+                            ))}
+                        </div>
                     </div>
                     <div className="card-container">
                         <div className="card-title">Beauty & Personal Care</div>
@@ -149,12 +149,18 @@ const CartShow = () => {
                     {cartItemsWithProduct}
                 </div>
                 <div className='cart-footer'>
-                    Subtotal ({numCartItems} item{numCartItems > 1 && "s"}): ${parseFloat(totalPrice).toFixed(2)}
+                    <div className='cart-footer-subtotal'>
+                        Subtotal ({numCartItems} item{numCartItems > 1 && "s"}):
+                    </div>
+                    <div className="cart-dollars"> ${parseFloat(totalPrice).toFixed(2)}</div>
                 </div>
             </div>
             <div className='right-cart-container'>
-                <div className='right-cart-header'>
-                    Subtotal ({numCartItems} item{numCartItems > 1 && "s"}): ${parseFloat(totalPrice).toFixed(2)}
+                <div className='right-cart-subtotal'>
+                    <div className='cart-right-subtotal'>
+                        Subtotal ({numCartItems} item{numCartItems > 1 && "s"}):
+                    </div>
+                    <div className="cart-dollars"> ${parseFloat(totalPrice).toFixed(2)}</div>
                 </div>
                 <Link to={"/checkout"} className="cart-show-link">
                     Proceed to checkout
