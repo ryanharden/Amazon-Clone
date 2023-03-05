@@ -18,6 +18,7 @@ import AllProducts from "./components/Products/AllProducts/AllProducts";
 import Footer from "./components/Footer/Footer";
 import styles from "./App.css";
 import CategoryProducts from "./components/Products/CategoryProducts/CategoryProducts";
+import PlacedOrder from "./components/PlacedOrder/PlacedOrder";
 
 function App() {
   const dispatch = useDispatch();
@@ -61,6 +62,8 @@ function App() {
           <Route path="/cart" element={<CartShow />}/>
 
           <Route path="/checkout" element={<CheckoutShow />}/>
+          <Route path="/placedorder" element={<PlacedOrder />}/>
+
 
           {/* <Route path={["/users/:userId/products", "/createproduct", "/editproduct/:productId"]}>
             <UserProductPage />

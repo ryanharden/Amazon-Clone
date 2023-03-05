@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: center;
     padding-bottom: 180px;
-    border: 1px solid red;
+    /* border: 1px solid red; */
 }
 
 .forms-wrapper {
@@ -163,7 +163,7 @@ textarea:focus {
 }
 
 .preview-images-container {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     padding: 5px;
     display: flex;
     overflow: auto;
@@ -206,4 +206,23 @@ textarea:focus {
 .empty-image-div {
     display: flex;
     justify-content: center;
+}
+
+.loading-spinner {
+    display: flex;
+    align-items: center;
+    /* height: 15px; */
+    margin-bottom: 10px;
+}
+
+img.spinner {
+    height: 20px;
+    width: 20px;
+    object-fit: scale-down;
+}
+
+.loading {
+    font-weight: 900;
+    font-size: 18px;
+    margin-left: 5px;
 }

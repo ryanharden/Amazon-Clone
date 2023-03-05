@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductsThunk } from '../../store/products';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import chevleft from "../../assets/chevron-left.png";
 import chevright from "../../assets/chevron-right.png";
 import './HomeSlider.css';
@@ -9,6 +9,8 @@ import FilterBar from '../Filters/FilterBar/FilterBar';
 
 const HomeSlider = ({ slides }) => {
     const dispatch = useDispatch();
+    // const navigate = useNavigate();
+    const user = useSelector(state => state.session.user);
     const allProducts = useSelector(state => state.Products.allProducts);
     // console.log(allProducts);
     const allProductsArr = Object.values(allProducts);
@@ -163,7 +165,7 @@ const HomeSlider = ({ slides }) => {
                         <div className="card-image-container">
                             {trendingProducts.map(product => (
                                 <div className="card-image" key={product?.id}>
-                                    <Link to={`/products/${product?.id}`}>
+                                    <Link to={`/products/${product.id}`}>
                                         <img className="card-actual-image" src={product?.images[0]?.url} alt={product?.name} />
                                     </Link>
                                     <div className="card-image-info">
@@ -178,7 +180,7 @@ const HomeSlider = ({ slides }) => {
                         <div className="card-image-container">
                             {exploreEssentials?.map(product => (
                                 <div className="card-image" key={product?.id}>
-                                    <Link to={`/products/${product?.id}`}>
+                                    <Link to={`/products/${product.id}`}>
                                         <img className="card-actual-image" src={product?.images[0]?.url} alt={product?.name} />
                                     </Link>
                                     <div className="card-image-info">

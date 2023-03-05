@@ -6,6 +6,7 @@ import "./ProductForm.css";
 import emptyImage from "../../../assets/emtpy-image.jpeg";
 import { postProductImages } from "../../../store/products";
 import error from "../../../assets/dialog-error.248x256.png";
+import spinner from "../../../assets/Iphone-spinner-2.gif";
 
 const categories = [
     "Automotive",
@@ -48,6 +49,7 @@ const ProductForm = ({ formType, product }) => {
     const [images, setImages] = useState([]);
     const [prevImages, setPrevImages] = useState([]);
     const [prevImage, setPrevImage] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         setName(product?.name || "");
@@ -83,6 +85,7 @@ const ProductForm = ({ formType, product }) => {
         const validationErrors = validateForm(editedProduct);
         if (validationErrors.length > 0) {
             setErrors(validationErrors);
+            setLoading(false);
             return;
         }
 
@@ -106,6 +109,7 @@ const ProductForm = ({ formType, product }) => {
             };
         }
         navigate(`/users/${user.id}/products`)
+        setLoading(true);
     };
 
     const handleImages = async (e) => {
@@ -147,6 +151,7 @@ const ProductForm = ({ formType, product }) => {
         const validationErrors = validateForm(newProduct);
         if (validationErrors.length > 0) {
             setErrors(validationErrors);
+            setLoading(false);
             return;
         }
 
@@ -172,6 +177,7 @@ const ProductForm = ({ formType, product }) => {
                 if (data && data.errors) setErrors(data.errors)
             };
             navigate(`/users/${user.id}/products`)
+            setLoading(true);
         }
     }
 
@@ -392,7 +398,8 @@ const ProductForm = ({ formType, product }) => {
                         />
                     </div>
                     <div className="product-form-button-container">
-                        <button className="form-submit" type="submit">{formType === "create" ? "Create" : "Save"}</button>
+                        <button onClick={() => setLoading(true)} className="form-submit" type="submit">{formType === "create" ? "Create" : "Save"}</button>
+                        {loading && (<div className="loading-spinner"><img src={spinner} className="spinner"/><div className="loading">Loading...</div></div>)}
                         <button className="form-cancel" type="button" onClick={() => {
                             if (!images.length && !product.images.length && formType === "edit") {
                                 setErrors(["Cannot Cancel without having at least one image"]);

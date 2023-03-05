@@ -112,3 +112,14 @@ def delete_cart_item(id):
 def get_cart_items_quantity():
     cart_items = CartItem.query.filter(CartItem.user_id == current_user.id).all()
     return {"quantity": sum(item.quantity for item in cart_items)}
+
+
+# Empty Cart
+@cart_routes.route("/cartitems", methods=["DELETE"])
+@login_required
+def empty_cart():
+        cart_items = CartItem.query.filter(CartItem.user_id == current_user.id)
+        for cart_item in cart_items:
+            db.session.delete(cart_item)
+        db.session.commit()
+        return {"message": f"Deleted cart items of current user: {current_user.id}"}

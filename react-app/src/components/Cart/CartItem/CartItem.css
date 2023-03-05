@@ -16,7 +16,7 @@
 }
 
 .cart-item-middle-container {
-    margin-bottom: 5px;
+    margin-bottom: 15px;
 }
 
 /* .cart-item-right-container {
@@ -59,8 +59,8 @@
 }
 
 .cart-item-image {
-    height: 180px;
-    width: 180px;
+    height: 160px;
+    width: 160px;
     margin-bottom: 30px;
     object-fit: scale-down;
 }
@@ -94,4 +94,20 @@
 
 .cart-item-price {
     font-weight: 800;
+}
+
+.item-deleted {
+    color: #007185;
+    font-size: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #0F1111;
+}
+
+.item-delete-link:hover {
+    cursor: pointer;
+    text-decoration: underline;
 }
