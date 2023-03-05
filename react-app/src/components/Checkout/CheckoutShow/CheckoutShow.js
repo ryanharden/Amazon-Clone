@@ -23,13 +23,6 @@ const CheckoutShow = () => {
         dispatch(getProductsThunk())
     }, [dispatch]);
 
-    // useEffect(() => {
-    //     const productsInCart = cartItemsArr.forEach(item => {
-    //         dispatch(getProductThunk(item.product_id))
-    //     })
-    //     console.log("productsInCart: ", productsInCart);
-    // }, [dispatch, cartItemsArr])
-
     useEffect(() => {
         if (cartItemsArr.length > 0) {
             const productsInCart = cartItemsArr.forEach(item => {

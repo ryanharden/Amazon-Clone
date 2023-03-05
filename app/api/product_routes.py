@@ -92,12 +92,12 @@ def create_product():
 def add_product_images(id):
     print("hi im here")
     if "images" not in request.files:
-        print("No files found in request.")
+        # print("No files found in request.")
         return {"errors": "Image required"}, 400
 
     images = request.files.getlist("images")
-    print("req.files: ", request.files)
-    print("product-routes: ", images)
+    # print("req.files: ", request.files)
+    # print("product-routes: ", images)
     image_list = []
     for image in images:
         print("image :", image)

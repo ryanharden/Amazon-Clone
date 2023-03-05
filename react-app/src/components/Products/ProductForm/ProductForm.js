@@ -30,6 +30,8 @@ const categories = [
     "Toys",
 ]
 
+const validFileTypes = ["image/jpeg", "image/png", "image/gif", "image/jpg"];
+
 const ProductForm = ({ formType, product }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -108,6 +110,12 @@ const ProductForm = ({ formType, product }) => {
 
     const handleImages = async (e) => {
         const files = e.target.files;
+        const fileTypes = Array.from(files).forEach(file => console.log("file-type: ", file.type))
+        const invalidFiles = Array.from(files).filter(file => !validFileTypes.includes(file.type));
+        if (invalidFiles.length > 0) {
+            setErrors(["Invalid file type, please try again"]);
+            return;
+        }
         // console.log("files: ", files);
         if (images.length + files.length > 6) {
             setErrors(["A product can have a max of 6 images"]);
@@ -120,10 +128,7 @@ const ProductForm = ({ formType, product }) => {
             setImages([...images, ...imageFiles]);
             console.log("prevImages: ", prevImages)
         }
-        // setPrevImages([...prevImages, ...files]);
-        // setImages([...images, ...files])
     }
-
 
     // Handle form submission for creating a new product
     const handleCreateSubmit = async (e) => {
