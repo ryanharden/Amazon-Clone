@@ -41,12 +41,20 @@ function HomePage() {
     }, [dispatch]);
 
     const bookProducts = allProductsArr.filter(product => product.category === "Books")
+    const phones = allProductsArr.filter(product => product.category === "Cell Phones")
+    const computers = allProductsArr.filter(product => product.category === "Computers")
     // console.log(bookProducts);
+    const phoneComputerArr = [ ...phones, ...computers];
     const productsPerPage = 5;
+    const phoneNumPages = Math.ceil(phoneComputerArr.length/ productsPerPage)
     const numPages = Math.ceil(bookProducts.length / productsPerPage);
 
     const pages = Array.from({ length: numPages }, (_, i) =>
         bookProducts.slice(i * productsPerPage, (i + 1) * productsPerPage)
+    );
+
+    const phonePages = Array.from({ length: phoneNumPages }, (_, i) =>
+        phoneComputerArr.slice(i * productsPerPage, (i + 1) * productsPerPage)
     );
 
     return (
@@ -71,6 +79,35 @@ function HomePage() {
                                                 src={product?.images[0]?.url}
                                                 alt={product.name}
                                                 className="book-carousel-product-image"
+                                            />
+                                            <div className="book-carousel-product-details">
+                                                <p className="book-carousel-product-title">
+                                                    {product.name.substring(0, 20)}...
+                                                </p>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        ))}
+                    </Carousel>
+                </div>
+                <div className="phone-computer-carousel-container">
+                    <h2 className="phone-computer-carousel-title">Featured in Cell Phones & Computers</h2>
+                    <Carousel showThumbs={false}>
+                        {phonePages.map((page, i) => (
+                            <div key={i}>
+                                <div className="phone-computer-carousel-slide">
+                                    {page.map((product) => (
+                                        <div
+                                            key={product.id}
+                                            className="book-carousel-product"
+                                            onClick={() => navigate(`/products/${product.id}`)}
+                                        >
+                                            <img
+                                                src={product?.images[0]?.url}
+                                                alt={product.name}
+                                                className="phone-computer-carousel-product-image"
                                             />
                                             <div className="book-carousel-product-details">
                                                 <p className="book-carousel-product-title">

@@ -22,7 +22,9 @@ function Navigation({ isLoaded }) {
 						<Link className="nav-bar-nav-link" exact to="/">
 							Rainforest Retail
 						</Link>
+						<Link className="nav-bar-nav-link" exact to="/">
 						<img className="vector" src={vector} alt="vector" />
+						</Link>
 					</div>
 					{/* <div className='deliver-to-address'>
 					</div> */}
