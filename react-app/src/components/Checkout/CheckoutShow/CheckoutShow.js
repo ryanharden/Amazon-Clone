@@ -4,7 +4,7 @@ import "./CheckoutShow.css";
 import CheckoutHeader from '../CheckoutHeader/CheckoutHeader';
 import CheckoutItem from '../CheckoutItem/CheckoutItem';
 import OrderCard from '../OrderCard/OrderCard';
-import { getProductThunk } from '../../../store/products';
+import { getProductsThunk, getProductThunk } from '../../../store/products';
 import primeCard from "../../../assets/amazon-prime-card.png";
 import { getCartItemsThunk } from '../../../store/cartitem';
 
@@ -20,6 +20,7 @@ const CheckoutShow = () => {
 
     useEffect(() => {
         dispatch(getCartItemsThunk());
+        dispatch(getProductsThunk())
     }, [dispatch]);
 
     // useEffect(() => {
@@ -51,15 +52,8 @@ const CheckoutShow = () => {
         setTotalPrice(total);
         setNumCartItems(cartItemsArr.reduce((acc, curr) => acc + curr.quantity, 0));
     }, [cartItems, products])
-    // const subtotal = parseFloat(getTotal(cartItemsArr)).toFixed(2);
 
     const numItems = Object.values(cartItems).length
-
-    // const cartItemsWithProduct = cartItemsArr.map(cartitem => {
-    //     const product = products[cartitem.product_id];
-    //     if (!product) return null;
-    //     return <CheckoutItem key={cartitem.id} product={product} quantity={cartitem.quantity} cartItem={cartitem} />
-    // });
 
     const cartItemsWithProduct =
         cartItemsArr.map(cartitem => {

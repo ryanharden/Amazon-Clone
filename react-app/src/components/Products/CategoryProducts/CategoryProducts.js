@@ -3,23 +3,27 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getProductsThunk } from "../../../store/products";
 import { Link, useLocation, useParams } from 'react-router-dom';
 import ProductItem from '../ProductItem/ProductItem';
-import "./AllProducts.css";
+// import "..AllProducts/AllProducts.css";
 import FilterBar from '../../Filters/FilterBar/FilterBar';
 
-const AllProductsPage = () => {
+const CategoryProducts = () => {
     const dispatch = useDispatch();
+    const {category} = useParams();
 
     const allProducts = useSelector(state => state.Products.allProducts);
     // console.log(allProducts);
     const allProductsArr = Object.values(allProducts);
+
+    const categoryProducts = allProductsArr.filter(product => product.category.replace(/\s+/g, '') === category)
+
 
     useEffect(() => {
         dispatch(getProductsThunk());
     }, [dispatch]);
 
     let allProductItems;
-    if (allProductsArr.length) {
-        allProductItems = allProductsArr.map(product => {
+    if (categoryProducts.length) {
+        allProductItems = categoryProducts.map(product => {
             return <ProductItem key={product.id} product={product} />
         });
     };
@@ -36,10 +40,10 @@ const AllProductsPage = () => {
                     Displaying
                 </div>
                 <div className='num-results'>
-                    ({allProductsArr.length})
+                    ({categoryProducts.length})
                 </div>
                 <div className='display-results'>
-                    results for All Products
+                    results for All {category} Products
                 </div>
             </div>
             <div className='filter-header-and-container'>
@@ -55,4 +59,4 @@ const AllProductsPage = () => {
         </div>
     )
 }
-export default AllProductsPage;
+export default CategoryProducts;

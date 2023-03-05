@@ -59,6 +59,18 @@ export const getProductsThunk = () => async (dispatch) => {
     }
 }
 
+// Get Products Filter
+// export const getProductsFilterThunk = (keywords) => async (dispatch) => {
+//     const res = await fetch('/api/products?k=${keywords}');
+//     if (res.ok) {
+//         const products = await res.json();
+//         dispatch(getProducts(products));
+//         return products
+//     } else {
+//         return res;
+//     }
+// }
+
 // Get User Products
 export const getUserProductsThunk = (userId) => async (dispatch) => {
     const res = await fetch(`/api/users/${userId}/products`);
@@ -195,16 +207,18 @@ const initialState = {
     allProducts: {},
     singleProduct: {},
     userProducts: {},
+    filteredProducts: {},
 }
 
 // Product Reducer
 export default function productReducer(state = initialState, action) {
     let newState;
     switch (action.type) {
-        // Get All Products
+        // Get All Products and Filtered Products
         case GET_PRODUCTS:
             newState = { ...state }
             newState.allProducts = { ...action.products };
+            // newState.filteredProducts = { ...action.products }
             return newState
 
         // Get User Products

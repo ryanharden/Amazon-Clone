@@ -21,14 +21,16 @@ def validation_errors_to_error_messages(validation_errors):
       errorMessages.append(f'{field} : {error}')
   return errorMessages
 
+
+# Filter products by Category
 # @product_routes.route("")
 # def products():
-#     search_term = request.args.get("q", "")
+#     search_term = request.args.get("k")
 
-#     # Filter products based on search term
-#     products = Product.query.filter(Product.name.ilike(f"%{search_term}%")).all()
+    # Filter products based on search term
+    # products = Product.query.filter(Product.name.ilike(f"%{search_term}%")).all()
 
-#     return {product.id: product.to_dict() for product in products}
+    # return {product.id: product.to_dict() for product in products}
 
 # Get all products
 @product_routes.route("")
