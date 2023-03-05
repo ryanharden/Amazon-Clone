@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useModal } from "../../../../context/Modal";
 import "./BuyFormModal.css";
 
@@ -7,21 +7,23 @@ const BuyFormModal = () => {
     // const dispatch = useDispatch();
     // const history = useHistory();
     const { closeModal } = useModal();
+    const navigate = useNavigate();
     // const { productId } = useParams();
     const product = useSelector(state => state.Products.singleProduct);
     const currentUser = useSelector(state => state.session.user);
-    // const handleSubmit = async (e) => {
 
-    // }
+    const handleBuy = () => {
+        closeModal();
+        navigate('/placedorder')
+    }
 
     return (
         <div className="buy-form-modal-container">
             <div className="buy-form-header">
-                <div className="buy-now">
+                <div className="buy-now-modal-header">
                     Buy now: {product.name}
                 </div>
                 <div className="close" onClick={(e) => closeModal()}>
-                    x
                 </div>
             </div>
             <div className="buy-form-product">
@@ -35,7 +37,7 @@ const BuyFormModal = () => {
                     <div className="free">
                         Free Rainforest Prime Delivery
                     </div>
-                    <div className="sold-by">
+                    <div className="sold-by-buy-modal">
                         Sold by {product.seller.first_name} {product.seller.last_name}
                     </div>
                 </div>
@@ -67,8 +69,8 @@ const BuyFormModal = () => {
             <div className="agreement">
                 By placing your order, you agree to Rainforest retails privacy notice and conditions of use.
             </div>
-            <div className="place-order">
-                <div className="place-order-button">
+            <div className="place-order-modal">
+                <div onClick={handleBuy} className="place-order-button-modal">
                     Place your order
                 </div>
             </div>
