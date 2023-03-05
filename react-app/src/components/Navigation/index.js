@@ -6,6 +6,7 @@ import './Navigation.css';
 import flag from "../../assets/american-flag.png";
 import CartButton from './CartButton/CartButton';
 import OrdersButton from './OrdersButton/OrdersButton';
+import vector from "../../assets/amazon-vector.png";
 
 function Navigation({ isLoaded }) {
 	const sessionUser = useSelector(state => state.session.user);
@@ -21,6 +22,7 @@ function Navigation({ isLoaded }) {
 						<Link className="nav-bar-nav-link" exact to="/">
 							Rainforest Retail
 						</Link>
+						<img className="vector" src={vector} alt="vector" />
 					</div>
 					{/* <div className='deliver-to-address'>
 					</div> */}

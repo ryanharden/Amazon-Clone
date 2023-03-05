@@ -4,10 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Navigate } from "react-router-dom";
 import './LoginForm.css';
 import error from "../../assets/dialog-error.248x256.png";
+import vector from "../../assets/amazon-vector.png";
 
 function LoginFormPage() {
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -34,6 +35,7 @@ function LoginFormPage() {
         <div className="logo-sign-in">
           Rainforest Retail
         </div>
+        <img src={vector} className="sign-in-vector" alt="vector"/>
         <form className="sign-in-form" onSubmit={handleSubmit}>
           <div className="error-icon-container">
             {errors.length ? <img src={error} className="error-icon" /> : ""}
@@ -72,6 +74,14 @@ function LoginFormPage() {
           </div>
           <div className="sign-in-demo" onClick={demoLogin}>Sign in as Demo User</div>
         </form>
+        <div className="new-to-rainforest">
+          <div className="new-header-line">
+            <div className="new-header">New to Rainforest Retail?</div>
+          </div>
+          <div onClick={() => navigate('/signup')} className="new-create-account">
+              Create your Rainforest Retail account
+          </div>
+        </div>
       </div>
     </>
   );

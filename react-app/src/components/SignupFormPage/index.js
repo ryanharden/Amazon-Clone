@@ -4,6 +4,7 @@ import { Navigate, Link } from "react-router-dom";
 import { signUp } from "../../store/session";
 import './SignupForm.css';
 import error from "../../assets/dialog-error.248x256.png";
+import vector from "../../assets/amazon-vector.png";
 
 function SignupFormPage() {
   const dispatch = useDispatch();
@@ -48,6 +49,7 @@ function SignupFormPage() {
         <div className="logo-sign-in">
           Rainforest Retail
         </div>
+        <img src={vector} className="sign-in-vector" alt="vector"/>
         <form className="sign-up-form" onSubmit={handleSubmit}>
           <div className="error-icon-container">
             {errors.length ? <img src={error} className="error-icon" /> : ""}
