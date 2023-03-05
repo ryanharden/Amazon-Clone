@@ -4,8 +4,9 @@ import "./CheckoutShow.css";
 import CheckoutHeader from '../CheckoutHeader/CheckoutHeader';
 import CheckoutItem from '../CheckoutItem/CheckoutItem';
 import OrderCard from '../OrderCard/OrderCard';
-import { getProductThunk } from '../../../store/products';
+import { getProductsThunk, getProductThunk } from '../../../store/products';
 import primeCard from "../../../assets/amazon-prime-card.png";
+import { getCartItemsThunk } from '../../../store/cartitem';
 
 const CheckoutShow = () => {
     const dispatch = useDispatch();
@@ -15,17 +16,25 @@ const CheckoutShow = () => {
     const [totalPrice, setTotalPrice] = useState(0);
     const [numCartItems, setNumCartItems] = useState(0);
     const products = useSelector(state => state.Products.allProducts);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        const productsInCart = cartItemsArr.forEach(item => {
-            dispatch(getProductThunk(item.product_id))
-        })
-        console.log(productsInCart);
-    }, [dispatch, cartItems])
+        dispatch(getCartItemsThunk());
+        dispatch(getProductsThunk())
+    }, [dispatch]);
+
+    useEffect(() => {
+        if (cartItemsArr.length > 0) {
+            const productsInCart = cartItemsArr.forEach(item => {
+                dispatch(getProductThunk(item.product_id))
+            })
+            console.log("productsInCart: ", productsInCart);
+        }
+    }, [dispatch, cartItemsArr])
 
     useEffect(() => {
         let total = 0;
-        cartItemsArr.forEach(item => {
+        cartItemsArr?.forEach(item => {
             const product = products[item.product_id];
             console.log("total-product", product);
             if (product) {
@@ -36,17 +45,20 @@ const CheckoutShow = () => {
         setTotalPrice(total);
         setNumCartItems(cartItemsArr.reduce((acc, curr) => acc + curr.quantity, 0));
     }, [cartItems, products])
-    // const subtotal = parseFloat(getTotal(cartItemsArr)).toFixed(2);
 
-    const numItems = cartItems.length
+    const numItems = Object.values(cartItems).length
 
-    const cartItemsWithProduct = cartItemsArr.map(cartitem => {
-        const product = products[cartitem.product_id];
-        if (!product) return null;
-        return <CheckoutItem key={cartitem.id} product={product} quantity={cartitem.quantity} cartItem={cartitem} />
-    });
+    const cartItemsWithProduct =
+        cartItemsArr.map(cartitem => {
+            const product = products[cartitem.product_id];
+            if (!product) return null;
+            return <CheckoutItem key={cartitem.id} product={product} quantity={cartitem.quantity} cartItem={cartitem} />
+        });
+    console.log("cartItemsWithProduct: ", cartItemsWithProduct)
 
     console.log("cartItemsArr: ", cartItemsArr)
+
+    if (!cartItemsWithProduct.length) return null;
 
     return (
         <>
@@ -121,19 +133,21 @@ const CheckoutShow = () => {
                                 Review items and shipping
                             </div>
                         </div>
-                        <div className='checkout-items-container'>
-                            <div className='checkout-items-header'>
-                                <div className='delivery-time'>
-                                    Delivery: Overnight 7 AM - 9 AM
+                        {cartItemsArr.length >= 1 &&
+                            <div className='checkout-items-container'>
+                                <div className='checkout-items-header'>
+                                    <div className='delivery-time'>
+                                        Delivery: Overnight 7 AM - 9 AM
+                                    </div>
+                                    <div className='checkout-items-shipped'>
+                                        Items shipped from Rainforest Retail
+                                    </div>
                                 </div>
-                                <div className='checkout-items-shipped'>
-                                    Items shipped from Rainforest Retail
+                                <div className='checkout-items'>
+                                    {cartItemsWithProduct}
                                 </div>
                             </div>
-                            <div className='checkout-items'>
-                                {cartItemsWithProduct}
-                            </div>
-                        </div>
+                        }
                         <div className='bottom-place-order'>
                             <div className='bottom-place-order-button'>
                                 Place your order

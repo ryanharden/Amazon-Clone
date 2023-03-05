@@ -3,6 +3,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding-bottom: 180px;
+    border: 1px solid red;
 }
 
 .forms-wrapper {
@@ -178,7 +180,7 @@ textarea:focus {
     cursor: pointer;
     position: relative;
     bottom: 90px;
-    padding: 0 5px;
+    padding: -1px 2px;
 }
 
 .preview-image-btn:hover {
@@ -191,7 +193,7 @@ textarea:focus {
     height: 100px;
     width: fit-content;
     max-width: 100px;
-    margin: 0px 5px;
+    /* margin: 0px 5px; */
 }
 
 .empty-image {

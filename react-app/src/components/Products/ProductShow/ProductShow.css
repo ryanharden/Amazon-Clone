@@ -1,10 +1,10 @@
 .product-show-container {
-    width: 100%;
     padding: 20px 15px;
+    display: flex;
+    justify-content: center;
 }
 
 .product-show-top {
     display: flex;
     flex-direction: row;
 }
-

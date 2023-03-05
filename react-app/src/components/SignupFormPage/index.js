@@ -112,7 +112,7 @@ function SignupFormPage() {
           <div className="sign-in-terms">
             By creating an account, you agree to Rainforest Retail's Conditions of Use and Privacy Notice.
           </div>
-          <div className="line"></div>
+          <div className="sign-in-line"></div>
           <div className="already-have-sign-in">
             <div className="already-have">
               Already have an account?

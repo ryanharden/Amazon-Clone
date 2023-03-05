@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import chevleft from "../../assets/chevron-left.png";
 import chevright from "../../assets/chevron-right.png";
 import './HomeSlider.css';
+import FilterBar from '../Filters/FilterBar/FilterBar';
 
 const HomeSlider = ({ slides }) => {
     const dispatch = useDispatch();
@@ -117,18 +118,7 @@ const HomeSlider = ({ slides }) => {
     return (
         <>
             <div className='home-header'>
-                <div className='links-bar-wrapper'>
-                    <Link className='links-bar-link'>All</Link>
-                    <Link className='links-bar-link'>Books</Link>
-                    <Link className='links-bar-link'>Clothing, Shoes</Link>
-                    <Link className='links-bar-link'>Electronics</Link>
-                    <Link className='links-bar-link'>Home & Kitchen</Link>
-                    <Link className='links-bar-link'>Rainforest Basics</Link>
-                    <Link className='links-bar-link'>Sports & Outdoors</Link>
-                    <Link className='links-bar-link'>Toys</Link>
-                    <a rel="noreferrer" className='my-links' href="https://www.linkedin.com/in/ryan-harden-0a8b6821a/">LinkedIn</a>
-                    <a rel="noreferrer" className='my-links' href="https://github.com/ryanharden">Github</a>
-                </div>
+               <FilterBar />
             </div>
             <div className='slider-image-container' style={slideStyle}>
                 <div className='slide-button' onClick={handlePrevSlide}>

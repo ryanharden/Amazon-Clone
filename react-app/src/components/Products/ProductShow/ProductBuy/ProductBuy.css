@@ -3,39 +3,82 @@
     flex-direction: column;
     align-items: center;
 
-    width: 22vw;
-    height: 100%;
+    width: 270px;
+    height: fit-content;
 
     border: 1px solid #D5D9D9;
     border-radius: 8px;
-    padding: 10px 15px;
+    padding: 10px 25px;
 }
 
-.prime-icon {
-    height: 60px;
+.buy-card-price {
+    display: flex;
+    gap: 5px;
+}
+
+.buy-card-prime {
+    background-image: url("https://d1irxr40exwge2.cloudfront.net/labels.png");
+    width: 53px;
+    height: 15px;
+    background-position: -185px -182px;
+    margin: 10px 0 5px 0;
 }
 
 .buy-card-buttons {
     width: 100%;
 }
+
+.free-returns {
+    margin-bottom: 10px;
+}
+
+.buy-card-deliverydate {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.free-deliv {
+    padding-right: 5px;
+}
+
+.deliverydate {
+    font-weight: 1000;
+}
+
+.order-within {
+    padding-right: 5px;
+}
+
+.within {
+    color: #007600;
+}
+
+.stock-buy-card {
+    color: #007600;
+    font-size: 16px;
+    line-height: 16px;
+    margin: 7px 0;
+}
+
+.you-own {
+    font-size: 14px;
+}
+
 .add-to-cart-button {
     margin-top: 12px;
-    margin-bottom: 8px;
-
     background: #FFD814;
     border: 1px solid #FCD200;
     border-radius: 20px;
     box-shadow: 0 2px 5px 0 rgb(213 217 217 / 50%);
-
     font-size: 13px;
     line-height: 29px;
     color: #0F1111;
     text-align: center;
     vertical-align: middle;
-
     cursor: pointer;
-
-    text-rendering: optimizeLegibility;
+    padding: 2px 0;
 }
 
 .add-to-cart-button:hover {
@@ -44,13 +87,23 @@
 
 .secure-container {
     display: flex;
+    align-items: flex-start;
+    gap: 88.5px;
+    width: 100%;
+    margin-top: 10px;
+    font-size: 13px;
+    line-height: 16px;
 }
+
+.button.OpenModalButton.buy-now {
+    border: none;
+}
+
 .buy-now {
-    margin-top: 12px;
-    margin-bottom: 8px;
+    margin: 10px 0;
 
     background: #FFA41C;
-    border-color: #FF8F00;
+    border: 1px solid #FF8F00;
     border-radius: 20px;
     box-shadow: 0 2px 5px 0 rgb(213 217 217 / 50%);
     width: 100%;
@@ -69,6 +122,44 @@
 .ships-from-sold-by-gift {
     display: flex;
     width: 100%;
-    justify-content: space-between;
-    padding: 5px 0;
+    gap: 30px;
+    color: #0F1111;
+    font-size: 13px;
+    line-height: 16px;
+    /* padding: 5px 0; */
+}
+
+.ships-from {
+    margin: 10px 0;
+}
+
+.sold-by-buy {
+    margin-bottom: 10px;
+}
+
+.gift-opt-buy {
+    margin-bottom: 10px;
+}
+
+.ship-from {
+    margin: 10px 0;
+}
+
+.card-seller {
+    margin-bottom: 10px;
+}
+
+.card-gift-opt {
+    margin-bottom: 10px;
+}
+
+.return-policy {
+    font-size: 13px;
+    line-height: 18px;
+    font-weight: 900;
+}
+
+.eligible {
+    margin-left: 15px;
+    color: #007185;
 }

@@ -61,6 +61,7 @@
 .nav-bar-container {
   /* border: 1px solid red; */
   background-color: #131921;
+  width: 100%;
 }
 
 .nav-bar {

@@ -30,6 +30,8 @@ const categories = [
     "Toys",
 ]
 
+const validFileTypes = ["image/jpeg", "image/png", "image/gif", "image/jpg"];
+
 const ProductForm = ({ formType, product }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -59,7 +61,6 @@ const ProductForm = ({ formType, product }) => {
         setPrevImage(null);
         setErrors([]);
     }, [product]);
-
 
     // Handle form submission for editing an existing product
     const handleEditSubmit = async (e) => {
@@ -109,34 +110,25 @@ const ProductForm = ({ formType, product }) => {
 
     const handleImages = async (e) => {
         const files = e.target.files;
+        const fileTypes = Array.from(files).forEach(file => console.log("file-type: ", file.type))
+        const invalidFiles = Array.from(files).filter(file => !validFileTypes.includes(file.type));
+        if (invalidFiles.length > 0) {
+            setErrors(["Invalid file type, please try again"]);
+            return;
+        }
         // console.log("files: ", files);
         if (images.length + files.length > 6) {
             setErrors(["A product can have a max of 6 images"]);
             return;
         }
-
-        setPrevImages([...prevImages, ...files]);
-        setImages([...images, ...files])
+        const imageFiles = Array.from(files);
+        console.log("imageFiles: ", imageFiles)
+        if (imageFiles.length > 0) {
+            setPrevImages([...prevImages, ...imageFiles]);
+            setImages([...images, ...imageFiles]);
+            console.log("prevImages: ", prevImages)
+        }
     }
-
-    // const handleImages = async (e) => {
-    //     const files = e.target.files;
-    //     // Check if any of the files are already in the prevImages array
-    //     const duplicateFiles = Array.from(files).filter((file) => {
-    //         return prevImages.some((prevFile) => prevFile.name === file.name);
-    //     });
-    //     if (images.length + files.length - duplicateFiles.length > 6) {
-    //         setErrors(["A product can have a max of 6 images"]);
-    //         return;
-    //     }
-    //     // Add only the non-duplicate files to the prevImages array
-    //     setPrevImages([...prevImages, ...Array.from(files).filter((file) => {
-    //         return !duplicateFiles.includes(file);
-    //     })]);
-    //     setImages([...images, ...Array.from(files).filter((file) => {
-    //         return !duplicateFiles.includes(file);
-    //     })]);
-    // };
 
     // Handle form submission for creating a new product
     const handleCreateSubmit = async (e) => {
@@ -205,8 +197,6 @@ const ProductForm = ({ formType, product }) => {
                 })}
             </div>
         )
-    } else {
-        previewImages = <div className="empty-image-div"><img className="empty-image" src={emptyImage} alt="default" /></div>;
     }
 
     let productImages;
@@ -230,9 +220,8 @@ const ProductForm = ({ formType, product }) => {
                 })}
             </div>
         )
-    } else {
-        previewImages = <div className="empty-image-div"><img className="empty-image" src={emptyImage} alt="default" /></div>;
     }
+
 
     const handleImageRemove = (e, i) => {
         e.preventDefault();
@@ -248,18 +237,6 @@ const ProductForm = ({ formType, product }) => {
             setImage(newImages[0])
         }
     }
-
-    // const handleImageRemoveEdit = async (e, i) => {
-    //     e.preventDefault();
-    //     const currentImages = [...product.images]
-    //     const deletedImage = currentImages.splice(i, 1);
-    //     // console.log("deletedImage: ", deletedImage);
-
-    //     await dispatch(deleteImageThunk(deletedImage[0].id))
-    //     const updatedImages = currentImages.filter(image => image.id !== deletedImage[0].id);
-    //     // console.log("updatedImages: ", updatedImages);
-    //     setImages(updatedImages);
-    // }
 
     const handleImageRemoveEdit = (e, i) => {
         e.preventDefault();
@@ -340,12 +317,12 @@ const ProductForm = ({ formType, product }) => {
                     {errors.length ? <img src={error} className="error-icon" /> : ""}
                 </div>
                 {errors.length > 0 && (
-                        <ul className="product-errors">
-                            {errors.map((error, idx) => (
-                                <li className="li-error" key={idx}>{error}</li>
-                            ))}
-                        </ul>
-                    )}
+                    <ul className="product-errors">
+                        {errors.map((error, idx) => (
+                            <li className="li-error" key={idx}>{error}</li>
+                        ))}
+                    </ul>
+                )}
                 <form className="form" onSubmit={formType === "create" ? handleCreateSubmit : handleEditSubmit} encType="multipart/form-data">
                     <div className="product-image-input">
                         <label className="product-image-label" htmlFor="images">Select Product Images</label>
@@ -360,6 +337,7 @@ const ProductForm = ({ formType, product }) => {
                         />
                     </div>
                     {formType === "edit" ? productImages : previewImages}
+                    {/* {previewImages} */}
                     <div className="product-form-input">
                         <label htmlFor="name">Name</label>
                         <input

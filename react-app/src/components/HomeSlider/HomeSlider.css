@@ -1,24 +1,3 @@
-.home-header {
-    height: 40px;
-    background-color: #232F3E;
-    z-index: 4;
-    width: 100%;
-}
-
-.links-bar-wrapper {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 100%;
-    overflow: hidden;
-}
-
-.links-bar-link {
-    color: white;
-    font-size: 14px;
-    line-height: 12px;
-}
-
 .my-links {
     text-decoration: none;
     color: white;

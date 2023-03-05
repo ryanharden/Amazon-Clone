@@ -14,8 +14,10 @@ import CheckoutShow from "./components/Checkout/CheckoutShow/CheckoutShow";
 import CartConfirmation from "./components/Cart/CartConfirmation/CartConfirmation";
 import ProductShow from "./components/Products/ProductShow/ProductShow";
 import { useLocation } from "react-router";
+import AllProducts from "./components/Products/AllProducts/AllProducts";
 import Footer from "./components/Footer/Footer";
-
+import styles from "./App.css";
+import CategoryProducts from "./components/Products/CategoryProducts/CategoryProducts";
 
 function App() {
   const dispatch = useDispatch();
@@ -41,6 +43,10 @@ function App() {
           <Route path="/login" element={<LoginFormPage />}/>
 
           <Route path="/signup" element={<SignupFormPage />}/>
+
+          <Route path="/:category" element={<CategoryProducts />}/>
+
+          <Route path="/allproducts" element={<AllProducts />}/>
 
           <Route path="/users/:userId/products" element={<UserProductPage />}/>
 

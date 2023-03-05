@@ -13,9 +13,6 @@ const UserProductItem = ({ product }) => {
     const deleteProduct = () => {
         dispatch(deleteProductThunk(product.id))
     };
-    console.log("checking what the hell this time is~~~~`", moment(product?.created_at).fromNow())
-
-  console.log("what is created at", product?.created_at)
 
     return (
         <div className="user-product-item-container">
