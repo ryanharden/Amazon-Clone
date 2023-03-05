@@ -5,9 +5,8 @@ import { deleteCartItemThunk } from "../../../store/cartitem";
 import Quantity from "./Quantity/Quantity";
 import "./CartItem.css";
 
-const CartItem = ({ product, quantity, cartitem, handleDelete, updatedQuantity }) => {
+const CartItem = ({ product, quantity, cartitem, handleDelete, updatedQuantity, isDeleted }) => {
     const dispatch = useDispatch();
-    const [isDeleted, setIsDeleted] = useState(false);
 
     // const deleteItem = async () => {
     //     const deletedItem = await dispatch(deleteCartItemThunk(cartitem.id));
@@ -18,20 +17,19 @@ const CartItem = ({ product, quantity, cartitem, handleDelete, updatedQuantity }
 
     const deleteItem = async () => {
         await handleDelete(cartitem.id);
-        setIsDeleted(true);
     }
 
 
-    if (!cartitem) return null;
+    if (!product) return null;
 
-    if (isDeleted) return <>
-        <div className="item-deleted">
-            <Link className="item-delete-link" to={`/products/${product.id}`}>
-                {product.name}
-            </Link>
-            was removed from Shopping Cart.
-        </div>
-    </>;
+    // if (isDeleted) return <>
+    //     <div className="item-deleted">
+    //         <Link className="item-delete-link" to={`/products/${product.id}`}>
+    //             {product.name}
+    //         </Link>
+    //         was removed from Shopping Cart.
+    //     </div>
+    // </>;
 
     return (
         <>

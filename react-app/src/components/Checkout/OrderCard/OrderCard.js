@@ -2,10 +2,10 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./OrderCard.css";
 
-const OrderCard = ({ numItems, subtotal, total }) => {
+const OrderCard = ({ numItems, subtotal, total, handleOrder }) => {
     return (
         <div className="order-card-container">
-            <div className="place-order-button">
+            <div onClick={handleOrder} className="place-order-button">
                 Place your order
             </div>
             <div className="conditions">

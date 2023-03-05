@@ -4,7 +4,8 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import OpenModalButton from "../../../OpenModalButton";
-import prime from "../../../../assets/prime-icon.png";
+import LoginFormPage from "../../../LoginFormPage";
+
 
 import QuantityShow from "../QuantityShow/QuantityShow";
 import BuyFormModal from "../BuyFormModal/BuyFormModal";
@@ -15,7 +16,7 @@ const ProductBuy = ({ product }) => {
     const navigate = useNavigate();
 
     const currentUser = useSelector(state => state.session.user);
-    console.log(currentUser.id, product.seller.id)
+    // console.log(currentUser.id, product.seller.id)
     const [quantity, setQuantity] = useState(1);
 
     const addToCart = async () => {
@@ -70,7 +71,7 @@ const ProductBuy = ({ product }) => {
                     <div className="buy-now-button-container">
                         <OpenModalButton
                             className="buy-now"
-                            modalComponent={<BuyFormModal />}
+                            modalComponent={ currentUser ? <BuyFormModal /> : <LoginFormPage />}
                             buttonText="Buy Now"
                         />
                     </div>

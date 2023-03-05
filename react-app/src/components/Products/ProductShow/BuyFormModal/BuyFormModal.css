@@ -1,4 +1,127 @@
+.buy-form-modal-container {
+    display: flex;
+    flex-direction: column;
+    width: 580px;
+}
+
+.buy-form-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 25px;
+    background-color: #f0f2f2;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.buy-now-modal-header {
+    color: black;
+    font-weight: 800;
+    line-height: 24px;
+    font-size: 16px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    padding-right: 20px;
+}
+
 .buy-modal-image {
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
+    object-fit: scale-down;
+}
+
+.buy-form-product {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    border-bottom: 1px solid rgb(0, 0, 0, 0.2);
+}
+
+.close {
+    background-image: url("https://d1irxr40exwge2.cloudfront.net/x-icon.png");
+    opacity: .64;
+    min-width: 15px;
+    height: 9px;
+    background-position: -297px -5px;
+    align-self: center;
+    cursor: pointer;
+}
+
+.arriving {
+    font-size: 18px;
+    line-height: 24px;
+    text-rendering: optimizeLegibility;
+    color: #0F1111;
+    text-align: left;
+}
+
+.free {
+    font-size: 12px;
+    line-height: 16px;
+    text-align: left;
+}
+
+.sold-by-buy-modal {
+    font-size: 12px;
+    line-height: 16px;
+    text-align: left;
+}
+
+.ship-to-container {
+    display: flex;
+    gap: 35px;
+    padding: 20px;
+    font-size: 14px;
+    text-align: left;
+    border-bottom: 1px solid rgb(0, 0, 0, 0.2);
+}
+
+.buyer-address, .ship-to {
+    line-height: 20px;
+    font-size: 14px;
+    color: black;
+}
+
+.total-container {
+    display: flex;
+    padding: 20px;
+    font-size: 14px;
+    text-align: left;
+    border-bottom: 1px solid rgb(0, 0, 0, 0.2);
+}
+
+.total-price {
+    font-weight: 700;
+    text-align: left;
+    margin-left: 48px;
+    margin-right: 3px;
+}
+
+.agreement {
+    display: flex;
+    padding: 15px;
+    font-size: 12px;
+}
+
+.place-order-button-modal {
+    background: #FFD814;
+    border: 1px solid #FCD200;
+    font-size: 13px;
+    line-height: 20px;
+    text-align: center;
+    cursor: pointer;
+    color: #0F1111;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px 0 rgb(213 217 217 / 50%);
+    width: 120px;
+    padding: 5px;
+}
+
+.place-order-modal {
+    display: flex;
+    justify-content: flex-end;
+    background-color: #f0f2f2;
+    padding:  15px 20px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
 }

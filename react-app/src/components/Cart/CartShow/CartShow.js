@@ -11,6 +11,7 @@ const CartShow = () => {
     const navigate = useNavigate();
     const [totalPrice, setTotalPrice] = useState(0);
     const [numCartItems, setNumCartItems] = useState(0);
+    const [isDeleted, setIsDeleted] = useState(false);
 
     // const product = useSelector(state => state.Products.singleProduct);
     // const sessionUser = useSelector(state => state.session.user);
@@ -123,13 +124,14 @@ const CartShow = () => {
         if (deletedItem) {
             setNumCartItems(numCartItems - deletedItem.quantity);
             setTotalPrice(totalPrice - deletedItem.product?.price * deletedItem.quantity);
+            setIsDeleted(true);
         }
     };
 
     const cartItemsWithProduct = cartItemsArr.map(cartitem => {
         const product = products[cartitem.product_id];
         if (!product) return null;
-        return <CartItem key={cartitem.id} cartitem={cartitem} product={product} quantity={cartitem.quantity} handleDelete={handleDelete} />
+        return <CartItem key={cartitem.id} cartitem={cartitem} product={product} quantity={cartitem.quantity} handleDelete={handleDelete} isDeleted={isDeleted}/>
     })
     console.log("cartItemswithProduct: ", cartItemsWithProduct)
 

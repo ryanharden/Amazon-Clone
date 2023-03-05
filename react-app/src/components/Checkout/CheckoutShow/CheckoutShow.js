@@ -6,10 +6,12 @@ import CheckoutItem from '../CheckoutItem/CheckoutItem';
 import OrderCard from '../OrderCard/OrderCard';
 import { getProductsThunk, getProductThunk } from '../../../store/products';
 import primeCard from "../../../assets/amazon-prime-card.png";
-import { getCartItemsThunk } from '../../../store/cartitem';
+import { getCartItemsThunk, emptyCartThunk } from '../../../store/cartitem';
+import { useNavigate } from 'react-router-dom';
 
 const CheckoutShow = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const cartItems = useSelector(state => state.CartItems);
     const currentUser = useSelector(state => state.session.user);
     const cartItemsArr = Object.values(cartItems);
@@ -18,6 +20,10 @@ const CheckoutShow = () => {
     const products = useSelector(state => state.Products.allProducts);
     const [loading, setLoading] = useState(false);
 
+    const handleOrder = () => {
+        dispatch(emptyCartThunk())
+        navigate('/placedorder')
+    }
     useEffect(() => {
         dispatch(getCartItemsThunk());
         dispatch(getProductsThunk())
@@ -149,7 +155,7 @@ const CheckoutShow = () => {
                             </div>
                         }
                         <div className='bottom-place-order'>
-                            <div className='bottom-place-order-button'>
+                            <div onClick={handleOrder} className='bottom-place-order-button'>
                                 Place your order
                             </div>
                             <div className='checkout-order-total'>
@@ -164,7 +170,7 @@ const CheckoutShow = () => {
                     </div>
                 </div>
                 <div className='checkout-right-container'>
-                    <OrderCard numItems={numItems} subtotal={totalPrice} />
+                    <OrderCard numItems={numItems} subtotal={totalPrice} handleOrder={handleOrder}/>
                 </div>
             </div>
         </>
