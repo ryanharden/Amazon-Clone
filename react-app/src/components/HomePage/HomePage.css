@@ -30,13 +30,17 @@
 
 .book-carousel-container {
     margin-top: -60px;
-    padding: 0 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 0;
+    /* padding-bottom: 20px; */
     background-color: white;
 }
 
 .book-carousel-slide {
     display: flex;
     justify-content: space-around;
+    padding-bottom: 30px;
 }
 
 .book-carousel-product-image {
@@ -47,4 +51,44 @@
 
 .book-carousel-product {
     cursor: pointer;
+}
+
+.phone-computer-carousel-container {
+    margin-top: 25px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 0;
+    /* padding-bottom: 20px; */
+    background-color: white;
+}
+
+.phone-computer-carousel-slide {
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 30px;
+}
+
+.phone-computer-carousel-product-image {
+    width: 130px;
+    height: 130px;
+    object-fit: scale-down;
+}
+
+.book-carousel-product {
+    cursor: pointer;
+}
+
+button.control-arrow {
+    opacity: 0.6 !important;
+    border-radius: 3px !important;
+}
+
+p.carousel-status {
+    /* border: 1px solid red; */
+    margin-top: -7px;
+}
+
+li.dot {
+    background-color: rgb(0, 0, 0, 0.2) !important;
+    margin: 0 15px !important;
 }

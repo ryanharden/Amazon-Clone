@@ -58,7 +58,7 @@ const HomeSlider = ({ slides }) => {
         const timer = setTimeout(() => {
             const nextIndex = (currentIndex + 1) % slides.length;
             setCurrentIndex(nextIndex);
-        }, 5000);
+        }, 7000);
 
         return () => clearTimeout(timer);
     }, [currentIndex, slides.length]);
@@ -73,26 +73,6 @@ const HomeSlider = ({ slides }) => {
         setCurrentIndex(nextIndex);
     };
 
-    // const getRandomProducts = (n, exclude, allProductsArr) => {
-    //     console.log("allProductsArr: ", allProductsArr);
-    //     const result = [];
-    //     const len = allProductsArr.length;
-    //     let i = 0;
-    //     if (allProductsArr.length) {
-    //         while (i < n) {
-    //             const product = allProductsArr[Math.floor(Math.random() * len)];
-    //             console.log("random-product: ", product);
-    //             if (!exclude.includes(product)) {
-    //                 result.push(product);
-    //                 console.log("resultArr: ", result);
-    //                 i++;
-    //             }
-    //         }
-    //         console.log("endResult: ", result);
-    //         return result;
-    //     }
-
-    // };
     const getRandomProducts = (n, exclude, allProductsArr) => {
         const result = [];
         const len = allProductsArr.length;
@@ -107,6 +87,20 @@ const HomeSlider = ({ slides }) => {
         }
         return result;
     };
+    // const getRandomProducts = (n, exclude, allProductsArr) => {
+    //     const result = [];
+    //     const len = allProductsArr.length;
+    //     let i = 0;
+    //     while (i < n && result.length < len) {
+    //         const randomIndex = Math.floor(Math.random() * len);
+    //         const product = allProductsArr[randomIndex];
+    //         if (!exclude.some(excludedProduct => excludedProduct.id === product.id) && !result.includes(product)) {
+    //             result.push(product);
+    //             i++;
+    //         }
+    //     }
+    //     return result;
+    // };
 
     const slideStyle = {
         width: '100%',
@@ -114,13 +108,13 @@ const HomeSlider = ({ slides }) => {
         backgroundPosition: 'center',
         backgroundSize: 'cover',
         backgroundImage: `url(${slides[currentIndex].url})`,
-        transition: "ease-in-out .5s"
+        transition: "ease-in-out .7s"
     }
 
     return (
         <>
             <div className='home-header'>
-               <FilterBar />
+                <FilterBar />
             </div>
             <div className='slider-image-container' style={slideStyle}>
                 <div className='slide-button' onClick={handlePrevSlide}>
@@ -148,17 +142,17 @@ const HomeSlider = ({ slides }) => {
                     <div className="card-container">
                         <div className="card-title">Selected For You</div>
                         <div className="card-image-container">
-                        {forYou.map(product => (
-                            <div className="card-image" key={product.id}>
-                                <Link to={`/products/${product.id}`}>
-                                    <img className="card-actual-image" src={product?.images[0]?.url} alt={product.name} />
-                                </Link>
-                                <div className="card-image-info">
-                                    <div>{product.name.substring(0, 20)}...</div>
+                            {forYou.map(product => (
+                                <div className="card-image" key={product.id}>
+                                    <Link to={`/products/${product.id}`}>
+                                        <img className="card-actual-image" src={product?.images[0]?.url} alt={product.name} />
+                                    </Link>
+                                    <div className="card-image-info">
+                                        <div>{product.name.substring(0, 20)}...</div>
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
-                    </div>
+                            ))}
+                        </div>
                     </div>
                     <div className="card-container">
                         <div className="card-title">Trending Products</div>
