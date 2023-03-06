@@ -41,9 +41,11 @@ const CartItem = ({ product, quantity, cartitem, handleDelete, updatedQuantity, 
                         }
                     </Link>
                     <div className="cart-item-middle-container">
-                        <div className="cart-item-name">
-                            {product.name}
-                        </div>
+                        <Link to={`/products/${product.id}`}>
+                            <div className="cart-item-name">
+                                {product.name}
+                            </div>
+                        </Link>
                         <div className="by-seller">
                             by {`${product.seller.first_name} ${product.seller.last_name}`}
                         </div>
