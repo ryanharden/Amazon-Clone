@@ -81,7 +81,7 @@ function ProfileButton({ user }) {
                       Manage Products
                     </div>
                   </Link>
-                  <Link onClick={closeMenu} className="drop-link" to={`/users/${user.id}/orders`}>
+                  <Link onClick={closeMenu} className="drop-link" to={'/featurecoming'}>
                     <div className="drop-orders">
                       Manage Orders
                     </div>

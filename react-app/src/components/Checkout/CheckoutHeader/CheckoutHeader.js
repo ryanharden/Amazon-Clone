@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { getProductThunk } from "../../../store/products";
 import "./CheckoutHeader.css";
 import { getCartItemsThunk } from "../../../store/cartitem";
+import vector from "../../../assets/amazon-vector.png";
 
 const CheckoutHeader = ({ numItems }) => {
     // const [numCartItems, setNumCartItems] = useState(0);
@@ -31,7 +32,12 @@ const CheckoutHeader = ({ numItems }) => {
     return (
         <div className="checkout-header-container">
             <div className="checkout-header">
-                <Link to={"/"} className="checkout-link">Rainforest Retail</Link>
+                <div className="checkout-logo">
+                    <Link to={"/"} className="checkout-link">Rainforest Retail</Link>
+                    <Link className="nav-bar-nav-link" exact to="/">
+                        <img className="vector-checkout" src={vector} alt="vector" />
+                    </Link>
+                </div>
                 <div className="checkout-header-items">
                     <div className="checkout-title">
                         Checkout

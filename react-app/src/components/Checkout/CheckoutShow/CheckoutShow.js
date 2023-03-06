@@ -19,6 +19,11 @@ const CheckoutShow = () => {
     const [numCartItems, setNumCartItems] = useState(0);
     const products = useSelector(state => state.Products.allProducts);
     const [loading, setLoading] = useState(false);
+    const [click, setClick] = useState(false);
+
+    const handleChange = () => {
+        setClick(true);
+    }
 
     const handleOrder = () => {
         dispatch(emptyCartThunk())
@@ -92,8 +97,8 @@ const CheckoutShow = () => {
                                     Your mom, Ca 92019
                                 </div>
                             </div>
-                            <div className='change'>
-                                Change
+                            <div onClick={handleChange} className='change'>
+                                {click ? "Feature Coming Soon" : "Change"}
                             </div>
                         </div>
                     </div>
@@ -125,8 +130,8 @@ const CheckoutShow = () => {
                                     Billing address: Same as shipping address.
                                 </div>
                             </div>
-                            <div className='change'>
-                                Change
+                            <div onClick={handleChange} className='change'>
+                                {click ? "Feature Coming Soon" : "Change"}
                             </div>
                         </div>
                     </div>

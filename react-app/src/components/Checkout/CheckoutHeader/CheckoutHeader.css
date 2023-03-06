@@ -10,7 +10,7 @@
     justify-content: space-between;
     width: 100%;
     margin-top: 20px;
-    padding: 0 160px;
+    padding: 0 40px;
 }
 
 .checkout-header-items {
@@ -28,5 +28,21 @@
 }
 
 .checkout-link {
-    color: black
+    color: black;
+    font-size: 18px;
+    font-weight: 900;
+}
+
+.checkout-logo {
+    display: flex;
+    flex-direction: column;
+    margin-top: -6px;
+}
+
+.vector-checkout {
+    height: 80px;
+    width: 80px;
+    object-fit: scale-down;
+    margin-top: -40px;
+    margin-left: 18px;
 }
