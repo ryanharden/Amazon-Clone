@@ -162,6 +162,7 @@ const ProductForm = ({ formType, product }) => {
         console.log("images: ", images);
         if (images.length) {
             try {
+                // setLoading(true);
                 const newProductId = await dispatch(createProductThunk(newProduct))
                 if (images.length && newProductId) {
                     console.log("im here: ", images);
@@ -288,14 +289,18 @@ const ProductForm = ({ formType, product }) => {
 
         if (!form.name) {
             errors.push("Name is required");
-        } else if (form.name.length > 255) {
+        } else if (form.name.length > 300) {
             errors.push("Name must be less than 255 characters");
+        } else if (form.name.length < 3) {
+            errors.push("Name must be at least 3 characters")
         }
 
         if (!form.description) {
             errors.push("Description is required");
         } else if (form.description.length > 5000) {
             errors.push("Description must be less than 5000 characters");
+        } else if (form.description.length < 3) {
+            errors.push("Description must be at least 3 characters")
         }
 
         if (!form.category) {
