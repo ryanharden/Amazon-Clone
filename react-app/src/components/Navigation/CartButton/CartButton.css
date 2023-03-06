@@ -18,6 +18,13 @@
     justify-content: center;
     align-items: center;
 }
+/*
+.cart-cart-image-ten{
+    display: flex;
+    margin-top: -11.5px;
+    justify-content: center;
+    align-items: center;
+} */
 
 .cart-image {
     background-image: url("https://d1irxr40exwge2.cloudfront.net/header-logo.png");
@@ -37,6 +44,18 @@
     font-weight: 700;
     color: #f08804;
 }
+
+/* .cart-quantity-ten {
+    position: relative;
+    margin-left: 22.5px;
+    margin-top: 9px;
+
+    font-size: 16px;
+    line-height: 16px;
+    font-weight: 700;
+    color: #f08804;
+    border: 1px solid red;
+} */
 
 .cart-title {
     align-self: flex-end;

@@ -33,7 +33,7 @@ const CartButton = () => {
     };
 
     // const quantity = findQuantity(cartItemsArr);
-
+    const qClassName = "cart-quantity" + (quantity < 10 ? "" : "ten");
     return (
         <Link to="/cart" className="cart-button-container">
             <div className="cart-quantity">{user ? quantity : 0}</div>

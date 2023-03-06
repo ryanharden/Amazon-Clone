@@ -91,10 +91,10 @@ const CheckoutShow = () => {
                                     {currentUser.first_name} {currentUser.last_name}
                                 </div>
                                 <div className='checkout-address'>
-                                    1234 Noneya Street
+                                    3548 Bodega Bay Dr.
                                 </div>
                                 <div className='checkout-city-state-zip'>
-                                    Your mom, Ca 92019
+                                    Jenner, Ca, 92091
                                 </div>
                             </div>
                             <div onClick={handleChange} className='change'>
@@ -175,7 +175,7 @@ const CheckoutShow = () => {
                     </div>
                 </div>
                 <div className='checkout-right-container'>
-                    <OrderCard numItems={numItems} subtotal={totalPrice} handleOrder={handleOrder}/>
+                    <OrderCard numItems={numItems} subtotal={totalPrice} handleOrder={handleOrder} />
                 </div>
             </div>
         </>

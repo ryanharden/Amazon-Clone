@@ -51,7 +51,7 @@ const BuyFormModal = () => {
                         {currentUser.first_name} {currentUser.last_name}
                     </div>
                     <div className="address">
-                        1234 Noneya Business Dr, Your Mom, Ca, 92091, United States
+                        3548 Bodega Bay Dr, Jenner, Ca, 92091, United States
                     </div>
                 </div>
             </div>
