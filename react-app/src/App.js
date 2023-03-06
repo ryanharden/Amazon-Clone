@@ -20,6 +20,7 @@ import styles from "./App.css";
 import CategoryProducts from "./components/Products/CategoryProducts/CategoryProducts";
 import PlacedOrder from "./components/PlacedOrder/PlacedOrder";
 import FeatureComing from "./components/FeatureComing/FeatureComing";
+import "./App.css";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,43 +40,44 @@ function App() {
 
   return (
     <>
-      {!hideNavigation && <Navigation isLoaded={isLoaded} />}
-      {isLoaded && (
-        <Routes>
-          <Route path="/login" element={<LoginFormPage />}/>
+      <div className="main-body">
+        {!hideNavigation && <Navigation isLoaded={isLoaded} />}
+        {isLoaded && (
+          <Routes>
+            <Route path="/login" element={<LoginFormPage />} />
 
-          <Route path="/signup" element={<SignupFormPage />}/>
+            <Route path="/signup" element={<SignupFormPage />} />
 
-          <Route path="/:category" element={<CategoryProducts />}/>
+            <Route path="/:category" element={<CategoryProducts />} />
 
-          <Route path="/allproducts" element={<AllProducts />}/>
+            <Route path="/allproducts" element={<AllProducts />} />
 
-          <Route path="/users/:userId/products" element={<UserProductPage />}/>
+            <Route path="/users/:userId/products" element={<UserProductPage />} />
 
-          <Route path="/products/:productId" element={<ProductShow />}/>
+            <Route path="/products/:productId" element={<ProductShow />} />
 
-          <Route path="/createproduct" element={<CreateProduct />}/>
+            <Route path="/createproduct" element={<CreateProduct />} />
 
-          <Route path="/editproduct/:productId" element={<EditProduct />}/>
+            <Route path="/editproduct/:productId" element={<EditProduct />} />
 
-          <Route path="/cart-confirmation" element={<CartConfirmation />}/>
+            <Route path="/cart-confirmation" element={<CartConfirmation />} />
 
-          <Route path="/cart" element={<CartShow />}/>
+            <Route path="/cart" element={<CartShow />} />
 
-          <Route path="/checkout" element={<CheckoutShow />}/>
+            <Route path="/checkout" element={<CheckoutShow />} />
 
-          <Route path="/placedorder" element={<PlacedOrder />}/>
+            <Route path="/placedorder" element={<PlacedOrder />} />
 
-          <Route path="/featurecoming" element={<FeatureComing />}/>
+            <Route path="/featurecoming" element={<FeatureComing />} />
 
-          {/* <Route path={["/users/:userId/products", "/createproduct", "/editproduct/:productId"]}>
+            {/* <Route path={["/users/:userId/products", "/createproduct", "/editproduct/:productId"]}>
             <UserProductPage />
           </Route> */}
-          <Route path="/" element={<HomePage/>}/>
-        </Routes>
-      )}
-      {!hideFooter && <Footer/>}
-      {/* <Footer /> */}
+            <Route path="/" element={<HomePage />} />
+          </Routes>
+        )}
+        {!hideFooter && <Footer />}
+      </div>
     </>
   );
 }

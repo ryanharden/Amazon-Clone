@@ -21,24 +21,6 @@ const UserProductPage = () => {
     }, [dispatch])
     return (
         <div className='user-product-page-container'>
-            {/* <div className='user-product-page-nav-bar'>
-                <div className='left-nav-bar'>
-                    <Link to={'/'} >
-                        Rainforest Retail
-                    </Link>
-                    <div className='product-management'>
-                        Seller Central
-                    </div>
-                </div>
-                <div className='right-nav-bar'>
-                    <Link to={'/'}>
-                        <i className="fa-solid fa-house"></i>
-                        <div className='back-home'>
-                            Back to Home
-                        </div>
-                    </Link>
-                </div>
-            </div> */}
             <div className='user-product-page-header'>
                 <div className='manage-products'>
                     Manage Your Products

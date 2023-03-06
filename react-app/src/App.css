@@ -1,12 +1,4 @@
-.pageContainer {
+.main-body {
     position: relative;
     min-height: 100vh;
-}
-
-.cartContainer {
-    background-color: #eaeded;
-}
-
-.cartConfirmation {
-    background-color: #f3f3f3;
 }
