@@ -6,9 +6,12 @@
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 20px;
-    padding-bottom: 300px;
-    height: 100%;
+    padding-bottom: 750px;
     background-color: #eaeded;
+}
+
+.empty-cart-container {
+    padding-bottom: 500px;
 }
 
 .left-cart-container {

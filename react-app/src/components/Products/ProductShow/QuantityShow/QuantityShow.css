@@ -31,4 +31,5 @@
 
 .qty-select:focus {
     background: #F0F2F2;
+    outline: none;
 }

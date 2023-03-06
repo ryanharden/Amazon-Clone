@@ -1,5 +1,6 @@
 .product-images-container {
     display: flex;
+    height: fit-content;
 }
 
 .small-images-container {

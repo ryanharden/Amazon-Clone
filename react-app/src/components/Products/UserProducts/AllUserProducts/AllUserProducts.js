@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserProductsThunk } from "../../../../store/products";
 import UserProductItem from "../UserProductItem/UserProductItem";
+import "./AllUserProducts.css";
 
 const AllUserProducts = () => {
     const dispatch = useDispatch();

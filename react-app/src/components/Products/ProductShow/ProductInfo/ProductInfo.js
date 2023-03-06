@@ -1,14 +1,20 @@
 import "./ProductInfo.css";
+import { useState } from "react";
 import prime from "../../../../assets/prime-icon.png";
 
 const ProductInfo = ({ product }) => {
+    const [click, setClick] = useState(false);
+    const handleChange = () => {
+        setClick(true);
+    }
+
     return (
         <div className="product-info-container">
             <div className="product-name">
                 {product.name}
             </div>
-            <div className="product-sold-by">
-                Visit the {product.seller.firstName} {product.seller.lastName} store
+            <div onClick={handleChange} className="product-sold-by">
+            {click ? "Feature Coming Soon" : `Visit the ${product.seller.first_name} ${product.seller.last_name} store`}
             </div>
             {/* <div className="product-rating">
                 <Stars rating={product.avg_rating} />

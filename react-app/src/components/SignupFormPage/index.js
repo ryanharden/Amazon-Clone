@@ -35,6 +35,19 @@ function SignupFormPage() {
       return emailPattern.test(email);
     }
 
+    if (firstName.length < 2) {
+      setErrors(["First Name must be more 2 characters"])
+    } else if (firstName.length > 25) {
+      setErrors(["First Name must be less than 25 characters"])
+    }
+
+    if (lastName.length < 2) {
+      setErrors(["Last Name must be more 2 characters"])
+    } else if (lastName.length > 25) {
+      setErrors(["Last Name must be less than 25 characters"])
+    }
+
+
     if (!email) {
       setErrors(["Please enter your email"]);
     } else if (!validateEmail(email)) {
