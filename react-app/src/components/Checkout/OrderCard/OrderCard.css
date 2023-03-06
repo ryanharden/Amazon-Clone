@@ -85,7 +85,9 @@
     flex-direction: column;
     gap: 5px;
     margin-top: -6px;
+    align-items: flex-end;
 }
+
 .order-left-top {
     display: flex;
     flex-direction: column;

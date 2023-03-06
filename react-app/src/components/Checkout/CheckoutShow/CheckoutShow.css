@@ -60,6 +60,15 @@
     line-height: 24px;
 }
 
+.change {
+    display: flex;
+    justify-content: flex-end;
+    padding-left: 20px;
+    width: 170px;
+    margin-top: 2px;
+    cursor: pointer;
+}
+
 .right-payment {
     display: flex;
     margin-left: 60px;
