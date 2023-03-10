@@ -21,16 +21,23 @@ def validation_errors_to_error_messages(validation_errors):
       errorMessages.append(f'{field} : {error}')
   return errorMessages
 
-
-# Filter products by Category
-# @product_routes.route("")
-# def products():
-#     search_term = request.args.get("k")
+# Get products by keyword
+@product_routes.route("")
+def get_products_filter():
+    search_terms = request.args.get("k")
 
     # Filter products based on search term
-    # products = Product.query.filter(Product.name.ilike(f"%{search_term}%")).all()
-
-    # return {product.id: product.to_dict() for product in products}
+    if search_terms:
+        search_terms = search_terms.split()
+        products_dict = {}
+        for term in search_terms:
+            products = Product.query.filter(Product.name.ilike(f"%{term}%")).all()
+            for product in products:
+                products_dict[product.id] = product.to_dict_details()
+        return products_dict
+    else:
+        products = Product.query.all()
+        return {product.id: product.to_dict_details() for product in products}
 
 # Get all products
 @product_routes.route("")
@@ -92,12 +99,9 @@ def create_product():
 def add_product_images(id):
     print("hi im here")
     if "images" not in request.files:
-        # print("No files found in request.")
         return {"errors": "Image required"}, 400
 
     images = request.files.getlist("images")
-    # print("req.files: ", request.files)
-    # print("product-routes: ", images)
     image_list = []
     for image in images:
         print("image :", image)
@@ -118,7 +122,6 @@ def add_product_images(id):
         product_image = ProductImage(
             url = image_url,
             product_id = id
-            # number = request.form['number'] if request.form['number'] else None
         )
 
         db.session.add(product_image)

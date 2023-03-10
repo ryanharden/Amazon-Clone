@@ -7,6 +7,7 @@ import flag from "../../assets/american-flag.png";
 import CartButton from './CartButton/CartButton';
 import OrdersButton from './OrdersButton/OrdersButton';
 import vector from "../../assets/amazon-vector.png";
+import SearchBar from './SearchBar/SearchBar';
 
 function Navigation({ isLoaded }) {
 	const sessionUser = useSelector(state => state.session.user);
@@ -29,9 +30,7 @@ function Navigation({ isLoaded }) {
 					{/* <div className='deliver-to-address'>
 					</div> */}
 				</div>
-				{/* <div className='search-bar-container'>
-
-				</div> */}
+				<SearchBar />
 				<div className="header-right">
 					{isLoaded && (
 						<div className="lang-profile-orders-cart">

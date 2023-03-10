@@ -403,7 +403,7 @@ const ProductForm = ({ formType, product }) => {
                         />
                     </div>
                     <div className="product-form-button-container">
-                        <button onClick={() => setLoading(true)} className="form-submit" type="submit">{formType === "create" ? "Create" : "Save"}</button>
+                        <button onClick={() => setLoading(true)}className="form-submit" type="submit">{formType === "create" ? "Create" : "Save"}</button>
                         {loading && (<div className="loading-spinner"><img src={spinner} className="spinner"/><div className="loading">Loading...</div></div>)}
                         <button className="form-cancel" type="button" onClick={() => {
                             if (!images.length && !product.images.length && formType === "edit") {

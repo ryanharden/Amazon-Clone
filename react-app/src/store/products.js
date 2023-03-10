@@ -1,6 +1,7 @@
 // Constant Action Types
 
 const GET_PRODUCTS = "products/GET_PRODUCTS";
+const GET_SEARCH_PRODUCTS = "products/GET_SEARCH_PRODUCTS";
 const GET_USER_PRODUCTS = "products/GET_USER_PRODUCTS";
 const GET_PRODUCT = "products/GET_PRODUCT";
 const CREATE_PRODUCT = "products/CREATE_PRODUCT";
@@ -12,6 +13,11 @@ const DELETE_IMAGE = "products/DELETE_IMAGE";
 
 const getProducts = (products) => ({
     type: GET_PRODUCTS,
+    products
+})
+
+const getSearchProducts = (products) => ({
+    type: GET_SEARCH_PRODUCTS,
     products
 })
 
@@ -60,16 +66,16 @@ export const getProductsThunk = () => async (dispatch) => {
 }
 
 // Get Products Filter
-// export const getProductsFilterThunk = (keywords) => async (dispatch) => {
-//     const res = await fetch('/api/products?k=${keywords}');
-//     if (res.ok) {
-//         const products = await res.json();
-//         dispatch(getProducts(products));
-//         return products
-//     } else {
-//         return res;
-//     }
-// }
+export const getProductsFilterThunk = (keywords) => async (dispatch) => {
+    const res = await fetch(`/api/products?k=${keywords}`);
+    if (res.ok) {
+        const products = await res.json();
+        dispatch(getSearchProducts(products));
+        return products
+    } else {
+        return res;
+    }
+}
 
 // Get User Products
 export const getUserProductsThunk = (userId) => async (dispatch) => {
@@ -207,7 +213,7 @@ const initialState = {
     allProducts: {},
     singleProduct: {},
     userProducts: {},
-    filteredProducts: {},
+    searchProducts: {},
 }
 
 // Product Reducer
@@ -218,8 +224,14 @@ export default function productReducer(state = initialState, action) {
         case GET_PRODUCTS:
             newState = { ...state }
             newState.allProducts = { ...action.products };
-            // newState.filteredProducts = { ...action.products }
             return newState
+
+        // Get Search Products
+        case GET_SEARCH_PRODUCTS:
+            newState = { ...state }
+            // newState.searchProducts = {}
+            newState.searchProducts = { ...action.products }
+            return newState;
 
         // Get User Products
         case GET_USER_PRODUCTS:
