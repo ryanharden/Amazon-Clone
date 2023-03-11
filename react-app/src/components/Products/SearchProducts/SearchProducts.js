@@ -9,10 +9,10 @@ import FilterBar from '../../Filters/FilterBar/FilterBar';
 const SearchProducts = () => {
     const dispatch = useDispatch();
     const searchParams = useSearchParams()[0];
-    console.log("searchParams: ", searchParams);
+    // console.log("searchParams: ", searchParams);
 
     const searchProducts = useSelector(state => state.Products.searchProducts);
-    console.log("searchProducts: ", searchProducts);
+    // console.log("searchProducts: ", searchProducts);
     const searchProductsArr = Object.values(searchProducts);
 
 

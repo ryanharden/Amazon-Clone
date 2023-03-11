@@ -30,15 +30,15 @@ const HomeSlider = ({ slides }) => {
             setCategoryProducts(categoryProductsArr);
             const trendingProductsArr = getRandomProducts(4, categoryProductsArr, allProductsArr)
             setTrendingProducts(trendingProductsArr);
-            console.log("trendingProducts: ", trendingProducts)
+            // console.log("trendingProducts: ", trendingProducts)
             const excludeArr = [...categoryProductsArr, ...trendingProductsArr]
             setExclude(excludeArr);
-            console.log("exclude", exclude)
+            // console.log("exclude", exclude)
             const exploreEssentialsArr = getRandomProducts(4, exclude, allProductsArr)
             setExploreEssentials(exploreEssentialsArr);
             const excludeYouArr = [...categoryProducts, ...trendingProducts, ...exploreEssentials]
             setExcludeYou(excludeYouArr)
-            console.log("exploreEssentials: ", exploreEssentials);
+            // console.log("exploreEssentials: ", exploreEssentials);
             const forYouArr = getRandomProducts(4, excludeYou, allProductsArr);
             setForYou(forYouArr)
             return { allProductsArr, categoryProducts: categoryProductsArr, trendingProducts: trendingProductsArr, exploreEssentials: exploreEssentialsArr, forYou: forYouArr }

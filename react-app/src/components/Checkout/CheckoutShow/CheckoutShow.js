@@ -39,7 +39,7 @@ const CheckoutShow = () => {
             const productsInCart = cartItemsArr.forEach(item => {
                 dispatch(getProductThunk(item.product_id))
             })
-            console.log("productsInCart: ", productsInCart);
+            // console.log("productsInCart: ", productsInCart);
         }
     }, [dispatch, cartItemsArr])
 
@@ -47,10 +47,10 @@ const CheckoutShow = () => {
         let total = 0;
         cartItemsArr?.forEach(item => {
             const product = products[item.product_id];
-            console.log("total-product", product);
+            // console.log("total-product", product);
             if (product) {
                 total += product.price * item.quantity;
-                console.log("total: ", total);
+                // console.log("total: ", total);
             }
         });
         setTotalPrice(total);
@@ -65,9 +65,9 @@ const CheckoutShow = () => {
             if (!product) return null;
             return <CheckoutItem key={cartitem.id} product={product} quantity={cartitem.quantity} cartItem={cartitem} />
         });
-    console.log("cartItemsWithProduct: ", cartItemsWithProduct)
+    // console.log("cartItemsWithProduct: ", cartItemsWithProduct)
 
-    console.log("cartItemsArr: ", cartItemsArr)
+    // console.log("cartItemsArr: ", cartItemsArr)
 
     if (!cartItemsWithProduct.length) return null;
 

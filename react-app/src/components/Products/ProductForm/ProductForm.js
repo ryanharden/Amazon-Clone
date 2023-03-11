@@ -126,11 +126,11 @@ const ProductForm = ({ formType, product }) => {
             return;
         }
         const imageFiles = Array.from(files);
-        console.log("imageFiles: ", imageFiles)
+        // console.log("imageFiles: ", imageFiles)
         if (imageFiles.length > 0) {
             setPrevImages([...prevImages, ...imageFiles]);
             setImages([...images, ...imageFiles]);
-            console.log("prevImages: ", prevImages)
+            // console.log("prevImages: ", prevImages)
         }
     }
 
@@ -146,7 +146,7 @@ const ProductForm = ({ formType, product }) => {
             inventory,
             images
         };
-        console.log("newProduct: ", newProduct)
+        // console.log("newProduct: ", newProduct)
 
         const validationErrors = validateForm(newProduct);
         if (validationErrors.length > 0) {
@@ -159,13 +159,13 @@ const ProductForm = ({ formType, product }) => {
             setErrors(["Must upload at least one image along with product"]);
         }
 
-        console.log("images: ", images);
+        // console.log("images: ", images);
         if (images.length) {
             try {
                 // setLoading(true);
                 const newProductId = await dispatch(createProductThunk(newProduct))
                 if (images.length && newProductId) {
-                    console.log("im here: ", images);
+                    // console.log("im here: ", images);
                     const formData = new FormData();
                     images.forEach((image) => {
                         formData.append("images", image);
@@ -234,7 +234,7 @@ const ProductForm = ({ formType, product }) => {
         e.preventDefault();
         const newImages = [...images];
         const newPrevImages = [...prevImages];
-        console.log(newImages);
+        // console.log(newImages);
         newImages.splice(i, 1);
         setImages(newImages);
 
@@ -249,7 +249,7 @@ const ProductForm = ({ formType, product }) => {
         e.preventDefault();
         const newImages = [...images];
         const newProductImages = [...product.images];
-        console.log(newImages);
+        // console.log(newImages);
         const deletedImage = newImages.splice(i, 1)[0];
         let deletedImageId;
         if (deletedImage.id) {
