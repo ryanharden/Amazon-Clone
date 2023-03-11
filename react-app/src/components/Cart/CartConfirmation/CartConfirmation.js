@@ -22,10 +22,10 @@ const CartConfirmation = () => {
         let total = 0;
         cartItemsArr.forEach(item => {
             const product = products[item.product_id];
-            console.log("total-product", product);
+            // console.log("total-product", product);
             if (product) {
                 total += product.price * item.quantity;
-                console.log("total: ", total);
+                // console.log("total: ", total);
             }
         });
         setTotalPrice(total);

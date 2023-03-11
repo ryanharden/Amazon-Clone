@@ -19,7 +19,7 @@ const CartShow = () => {
     const cartItemsArr = Object.values(cartItems);
     const products = useSelector(state => state.Products.allProducts);
     const allProductsArr = Object.values(products);
-    console.log("cartItemsArr: ", cartItemsArr);
+    // console.log("cartItemsArr: ", cartItemsArr);
 
     useEffect(() => {
         dispatch(getProductsThunk());
@@ -30,17 +30,17 @@ const CartShow = () => {
         let total = 0;
         cartItemsArr.forEach(item => {
             const product = products[item.product_id];
-            console.log("total-product", product);
+            // console.log("total-product", product);
             if (product) {
                 total += product.price * item.quantity;
-                console.log("total: ", total);
+                // console.log("total: ", total);
             }
         });
         setTotalPrice(total);
         setNumCartItems(cartItemsArr.reduce((acc, curr) => acc + curr.quantity, 0));
     }, [cartItems, products]);
 
-    console.log("cartItems(show):", cartItems);
+    // console.log("cartItems(show):", cartItems);
     const basicsArr = allProductsArr.filter(product => product.category === 'Rainforest Basics').slice(0, 4);
     const electronicsArr = allProductsArr.filter(product => product.category === 'Electronics').slice(0, 4);
     const beautArr = allProductsArr.filter(product => product.category === 'Beauty & Personal Care').slice(0, 4);
@@ -133,7 +133,7 @@ const CartShow = () => {
         if (!product) return null;
         return <CartItem key={cartitem.id} cartitem={cartitem} product={product} quantity={cartitem.quantity} handleDelete={handleDelete} isDeleted={isDeleted}/>
     })
-    console.log("cartItemswithProduct: ", cartItemsWithProduct)
+    // console.log("cartItemswithProduct: ", cartItemsWithProduct)
 
     return (
         <div className="cart-container">
