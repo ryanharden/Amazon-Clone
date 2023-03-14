@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useLocation, useNavigate} from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { getProductsFilterThunk } from "../../../store/products";
@@ -11,21 +11,39 @@ const SearchBar = () => {
     const dispatch = useDispatch();
 
     const searchParams = useSearchParams()[0];
+    console.log("searchParams: ", searchParams);
     const keywordsFromUrl = searchParams.get('k');
+    console.log("keywordsFromUrl: ", keywordsFromUrl);
     const [keywords, setKeywords] = useState(keywordsFromUrl ? keywordsFromUrl : "");
 
     useEffect(() => {
         setKeywords(keywordsFromUrl ? keywordsFromUrl : "");
     }, [location, keywordsFromUrl]);
 
+    // const handleSearch = async (e) => {
+    //     if (e) e.preventDefault();
+    //     if (keywords) {
+    //         navigate(`/s?k=${keywords.replace(" ", "+")}`);
+    //     } else {
+    //         navigate("/");
+    //     }
+    // }
+
     const handleSearch = async (e) => {
         if (e) e.preventDefault();
         if (keywords) {
-            navigate(`/s?k=${keywords.replace(" ", "+")}`);
+            const res = await fetch(`/api/products?k=${keywords.replace(" ", "+")}`);
+            if (res.ok) {
+                const products = await res.json();
+                dispatch(getProductsFilterThunk(products));
+                navigate(`/s?k=${keywords.replace(" ", "+")}`);
+            } else {
+                console.error("Unable to get search products from server");
+            }
         } else {
             navigate("/");
         }
-    }
+    };
 
     // const handleSearch = async (e) => {
     //     e.preventDefault();

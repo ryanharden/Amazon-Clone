@@ -21,6 +21,7 @@ import CategoryProducts from "./components/Products/CategoryProducts/CategoryPro
 import PlacedOrder from "./components/PlacedOrder/PlacedOrder";
 import FeatureComing from "./components/FeatureComing/FeatureComing";
 import "./App.css";
+import SearchProducts from "./components/Products/SearchProducts/SearchProducts";
 
 function App() {
   const dispatch = useDispatch();
@@ -44,6 +45,8 @@ function App() {
         {!hideNavigation && <Navigation isLoaded={isLoaded} />}
         {isLoaded && (
           <Routes>
+            <Route path="/s" element={<SearchProducts />} />
+
             <Route path="/login" element={<LoginFormPage />} />
 
             <Route path="/signup" element={<SignupFormPage />} />

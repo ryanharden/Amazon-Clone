@@ -114,7 +114,7 @@ const ProductForm = ({ formType, product }) => {
 
     const handleImages = async (e) => {
         const files = e.target.files;
-        const fileTypes = Array.from(files).forEach(file => console.log("file-type: ", file.type))
+        // const fileTypes = Array.from(files).forEach(file => console.log("file-type: ", file.type))
         const invalidFiles = Array.from(files).filter(file => !validFileTypes.includes(file.type));
         if (invalidFiles.length > 0) {
             setErrors(["Invalid file type, please try again"]);

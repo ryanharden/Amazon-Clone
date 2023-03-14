@@ -28,7 +28,7 @@ def get_products_filter():
 
     # Filter products based on search term
     if search_terms:
-        search_terms = search_terms.split()
+        search_terms = search_terms.split("+")
         products_dict = {}
         for term in search_terms:
             products = Product.query.filter(Product.name.ilike(f"%{term}%")).all()
@@ -40,10 +40,10 @@ def get_products_filter():
         return {product.id: product.to_dict_details() for product in products}
 
 # Get all products
-@product_routes.route("")
-def products():
-    products = Product.query.all()
-    return {product.id: product.to_dict_details() for product in products}
+# @product_routes.route("")
+# def products():
+#     products = Product.query.all()
+#     return {product.id: product.to_dict_details() for product in products}
 
 
 # Get User Products

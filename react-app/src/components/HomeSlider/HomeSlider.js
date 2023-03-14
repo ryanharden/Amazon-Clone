@@ -113,9 +113,9 @@ const HomeSlider = ({ slides }) => {
 
     return (
         <>
-            <div className='home-header'>
+            {/* <div className='home-header'>
                 <FilterBar />
-            </div>
+            </div> */}
             <div className='slider-image-container' style={slideStyle}>
                 <div className='slide-button' onClick={handlePrevSlide}>
                     <img className="chev-left" src={chevleft} alt="Previous" />
