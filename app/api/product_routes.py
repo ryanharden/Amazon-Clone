@@ -31,7 +31,9 @@ def get_products_filter():
         search_terms = search_terms.split("+")
         products_dict = {}
         for term in search_terms:
-            products = Product.query.filter(Product.name.ilike(f"%{term}%")).all()
+            products = Product.query.filter(
+                (Product.name.ilike(f"%{term}%")) | (Product.category.ilike(f"%{term}%"))
+            ).all()
             for product in products:
                 products_dict[product.id] = product.to_dict_details()
         return products_dict
