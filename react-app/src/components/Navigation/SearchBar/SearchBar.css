@@ -4,11 +4,15 @@
 
 .search-bar-form {
     display: flex;
-    width: calc(100vw - 850px);
+    width: calc(100vw - 700px);
     margin: 4px;
+    height: 42px;
+    /* margin-right: 5px; */
 }
 
 .search-bar {
+    position: relative;
+    /* left: 50px; */
     width: 100%;
     padding-top: 10px;
     padding-bottom: 9px;
@@ -24,6 +28,8 @@
 
 
 .search-bar-icon-container {
+    position: relative;
+    /* left: 50px; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -38,4 +44,17 @@
     font-size: 19px;
     color: #333333;
     cursor: pointer;
+}
+
+@media screen and (min-width: 2050px) {
+    .search-bar-form {
+        width: calc(100vw - 950px);
+        position: relative;
+        left: 75px;
+    }
+
+    /* .search-bar-icon-container {
+        left: 50px;
+        width: 45px;
+    } */
 }

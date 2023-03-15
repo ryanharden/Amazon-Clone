@@ -68,7 +68,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 60px;
+  height: 65px;
   color: white;
   padding: 0 18px;
 }
@@ -80,7 +80,7 @@
 
 .logo {
   margin-left: 10px;
-  margin-top: 30px;
+  margin-top: 32px;
   display: flex;
   flex-direction: column;
 }
@@ -191,3 +191,11 @@
   width: 80px;
   margin-left: 20px;
 }
+
+.header-left {
+  margin-right: 80px;
+}
+/* 
+.header-right {
+  margin-left: 10px;
+} */
