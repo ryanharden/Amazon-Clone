@@ -16,7 +16,7 @@ const CheckoutHeader = ({ numItems }) => {
     useEffect(() => {
         dispatch(getCartItemsThunk())
     }, [dispatch])
-    // const [numCartItems, setNumCartItems] = useState(0);
+    const [numCartItems, setNumCartItems] = useState(0);
     // const products = useSelector(state => state.Products.allProducts);
 
     // useEffect(() => {
@@ -25,9 +25,9 @@ const CheckoutHeader = ({ numItems }) => {
     //     })
     // }, [dispatch, cartItems])
 
-    // useEffect(() => {
-    //     setNumCartItems(cartItemsArr.reduce((acc, curr) => acc + curr.quantity, 0));
-    // }, [cartItems, products])
+    useEffect(() => {
+        setNumCartItems(cartItemsArr.reduce((acc, curr) => acc + curr.quantity, 0));
+    }, [cartItems])
     // console.log("numItems: ", numItems);
     return (
         <div className="checkout-header-container">
@@ -42,7 +42,7 @@ const CheckoutHeader = ({ numItems }) => {
                     <div className="checkout-title">
                         Checkout
                     </div>
-                    <Link to={"/cart"} className="checkout-numitems">({cartItemsArr.length} item{cartItemsArr.length > 1 && "s"})</Link>
+                    <Link to={"/cart"} className="checkout-numitems">({numCartItems} item{numCartItems > 1 && "s"})</Link>
                 </div>
                 <i className="fa-solid fa-lock"></i>
             </div>

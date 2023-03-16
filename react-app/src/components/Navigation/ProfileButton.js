@@ -5,12 +5,14 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import { useModal } from "../../context/Modal";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const navigate = useNavigate();
   const ulRef = useRef();
+  const { closeModal } = useModal();
 
   const openMenu = () => {
     if (showMenu) return;
@@ -45,6 +47,7 @@ function ProfileButton({ user }) {
 
   const demoLogin = (e) => {
     e.preventDefault();
+    closeMenu()
     dispatch(login("demo@aa.io", "password"))
   }
 

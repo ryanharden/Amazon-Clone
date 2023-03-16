@@ -5,6 +5,7 @@ import { useNavigate, Navigate } from "react-router-dom";
 import './LoginForm.css';
 import error from "../../assets/dialog-error.248x256.png";
 import vector from "../../assets/amazon-vector.png";
+import { useModal } from "../../context/Modal";
 
 function LoginFormPage() {
   const dispatch = useDispatch();
@@ -13,12 +14,14 @@ function LoginFormPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
+  const { closeModal } = useModal();
 
   if (sessionUser) return <Navigate to="/" />
 
   const demoLogin = (e) => {
     e.preventDefault();
     dispatch(login("demo@aa.io", "password"))
+    closeModal()
   }
 
   const handleSubmit = async (e) => {
