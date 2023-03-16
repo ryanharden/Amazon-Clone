@@ -95,7 +95,7 @@ export const deleteCartItemThunk = (cartItemId) => async (dispatch) => {
 
     if (res.ok) {
         const cartItem = await res.json();
-        console.log("cartItem-store: ", cartItem);
+        // console.log("cartItem-store: ", cartItem);
         dispatch(deleteCartItem(cartItem.id));
         return cartItem
     } else {

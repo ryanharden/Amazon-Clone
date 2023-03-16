@@ -21,22 +21,31 @@ def validation_errors_to_error_messages(validation_errors):
       errorMessages.append(f'{field} : {error}')
   return errorMessages
 
-
-# Filter products by Category
-# @product_routes.route("")
-# def products():
-#     search_term = request.args.get("k")
+# Get products by keyword
+@product_routes.route("")
+def get_products_filter():
+    search_terms = request.args.get("k")
 
     # Filter products based on search term
-    # products = Product.query.filter(Product.name.ilike(f"%{search_term}%")).all()
-
-    # return {product.id: product.to_dict() for product in products}
+    if search_terms:
+        search_terms = search_terms.split("+")
+        products_dict = {}
+        for term in search_terms:
+            products = Product.query.filter(
+                (Product.name.ilike(f"%{term}%")) | (Product.category.ilike(f"%{term}%"))
+            ).all()
+            for product in products:
+                products_dict[product.id] = product.to_dict_details()
+        return products_dict
+    else:
+        products = Product.query.all()
+        return {product.id: product.to_dict_details() for product in products}
 
 # Get all products
-@product_routes.route("")
-def products():
-    products = Product.query.all()
-    return {product.id: product.to_dict_details() for product in products}
+# @product_routes.route("")
+# def products():
+#     products = Product.query.all()
+#     return {product.id: product.to_dict_details() for product in products}
 
 
 # Get User Products
@@ -90,27 +99,24 @@ def create_product():
 @product_routes.route("/<int:id>/images", methods=["POST"])
 @login_required
 def add_product_images(id):
-    print("hi im here")
+    # print("hi im here")
     if "images" not in request.files:
-        # print("No files found in request.")
         return {"errors": "Image required"}, 400
 
     images = request.files.getlist("images")
-    # print("req.files: ", request.files)
-    # print("product-routes: ", images)
     image_list = []
     for image in images:
-        print("image :", image)
+        # print("image :", image)
         if not s3.image_file(image.filename):
-            print("File type not permitted:", image.filename)
+            # print("File type not permitted:", image.filename)
             return {"errors": "file type not permitted"}, 400
 
         image.filename = s3.get_unique_filename(image.filename)
 
         upload = s3.upload_image_file_to_s3(image)
-        print("upload :", upload)
+        # print("upload :", upload)
         if "url" not in upload:
-            print("Upload failed:", upload)
+            # print("Upload failed:", upload)
             return {"errors": upload}, 400
 
         image_url = upload["url"]
@@ -118,7 +124,6 @@ def add_product_images(id):
         product_image = ProductImage(
             url = image_url,
             product_id = id
-            # number = request.form['number'] if request.form['number'] else None
         )
 
         db.session.add(product_image)

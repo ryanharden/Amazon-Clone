@@ -32,9 +32,9 @@ const CategoryProducts = () => {
 
     return (
         <div className='all-products-wrapper'>
-            <div className='home-header'>
+            {/* <div className='home-header'>
                 <FilterBar />
-            </div>
+            </div> */}
             <div className='filter-products-header'>
                 <div className='displaying'>
                     Displaying

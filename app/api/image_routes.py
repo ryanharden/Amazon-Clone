@@ -49,14 +49,14 @@ def upload_product_images():
     # print("images-routes: ", images)
     image_list = []
     for image in images:
-        print("image :", image)
+        # print("image :", image)
         if not s3.image_file(image.filename):
             return {"errors": "file type not permitted"}, 400
 
         image.filename = s3.get_unique_filename(image.filename)
 
         upload = s3.upload_image_file_to_s3(image)
-        print("upload :", upload)
+        # print("upload :", upload)
         if "url" not in upload:
             return {"errors": upload}, 400
 

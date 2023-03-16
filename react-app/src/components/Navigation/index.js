@@ -7,6 +7,8 @@ import flag from "../../assets/american-flag.png";
 import CartButton from './CartButton/CartButton';
 import OrdersButton from './OrdersButton/OrdersButton';
 import vector from "../../assets/amazon-vector.png";
+import SearchBar from './SearchBar/SearchBar';
+import FilterBar from '../Filters/FilterBar/FilterBar';
 
 function Navigation({ isLoaded }) {
 	const sessionUser = useSelector(state => state.session.user);
@@ -23,15 +25,13 @@ function Navigation({ isLoaded }) {
 							Rainforest Retail
 						</Link>
 						<Link className="nav-bar-nav-link" exact to="/">
-						<img className="vector" src={vector} alt="vector" />
+							<img className="vector" src={vector} alt="vector" />
 						</Link>
 					</div>
 					{/* <div className='deliver-to-address'>
 					</div> */}
 				</div>
-				{/* <div className='search-bar-container'>
-
-				</div> */}
+				<SearchBar />
 				<div className="header-right">
 					{isLoaded && (
 						<div className="lang-profile-orders-cart">
@@ -46,6 +46,9 @@ function Navigation({ isLoaded }) {
 					)}
 				</div>
 			</div>
+			<div className='home-header'>
+                <FilterBar />
+            </div>
 		</div>
 	);
 }
