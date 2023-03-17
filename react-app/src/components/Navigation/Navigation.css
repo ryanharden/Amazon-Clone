@@ -68,7 +68,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 65px;
+  height: 60px;
   color: white;
   padding: 0 18px;
 }
@@ -195,7 +195,7 @@
 .header-left {
   margin-right: 80px;
 }
-/* 
+/*
 .header-right {
   margin-left: 10px;
 } */
