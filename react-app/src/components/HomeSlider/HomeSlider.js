@@ -16,42 +16,42 @@ const HomeSlider = ({ slides }) => {
     const allProductsArr = Object.values(allProducts);
     // console.log("allProductsArr: ", allProductsArr);
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [categoryProducts, setCategoryProducts] = useState([]);
-    const [trendingProducts, setTrendingProducts] = useState([]);
-    const [exploreEssentials, setExploreEssentials] = useState([]);
-    const [exclude, setExclude] = useState([]);
-    const [excludeYou, setExcludeYou] = useState([]);
-    const [forYou, setForYou] = useState([]);
+    // const [categoryProducts, setCategoryProducts] = useState([]);
+    // const [trendingProducts, setTrendingProducts] = useState([]);
+    // const [exploreEssentials, setExploreEssentials] = useState([]);
+    // const [exclude, setExclude] = useState([]);
+    // const [excludeYou, setExcludeYou] = useState([]);
+    // const [forYou, setForYou] = useState([]);
 
-    const filterProducts = (allProducts) => {
-        const allProductsArr = Object.values(allProducts);
-        if (allProductsArr.length > 1) {
-            const categoryProductsArr = allProductsArr.filter(product => product.category === 'Rainforest Basics').slice(0, 4);
-            setCategoryProducts(categoryProductsArr);
-            const trendingProductsArr = getRandomProducts(4, categoryProductsArr, allProductsArr)
-            setTrendingProducts(trendingProductsArr);
-            // console.log("trendingProducts: ", trendingProducts)
-            const excludeArr = [...categoryProductsArr, ...trendingProductsArr]
-            setExclude(excludeArr);
-            // console.log("exclude", exclude)
-            const exploreEssentialsArr = getRandomProducts(4, exclude, allProductsArr)
-            setExploreEssentials(exploreEssentialsArr);
-            const excludeYouArr = [...categoryProducts, ...trendingProducts, ...exploreEssentials]
-            setExcludeYou(excludeYouArr)
-            // console.log("exploreEssentials: ", exploreEssentials);
-            const forYouArr = getRandomProducts(4, excludeYou, allProductsArr);
-            setForYou(forYouArr)
-            return { allProductsArr, categoryProducts: categoryProductsArr, trendingProducts: trendingProductsArr, exploreEssentials: exploreEssentialsArr, forYou: forYouArr }
-        }
-    };
+    // const filterProducts = (allProducts) => {
+    //     const allProductsArr = Object.values(allProducts);
+    //     if (allProductsArr.length > 1) {
+    //         const categoryProductsArr = allProductsArr.filter(product => product.category === 'Rainforest Basics').slice(0, 4);
+    //         setCategoryProducts(categoryProductsArr);
+    //         const trendingProductsArr = getRandomProducts(4, categoryProductsArr, allProductsArr)
+    //         setTrendingProducts(trendingProductsArr);
+    //         // console.log("trendingProducts: ", trendingProducts)
+    //         const excludeArr = [...categoryProductsArr, ...trendingProductsArr]
+    //         setExclude(excludeArr);
+    //         // console.log("exclude", exclude)
+    //         const exploreEssentialsArr = getRandomProducts(4, exclude, allProductsArr)
+    //         setExploreEssentials(exploreEssentialsArr);
+    //         const excludeYouArr = [...categoryProducts, ...trendingProducts, ...exploreEssentials]
+    //         setExcludeYou(excludeYouArr)
+    //         // console.log("exploreEssentials: ", exploreEssentials);
+    //         const forYouArr = getRandomProducts(4, excludeYou, allProductsArr);
+    //         setForYou(forYouArr)
+    //         return { allProductsArr, categoryProducts: categoryProductsArr, trendingProducts: trendingProductsArr, exploreEssentials: exploreEssentialsArr, forYou: forYouArr }
+    //     }
+    // };
 
     useEffect(() => {
         dispatch(getProductsThunk());
     }, [dispatch]);
 
-    useEffect(() => {
-        filterProducts(allProducts);
-    }, [allProducts]);
+    // useEffect(() => {
+    //     filterProducts(allProducts);
+    // }, [allProducts]);
 
 
     useEffect(() => {
@@ -73,20 +73,6 @@ const HomeSlider = ({ slides }) => {
         setCurrentIndex(nextIndex);
     };
 
-    const getRandomProducts = (n, exclude, allProductsArr) => {
-        const result = [];
-        const len = allProductsArr.length;
-        let i = 0;
-        while (i < n && result.length < len) {
-            const randomIndex = Math.floor(Math.random() * len);
-            const product = allProductsArr[randomIndex];
-            if (!exclude.includes(product) && !result.includes(product)) {
-                result.push(product);
-                i++;
-            }
-        }
-        return result;
-    };
     // const getRandomProducts = (n, exclude, allProductsArr) => {
     //     const result = [];
     //     const len = allProductsArr.length;
@@ -94,13 +80,14 @@ const HomeSlider = ({ slides }) => {
     //     while (i < n && result.length < len) {
     //         const randomIndex = Math.floor(Math.random() * len);
     //         const product = allProductsArr[randomIndex];
-    //         if (!exclude.some(excludedProduct => excludedProduct.id === product.id) && !result.includes(product)) {
+    //         if (!exclude.includes(product) && !result.includes(product)) {
     //             result.push(product);
     //             i++;
     //         }
     //     }
     //     return result;
     // };
+
 
     const slideStyle = {
         width: '100%',
@@ -110,6 +97,12 @@ const HomeSlider = ({ slides }) => {
         backgroundImage: `url(${slides[currentIndex].url})`,
         transition: "ease-in-out .7s"
     }
+
+    const categoryProductsArr = allProductsArr.filter(product => product.category === 'Rainforest Basics').slice(0, 4);
+    const selectedProducts = allProductsArr.filter(product => [12, 44, 34, 55].includes(product.id));
+    const trendingProducts = allProductsArr.filter(product => [29, 20, 13, 40].includes(product.id));
+    const essentialProducts = allProductsArr.filter(product => [52, 60, 8, 57].includes(product.id));
+
 
     return (
         <>
@@ -127,7 +120,7 @@ const HomeSlider = ({ slides }) => {
                     <div className="card-container">
                         <div className="card-title">Rainforest Basics</div>
                         <div className="card-image-container">
-                            {categoryProducts.map(product => (
+                            {categoryProductsArr.map(product => (
                                 <div className="card-image" key={product?.id}>
                                     <Link to={`/products/${product.id}`}>
                                         <img className="card-actual-image" src={product?.images[0]?.url} alt={product?.name} />
@@ -142,7 +135,7 @@ const HomeSlider = ({ slides }) => {
                     <div className="card-container">
                         <div className="card-title">Selected For You</div>
                         <div className="card-image-container">
-                            {forYou.map(product => (
+                            {selectedProducts.map(product => (
                                 <div className="card-image" key={product.id}>
                                     <Link to={`/products/${product.id}`}>
                                         <img className="card-actual-image" src={product?.images[0]?.url} alt={product.name} />
@@ -172,7 +165,7 @@ const HomeSlider = ({ slides }) => {
                     <div className="card-container">
                         <div className="card-title">Explore Essentials</div>
                         <div className="card-image-container">
-                            {exploreEssentials?.map(product => (
+                            {essentialProducts?.map(product => (
                                 <div className="card-image" key={product?.id}>
                                     <Link to={`/products/${product.id}`}>
                                         <img className="card-actual-image" src={product?.images[0]?.url} alt={product?.name} />
