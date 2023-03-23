@@ -18,7 +18,7 @@ export default function Footer() {
                         <img className="github-mark" src={githubMark} alt="github mark" />
                         <img className="github-logo" src={githubLogo} alt="github logo" />
                     </a>
-                    <a rel="noreferrer" target="_blank" href="https://www.linkedin.com/in/ryan-harden-0a8b6821a/" className="footer-link">
+                    <a rel="noreferrer" target="_blank" href="https://www.linkedin.com/in/ryanharden-dev" className="footer-link">
                         <img className="linked-in-logo" src={linkedIn} alt="linkedin logo" />
                     </a>
                 </div>
