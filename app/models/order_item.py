@@ -9,7 +9,7 @@ class OrderItem(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     seller_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
-    order_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("order_details.id")), nullable=False)
+    order_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("orders.id")), nullable=False)
     product_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("products.id")), nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
     price = db.Column(db.DECIMAL(50, 2), nullable=False)

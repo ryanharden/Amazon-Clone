@@ -5,7 +5,7 @@ from app.models import Order, OrderItem, Product, db
 order_routes = Blueprint('orders', __name__)
 
 # Get Users Orders
-@order_routes.route("")
+@order_routes.route("/current")
 @login_required
 def get_users_orders():
     orders = Order.query.filter(Order.buyer_id == current_user.id).all()
@@ -32,7 +32,7 @@ def create_order():
 
     order = Order(
         buyer_id = current_user.id,
-        address=requestBody["address"]
+        # address=requestBody["address"]
     )
 
     orderItems = [OrderItem(

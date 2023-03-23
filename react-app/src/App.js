@@ -22,6 +22,7 @@ import PlacedOrder from "./components/PlacedOrder/PlacedOrder";
 import FeatureComing from "./components/FeatureComing/FeatureComing";
 import "./App.css";
 import SearchProducts from "./components/Products/SearchProducts/SearchProducts";
+import OrderPage from "./components/Orders/OrderPage/OrderPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -72,6 +73,8 @@ function App() {
             <Route path="/placedorder" element={<PlacedOrder />} />
 
             <Route path="/featurecoming" element={<FeatureComing />} />
+
+            <Route path="/orders/current" element={<OrderPage />} />
 
             {/* <Route path={["/users/:userId/products", "/createproduct", "/editproduct/:productId"]}>
             <UserProductPage />
