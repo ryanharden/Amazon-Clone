@@ -31,7 +31,7 @@ const FilterBar = () => {
                 <Link to={'/Toys'}className='links-bar-link'>Toys</Link>
             </div>
             <div className='link-bar-link-container'>
-                <a target="_blank" rel="noreferrer" className='my-links' href="https://www.linkedin.com/in/ryan-harden-0a8b6821a/">LinkedIn</a>
+                <a target="_blank" rel="noreferrer" className='my-links' href="https://www.linkedin.com/in/ryanharden-dev">LinkedIn</a>
             </div>
             <div className='link-bar-link-container'>
                 <a target="_blank" rel="noreferrer" className='my-links' href="https://github.com/ryanharden">Github</a>
