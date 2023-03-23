@@ -12,4 +12,4 @@ class Order(db.Model):
     address = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("addresses.id")), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
 
-    order_details = db.relationship("OrderDetail", back_populates="order")
+    order_items = db.relationship("OrderItem", back_populates="order")
