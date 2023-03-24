@@ -13,11 +13,11 @@
     background-color: white;
     gap: 30px;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     width: 50vw;
     height: 160px;
-    padding-left: 100px;
+    padding-left: 40px;
     padding-right: 40px;
 }
 
@@ -58,7 +58,6 @@
     font-size: 14px;
     color: #0F1111;
 }
-
 
 .checkmark {
     background-image: url("https://d1irxr40exwge2.cloudfront.net/stars.png");

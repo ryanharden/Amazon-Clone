@@ -65,7 +65,7 @@
 .buy-view-buttons {
     display: flex;
     flex-direction: row;
-    gap: 5px;
+    gap: 10px;
 }
 
 .buy-it-again {

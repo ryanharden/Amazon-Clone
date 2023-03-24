@@ -5,6 +5,7 @@ import { getOrdersThunk } from "../../../store/orders";
 import { getProductsThunk } from "../../../store/products";
 import Order from "../Order/Order";
 import OrderItem from "../OrderItem/OrderItem";
+import chevright from "../../../assets/chevron-right.png";
 import "./OrderPage.css";
 
 
@@ -139,7 +140,7 @@ const OrderPage = () => {
             <div className="order-page-container">
                 <div className="order-page-nav">
                     <div className="order-page-your-account">Your Account</div>
-                    <div className="order-arrow">{">"}</div>
+                    <img src={chevright} className="order-arrow" />
                     <div className="your-orders-nav">Your Orders</div>
                 </div>
                 <div className="orders-page-header">

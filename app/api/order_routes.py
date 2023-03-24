@@ -10,6 +10,7 @@ order_routes = Blueprint('orders', __name__)
 def get_users_orders():
     orders = Order.query.filter(Order.buyer_id == current_user.id).all()
     order_items = [{"order_items": [orderItem.to_dict() for orderItem in order.order_items], "created_at": order.created_at, "id": order.id} for order in orders]
+    order_items.reverse()
     return order_items
 
 # Create Order

@@ -42,3 +42,10 @@
 /* .order-items-wrapper {
 
 } */
+
+.order-arrow {
+    font-weight: 900;
+    height: 7px;
+    width: 5px;
+    margin-top: 1px;
+}
