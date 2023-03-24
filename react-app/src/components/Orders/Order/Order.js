@@ -1,13 +1,23 @@
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import ordersReducer from "../../../store/orders";
+// import { useDispatch, useSelector } from "react-redux";
+// import { Link, useNavigate } from "react-router-dom";
+// import ordersReducer from "../../../store/orders";
+import OrderItem from "../OrderItem/OrderItem";
 import "./Order.css";
 
-const Order = ({ order, order_item, product, currentUser, orderItemsWithProduct }) => {
+const Order = ({ order, currentUser, orderItemsWithProduct }) => {
 
     const createdAt = (new Date(order.created_at)).toLocaleDateString('en-us', { year: "numeric", month: "long", day: "numeric" });
     const total = order.order_items.reduce((total, order_item) => total += order_item.price * order_item.quantity, 0)
-    if (!product) return null;
+
+    // const allOrderItems = orderItemsWithProduct?.map(product => {
+    //     return <OrderItem key={product?.id} product={product} />
+    // })
+    const orderItems = orderItemsWithProduct.filter(item => item.order_id === order.id);
+    const allOrderItems = orderItems.map(item => {
+        return <OrderItem key={item.id} order={order} item={item} product={item.product} currentUser={currentUser} />;
+    });
+
+    if (!allOrderItems) return null;
 
     return (
         <div className="order-container">
@@ -34,7 +44,7 @@ const Order = ({ order, order_item, product, currentUser, orderItemsWithProduct 
                             SHIP TO
                         </div>
                         <div className="order-user">
-                            {currentUser}
+                            {currentUser.first_name} {currentUser.last_name}
                         </div>
                     </div>
                 </div>
@@ -48,7 +58,7 @@ const Order = ({ order, order_item, product, currentUser, orderItemsWithProduct 
                 </div>
             </div>
             <div className="order-items-wrapper">
-                {orderItemsWithProduct}
+                {allOrderItems}
             </div>
         </div>
     )

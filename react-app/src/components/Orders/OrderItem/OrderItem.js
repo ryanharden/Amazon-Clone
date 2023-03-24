@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { addCartItemThunk } from "../../../store/cartitem";
 import "./OrderItem.css";
 
-const OrderItem = ({ order, order_item, product, currentUser }) => {
+const OrderItem = ({ order, item, product, currentUser }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -20,7 +20,8 @@ const OrderItem = ({ order, order_item, product, currentUser }) => {
         }
     };
 
-    if (!product) return
+
+    if (!product) return null;
 
 
     return (

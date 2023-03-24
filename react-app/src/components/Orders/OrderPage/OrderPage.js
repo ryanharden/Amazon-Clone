@@ -13,10 +13,14 @@ const OrderPage = () => {
     // const location = useLocation();
 
     const orders = useSelector(state => state.Orders);
+    console.log("orders: ", orders);
+    const ordersArr = Object.values(orders);
     const products = useSelector(state => state.Products.allProducts);
+    // console.log("products: ", products);
     const allProductsArr = Object.values(products);
+    // console.log("allProductsArr: ", allProductsArr);
     const currentUser = useSelector(state => state.session.user);
-    // console.log("cartItemsArr: ", cartItemsArr);
+
 
     useEffect(() => {
         dispatch(getProductsThunk());
@@ -28,16 +32,33 @@ const OrderPage = () => {
     const beautArr = allProductsArr.filter(product => product.category === 'Beauty & Personal Care').slice(0, 4);
     const appliancesArr = allProductsArr.filter(product => product.category === 'Appliances').slice(0, 4);
 
-    const orderItemsWithProduct = orders.forEach(order => {
-        order.order_items.map(order_item => {
-            const product = products[order_item.product_id];
-            if (!product) return null;
-            return <OrderItem key={order_item.id} order={order} order_item={order_item} product={product} />
-        })
+    const orderItemsArr = ordersArr.map(order => {
+        return order.order_items
     })
+
+    console.log('orderItemsArr: ', orderItemsArr)
+
+    // const orderItemsWithProduct = orderItemsArr.flatMap(orderItem => {
+    //     console.log("orderItem: ", orderItem);
+    //     return orderItem.map(item => {
+    //         console.log("item: ", item);
+    //         const product = products[item.product_id];
+    //         console.log("product: ", product);
+    //         if (!product) return null;
+    //         return product
+    //     })
+    // })
+
+    const orderItemsWithProduct = ordersArr.map(order => {
+        return order.order_items.map(item => {
+            const product = products[item.product_id];
+            if (!product) return null;
+            return { ...item, product }; // add item and product to array element
+        });
+    }).flat();
     console.log("orderItemsWithProduct: ", orderItemsWithProduct)
 
-    const allOrders = orders.map(order => <Order key={order.id} order={order} currentUser={currentUser} orderItemsWithProduct={orderItemsWithProduct} />)
+    const allOrders = ordersArr.map(order => <Order key={order.id} order={order} currentUser={currentUser} orderItemsWithProduct={orderItemsWithProduct} />)
     console.log("allOrders: ", allOrders);
 
 
