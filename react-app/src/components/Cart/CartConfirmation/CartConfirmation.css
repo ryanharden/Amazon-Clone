@@ -17,6 +17,8 @@
     align-items: center;
     width: 50vw;
     height: 160px;
+    padding-left: 40px;
+    padding-right: 40px;
 }
 
 .cart-confirm-added-name {
@@ -56,7 +58,6 @@
     font-size: 14px;
     color: #0F1111;
 }
-
 
 .checkmark {
     background-image: url("https://d1irxr40exwge2.cloudfront.net/stars.png");

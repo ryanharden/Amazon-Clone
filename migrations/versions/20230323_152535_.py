@@ -1,18 +1,20 @@
 """empty message
 
-Revision ID: 3c7c08842909
+Revision ID: 4557efc21f23
 Revises:
-Create Date: 2023-03-05 14:12:20.262870
+Create Date: 2023-03-23 15:25:35.469489
 
 """
 from alembic import op
 import sqlalchemy as sa
+
 import os
 environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
+
 # revision identifiers, used by Alembic.
-revision = '3c7c08842909'
+revision = '4557efc21f23'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -29,13 +31,11 @@ def upgrade():
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email')
     )
-    op.create_table('order_details',
+    op.create_table('orders',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('user_id', sa.Integer(), nullable=False),
-    sa.Column('total', sa.Float(), nullable=False),
+    sa.Column('buyer_id', sa.Integer(), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=True),
-    sa.Column('updated_at', sa.DateTime(), nullable=True),
-    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
+    sa.ForeignKeyConstraint(['buyer_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('products',
@@ -62,12 +62,14 @@ def upgrade():
     )
     op.create_table('order_items',
     sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('seller_id', sa.Integer(), nullable=False),
     sa.Column('order_id', sa.Integer(), nullable=False),
     sa.Column('product_id', sa.Integer(), nullable=False),
     sa.Column('quantity', sa.Integer(), nullable=False),
-    sa.Column('price', sa.Float(), nullable=False),
-    sa.ForeignKeyConstraint(['order_id'], ['order_details.id'], ),
+    sa.Column('price', sa.DECIMAL(precision=50, scale=2), nullable=False),
+    sa.ForeignKeyConstraint(['order_id'], ['orders.id'], ),
     sa.ForeignKeyConstraint(['product_id'], ['products.id'], ),
+    sa.ForeignKeyConstraint(['seller_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('product_images',
@@ -92,6 +94,7 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+
     if environment == "production":
         op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###
@@ -104,6 +107,6 @@ def downgrade():
     op.drop_table('order_items')
     op.drop_table('cartitems')
     op.drop_table('products')
-    op.drop_table('order_details')
+    op.drop_table('orders')
     op.drop_table('users')
     # ### end Alembic commands ###

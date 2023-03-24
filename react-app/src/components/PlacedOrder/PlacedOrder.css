@@ -1,0 +1,72 @@
+.order-placed-wrapper {
+    display: flex;
+    flex-direction: column;
+    background-color: #eaeded;
+}
+
+.order-placed-confirm-container {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #d5d9d9;
+    border-radius: 8px;
+    background-color: white;
+    /* margin: 20px; */
+    padding: 20px 25px;
+    gap: 15px;
+    margin: 24px 28px;
+    border-radius: 8px;
+}
+
+.order-placed-check {
+    display: flex;
+    gap: 8px;
+}
+
+.order-placed-thanks {
+    color: #007185;
+    font-weight: 900;
+    font-size: 18px;
+    line-height: 24px;
+}
+
+.placed-order-shipping-to {
+    border-bottom: 1px solid #e7e7e7;
+    padding-bottom: 15px;
+}
+
+.shipping-to-who {
+    font-weight: 900;
+}
+
+.delivery-date-order-images {
+    display: flex;
+    gap: 100px;
+}
+
+.placed-order-delivery-date {
+    font-weight: 900;
+}
+
+.placed-order-image {
+    height: 60px;
+    width: 60px;
+    object-fit: scale-down;
+    margin-right: 10px;
+}
+
+.review-edit-orders {
+    color: black;
+    margin: 20px 0;
+}
+
+.review-edit-orders:hover {
+    color: #C7511F;
+    text-decoration: underline;
+}
+
+.chevright-order {
+    font-weight: 900;
+    height: 7px;
+    width: 5px;
+    margin-bottom: 0.7px;
+}

@@ -9,7 +9,10 @@
 
 #     id = db.Column(db.Integer, primary_key=True)
 #     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
-#     address = db.Column(db.String(500), nullable=False)
+#     first_name = db.Column(db.String(30), nullable=False)
+#     last_name = db.Column(db.String(30), nullable=False)
+#     address = db.Column(db.String(1000), nullable=False)
+#     address2 = db.Column(db.String(1000))
 #     city = db.Column(db.String(500), nullable=False)
 #     state = db.Column(db.String(30), nullable=False)
 #     zipcode = db.Column(db.String(20), nullable=False)
@@ -23,7 +26,10 @@
 #         return {
 #             "id": self.id,
 #             "user_id": self.user_id,
+#             "first_name": self.first_name,
+#             "last_name": self.last_name,
 #             "address": self.address,
+#             "address2": self.address2,
 #             "city": self.city,
 #             "state": self.state,
 #             "zipcode": self.zipcode,
