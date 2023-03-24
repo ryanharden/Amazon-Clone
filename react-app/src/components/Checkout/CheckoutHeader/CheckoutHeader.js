@@ -10,7 +10,7 @@ const CheckoutHeader = ({ numItems }) => {
     // const [numCartItems, setNumCartItems] = useState(0);
     const dispatch = useDispatch();
     const cartItems = useSelector(state => state.CartItems);
-    console.log("cartItems:", cartItems)
+    // console.log("cartItems:", cartItems)
     const cartItemsArr = Object.values(cartItems);
 
     useEffect(() => {

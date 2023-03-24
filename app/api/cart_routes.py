@@ -104,7 +104,7 @@ def delete_cart_item(id):
 
     db.session.delete(cart_item)
     db.session.commit()
-    print("Successfully Deleted")
+    # print("Successfully Deleted")
     return cart_item.to_dict_details()
 
 @cart_routes.route("/cartitems/quantity")

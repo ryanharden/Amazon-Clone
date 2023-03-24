@@ -8,6 +8,7 @@ import { getProductsThunk, getProductThunk } from '../../../store/products';
 import primeCard from "../../../assets/amazon-prime-card.png";
 import { getCartItemsThunk, emptyCartThunk } from '../../../store/cartitem';
 import { useNavigate } from 'react-router-dom';
+import { createOrderThunk } from '../../../store/orders';
 
 const CheckoutShow = () => {
     const dispatch = useDispatch();
@@ -25,10 +26,13 @@ const CheckoutShow = () => {
         setClick(true);
     }
 
-    const handleOrder = () => {
+    const handleOrder = async () => {
+        console.log('handleOrder called');
+        await dispatch(createOrderThunk({cart: cartItems}));
         dispatch(emptyCartThunk())
         navigate('/placedorder')
     }
+
     useEffect(() => {
         dispatch(getCartItemsThunk());
         dispatch(getProductsThunk())

@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { addCartItemThunk } from "../../../store/cartitem";
 import "./OrderItem.css";
 
-const OrderItem = ({ order, order_item, product }) => {
+const OrderItem = ({ order, order_item, product, currentUser }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -15,8 +15,8 @@ const OrderItem = ({ order, order_item, product }) => {
         if (!currentUser) {
             navigate("/login")
         } else {
-            await dispatch(addCartItemThunk(product.id, quantity))
-            navigate(`/cart-confirmation?productId=${product.id}&quantity=${quantity}`);
+            await dispatch(addCartItemThunk(product.id, 1))
+            navigate(`/cart-confirmation?productId=${product.id}&quantity=${1}`);
         }
     };
 

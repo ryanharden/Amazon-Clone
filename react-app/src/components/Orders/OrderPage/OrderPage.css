@@ -1,0 +1,35 @@
+.order-page-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.order-page-container {
+    margin-top: 10px;
+    margin-left: 20px;
+    width: 920px;
+}
+
+.order-page-nav {
+    margin-bottom: 15px;
+    color: #565959;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.your-orders-nav {
+    color: #c45500;
+}
+
+.orders-page-header {
+    font-size: 25px;
+    width: 100%;
+    color: #0F1111;
+    font-weight: 400;
+    line-height: 36px;
+    font-size: 28px;
+    margin-bottom: 25px;
+}
+
+/* .order-items-wrapper {
+
+} */

@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import ordersReducer from "../../../store/orders";
-import "./OrderItem.css";
+import "./Order.css";
 
 const Order = ({ order, order_item, product, currentUser, orderItemsWithProduct }) => {
 

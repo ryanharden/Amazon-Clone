@@ -1,3 +1,35 @@
 .order-container {
-
+    border-radius: 8px;
+    border: 1px #D5D9D9 solid;
+    padding-bottom: 5px;
 }
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    height: 65px;
+    padding-top: 15px;
+    padding-left: 18px;
+    padding-right: 18px;
+    background-color: #F0F2F2;
+    border-bottom: 1px #D5D9D9 solid;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    color: #565959;
+}
+
+.order-left-header {
+    display: flex;
+    gap: 50px;
+}
+
+.order-right-header {
+    font-size: 12px;
+    line-height: 16px;
+}
+
+.order-placed-date, .order-total-price, .order-user {
+    font-size: 14px;
+    line-height: 20px;
+}
+

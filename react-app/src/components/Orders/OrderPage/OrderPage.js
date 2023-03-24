@@ -35,8 +35,10 @@ const OrderPage = () => {
             return <OrderItem key={order_item.id} order={order} order_item={order_item} product={product} />
         })
     })
+    console.log("orderItemsWithProduct: ", orderItemsWithProduct)
 
     const allOrders = orders.map(order => <Order key={order.id} order={order} currentUser={currentUser} orderItemsWithProduct={orderItemsWithProduct} />)
+    console.log("allOrders: ", allOrders);
 
 
     if (!orders.length)
@@ -112,17 +114,19 @@ const OrderPage = () => {
             </div>
         )
     return (
-        <div className="order-page-container">
-            <div className="order-page-nav">
-                <div className="your-account">Your Account</div>
-                <div className=">">{">"}</div>
-                <div className="your-orders-nav">Your Orders</div>
-            </div>
-            <div className="orders-page-header">
-                Your Orders
-            </div>
-            <div className="order-items-wrapper">
-                {allOrders}
+        <div className="order-page-wrapper">
+            <div className="order-page-container">
+                <div className="order-page-nav">
+                    <div className="your-account">Your Account</div>
+                    <div className=">">{">"}</div>
+                    <div className="your-orders-nav">Your Orders</div>
+                </div>
+                <div className="orders-page-header">
+                    Your Orders
+                </div>
+                <div className="order-items-wrapper">
+                    {allOrders}
+                </div>
             </div>
         </div>
     )
