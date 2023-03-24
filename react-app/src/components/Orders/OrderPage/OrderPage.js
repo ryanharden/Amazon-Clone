@@ -11,10 +11,9 @@ import "./OrderPage.css";
 
 const OrderPage = () => {
     const dispatch = useDispatch();
-    // const location = useLocation();
 
     const orders = useSelector(state => state.Orders);
-    console.log("orders: ", orders);
+    // console.log("orders: ", orders);
     const ordersArr = Object.values(orders);
     const products = useSelector(state => state.Products.allProducts);
     // console.log("products: ", products);
@@ -37,18 +36,7 @@ const OrderPage = () => {
         return order.order_items
     })
 
-    console.log('orderItemsArr: ', orderItemsArr)
-
-    // const orderItemsWithProduct = orderItemsArr.flatMap(orderItem => {
-    //     console.log("orderItem: ", orderItem);
-    //     return orderItem.map(item => {
-    //         console.log("item: ", item);
-    //         const product = products[item.product_id];
-    //         console.log("product: ", product);
-    //         if (!product) return null;
-    //         return product
-    //     })
-    // })
+    // console.log('orderItemsArr: ', orderItemsArr)
 
     const orderItemsWithProduct = ordersArr.map(order => {
         return order.order_items.map(item => {
@@ -57,11 +45,10 @@ const OrderPage = () => {
             return { ...item, product }; // add item and product to array element
         });
     }).flat();
-    console.log("orderItemsWithProduct: ", orderItemsWithProduct)
+    // console.log("orderItemsWithProduct: ", orderItemsWithProduct)
 
     const allOrders = ordersArr.map(order => <Order key={order.id} order={order} currentUser={currentUser} orderItemsWithProduct={orderItemsWithProduct} />)
-    console.log("allOrders: ", allOrders);
-
+    // console.log("allOrders: ", allOrders);
 
     if (!orders.length)
         return (
