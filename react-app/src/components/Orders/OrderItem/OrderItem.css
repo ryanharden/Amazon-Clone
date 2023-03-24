@@ -2,11 +2,13 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    padding: 14px 18px;
 }
 
 .order-item-left {
     display: flex;
     flex-direction: column;
+    width: 75%;
 }
 
 .order-item-header {
@@ -18,7 +20,8 @@
     color: #0F1111;
     font-size: 18px;
     line-height: 24px;
-    font-weight: 700;
+    font-weight: 900;
+    margin-bottom: 2px;
 }
 
 .not-shipped {
@@ -26,6 +29,7 @@
     font-size: 13px;
     /* line-height: 24px; */
     font-weight: 300;
+    margin-bottom: 15px;
 }
 
 .order-item-product {
@@ -37,6 +41,8 @@
     height: 90px;
     width: 90px;
     object-fit: scale-down;
+    margin-right: 12px;
+    margin-top: -5px;
 }
 
 .order-item-name-buttons {
@@ -46,6 +52,9 @@
 
 .order-item-name {
     color: #007185;
+    font-size: 14px;
+    line-height: 19px;
+    margin-bottom: 5px;
 }
 
 .order-item-name:hover {
@@ -61,12 +70,13 @@
 
 .buy-it-again {
     display: flex;
+    align-items: center;
     gap: 13px;
     width: 122px;
-    padding-top: 2px;
     padding-left: 2px;
+    box-sizing: border-box;
     font-size: 13px;
-    line-height: 27px;
+    /* line-height: 27px; */
     color: #0F1111;
     text-align: center;
     background: #FFD814;
@@ -88,9 +98,9 @@
     width: 25px;
 }
 
-/* .buy-it-again-text {
-
-} */
+.buy-it-again-text {
+    margin-bottom: 1.5px;
+}
 
 .view-item-link {
     padding: 0px 10px;

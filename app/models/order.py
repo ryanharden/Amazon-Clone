@@ -13,3 +13,10 @@ class Order(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
 
     order_items = db.relationship("OrderItem", back_populates="order")
+
+    def to_dict(self):
+        return{
+         "id": self.id,
+         "buyer_id": self.buyer_id,
+         "created_at": self.created_at,
+        }

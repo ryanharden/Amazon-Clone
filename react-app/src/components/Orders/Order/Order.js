@@ -2,20 +2,26 @@
 // import { Link, useNavigate } from "react-router-dom";
 // import ordersReducer from "../../../store/orders";
 import OrderItem from "../OrderItem/OrderItem";
+import { deleteOrderThunk } from "../../../store/orders";
 import "./Order.css";
+import { useDispatch } from "react-redux";
 
 const Order = ({ order, currentUser, orderItemsWithProduct }) => {
-
+    const dispatch = useDispatch();
     const createdAt = (new Date(order.created_at)).toLocaleDateString('en-us', { year: "numeric", month: "long", day: "numeric" });
     const total = order.order_items.reduce((total, order_item) => total += order_item.price * order_item.quantity, 0)
 
     // const allOrderItems = orderItemsWithProduct?.map(product => {
     //     return <OrderItem key={product?.id} product={product} />
     // })
-    const orderItems = orderItemsWithProduct.filter(item => item.order_id === order.id);
+    const orderItems = orderItemsWithProduct.filter(item => item?.order_id === order.id);
     const allOrderItems = orderItems.map(item => {
         return <OrderItem key={item.id} order={order} item={item} product={item.product} currentUser={currentUser} />;
     });
+
+    const handleDelete = async (orderId) => {
+        await dispatch(deleteOrderThunk(orderId));
+    };
 
     if (!allOrderItems) return null;
 
@@ -32,7 +38,7 @@ const Order = ({ order, currentUser, orderItemsWithProduct }) => {
                         </div>
                     </div>
                     <div className="order-total-container">
-                        <div className="order-total">
+                        <div className="order-total-text">
                             TOTAL
                         </div>
                         <div className="order-total-price">
@@ -59,6 +65,9 @@ const Order = ({ order, currentUser, orderItemsWithProduct }) => {
             </div>
             <div className="order-items-wrapper">
                 {allOrderItems}
+            </div>
+            <div onClick={()=> handleDelete(order.id)} className="remove-order-container">
+                Remove order
             </div>
         </div>
     )

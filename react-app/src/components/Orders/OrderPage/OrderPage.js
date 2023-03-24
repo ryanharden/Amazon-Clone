@@ -138,8 +138,8 @@ const OrderPage = () => {
         <div className="order-page-wrapper">
             <div className="order-page-container">
                 <div className="order-page-nav">
-                    <div className="your-account">Your Account</div>
-                    <div className=">">{">"}</div>
+                    <div className="order-page-your-account">Your Account</div>
+                    <div className="order-arrow">{">"}</div>
                     <div className="your-orders-nav">Your Orders</div>
                 </div>
                 <div className="orders-page-header">

@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, jsonify
 from flask_login import login_required, current_user
 from app.models import Order, OrderItem, Product, db
 
@@ -12,6 +12,7 @@ def get_users_orders():
     order_items = [{"order_items": [orderItem.to_dict() for orderItem in order.order_items], "created_at": order.created_at, "id": order.id} for order in orders]
     return order_items
 
+# Create Order
 @order_routes.route("", methods=["POST"])
 @login_required
 def create_order():
@@ -52,3 +53,23 @@ def create_order():
     db.session.add_all(orderItems)
     db.session.commit()
     return {"id": order.id}, 201
+
+# Delete Order
+@order_routes.route("/<int:id>", methods=["DELETE"])
+@login_required
+def delete_order(id):
+    order= Order.query.filter(Order.id == id, Order.buyer_id == current_user.id).first()
+
+    if not order:
+        return {
+            "errors": "The order was not found"
+        }
+
+    order_items = OrderItem.query.filter(OrderItem.order_id == id).all()
+    for item in order_items:
+        db.session.delete(item)
+
+    db.session.delete(order)
+    db.session.commit()
+    # print("Successfully Deleted")
+    return order.to_dict()
