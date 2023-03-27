@@ -45,17 +45,16 @@
     color: #f08804;
 }
 
-/* .cart-quantity-ten {
+.ten {
     position: relative;
-    margin-left: 22.5px;
+    margin-left: 19px;
     margin-top: 9px;
 
     font-size: 16px;
     line-height: 16px;
     font-weight: 700;
     color: #f08804;
-    border: 1px solid red;
-} */
+}
 
 .cart-title {
     align-self: flex-end;
