@@ -27,7 +27,7 @@ const CheckoutShow = () => {
     }
 
     const handleOrder = async () => {
-        console.log('handleOrder called');
+        // console.log('handleOrder called');
         await dispatch(createOrderThunk({cart: cartItems}));
         dispatch(emptyCartThunk())
         navigate('/placedorder')
