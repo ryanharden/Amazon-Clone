@@ -1,9 +1,11 @@
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "./OrdersButton.css";
 
 const OrdersButton = () => {
+    const currentUser = useSelector(state => state.session.user);
     return (
-        <Link to="/orders/current" className="orders-button-container">
+        <Link to={currentUser ? "/orders/current" : "/login"} className="orders-button-container">
             <div className="returns-orders-container">
                 <div className="returns">
                     Returns
