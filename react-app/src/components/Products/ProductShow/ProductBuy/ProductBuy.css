@@ -11,8 +11,14 @@
     padding: 10px 25px;
 }
 
+.buy-card-dollars {
+    font-size: 20px;
+    font-weight: 500;
+}
+
 .buy-card-price {
     display: flex;
+    align-items: center;
     gap: 5px;
 }
 
@@ -85,10 +91,17 @@
     background: #F7CA00;
 }
 
+.bottom-buy-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .secure-container {
     display: flex;
     align-items: flex-start;
-    gap: 88.5px;
+    /* justify-content: space-between; */
+    gap: 148px;
     width: 100%;
     margin-top: 10px;
     font-size: 13px;
@@ -120,8 +133,9 @@
 
 .ships-from-sold-by-gift {
     display: flex;
-    width: 100%;
-    gap: 30px;
+    /* justify-content: space-between; */
+    width: fit-content;
+    gap: 20px;
     color: #0F1111;
     font-size: 13px;
     line-height: 16px;
@@ -153,12 +167,16 @@
 }
 
 .return-policy {
-    font-size: 13px;
-    line-height: 18px;
-    font-weight: 900;
+    margin: 10px 0;
+    width: 140px;
+    /* line-height: 18px; */
 }
 
 .eligible {
-    margin-left: 15px;
+    /* margin-left: 72px; */
     color: #007185;
+}
+
+.left-column {
+    width: fit-content;
 }

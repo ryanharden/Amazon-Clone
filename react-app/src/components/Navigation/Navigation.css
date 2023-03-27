@@ -78,6 +78,11 @@
   color: white;
 }
 
+.rainforest-retail-nav {
+  font-size: 18px;
+  font-weight: 700;
+}
+
 .logo {
   margin-left: 10px;
   margin-top: 32px;
@@ -189,7 +194,7 @@
   margin-top: -40px;
   height: 80px;
   width: 80px;
-  margin-left: 20px;
+  margin-left: 30px;
 }
 
 .header-left {

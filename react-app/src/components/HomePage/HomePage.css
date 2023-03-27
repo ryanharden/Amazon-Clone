@@ -37,6 +37,10 @@
     background-color: white;
 }
 
+.book-carousel-title, .phone-computer-carousel-title {
+    font-size: 20px;
+}
+
 .book-carousel-slide {
     display: flex;
     justify-content: space-around;

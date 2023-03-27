@@ -65,7 +65,16 @@
 .product-item-card-price {
     margin: 3px 0;
     font-size: 15px;
-    font-weight: 900;
+    /* font-weight: 900; */
+}
+
+.product-item-price-span {
+    font-weight: 600;
+}
+
+.price-count-item {
+    font-size: 14px;
+    font-weight: 500;
 }
 
 .product-item-prime {
