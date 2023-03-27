@@ -47,11 +47,22 @@
     font-weight: 900;
 }
 
+.placed-order-images {
+    display: flex;
+}
+
+.placed-order-quantity {
+    font-size: 14px;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 10px;
+}
+
 .placed-order-image {
     height: 60px;
     width: 60px;
     object-fit: scale-down;
-    margin-right: 10px;
+    margin-right: 20px;
 }
 
 .review-edit-orders {

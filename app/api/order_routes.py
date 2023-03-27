@@ -53,6 +53,12 @@ def create_order():
 
     db.session.add_all(orderItems)
     db.session.commit()
+    # order_images = []
+    # for item in cart.values():
+    #     for i in range(item["quantity"]):
+    #         order_images.append(products_by_id[item["product_id"]].images[0].url)
+    # return {"id": order.id, "order_images": order_images}, 201
+
     return {"id": order.id}, 201
 
 # Delete Order

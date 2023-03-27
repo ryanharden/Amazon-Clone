@@ -42,9 +42,12 @@ const OrderItem = ({ order, item, product, currentUser }) => {
                         </Link>
                     </div>
                     <div className="order-item-name-buttons">
-                        <Link to={`/products/${product.id}`}>
+                        <Link className="order-item-name-quantity" to={`/products/${product.id}`}>
                             <div className="order-item-name">
                                 {product.name}
+                            </div>
+                            <div className="item-quantity">
+                                <div className="order-item-quantity">x{item.quantity}</div>
                             </div>
                         </Link>
                         <div className="buy-view-buttons">

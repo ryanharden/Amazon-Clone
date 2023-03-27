@@ -71,7 +71,7 @@ const ProductBuy = ({ product }) => {
                     <div className="buy-now-button-container">
                         <OpenModalButton
                             className="buy-now"
-                            modalComponent={ currentUser ? <BuyFormModal /> : <LoginFormPage />}
+                            modalComponent={ currentUser ? <BuyFormModal quantity={quantity} /> : <LoginFormPage />}
                             buttonText="Buy Now"
                         />
                     </div>

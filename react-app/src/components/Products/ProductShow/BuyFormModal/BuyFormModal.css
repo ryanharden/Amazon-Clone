@@ -117,6 +117,11 @@
     padding: 5px;
 }
 
+.place-order-button-modal:hover {
+    background: #F7CA00;
+    border-color: #F2C200;
+}
+
 .place-order-modal {
     display: flex;
     justify-content: flex-end;
