@@ -58,3 +58,10 @@
         width: 45px;
     } */
 }
+
+@media screen and (max-width: 1000px) {
+    .search-bar-form {
+        width: calc(100vw - 660px);
+        margin-right: 20px;
+    }
+}
