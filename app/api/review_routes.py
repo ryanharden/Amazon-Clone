@@ -10,7 +10,7 @@ review_routes = Blueprint("reviews", __name__)
 
 
 # Get Reviews by product id
-@product_routes.route("/<int:product_id/reviews")
+@product_routes.route("/<int:product_id>/reviews")
 def get_reviews(product_id):
     reviews = Review.query.filter(Review.product_id == product_id).order_by(Review.created_at).all()
 
@@ -19,7 +19,7 @@ def get_reviews(product_id):
         return [review.to_dict() for review in reviews]
     else:
         return {"Error": "No Reviews Found"}
-        
+
 # Create Review
 @product_routes.route("/<int:product_id>/reviews", methods=["POST"])
 @login_required

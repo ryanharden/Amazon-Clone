@@ -12,7 +12,7 @@ class ReviewImage(db.Model):
     url = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.DateTime, default= datetime.datetime.utcnow())
 
-    review = db.relationship("Review", back_populates="review_images")
+    review = db.relationship("Review", back_populates="images")
 
     def to_dict(self):
         return {
