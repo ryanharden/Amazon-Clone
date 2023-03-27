@@ -47,6 +47,26 @@
     box-sizing: border-box;
 }
 
+@media screen and (max-width: 950px) {
+    .cart-confirm-right {
+        height: 180px;
+    }
+
+    .cart-confirm-left {
+        height: 180px;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .cart-confirm-right {
+        height: 200px;
+    }
+
+    .cart-confirm-left {
+        height: 200px;
+    }
+}
+
 .confirm-right-header {
     font-size: 18px;
     line-height: 24px;

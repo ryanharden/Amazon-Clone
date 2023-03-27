@@ -33,6 +33,17 @@
     font-weight: 900;
 }
 
+.checkout-link-name {
+    color: black;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.checkout-link-name:hover {
+    text-decoration: underline;
+    color: #c45500;
+}
+
 .checkout-logo {
     display: flex;
     flex-direction: column;
@@ -44,5 +55,5 @@
     width: 80px;
     object-fit: scale-down;
     margin-top: -40px;
-    margin-left: 18px;
+    margin-left: 31px;
 }
