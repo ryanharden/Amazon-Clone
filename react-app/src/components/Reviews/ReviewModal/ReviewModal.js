@@ -1,7 +1,7 @@
 import { useModal } from "../../../context/Modal";
 import "./ReviewModal.css";
 
-// import Stars from "../../../Stars/Stars";
+import Stars from "../Stars/Stars";
 
 const ReviewModal = ({ review, image }) => {
     const { closeModal } = useModal();

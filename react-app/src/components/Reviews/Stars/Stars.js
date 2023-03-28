@@ -2,7 +2,7 @@ import "./Stars.css";
 
 const Stars = ({ rating }) => {
 
-    if (isNaN(Number(rating))) return;
+    if (isNaN(Number(rating))) return null;
 
     let className = "zero";
 
@@ -11,7 +11,7 @@ const Stars = ({ rating }) => {
     } else if (rating > 4.1) {
         className = "four_half";
     } else if (rating >= 3.8) {
-        className = four;
+        className = "four";
     } else if (rating > 3.1) {
         className = "three_half";
     } else if (rating >= 2.8) {

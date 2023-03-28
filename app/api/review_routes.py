@@ -15,10 +15,9 @@ def get_reviews(product_id):
     reviews = Review.query.filter(Review.product_id == product_id).order_by(Review.created_at).all()
 
     if reviews:
-        # return [json.dumps(comment.to_dict() for comment in comments)]
         return [review.to_dict() for review in reviews]
-    else:
-        return {"Error": "No Reviews Found"}
+    # else:
+    #     return {"Error": "No Reviews Found"}
 
 # Create Review
 @product_routes.route("/<int:product_id>/reviews", methods=["POST"])

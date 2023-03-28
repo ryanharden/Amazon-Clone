@@ -3,35 +3,38 @@ import { useParams } from "react-router-dom";
 import ReviewForm from "../ReviewForm/ReviewForm";
 import { useSelector, useDispatch } from "react-redux";
 import { getProductThunk } from "../../../store/products";
+import { getReviewsThunk } from "../../../store/reviews";
 
 
-const EditProduct = () =>{
+const EditReview = () =>{
 
-    // const {productId} = useParams();
+    const {reviewId, productId} = useParams();
 
-    // const product = useSelector(state => state.Products.singleProduct)
-    // const dispatch = useDispatch();
+    const reviews = useSelector(state => state.Reviews.allReviews)
+    const dispatch = useDispatch();
     // console.log("product: ", product);
 
-    // useEffect(() => {
-    //     dispatch(getProductThunk(productId));
-    // }, [dispatch, productId]);
+    useEffect(() => {
+        dispatch(getReviewsThunk(productId));
+    }, [dispatch, productId]);
+
+    const singleReview = reviews[reviewId];
+    console.log("singleReview: ", singleReview);
 
 
-
-    if(!(Object.values(product)).length) return null
+    // if(!(Object.values(product)).length) return null
 
     const review = {
-        id: review.id,
-        rating: review.rating,
-        headline: review.headline,
-        body: review.body,
-        images: review.images,
+        id: singleReview.id,
+        rating: singleReview.rating,
+        headline: singleReview.headline,
+        body: singleReview.body,
+        images: singleReview.images,
     }
 
     return (
-        <ProductForm product={currentProduct} formType="edit"/>
+        <ReviewForm review={review} formType="edit"/>
     )
 }
 
-export default EditProduct;
+export default EditReview;

@@ -1,12 +1,10 @@
 import { useModal } from "../../../context/Modal";
-import "./ReviewModal.css";
+import "./AllReviewImages.css";
 
 // import Stars from "../../../Stars/Stars";
 
 const AllReviewImages = ({ images }) => {
     const { closeModal } = useModal();
-    let reviewDate = new Date(review.created_at);
-    reviewDate = reviewDate.toLocaleDateString('en-us', { year: "numeric", month: "long", day: "numeric" });
 
     return (
         <div className="all-review-images-container">

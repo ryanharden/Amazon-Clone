@@ -2,8 +2,9 @@ import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createProductThunk, deleteImageThunk, editProductThunk, getProductThunk } from "../../../store/products";
-import "./ReviewForm.css";
+import "./ProductForm.css";
 import emptyImage from "../../../assets/emtpy-image.jpeg";
+import { postProductImages } from "../../../store/products";
 import error from "../../../assets/dialog-error.248x256.png";
 import spinner from "../../../assets/Iphone-spinner-2.gif";
 

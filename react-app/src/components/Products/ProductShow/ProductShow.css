@@ -13,6 +13,8 @@
     padding: 20px 15px;
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
     /* height: 100%; */
     padding-bottom: 200px;
 }
@@ -20,5 +22,17 @@
 .product-show-top {
     display: flex;
     flex-direction: row;
+    border-bottom: 1px solid #D5D9D9;
+    padding-bottom: 25px;
+    /* justify-content: center; */
     /* height: fit-content; */
+}
+
+.product-show-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 25px;
+    margin-left: 100px;
+    width: 100%;
 }

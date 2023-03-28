@@ -4,26 +4,36 @@ import { useParams, Link } from 'react-router-dom';
 import { getReviewsThunk } from '../../../store/reviews';
 import OpenModalButton from '../../OpenModalButton';
 import ReviewForm from '../ReviewForm/ReviewForm';
+import ReviewModal from '../ReviewModal/ReviewModal';
 import ReviewItem from '../ReviewItem/ReviewItem';
 import AllReviewImages from '../AllReviewImages/AllReviewImages';
 import "./ProductReviews.css";
 
-const ProductReviews = ({ product, reviews}) => {
+const ProductReviews = ({ product }) => {
     const dispatch = useDispatch();
     const { productId } = useParams();
 
-    const product = useSelector(state => state.Products.singleProduct);
+    // const product = useSelector(state => state.Products.singleProduct);
 
     const productReviews = useSelector(state => state.Reviews.allReviews);
+    console.log("")
+    // const productReviews = product?.reviews;
 
-    const productReviewsArr = Object.values(productReviews);
+    // if (!Object.values(productReviews).length) {
+    //     const productReviewsArr = Object.values(productReviews);
+    // }
+
+    const productReviewsArr = Object.values(productReviews)
+    console.log("productReviewsArr: ", productReviewsArr);
 
     const reviewImages = [];
 
     productReviewsArr.forEach((review) => {
-        review.images.forEach((image) => {
-            reviewImages.push(image.url);
-        });
+        if (review.images && review.images.length > 0) {
+            review.images.forEach((image) => {
+                reviewImages.push(image.url);
+            });
+        }
     });
 
     useEffect(() => {
@@ -33,7 +43,7 @@ const ProductReviews = ({ product, reviews}) => {
     const first4Reviews = productReviewsArr.slice(0, 4);
 
     const reviewItems = productReviewsArr.map((review) => {
-        return <ReviewItem key={review.id} review={review} product={product} />
+        return <ReviewItem key={review.id} review={review} />
     });
 
     if (!productReviewsArr.length)
@@ -49,7 +59,7 @@ const ProductReviews = ({ product, reviews}) => {
                     <div className='share-thoughts'>
                         Share your thoughts with other customers
                     </div>
-                    <Link to={'/writereview'} className='write-a-review-link'>
+                    <Link to={`/products/${productId}/writereview`} className='write-a-review-link'>
                         Write a customer review
                     </Link>
                 </div>
@@ -62,12 +72,17 @@ const ProductReviews = ({ product, reviews}) => {
                     Reviews with images
                 </div>
                 <div className='review-images-container'>
-                    {first4Reviews.forEach((review) => {
-                        return <OpenModalButton
-                                    className="review-image-modal"
-                                    modalComponent={<ReviewModal review={review} image={review.images[0].url} />}
-                                    buttonText={<img className='review-image-image' src={review.images[0].url} />}
-                                />
+                    {first4Reviews.map((review) => {
+                        if (review.images && review.images.length > 0) {
+                            return <OpenModalButton
+                                key={review.id}
+                                className="review-image-modal"
+                                modalComponent={<ReviewModal review={review} image={review.images[0].url} />}
+                                buttonText={<img className='review-image-image' src={review.images[0].url} />}
+                            />
+                        } else {
+                            return null;
+                        }
                     })}
                 </div>
                 <div className='rest-of-images'>

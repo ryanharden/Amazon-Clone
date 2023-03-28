@@ -11,25 +11,25 @@ const ReviewItem = ({ review, product }) => {
             <div className="review-person-prof">
                 <img className="review-prof-pic" src="https://d1irxr40exwge2.cloudfront.net/profile.jpg" />
                 <div className="review-prof-name">
-                    {review.user.firstName} {review.user.lastName}
+                    {review?.user?.first_name} {review?.user?.last_name}
                 </div>
             </div>
             <div className="stars-headline">
                 <div className="review-stars">
-                    <Stars rating={review.rating} />
+                    <Stars rating={review?.rating} />
                 </div>
                 <div className="review-headline">
-                    {review.headline}
+                    {review?.headline}
                 </div>
             </div>
             <div className="reviewed-in">
                 Reviewed in the United States 🇺🇸 on {reviewDate}
             </div>
             <div className="review-body">
-                {review.body}
+                {review?.body}
             </div>
             <div className="individual-review-images">
-                {review.images.length > 0 && review.images.map((image) => <img key={image.id} className="individual-review-image" src={image.url} />)}
+                {review?.images?.length > 0 && review.images.map((image) => <img key={image.id} className="individual-review-image" src={image.url} />)}
             </div>
         </div>
     )

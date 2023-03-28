@@ -11,7 +11,7 @@ const CreateReview = () => {
 
     return (
         <>
-        <ReviewForm review={review} formType="create"/>
+            <ReviewForm review={review} formType="create"/>
         </>
     )
 }

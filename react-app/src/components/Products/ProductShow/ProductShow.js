@@ -5,6 +5,7 @@ import { useParams, useSearchParams } from "react-router-dom";
 import ProductBuy from "./ProductBuy/ProductBuy";
 import ProductImages from "./ProductImages/ProductImages";
 import ProductInfo from "./ProductInfo/ProductInfo";
+import ProductReviews from "../../Reviews/ProductReviews/ProductReviews";
 import { getProductThunk } from "../../../store/products";
 
 const ProductShow = () => {
@@ -26,6 +27,9 @@ const ProductShow = () => {
                 <ProductImages product={product} />
                 <ProductInfo product={product} />
                 <ProductBuy product={product} />
+            </div>
+            <div className="product-show-bottom">
+                <ProductReviews product={product} />
             </div>
         </div>
     )
