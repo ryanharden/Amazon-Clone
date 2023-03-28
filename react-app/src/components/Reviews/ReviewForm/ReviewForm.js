@@ -1,67 +1,43 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { createProductThunk, deleteImageThunk, editProductThunk, getProductThunk } from "../../../store/products";
-import "./ReviewForm.css";
+import { createReviewThunk, editReviewThunk, deleteReviewThunk, postReviewImages, deleteReviewImageThunk } from "../../../store/reviews";
+import "./ProductForm.css";
 import emptyImage from "../../../assets/emtpy-image.jpeg";
 import error from "../../../assets/dialog-error.248x256.png";
 import spinner from "../../../assets/Iphone-spinner-2.gif";
 
-const categories = [
-    "Automotive",
-    "Appliances",
-    "Baby",
-    "Beauty & Personal Care",
-    "Books",
-    "Cell Phones",
-    "Clothing, Shoes",
-    "Computers",
-    "Electronics",
-    "Garden & Outdoor",
-    "Grocery",
-    "Health & Household",
-    "Home & Kitchen",
-    "Luggage & Travel Gear",
-    "Musical Instruments",
-    "Office Products",
-    "Pet Supplies",
-    "Sports & Outdoors",
-    "Tools & Home Improvement",
-    "Toys",
-]
+
 
 const validFileTypes = ["image/jpeg", "image/png", "image/gif", "image/jpg"];
 
-const ProductForm = ({ formType, product }) => {
+const ReviewForm = ({ formType, product }) => {
+    const emptyStar = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMzgiIGhlaWdodD0iMzUiPjxkZWZzPjxwYXRoIGlkPSJhIiBkPSJNMTkgMGwtNS44NyAxMS41MkwwIDEzLjM3bDkuNSA4Ljk3TDcuMjYgMzUgMTkgMjkuMDIgMzAuNzUgMzVsLTIuMjQtMTIuNjYgOS41LTguOTctMTMuMTMtMS44NXoiLz48L2RlZnM+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48dXNlIGZpbGw9IiNGRkYiIHhsaW5rOmhyZWY9IiNhIi8+PHBhdGggc3Ryb2tlPSIjQTI2QTAwIiBzdHJva2Utb3BhY2l0eT0iLjc1IiBkPSJNMTkgMS4xbC01LjU0IDEwLjg4TDEuMSAxMy43Mmw4Ljk0IDguNDRMNy45MiAzNC4xIDE5IDI4LjQ2bDExLjA4IDUuNjQtMi4xMS0xMS45NCA4Ljk0LTguNDQtMTIuMzYtMS43NEwxOSAxLjF6Ii8+PC9nPjwvc3ZnPg==";
+    const star = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMzgiIGhlaWdodD0iMzUiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYSIgeDE9IjUwJSIgeDI9IjUwJSIgeTE9IjI3LjY1JSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNGRkNFMDAiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNGRkE3MDAiLz48L2xpbmVhckdyYWRpZW50PjxwYXRoIGlkPSJiIiBkPSJNMTkgMGwtNS44NyAxMS41MkwwIDEzLjM3bDkuNSA4Ljk3TDcuMjYgMzUgMTkgMjkuMDIgMzAuNzUgMzVsLTIuMjQtMTIuNjYgOS41LTguOTctMTMuMTMtMS44NXoiLz48L2RlZnM+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48dXNlIGZpbGw9InVybCgjYSkiIHhsaW5rOmhyZWY9IiNiIi8+PHBhdGggc3Ryb2tlPSIjQTI2QTAwIiBzdHJva2Utb3BhY2l0eT0iLjc1IiBkPSJNMTkgMS4xbC01LjU0IDEwLjg4TDEuMSAxMy43Mmw4Ljk0IDguNDRMNy45MiAzNC4xIDE5IDI4LjQ2bDExLjA4IDUuNjQtMi4xMS0xMS45NCA4Ljk0LTguNDQtMTIuMzYtMS43NEwxOSAxLjF6Ii8+PC9nPjwvc3ZnPg=="
+    const product = useSelector(state => state.Products.singleProduct)
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [errors, setErrors] = useState([]);
     const user = useSelector(state => state.session.user)
-    const { productId } = useParams();
 
-    const [name, setName] = useState("");
-    const [description, setDescription] = useState("");
-    const [category, setCategory] = useState("");
-    const [price, setPrice] = useState("");
-    const [inventory, setInventory] = useState("");
+    const [rating, setRating] = useState(0);
+    const [headline, setHeadline] = useState("");
+    const [body, setBody] = useState("");
     const [image, setImage] = useState(null);
     const [images, setImages] = useState([]);
     const [prevImages, setPrevImages] = useState([]);
-    const [prevImage, setPrevImage] = useState(null);
+    const [errors, setErrors] = useState([]);
+
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        setName(product?.name || "");
-        setDescription(product?.description || "");
-        setCategory(product?.category || "");
-        setPrice(product?.price || "");
-        setInventory(product?.inventory || "");
+        setRating(review?.rating || 0);
+        setHeadline(review?.headline || "");
+        setBody(review?.body || "");
         setImage(product?.images || null);
         setImages(product?.images || []);
         setPrevImages([]);
-        setPrevImage(null);
         setErrors([]);
-    }, [product]);
+    }, [review]);
 
     // Handle form submission for editing an existing product
     const handleEditSubmit = async (e) => {
@@ -421,4 +397,4 @@ const ProductForm = ({ formType, product }) => {
     )
 }
 
-export default ProductForm;
+export default ReviewForm;

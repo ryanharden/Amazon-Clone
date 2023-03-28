@@ -78,7 +78,7 @@ export const editReviewThunk = (reviewId, body) => async (dispatch) => {
 
 // Delete Review
 export const deleteReviewThunk = (reviewId) => async (dispatch) => {
-    const res = await fetch(`/api/reivews/${reviewId}`, {
+    const res = await fetch(`/api/reviews/${reviewId}`, {
         method: "DELETE"
     });
 
@@ -87,6 +87,24 @@ export const deleteReviewThunk = (reviewId) => async (dispatch) => {
         dispatch(deleteReview(reviewId));
         return deleteReview
     }
+}
+
+// Post Review Images
+export const postReviewImages = (reviewId, formData) => async (dispatch) => {
+    const res = await fetch(`/api/reviews/${reviewId}/images`, {
+        method: "POST",
+        body: formData,
+    });
+    if (res.ok) {
+        const images = await res.json();
+        return images
+    } else {
+        // console.log("res: ", res);
+        return res.errors;
+    }
+
+
+    // console.log("product: ", product)
 }
 
 // Delete Review Image

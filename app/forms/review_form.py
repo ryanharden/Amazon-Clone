@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField,DecimalField,IntegerField, SubmitField
-from wtforms.validators import DataRequired, Email, ValidationError,  Length,NumberRange
+from wtforms.validators import DataRequired, Email, ValidationError, Length,NumberRange
 
 class ReviewForm(FlaskForm):
     rating = IntegerField("Rating", validators=[DataRequired(), NumberRange(min=1)])
