@@ -32,16 +32,6 @@ const ReviewForm = ({ formType, review }) => {
 
     const [loading, setLoading] = useState(false);
 
-    // useEffect(() => {
-    //     async function getProduct() {
-    //         if (productId && !product) {
-    //             const product = await dispatch(getProductThunk(productId))
-    //             setProduct(product)
-    //         }
-    //     }
-    //     getProduct();
-    // }, [dispatch, productId]);
-
     useEffect(() => {
         dispatch(getProductThunk(productId))
     }, [dispatch, productId])
@@ -74,7 +64,7 @@ const ReviewForm = ({ formType, review }) => {
         }
 
         const editedReview = {
-            id: review.id,
+            id: review?.id,
             rating,
             body,
             headline,
@@ -87,10 +77,7 @@ const ReviewForm = ({ formType, review }) => {
             return;
         }
 
-
-        // console.log("editedProduct: ", editedProduct)
         const newNewReview = await dispatch(editReviewThunk(editedReview));
-        // console.log("newNewProduct: ", newNewProduct)
         if (images.length > 0 && newNewReview) {
             try {
                 if (images.length && newNewReview) {
@@ -142,7 +129,6 @@ const ReviewForm = ({ formType, review }) => {
             body,
             images
         };
-        // console.log("newProduct: ", newProduct)
 
         const validationErrors = validateForm(newReview);
         if (validationErrors.length > 0) {
@@ -181,24 +167,26 @@ const ReviewForm = ({ formType, review }) => {
     let previewImages;
     if (prevImages.length) {
         previewImages = (
-            <div className={'review-preview-images-container'}>
-                {prevImages.map((image, i) => {
-                    return (
-                        <div key={i} className='review-preview-image-container' >
-                            <button
-                                className={'preview-image-btn'}
+            // <div className={'review-preview-images-container'}>
+            prevImages.map((image, i) => {
+                return (
+                    <React.Fragment key={i}>
+                        <div className="review-preview-image-btn-container">
+                            <div
+                                className="review-preview-image-btn"
                                 onClick={(e) => handleImageRemove(e, i)}
-                            >x</button>
-                            <img
-                                className={'review-preview-images-image'}
-                                // src={image.url ? `${image.url}?${Date.now()}` : URL.createObjectURL(image)}
-                                src={image.url ? image.url : URL.createObjectURL(image)}
-                                alt={'preview'}
                             />
                         </div>
-                    )
-                })}
-            </div>
+                        <img
+                            className={'review-preview-images-image'}
+                            // src={image.url ? `${image.url}?${Date.now()}` : URL.createObjectURL(image)}
+                            src={image.url ? image.url : URL.createObjectURL(image)}
+                            alt={'preview'}
+                        />
+                    </React.Fragment>
+                )
+            })
+            // </div>
         )
     }
 
@@ -209,10 +197,12 @@ const ReviewForm = ({ formType, review }) => {
                 {images.map((image, i) => {
                     return (
                         <div key={i} className="review-preview-image-container">
-                            <button
-                                className="preview-image-btn"
-                                onClick={(e) => handleImageRemoveEdit(e, i)}
-                            >x</button>
+                            <div className="review-preview-image-btn-container">
+                                <div
+                                    className="review-preview-image-btn"
+                                    onClick={(e) => handleImageRemoveEdit(e, i)}
+                                />
+                            </div>
                             <img
                                 className="review-preview-images-image"
                                 src={image.url ? image.url : URL.createObjectURL(image)}
@@ -224,7 +214,6 @@ const ReviewForm = ({ formType, review }) => {
             </div>
         )
     }
-
 
     const handleImageRemove = (e, i) => {
         e.preventDefault();
@@ -325,16 +314,18 @@ const ReviewForm = ({ formType, review }) => {
                 )}
                 <div className="review-form-header">
                     <div className="review-form-title">
-                        {formType === "create" ? "Create Review" : "Edit Review"}
+                        {review && formType === "edit" ? "Edit Review" : "Create Review"}
                     </div>
-                    <div onClick={deleteReview} className="review-form-delete">
-                        Delete Review
-                    </div>
+                    {formType === "edit" && (
+                        <div onClick={deleteReview} className="review-form-delete">
+                            Delete Review
+                        </div>
+                    )}
                 </div>
-                <form className="review-form" onSubmit={formType === "create" ? handleCreateSubmit : handleEditSubmit} encType="multipart/form-data">
+                <form className="review-form" onSubmit={review && formType === "edit" ? handleEditSubmit : handleCreateSubmit} encType="multipart/form-data">
                     <div className="review-form-product-image-name">
                         <img className="review-form-product-image" src={product?.images?.[0]?.url} />
-                        {console.log("productImage: ", product?.images?.[0]?.url)}
+                        {/* {console.log("productImage: ", product?.images?.[0]?.url)} */}
                         <div className="review-form-product-name">
                             {product?.name}
                         </div>
@@ -372,12 +363,15 @@ const ReviewForm = ({ formType, review }) => {
                         />
                     </div>
                     <div className="review-image-input">
-                        <div className="total-images-container">
-                            <label className="review-images-add" htmlFor="images"><img alt="" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMjZweCIgaGVpZ2h0PSIyNnB4IiB2aWV3Qm94PSIwIDAgMjYgMjYiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDUwLjIgKDU1MDQ3KSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDx0aXRsZT5TaGFwZTwvdGl0bGU+CiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4KICAgIDxkZWZzPjwvZGVmcz4KICAgIDxnIGlkPSJzaHJpbmtJbWFnZUNUQS04MCIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgaWQ9ImV4cGwtY29weS0yMjkiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC00Ny4wMDAwMDAsIC0zMjMuMDAwMDAwKSIgZmlsbD0iI0FBQjdCOCIgZmlsbC1ydWxlPSJub256ZXJvIj4KICAgICAgICAgICAgPGcgaWQ9ImFzaW5NZXRhIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLjAwMDAwMCwgMTE5LjAwMDAwMCkiPgogICAgICAgICAgICAgICAgPGcgaWQ9ImFkZE1lZGlhIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLjAwMDAwMCwgMTAwLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgIDxnIGlkPSJHcm91cCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTcuMDAwMDAwLCAxNy4wMDAwMDApIj4KICAgICAgICAgICAgICAgICAgICAgICAgPGcgaWQ9Ikdyb3VwLTIiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAuMDAwMDAwLCA1Ny4wMDAwMDApIj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxwb2x5Z29uIGlkPSJTaGFwZSIgcG9pbnRzPSI0NC4zIDQxLjcgNDQuMyAzMCA0MS43IDMwIDQxLjcgNDEuNyAzMCA0MS43IDMwIDQ0LjMgNDEuNyA0NC4zIDQxLjcgNTYgNDQuMyA1NiA0NC4zIDQ0LjMgNTYgNDQuMyA1NiA0MS43Ij48L3BvbHlnb24+CiAgICAgICAgICAgICAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgIDwvZz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg==" /></label>
-                            <div className="all-images-container">{formType === "edit" ? reviewImages : previewImages}</div>
+                        <div className="add-photo">
+                            Add photo
                         </div>
                         <div className="shoppers-find">
                             Shoppers find images and videos more helpful than text alone.
+                        </div>
+                        <div className="total-images-container">
+                            <label className="review-images-add" htmlFor="images"><img alt="" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMjZweCIgaGVpZ2h0PSIyNnB4IiB2aWV3Qm94PSIwIDAgMjYgMjYiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDUwLjIgKDU1MDQ3KSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDx0aXRsZT5TaGFwZTwvdGl0bGU+CiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4KICAgIDxkZWZzPjwvZGVmcz4KICAgIDxnIGlkPSJzaHJpbmtJbWFnZUNUQS04MCIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgaWQ9ImV4cGwtY29weS0yMjkiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC00Ny4wMDAwMDAsIC0zMjMuMDAwMDAwKSIgZmlsbD0iI0FBQjdCOCIgZmlsbC1ydWxlPSJub256ZXJvIj4KICAgICAgICAgICAgPGcgaWQ9ImFzaW5NZXRhIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLjAwMDAwMCwgMTE5LjAwMDAwMCkiPgogICAgICAgICAgICAgICAgPGcgaWQ9ImFkZE1lZGlhIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLjAwMDAwMCwgMTAwLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgIDxnIGlkPSJHcm91cCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTcuMDAwMDAwLCAxNy4wMDAwMDApIj4KICAgICAgICAgICAgICAgICAgICAgICAgPGcgaWQ9Ikdyb3VwLTIiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAuMDAwMDAwLCA1Ny4wMDAwMDApIj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxwb2x5Z29uIGlkPSJTaGFwZSIgcG9pbnRzPSI0NC4zIDQxLjcgNDQuMyAzMCA0MS43IDMwIDQxLjcgNDEuNyAzMCA0MS43IDMwIDQ0LjMgNDEuNyA0NC4zIDQxLjcgNTYgNDQuMyA1NiA0NC4zIDQ0LjMgNTYgNDQuMyA1NiA0MS43Ij48L3BvbHlnb24+CiAgICAgICAgICAgICAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgIDwvZz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg==" /></label>
+                            {formType === "edit" ? reviewImages : previewImages}
                         </div>
                         <input
                             type="file"
@@ -400,7 +394,7 @@ const ReviewForm = ({ formType, review }) => {
                         />
                     </div>
                     <div className="product-form-button-container">
-                        <button onClick={() => setLoading(true)} className="form-submit" type="submit">{formType === "create" ? "Submit" : "Save"}</button>
+                        <button onClick={() => setLoading(true)} className="form-submit" type="submit">{review && formType === "edit" ? "Save" : "Submit"}</button>
                         {loading && (<div className="loading-spinner"><img src={spinner} className="spinner" /><div className="loading">Loading...</div></div>)}
                         <button className="form-cancel" type="button" onClick={() => {
                             if (!images.length && !review.images.length && formType === "edit") {

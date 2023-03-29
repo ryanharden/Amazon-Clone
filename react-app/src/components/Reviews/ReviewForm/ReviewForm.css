@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: center;
     padding-top: 35px;
+    padding-bottom: 100px;
 }
 
 .review-form {
@@ -73,7 +74,7 @@
 }
 
 .review-form-input-headline {
-    margin-bottom: 15px;
+    /* margin-bottom: 15px; */
     padding-bottom: 25px;
     border-bottom: 1px solid #d5d9d9;
 }
@@ -98,6 +99,12 @@ input:focus {
 }
 
 .review-form-label {
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 700;
+}
+
+.add-photo {
     font-size: 18px;
     line-height: 24px;
     font-weight: 700;
@@ -131,7 +138,8 @@ input:focus {
     color: #565959;
     font-size: 14px;
     line-height: 20px;
-    margin-top: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
 }
 
 .review-preview-images-image {
@@ -139,7 +147,7 @@ input:focus {
     height: 90px;
     border-radius: 8px;
     object-fit: cover;
-    margin-right: -10px;
+    /* margin-right: -10px; */
     background-color: black;
 }
 
@@ -159,6 +167,8 @@ input:focus {
 .total-images-container {
     display: flex;
     width: 100%;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #d5d9d9;
 }
 
 .all-images-container {
@@ -168,7 +178,47 @@ input:focus {
 }
 
 .review-preview-images-container {
-    width: 100%;
+    height: 90px;
+    width: 90px;
     display: flex;
     flex-direction: row;
+}
+
+.review-preview-image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90px;
+    width: 90px;
+}
+
+#body.textarea-field {
+    margin-top: 15px;
+}
+
+.review-preview-image-btn-container {
+    position: relative;
+    top: 5px;
+    left: 83px;
+    height: 22px;
+    width: 22px;
+    z-index: 3;
+    border-radius: 9999px;
+    background-color: #fff;
+    box-shadow: 0 1px 2px 0 rgb(88 88 88 / 75%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.review-preview-image-btn {
+    background-image: url("https://d1irxr40exwge2.cloudfront.net/x-icon.png");
+    opacity: .64;
+    width: 10px;
+    height: 9px;
+    background-position: -297px -5px;
+    align-self: center;
+    vertical-align: baseline;
+    z-index: 4;
 }

@@ -51,6 +51,7 @@ export const getReviewsThunk = (productId) => async (dispatch) => {
 export const createReviewThunk = (productId, body) => async (dispatch) => {
     const res = await fetch(`/api/products/${productId}/reviews`, {
         method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body)
     });
 
@@ -58,6 +59,10 @@ export const createReviewThunk = (productId, body) => async (dispatch) => {
         const review = await res.json();
         dispatch(createReview(review))
         return review.id;
+    } else {
+        const errors = await res.json();
+        console.error("Error creating review:", errors);
+        throw new Error("Error creating review");
     }
 }
 

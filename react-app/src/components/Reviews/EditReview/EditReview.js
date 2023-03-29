@@ -6,14 +6,14 @@ import { getProductThunk } from "../../../store/products";
 import { getReviewsThunk } from "../../../store/reviews";
 
 
-const EditReview = () =>{
+const EditReview = () => {
 
     const {reviewId, productId} = useParams();
 
     const reviews = useSelector(state => state.Reviews.allReviews)
     const dispatch = useDispatch();
     // console.log("product: ", product);
-
+    
     useEffect(() => {
         dispatch(getReviewsThunk(productId));
     }, [dispatch, productId]);
