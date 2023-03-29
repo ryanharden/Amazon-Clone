@@ -25,6 +25,9 @@ const ReviewItem = ({ review, product }) => {
             <div className="reviewed-in">
                 Reviewed in the United States 🇺🇸 on {reviewDate}
             </div>
+            <div className="verified-purchase">
+                Verified Purchase
+            </div>
             <div className="review-body">
                 {review?.body}
             </div>

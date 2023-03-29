@@ -1,0 +1,12 @@
+.all-review-images-image {
+    width: 130px;
+    height: 130px;
+    object-fit: fill;
+}
+
+.review-modal-bottom {
+    display: grid;
+    margin: 15px 25px;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 10px;
+}

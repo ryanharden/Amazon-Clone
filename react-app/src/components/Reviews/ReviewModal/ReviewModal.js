@@ -11,7 +11,7 @@ const ReviewModal = ({ review, image }) => {
     return (
         <div className="review-modal-container">
             <div className="review-modal-top">
-                <div className="close" onClick={(e) => closeModal()}>
+                <div className="review-close" onClick={(e) => closeModal()}>
                 </div>
             </div>
             <div className="review-modal-bottom">
@@ -22,7 +22,7 @@ const ReviewModal = ({ review, image }) => {
                     <div className="review-modal-person-prof">
                         <img className="review-modal-prof-pic" src="https://d1irxr40exwge2.cloudfront.net/profile.jpg" />
                         <div className="review-modal-prof-name">
-                            {review.user.firstName} {review.user.lastName}
+                            {review.user.first_name} {review.user.last_name}
                         </div>
                     </div>
                     <div className="modal-stars-headline">
