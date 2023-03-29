@@ -65,6 +65,8 @@ const ReviewForm = ({ formType, review }) => {
 
         const editedReview = {
             id: review?.id,
+            // user_id: user.id,
+            product_id: productId,
             rating,
             body,
             headline,
@@ -124,6 +126,8 @@ const ReviewForm = ({ formType, review }) => {
         e.preventDefault();
 
         const newReview = {
+            // user_id: user.id,
+            product_id: productId,
             rating,
             headline,
             body,
@@ -147,7 +151,7 @@ const ReviewForm = ({ formType, review }) => {
                 // setLoading(true);
                 const newReviewId = await dispatch(createReviewThunk(productId, newReview))
                 if (images.length && newReviewId) {
-                    // console.log("im here: ", images);
+                    console.log("im here: ", images);
                     const formData = new FormData();
                     images.forEach((image) => {
                         formData.append("images", image);

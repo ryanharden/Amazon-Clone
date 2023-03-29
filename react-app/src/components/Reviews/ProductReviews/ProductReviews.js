@@ -16,7 +16,6 @@ const ProductReviews = ({ product }) => {
     // const product = useSelector(state => state.Products.singleProduct);
 
     const productReviews = useSelector(state => state.Reviews.allReviews);
-    console.log("")
     // const productReviews = product?.reviews;
 
     // if (!Object.values(productReviews).length) {
@@ -37,8 +36,8 @@ const ProductReviews = ({ product }) => {
     });
 
     useEffect(() => {
-        dispatch(getReviewsThunk(productId))
-    }, [dispatch, productId])
+        dispatch(getReviewsThunk(product?.id))
+    }, [dispatch, product?.id])
 
     const first4Reviews = productReviewsArr.slice(0, 4);
 
@@ -59,7 +58,7 @@ const ProductReviews = ({ product }) => {
                     <div className='share-thoughts'>
                         Share your thoughts with other customers
                     </div>
-                    <Link to={`/products/${productId}/writereview`} className='write-a-review-link'>
+                    <Link to={`/products/${product.id}/writereview`} className='write-a-review-link'>
                         Write a customer review
                     </Link>
                 </div>

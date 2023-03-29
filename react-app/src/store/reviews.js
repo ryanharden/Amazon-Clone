@@ -7,6 +7,7 @@ const CREATE_REVIEW = "REVIEWS/CREATE_REVIEW";
 const EDIT_REVIEW = "REVIEWS/EDIT_REVIEW";
 const DELETE_REVIEW = "REVIEWS/DELETE_REVIEW";
 const DELETE_IMAGE = "REVIEWS/DELETE_IMAGE";
+const CLEAR_REVIEWS = "REVIEWS/CLEAR_REVIEWS";
 
 // Action Creators
 
@@ -34,6 +35,10 @@ const deleteImage = (imageId) => ({
     type: DELETE_IMAGE,
     imageId
 });
+
+export const clearReviews = () => ({
+    type: CLEAR_REVIEWS
+})
 
 // Thunk Action Creators
 
@@ -65,6 +70,28 @@ export const createReviewThunk = (productId, body) => async (dispatch) => {
         throw new Error("Error creating review");
     }
 }
+// export const createReviewThunk = (productId, body) => async (dispatch) => {
+//     try {
+//         const res = await fetch(`/api/products/${productId}/reviews`, {
+//             method: "POST",
+//             headers: {
+//                 "Content-Type": "application/json",
+//             },
+//             body: JSON.stringify(body),
+//         });
+//         if (res.ok) {
+//             const review = await res.json();
+//             dispatch(createReview(review));
+//             return review.id;
+//         } else {
+//             throw res;
+//         }
+//     } catch (err) {
+//         const data = await err.json();
+//         console.error("Error creating review:", data);
+//         throw new Error("Error creating review");
+//     }
+// };
 
 // Edit Review
 export const editReviewThunk = (reviewId, body) => async (dispatch) => {
@@ -152,6 +179,12 @@ export default function reviewReducer(state = initialState, action) {
             newState = { ...state }
             delete newState.allReviews[action.reviewId]
             return newState
+
+        // Clear Reviews
+        case CLEAR_REVIEWS: // Add new reducer case
+            newState = { ...state };
+            newState.allReviews = {};
+            return newState;
 
         // Default
         default:

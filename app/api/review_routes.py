@@ -16,31 +16,32 @@ def get_reviews(product_id):
 
     if reviews:
         return [review.to_dict() for review in reviews]
-    # else:
-    #     return {"Error": "No Reviews Found"}
+    else:
+        return {}
 
 # Create Review
 @product_routes.route("/<int:product_id>/reviews", methods=["POST"])
 @login_required
 def create_review(product_id):
     form = ReviewForm()
-    form['crsf_token'].data = request.cookies['csrf_token']
+    form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         review = Review(
             headline = form.data["headline"],
             body = form.data["body"],
             rating = form.data["rating"],
             created_at = datetime.datetime.utcnow(),
-            product_id = product_id
+            product_id = product_id,
+            user_id=current_user.id
         )
         db.session.add(review)
         db.session.commit()
         return review.to_dict()
     return {"errors": validation_errors_to_error_messages(form.errors)}, 400
 
-@product_routes.route("/<int:product_id>/reviews/<int:review_id>/images", methods=["POST"])
+@review_routes.route("/<int:id>/images", methods=["POST"])
 @login_required
-def add_review_images(review_id):
+def add_review_images(id):
     # print("hi im here")
     if "images" not in request.files:
         return {"errors": "Image required"}, 400
@@ -65,7 +66,7 @@ def add_review_images(review_id):
 
         review_image = ReviewImage(
             url = image_url,
-            review_id = review_id
+            review_id = id
         )
 
         db.session.add(review_image)

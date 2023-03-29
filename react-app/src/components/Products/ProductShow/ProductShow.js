@@ -7,6 +7,7 @@ import ProductImages from "./ProductImages/ProductImages";
 import ProductInfo from "./ProductInfo/ProductInfo";
 import ProductReviews from "../../Reviews/ProductReviews/ProductReviews";
 import { getProductThunk } from "../../../store/products";
+import { clearReviews } from "../../../store/reviews";
 
 const ProductShow = () => {
     const dispatch = useDispatch();
@@ -16,6 +17,7 @@ const ProductShow = () => {
     const product = useSelector(state => state.Products.singleProduct);
 
     useEffect(() => {
+        dispatch(clearReviews());
         dispatch(getProductThunk(productId))
     }, [dispatch, productId])
 
