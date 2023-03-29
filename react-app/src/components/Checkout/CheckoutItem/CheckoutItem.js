@@ -15,7 +15,7 @@ const CheckoutItem = ({ cartItem, product, quantity }) => {
             </div>
             <div className="checkout-item-right">
                 <div className="checkout-item-name">
-                    <Link className="checkout-link" to={`/products/${product.id}`}>
+                    <Link className="checkout-link-name" to={`/products/${product.id}`}>
                         {product.name}
                     </Link>
                 </div>

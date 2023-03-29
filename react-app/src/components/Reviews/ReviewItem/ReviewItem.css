@@ -1,0 +1,80 @@
+.review-item-container {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    /* width: 55vw;
+    word-wrap: break-word;
+    overflow-wrap: break-word; */
+}
+
+.review-person-prof {
+    display: flex;
+    gap: 10px;
+}
+
+.review-prof-pic {
+    height: 30px;
+    width: 30px;
+}
+
+.review-prof-name {
+    color: #0F1111;
+    font-size: 13px;
+    line-height: 19px;
+    align-self: center;
+}
+
+.stars-headline {
+    display: flex;
+    gap: 10px;
+}
+
+.review-headline {
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 700;
+    color: #0F1111;
+    word-break: break-all;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+.reviewed-in {
+    margin-top: -5px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #565959;
+}
+
+.verified-purchase {
+    color: #c45500;
+    font-size: 12px;
+    line-height: 10px;
+    font-weight: 700;
+}
+
+.review-body {
+    display: flex;
+    /* width: 55vw; */
+    margin: 5px 0;
+    font-size: 14px;
+    line-height: 20px;
+    color: #0F1111;
+    word-break: break-all;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+.individual-review-images {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    overflow: hidden;
+}
+
+.individual-review-image {
+    height: 90px;
+    width: 90px;
+    object-fit: fill;
+    align-self: flex-start;
+}

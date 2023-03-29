@@ -36,7 +36,7 @@ const ProductBuy = ({ product }) => {
         <div className="buy-card-container">
             <div className="buy-card-top">
                 <div className="buy-card-price">
-                    <div className="dollars">${product.price}</div> ({product.price} / count)
+                    <div className="buy-card-dollars">${product.price}</div> ({product.price} / count)
                 </div>
                 <div className="buy-card-prime">
                 </div>
@@ -71,46 +71,54 @@ const ProductBuy = ({ product }) => {
                     <div className="buy-now-button-container">
                         <OpenModalButton
                             className="buy-now"
-                            modalComponent={ currentUser ? <BuyFormModal /> : <LoginFormPage />}
+                            modalComponent={currentUser ? <BuyFormModal quantity={quantity} /> : <LoginFormPage />}
                             buttonText="Buy Now"
                         />
                     </div>
                 </div>
             }
-            <div className="secure-container">
-                <div className="lock">
-                    <i className="fa-solid fa-lock"></i>
-                </div>
-                <div className="secure-transaction">
-                    Secure transaction
-                </div>
-            </div>
-            <div className="ships-from-sold-by-gift">
-                <div className="left-column">
-                    <div className="ships-from">
-                        Ships from
+            <div className="bottom-buy-card">
+                <div className="secure-container">
+                    <div className="lock">
+                        <i className="fa-solid fa-lock"></i>
                     </div>
-                    <div className="sold-by-buy">
-                        Sold by
-                    </div>
-                    <div className="gift-opt-buy">
-                        Gift options
+                    <div className="secure-transaction">
+                        Secure transaction
                     </div>
                 </div>
-                <div className="right-column">
-                    <div className="ship-from">
-                        Rainforest Retail
+                <div className="ships-from-sold-by-gift">
+                    <div className="left-column">
+                        <div className="ships-from">
+                            Ships from
+                        </div>
+                        <div className="sold-by-buy">
+                            Sold by
+                        </div>
+                        <div className="gift-opt-buy">
+                            Gift options
+                        </div>
+                        <div className="return-policy">
+                            Return policy:
+                        </div>
                     </div>
-                    <div className="card-seller">
-                        {product.seller?.first_name} {product.seller?.last_name}
-                    </div>
-                    <div className="card-gift-opt">
-                        Add at checkout
+                    <div className="right-column">
+                        <div className="ship-from">
+                            Rainforest Retail
+                        </div>
+                        <div className="card-seller">
+                            {product.seller?.first_name} {product.seller?.last_name}
+                        </div>
+                        <div className="card-gift-opt">
+                            Add at checkout
+                        </div>
+                        <div className="eligible">
+                            Eligible for Refund or Replacement
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div className="return-policy">
+                {/* <div className="return-policy">
                 Return policy: <span className="eligible">Eligible for Refund or Replacement</span>
+            </div> */}
             </div>
         </div>
     )

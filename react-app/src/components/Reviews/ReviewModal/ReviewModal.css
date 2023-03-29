@@ -1,0 +1,91 @@
+.review-modal-top {
+    display: flex;
+    justify-content: flex-end;
+    padding: 25px;
+    background-color: #f0f2f2;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.review-close {
+    background-image: url("https://d1irxr40exwge2.cloudfront.net/x-icon.png");
+    opacity: .64;
+    min-width: 15px;
+    height: 9px;
+    background-position: -297px -5px;
+    align-self: center;
+    cursor: pointer;
+}
+
+.review-modal-bottom {
+    display: flex;
+}
+
+.review-modal-left {
+    margin: 25px 15px;
+    height: 400px;
+    width: 400px;
+}
+
+.review-modal-image {
+    height: 400px;
+    width: 400px;
+    object-fit: fill;
+}
+
+.review-modal-right {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin: 25px 15px 25px 0;
+    width: 350px;
+}
+
+.review-modal-person-prof {
+    display: flex;
+    gap: 10px;
+}
+
+.review-modal-prof-pic {
+    height: 30px;
+    width: 30px;
+}
+
+.review-modal-prof-name {
+    color: #0F1111;
+    font-size: 13px;
+    line-height: 19px;
+    align-self: center;
+}
+
+.modal-stars-headline {
+    display: flex;
+    gap: 10px;
+}
+
+.review-modal-headline {
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 700;
+    color: #0F1111;
+    word-break: break-all;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+.modal-reviewed-in {
+    margin-top: -5px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #565959;
+}
+
+.review-modal-body {
+    margin: 5px 0;
+    font-size: 14px;
+    line-height: 20px;
+    color: #0F1111;
+    word-break: break-all;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+}

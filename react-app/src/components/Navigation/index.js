@@ -22,7 +22,9 @@ function Navigation({ isLoaded }) {
 				<div className="header-left">
 					<div className="logo">
 						<Link className="nav-bar-nav-link" exact to="/">
-							Rainforest Retail
+							<div className='rainforest-retail-nav'>
+								Rainforest Retail
+							</div>
 						</Link>
 						<Link className="nav-bar-nav-link" exact to="/">
 							<img className="vector" src={vector} alt="vector" />
@@ -47,8 +49,8 @@ function Navigation({ isLoaded }) {
 				</div>
 			</div>
 			<div className='home-header'>
-                <FilterBar />
-            </div>
+				<FilterBar />
+			</div>
 		</div>
 	);
 }

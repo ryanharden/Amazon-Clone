@@ -1,20 +1,28 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { useModal } from "../../../../context/Modal";
+import { createOrderThunk } from "../../../../store/orders";
 import "./BuyFormModal.css";
 
-const BuyFormModal = () => {
-    // const dispatch = useDispatch();
+const BuyFormModal = ({ quantity }) => {
+    const dispatch = useDispatch();
     // const history = useHistory();
     const { closeModal } = useModal();
     const navigate = useNavigate();
     // const { productId } = useParams();
+
     const product = useSelector(state => state.Products.singleProduct);
     const currentUser = useSelector(state => state.session.user);
 
-    const handleBuy = () => {
-        closeModal();
-        navigate('/placedorder')
+    // 1: {id: 1, product_id: 18, quantity: 1, user_id: 1}
+    const handleBuy = async () => {
+        const cartItems = {1: {product_id: product.id, quantity: quantity, user_id: currentUser.id }}
+        console.log("cartItems buy: ", cartItems);
+        const order = await dispatch(createOrderThunk({ cart: cartItems }));
+        if (order) {
+            closeModal();
+            navigate('/placedorder');
+        }
     }
 
     return (
@@ -60,7 +68,7 @@ const BuyFormModal = () => {
                     Total
                 </div>
                 <div className="total-price">
-                    ${parseFloat(product.price /* * quantity*/).toFixed(2)}
+                    ${parseFloat(product.price * quantity).toFixed(2)}
                 </div>
                 <div className="tax">
                     (includes tax)

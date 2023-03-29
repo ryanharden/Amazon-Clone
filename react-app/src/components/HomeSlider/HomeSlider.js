@@ -147,7 +147,7 @@ const HomeSlider = ({ slides }) => {
                             ))}
                         </div>
                     </div>
-                    <div className="card-container">
+                    <div className="card-container-trending">
                         <div className="card-title">Trending Products</div>
                         <div className="card-image-container">
                             {trendingProducts.map(product => (
@@ -162,7 +162,7 @@ const HomeSlider = ({ slides }) => {
                             ))}
                         </div>
                     </div>
-                    <div className="card-container">
+                    <div className="card-container-explore">
                         <div className="card-title">Explore Essentials</div>
                         <div className="card-image-container">
                             {essentialProducts?.map(product => (

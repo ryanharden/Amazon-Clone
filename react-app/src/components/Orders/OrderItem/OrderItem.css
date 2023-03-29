@@ -62,6 +62,18 @@
     text-decoration: underline;
 }
 
+.order-item-name-quantity {
+    display: flex;
+    align-items: flex-start;
+}
+
+.order-item-quantity {
+    font-size: 15px;
+    color: black;
+    margin-left: 20px;
+}
+
+
 .buy-view-buttons {
     display: flex;
     flex-direction: row;

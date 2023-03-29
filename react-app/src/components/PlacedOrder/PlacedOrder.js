@@ -13,9 +13,15 @@ const PlacedOrder = () => {
     const allProductsArr = Object.values(products);
     const currentUser = useSelector(state => state.session.user);
     const order = useSelector(state => state.Orders)[0];
+    // console.log("order: ", order);
+
 
     const order_images = [];
-    order?.order_items?.forEach(item => order_images.push(allProductsArr[item.product_id]?.images[0].url))
+    order?.order_items?.forEach(item => order_images.push(allProductsArr[item.product_id - 1]?.images[0].url))
+
+    console.log("order.order_items: ", order?.order_items)
+    // the product_id values in the order are not zero-indexed, while the indexes of the allProductsArr array are zero-indexed. This means that there might be an off-by-one error when accessing the product images in allProductsArr.
+    // console.log("order_images: ", order_images);
     useEffect(() => {
         dispatch(getProductsThunk());
         dispatch(getOrdersThunk());
@@ -51,12 +57,19 @@ const PlacedOrder = () => {
                         <div className='placed-order-delivery-date'>
                             {deliveryDate}
                         </div>
-                        <div className='placed-order-images'>
-                            {order_images.map((image, i) => <img key={i} className='placed-order-image' src={image} />)}
+                        <div className="placed-order-images">
+                            {order_images.map((image, i) => (
+                                <div key={i} className="placed-order-image-container">
+                                        <div className="placed-order-quantity">
+                                            x{order.order_items[i].quantity}
+                                        </div>
+                                    <img className="placed-order-image" src={image} />
+                                </div>
+                            ))}
                         </div>
                     </div>
                     <Link to={'/orders/current'} className='review-edit-orders'>
-                        Review or edit your recent orders <img className='chevright-order' src={chevright}/>
+                        Review or edit your recent orders <img className='chevright-order' src={chevright} />
                     </Link>
                 </div>
                 <div className='empty-cart-container'>

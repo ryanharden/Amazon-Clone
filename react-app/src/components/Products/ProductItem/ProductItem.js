@@ -24,7 +24,7 @@ const ProductItem = ({ product }) => {
                     1 Count (Pack of 1)
                 </div>
                 <div className="product-item-card-price">
-                    ${product?.price} ({product?.price}/count)
+                    $<span className="product-item-price-span">{product?.price}</span> <span className="price-count-item">({product?.price}/count)</span>
                 </div>
                 <div className="product-item-prime">
                 </div>

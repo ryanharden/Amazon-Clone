@@ -27,6 +27,47 @@
     align-items: center;
 }
 
+.link-bar-link-container-clothing {
+    box-sizing: border-box;
+    border: 1px solid transparent;
+    display: flex;
+    align-items: center;
+}
+
+.link-bar-link-container-home {
+    box-sizing: border-box;
+    border: 1px solid transparent;
+    display: flex;
+    align-items: center;
+}
+
+.link-bar-link-container-sports {
+    box-sizing: border-box;
+    border: 1px solid transparent;
+    display: flex;
+    align-items: center;
+}
+
+@media screen and (max-width: 975px) {
+    .link-bar-link-container-clothing {
+        display: none;
+    }
+}
+
+
+@media screen and (max-width: 835px) {
+    .link-bar-link-container-home {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .link-bar-link-container-sports {
+        display: none;
+    }
+}
+
+
 .links-bar-link {
     color: white;
     font-size: 14px;

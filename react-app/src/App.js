@@ -23,6 +23,7 @@ import FeatureComing from "./components/FeatureComing/FeatureComing";
 import "./App.css";
 import SearchProducts from "./components/Products/SearchProducts/SearchProducts";
 import OrderPage from "./components/Orders/OrderPage/OrderPage";
+import ReviewForm from "./components/Reviews/ReviewForm/ReviewForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -75,6 +76,8 @@ function App() {
             <Route path="/featurecoming" element={<FeatureComing />} />
 
             <Route path="/orders/current" element={<OrderPage />} />
+
+            <Route path="/products/:productId/writereview" element={<ReviewForm />} />
 
             {/* <Route path={["/users/:userId/products", "/createproduct", "/editproduct/:productId"]}>
             <UserProductPage />

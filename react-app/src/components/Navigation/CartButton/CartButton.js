@@ -33,10 +33,10 @@ const CartButton = () => {
     };
 
     // const quantity = findQuantity(cartItemsArr);
-    const qClassName = "cart-quantity" + (quantity < 10 ? "" : "ten");
+    const qClassName = "cart-quantity" + (quantity < 10 ? "" : " ten");
     return (
         <Link to="/cart" className="cart-button-container">
-            <div className="cart-quantity">{user ? quantity : 0}</div>
+            <div className={qClassName}>{user ? quantity : 0}</div>
             <div className="cart-cart-image">
                 <div className="cart-image" />
                 <div className="cart-title">Cart</div>

@@ -43,7 +43,7 @@ export const getOrdersThunk = () => async (dispatch) => {
 // Create Order
 
 export const createOrderThunk = (body) => async (dispatch) => {
-    console.log('createOrderThunk called');
+    // console.log('createOrderThunk called');
     const res = await fetch('/api/orders', {
         method: "POST",
         headers: {

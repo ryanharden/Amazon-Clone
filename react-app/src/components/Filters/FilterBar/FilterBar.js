@@ -12,19 +12,19 @@ const FilterBar = () => {
             <div className='link-bar-link-container'>
                 <Link to={'/Books'} className='links-bar-link'>Books</Link>
             </div>
-            <div className='link-bar-link-container'>
+            <div className='link-bar-link-container-clothing'>
                 <Link to={'/Clothing,Shoes'} className='links-bar-link'>Clothing, Shoes</Link>
             </div>
             <div className='link-bar-link-container'>
                 <Link to={'/Electronics'} className='links-bar-link'>Electronics</Link>
             </div>
-            <div className='link-bar-link-container'>
+            <div className='link-bar-link-container-home'>
                 <Link to={'/Home&Kitchen'} className='links-bar-link'>Home & Kitchen</Link>
             </div>
             <div className='link-bar-link-container'>
                 <Link to={'/RainforestBasics'} className='links-bar-link'>Rainforest Basics</Link>
             </div>
-            <div className='link-bar-link-container'>
+            <div className='link-bar-link-container-sports'>
                 <Link to={'/Sports&Outdoors'} className='links-bar-link'>Sports & Outdoors</Link>
             </div>
             <div className='link-bar-link-container'>

@@ -10,10 +10,7 @@ const Order = ({ order, currentUser, orderItemsWithProduct }) => {
     const dispatch = useDispatch();
     const createdAt = (new Date(order.created_at)).toLocaleDateString('en-us', { year: "numeric", month: "long", day: "numeric" });
     const total = order.order_items.reduce((total, order_item) => total += order_item.price * order_item.quantity, 0)
-
-    // const allOrderItems = orderItemsWithProduct?.map(product => {
-    //     return <OrderItem key={product?.id} product={product} />
-    // })
+    
     const orderItems = orderItemsWithProduct.filter(item => item?.order_id === order.id);
     const allOrderItems = orderItems.map(item => {
         return <OrderItem key={item.id} order={order} item={item} product={item.product} currentUser={currentUser} />;
