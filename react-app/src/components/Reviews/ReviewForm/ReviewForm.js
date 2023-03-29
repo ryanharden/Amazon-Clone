@@ -108,8 +108,8 @@ const ReviewForm = ({ formType, review }) => {
             return;
         }
         // console.log("files: ", files);
-        if (images.length + files.length > 6) {
-            setErrors(["A product can have a max of 6 images"]);
+        if (images.length + files.length > 4) {
+            setErrors(["A review can have a max of 4 images"]);
             return;
         }
         const imageFiles = Array.from(files);
@@ -286,8 +286,8 @@ const ReviewForm = ({ formType, review }) => {
 
         if (!form.headline) {
             errors.push("A headline is required");
-        } else if (form.headline.length > 200) {
-            errors.push("Headline must be less than 200 characters");
+        } else if (form.headline.length > 50) {
+            errors.push("Headline must be less than 50 characters");
         } else if (form.headline.length < 3) {
             errors.push("Headline must be at least 3 characters")
         }

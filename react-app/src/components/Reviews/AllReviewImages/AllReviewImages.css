@@ -4,9 +4,12 @@
     object-fit: fill;
 }
 
-.review-modal-bottom {
+.all-review-images-images {
+    display: flex;
     display: grid;
     margin: 15px 25px;
     grid-template-columns: repeat(5, 1fr);
     grid-gap: 10px;
+    /* gap: 10px; */
 }
+

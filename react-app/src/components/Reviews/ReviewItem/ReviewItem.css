@@ -2,6 +2,9 @@
     display: flex;
     flex-direction: column;
     gap: 6px;
+    /* width: 55vw;
+    word-wrap: break-word;
+    overflow-wrap: break-word; */
 }
 
 .review-person-prof {
@@ -31,6 +34,9 @@
     line-height: 16px;
     font-weight: 700;
     color: #0F1111;
+    word-break: break-all;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
 }
 
 .reviewed-in {
@@ -48,10 +54,13 @@
 }
 
 .review-body {
+    display: flex;
+    /* width: 55vw; */
     margin: 5px 0;
     font-size: 14px;
     line-height: 20px;
     color: #0F1111;
+    word-break: break-all;
     overflow-wrap: break-word;
     white-space: pre-wrap;
 }

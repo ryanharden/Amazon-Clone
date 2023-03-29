@@ -80,17 +80,17 @@ const ProductReviews = ({ product }) => {
                                 buttonText={<img className='review-image-image' src={review.images[0].url} />}
                             />
                         } else {
-                            return null;
+                            return "No reviews with images yet!";
                         }
                     })}
                 </div>
-                <div className='rest-of-images'>
+                {reviewImages.length > 0 && <div className='rest-of-images'>
                     <OpenModalButton
                         className="see-all-images-modal"
                         modalComponent={<AllReviewImages images={reviewImages} />}
                         buttonText="See all customer images"
                     />
-                </div>
+                </div>}
             </div>
             <div className='product-reviews-bottom'>
                 <div className='reviews-bottom-header'>
