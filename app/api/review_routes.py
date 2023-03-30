@@ -80,13 +80,16 @@ def add_review_images(id):
 @review_routes.route("/<int:id>", methods=["PUT"])
 @login_required
 def edit_review(id):
-    form = ReviewForm()
     review = Review.query.get(id)
 
-    if current_user.id == review.buyer_id:
-        review.headline = form.data["headline"],
-        review.body = form.data["body"],
-        review.rating = form.data["rating"],
+    if current_user.id == review.user_id:
+        form = ReviewForm()
+        form['csrf_token'].data = request.cookies['csrf_token']
+        if form.validate_on_submit():
+            form.populate_obj(review)
+            # review.rating = form.data["rating"]
+            # review.headline = form.data["headline"] # Updated headline value
+            # review.body = form.data["body"]
 
         db.session.add(review)
         db.session.commit()

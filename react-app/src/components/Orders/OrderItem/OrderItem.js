@@ -63,7 +63,9 @@ const OrderItem = ({ order, item, product, currentUser }) => {
                 </div>
             </div>
             <div className="order-item-right">
-
+                <Link to={`/products/${product.id}/writereview`} className='order-write-a-review-link'>
+                    Write a product review
+                </Link>
             </div>
         </div>
     )

@@ -7,29 +7,37 @@ import { getReviewsThunk } from "../../../store/reviews";
 
 
 const EditReview = () => {
+    const dispatch = useDispatch();
+    const {productId, reviewId} = useParams();
 
-    const {reviewId, productId} = useParams();
+    // console.log("reviewId: ", reviewId);
+    // console.log("productId: ", productId);
 
     const reviews = useSelector(state => state.Reviews.allReviews)
-    const dispatch = useDispatch();
-    // console.log("product: ", product);
-    
+    const reviewsArr = Object.values(reviews);
+    console.log("reviews: ", reviews);
+
     useEffect(() => {
         dispatch(getReviewsThunk(productId));
     }, [dispatch, productId]);
 
-    const singleReview = reviews[reviewId];
+    const singleReview = reviewsArr.find(review => review.id === parseInt(reviewId));
+
     console.log("singleReview: ", singleReview);
 
 
     // if(!(Object.values(product)).length) return null
 
     const review = {
-        id: singleReview.id,
-        rating: singleReview.rating,
-        headline: singleReview.headline,
-        body: singleReview.body,
-        images: singleReview.images,
+        id: reviewId,
+        rating: singleReview?.rating,
+        headline: singleReview?.headline,
+        body: singleReview?.body,
+        images: singleReview?.images,
+    }
+
+    if (!singleReview) {
+        return null;
     }
 
     return (

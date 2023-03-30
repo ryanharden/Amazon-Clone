@@ -70,34 +70,13 @@ export const createReviewThunk = (productId, body) => async (dispatch) => {
         throw new Error("Error creating review");
     }
 }
-// export const createReviewThunk = (productId, body) => async (dispatch) => {
-//     try {
-//         const res = await fetch(`/api/products/${productId}/reviews`, {
-//             method: "POST",
-//             headers: {
-//                 "Content-Type": "application/json",
-//             },
-//             body: JSON.stringify(body),
-//         });
-//         if (res.ok) {
-//             const review = await res.json();
-//             dispatch(createReview(review));
-//             return review.id;
-//         } else {
-//             throw res;
-//         }
-//     } catch (err) {
-//         const data = await err.json();
-//         console.error("Error creating review:", data);
-//         throw new Error("Error creating review");
-//     }
-// };
 
 // Edit Review
-export const editReviewThunk = (reviewId, body) => async (dispatch) => {
-    const res = await fetch(`/api/reviews/${reviewId}`, {
+export const editReviewThunk = (review) => async (dispatch) => {
+    const res = await fetch(`/api/reviews/${review.id}`, {
         method: "PUT",
-        body: JSON.stringify(body)
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(review)
     });
 
     if (res.ok) {
@@ -140,12 +119,17 @@ export const postReviewImages = (reviewId, formData) => async (dispatch) => {
 
 // Delete Review Image
 export const deleteReviewImageThunk = (imageId) => async (dispatch) => {
-    const res = await fetch(`/api/images/${imageId}`, {
+    const res = await fetch(`/api/images/reviews/${imageId}`, {
         method: "DELETE"
     });
 
     if (res.ok) {
         dispatch(deleteImage(imageId))
+    } else {
+        const data = await res.json();
+        if (data.errors) {
+            return data;
+        }
     }
 }
 
