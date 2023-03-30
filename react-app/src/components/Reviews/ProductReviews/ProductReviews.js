@@ -75,7 +75,20 @@ const ProductReviews = ({ product }) => {
     return (
         <div className='product-data-reviews-container'>
             <div className='review-data-wrapper'>
-                <ReviewData reviews={productReviewsArr} ratingCounts={ratingCounts} />
+                <div className='review-data-inside'>
+                    <ReviewData reviews={productReviewsArr} ratingCounts={ratingCounts} />
+                </div>
+                <div className='review-this-product-container-under'>
+                    <div className="review-this-product-under">
+                        Review this product
+                    </div>
+                    <div className='share-thoughts'>
+                        Share your thoughts with other customers
+                    </div>
+                    <Link to={`/products/${product.id}/writereview`} className='write-a-review-link'>
+                        Write a customer review
+                    </Link>
+                </div>
             </div>
             <div className='product-reviews-container'>
                 <div className='product-reviews-top'>

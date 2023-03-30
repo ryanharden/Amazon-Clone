@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     gap: 6px;
+    margin-top: 30px;
     /* width: 55vw;
     word-wrap: break-word;
     overflow-wrap: break-word; */
