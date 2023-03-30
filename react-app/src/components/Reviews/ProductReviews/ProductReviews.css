@@ -45,8 +45,15 @@
     text-decoration: none;
 }
 
+.product-data-reviews-container {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    gap: 80px;
+}
+
 .product-reviews-container {
-    max-width: 40vw;
+    width: 55vw;
 }
 
 .review-images-header {
@@ -101,4 +108,10 @@
 
 .see-all-images-modal:hover {
     color: #c45500;
+}
+
+
+.review-data-wrapper {
+    height: 290px;
+    border-bottom: 1px solid #D5D9D9;
 }

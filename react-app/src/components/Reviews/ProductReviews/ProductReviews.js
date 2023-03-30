@@ -8,13 +8,14 @@ import ReviewModal from '../ReviewModal/ReviewModal';
 import ReviewItem from '../ReviewItem/ReviewItem';
 import AllReviewImages from '../AllReviewImages/AllReviewImages';
 import "./ProductReviews.css";
+import ReviewData from '../ReviewData/ReviewData';
 
 const ProductReviews = ({ product }) => {
     const dispatch = useDispatch();
     const { productId } = useParams();
 
     const user = useSelector(state => state.session.user);
-    
+
     const productReviews = useSelector(state => state.Reviews.allReviews);
     // const productReviews = product?.reviews;
 
@@ -33,6 +34,13 @@ const ProductReviews = ({ product }) => {
                 reviewImages.push(image.url);
             });
         }
+    });
+
+    const ratingCounts = {};
+
+    productReviewsArr.forEach(review => {
+        const rating = review.rating;
+        ratingCounts[rating] = (ratingCounts[rating] || 0) + 1;
     });
 
     useEffect(() => {
@@ -65,39 +73,44 @@ const ProductReviews = ({ product }) => {
             </div>
         )
     return (
-        <div className='product-reviews-container'>
-            <div className='product-reviews-top'>
-                <div className='review-images-header'>
-                    Reviews with images
-                </div>
-                <div className='review-images-container'>
-                    {first4Reviews.map((review) => {
-                        if (review.images && review.images.length > 0) {
-                            return <OpenModalButton
-                                key={review.id}
-                                className="review-image-modal"
-                                modalComponent={<ReviewModal review={review} image={review.images[0].url} />}
-                                buttonText={<img className='review-image-image' src={review.images[0].url} />}
-                            />
-                        } else {
-                            return "No reviews with images yet!";
-                        }
-                    })}
-                </div>
-                {reviewImages.length > 0 && <div className='rest-of-images'>
-                    <OpenModalButton
-                        className="see-all-images-modal"
-                        modalComponent={<AllReviewImages images={reviewImages} />}
-                        buttonText="See all customer images"
-                    />
-                </div>}
+        <div className='product-data-reviews-container'>
+            <div className='review-data-wrapper'>
+                <ReviewData reviews={productReviewsArr} ratingCounts={ratingCounts} />
             </div>
-            <div className='product-reviews-bottom'>
-                <div className='reviews-bottom-header'>
-                    Top reviews from the United States
+            <div className='product-reviews-container'>
+                <div className='product-reviews-top'>
+                    <div className='review-images-header'>
+                        Reviews with images
+                    </div>
+                    <div className='review-images-container'>
+                        {first4Reviews.map((review) => {
+                            if (review.images && review.images.length > 0) {
+                                return <OpenModalButton
+                                    key={review.id}
+                                    className="review-image-modal"
+                                    modalComponent={<ReviewModal review={review} image={review.images[0].url} />}
+                                    buttonText={<img className='review-image-image' src={review.images[0].url} />}
+                                />
+                            } else {
+                                return "No reviews with images yet!";
+                            }
+                        })}
+                    </div>
+                    {reviewImages.length > 0 && <div className='rest-of-images'>
+                        <OpenModalButton
+                            className="see-all-images-modal"
+                            modalComponent={<AllReviewImages images={reviewImages} />}
+                            buttonText="See all customer images"
+                        />
+                    </div>}
                 </div>
-                <div className='all-review-items-container'>
-                    {reviewItems}
+                <div className='product-reviews-bottom'>
+                    <div className='reviews-bottom-header'>
+                        Top reviews from the United States
+                    </div>
+                    <div className='all-review-items-container'>
+                        {reviewItems}
+                    </div>
                 </div>
             </div>
         </div>
