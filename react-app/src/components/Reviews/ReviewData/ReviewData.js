@@ -45,7 +45,7 @@ const ReviewData = ({ reviews }) => {
                 </div>
             </div>
             <div className='total-ratings'>
-                {totalReviews} rating{totalReviews > 1 && "s"}
+                {totalReviews} global rating{totalReviews > 1 && "s"}
             </div>
             <div className="rating-bar">
                 <div className="star-rating">

@@ -15,7 +15,9 @@ const ProductReviews = ({ product }) => {
     const { productId } = useParams();
 
     const user = useSelector(state => state.session.user);
+    // console.log("user.id: ", user.id);
 
+    // console.log("product.seller_id: ", product?.seller.id)
     const productReviews = useSelector(state => state.Reviews.allReviews);
     // const productReviews = product?.reviews;
 
@@ -24,7 +26,7 @@ const ProductReviews = ({ product }) => {
     // }
 
     const productReviewsArr = Object.values(productReviews)
-    console.log("productReviewsArr: ", productReviewsArr);
+    // console.log("productReviewsArr: ", productReviewsArr);
 
     const reviewImages = [];
 
@@ -66,9 +68,15 @@ const ProductReviews = ({ product }) => {
                     <div className='share-thoughts'>
                         Share your thoughts with other customers
                     </div>
+                    {product?.seller.id == user.id ?
+                     <Link to={`/users/${user.id}/products`} className='write-a-review-link'>
+                        You own this product.
+                    </Link>
+                    :
                     <Link to={`/products/${product.id}/writereview`} className='write-a-review-link'>
                         Write a customer review
                     </Link>
+                    }
                 </div>
             </div>
         )
@@ -85,9 +93,15 @@ const ProductReviews = ({ product }) => {
                     <div className='share-thoughts'>
                         Share your thoughts with other customers
                     </div>
+                    {product?.seller.id == user.id ?
+                     <Link to={`/users/${user.id}/products`} className='write-a-review-link'>
+                        You own this product.
+                    </Link>
+                    :
                     <Link to={`/products/${product.id}/writereview`} className='write-a-review-link'>
                         Write a customer review
                     </Link>
+                    }
                 </div>
             </div>
             <div className='product-reviews-container'>
