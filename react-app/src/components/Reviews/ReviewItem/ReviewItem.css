@@ -105,3 +105,11 @@
     object-fit: fill;
     align-self: flex-start;
 }
+
+.review-image-small-modal {
+    height: 90px;
+    border: none;
+    padding: 0;
+    background: none;
+    cursor: pointer;
+}
