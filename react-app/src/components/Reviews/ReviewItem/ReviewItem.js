@@ -1,10 +1,20 @@
 import "./ReviewItem.css";
-import { Link } from "react-router-dom";
+import { deleteReviewThunk, getReviewsThunk, deleteReview } from "../../../store/reviews";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import Stars from "../Stars/Stars";
 
 const ReviewItem = ({ review, product, user }) => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     let reviewDate = new Date(review.created_at);
     reviewDate = reviewDate.toLocaleDateString('en-us', { year: "numeric", month: "long", day: "numeric" });
+
+    const deleteReview = async () => {
+        await dispatch(deleteReviewThunk(review.id));
+        dispatch(getReviewsThunk(product.id));
+    }
 
     return (
         <div className="review-item-container">
@@ -20,6 +30,9 @@ const ReviewItem = ({ review, product, user }) => {
                         <Link to={`/products/${product?.id}/reviews/${review?.id}/editreview`} className="edit-review-button">
                             <i className="fa-solid fa-file-pen"></i>
                         </Link>
+                        <div onClick={deleteReview} className="delete-review-button">
+                            <i className="fa-solid fa-trash"></i>
+                        </div>
                     </div>
                 }
             </div>

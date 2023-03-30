@@ -129,26 +129,25 @@ const ReviewForm = ({ formType, review }) => {
             return;
         }
 
-        if (images.length) {
-            try {
-                // setLoading(true);
-                const newReviewId = await dispatch(createReviewThunk(productId, newReview))
-                if (images.length && newReviewId) {
-                    console.log("im here: ", images);
-                    const formData = new FormData();
-                    images.forEach((image) => {
-                        formData.append("images", image);
-                    })
-                    await dispatch(postReviewImages(newReviewId, formData))
-                }
+
+        try {
+            // setLoading(true);
+            const newReviewId = await dispatch(createReviewThunk(productId, newReview))
+            if (images.length && newReviewId) {
+                console.log("im here: ", images);
+                const formData = new FormData();
+                images.forEach((image) => {
+                    formData.append("images", image);
+                })
+                await dispatch(postReviewImages(newReviewId, formData))
             }
-            catch (res) {
-                const data = await res.json();
-                if (data && data.errors) setErrors(data.errors)
-            };
-            navigate(`/products/${productId}`)
-            setLoading(true);
         }
+        catch (res) {
+            const data = await res.json();
+            if (data && data.errors) setErrors(data.errors)
+        };
+        navigate(`/products/${productId}`)
+        setLoading(true);
     }
 
     let previewImages;
@@ -178,24 +177,24 @@ const ReviewForm = ({ formType, review }) => {
     let reviewImages;
     if (review && review.images.length) {
         reviewImages = (
-                images.map((image, i) => {
-                    return (
-                        <React.Fragment key={i}>
-                            <div className="review-preview-image-btn-container">
-                                <div
-                                    className="review-preview-image-btn"
-                                    onClick={(e) => handleImageRemoveEdit(e, i)}
-                                />
-                            </div>
-                            <img
-                                className={'review-preview-images-image'}
-                                // src={image.url ? `${image.url}?${Date.now()}` : URL.createObjectURL(image)}
-                                src={image.url ? image.url : URL.createObjectURL(image)}
-                                alt={'preview'}
+            images.map((image, i) => {
+                return (
+                    <React.Fragment key={i}>
+                        <div className="review-preview-image-btn-container">
+                            <div
+                                className="review-preview-image-btn"
+                                onClick={(e) => handleImageRemoveEdit(e, i)}
                             />
-                        </React.Fragment>
-                    )
-                })
+                        </div>
+                        <img
+                            className={'review-preview-images-image'}
+                            // src={image.url ? `${image.url}?${Date.now()}` : URL.createObjectURL(image)}
+                            src={image.url ? image.url : URL.createObjectURL(image)}
+                            alt={'preview'}
+                        />
+                    </React.Fragment>
+                )
+            })
         )
     }
 

@@ -29,6 +29,28 @@
     align-self: center;
 }
 
+.edit-delete-review-container {
+    display: flex;
+    gap: 10px;
+}
+
+.fa-file-pen {
+    color: black;
+    cursor: pointer;
+}
+
+.fa-file-pen:hover {
+    color: #c45500;
+}
+
+.delete-review-button {
+    cursor: pointer;
+}
+
+.delete-review-button:hover {
+    color: #c45500;
+}
+
 .stars-headline {
     display: flex;
     gap: 10px;
