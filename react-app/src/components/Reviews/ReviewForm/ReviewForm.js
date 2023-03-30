@@ -21,7 +21,6 @@ const ReviewForm = ({ formType, review }) => {
     const user = useSelector(state => state.session.user)
 
     const [rating, setRating] = useState(0);
-    // const [product, setProduct] = useState({});
     const [headline, setHeadline] = useState("");
     const [body, setBody] = useState("");
     const [image, setImage] = useState(null);
@@ -35,8 +34,6 @@ const ReviewForm = ({ formType, review }) => {
     useEffect(() => {
         dispatch(getProductThunk(productId))
     }, [dispatch, productId])
-
-    // console.log("product: ", product);
 
     useEffect(() => {
         setRating(review?.rating || 0);
@@ -57,11 +54,6 @@ const ReviewForm = ({ formType, review }) => {
     // Handle form submission for editing an existing product
     const handleEditSubmit = async (e) => {
         e.preventDefault();
-
-        if (document.getElementsByClassName("review-preview-images-image").length === 0) {
-            setErrors(["Product must have at least one image"]);
-            return;
-        }
 
         const editedReview = {
             id: review?.id,
@@ -101,23 +93,19 @@ const ReviewForm = ({ formType, review }) => {
 
     const handleImages = async (e) => {
         const files = e.target.files;
-        // const fileTypes = Array.from(files).forEach(file => console.log("file-type: ", file.type))
         const invalidFiles = Array.from(files).filter(file => !validFileTypes.includes(file.type));
         if (invalidFiles.length > 0) {
             setErrors(["Invalid file type, please try again"]);
             return;
         }
-        // console.log("files: ", files);
         if (images.length + files.length > 4) {
             setErrors(["A review can have a max of 4 images"]);
             return;
         }
         const imageFiles = Array.from(files);
-        // console.log("imageFiles: ", imageFiles)
         if (imageFiles.length > 0) {
             setPrevImages([...prevImages, ...imageFiles]);
             setImages([...images, ...imageFiles]);
-            // console.log("prevImages: ", prevImages)
         }
     }
 
@@ -141,11 +129,6 @@ const ReviewForm = ({ formType, review }) => {
             return;
         }
 
-        if (!images.length) { // check if at least one image is uploaded
-            setErrors(["Must upload at least one image along with product"]);
-        }
-
-        // console.log("images: ", images);
         if (images.length) {
             try {
                 // setLoading(true);
@@ -171,7 +154,6 @@ const ReviewForm = ({ formType, review }) => {
     let previewImages;
     if (prevImages.length) {
         previewImages = (
-            // <div className={'review-preview-images-container'}>
             prevImages.map((image, i) => {
                 return (
                     <React.Fragment key={i}>
@@ -190,17 +172,15 @@ const ReviewForm = ({ formType, review }) => {
                     </React.Fragment>
                 )
             })
-            // </div>
         )
     }
 
     let reviewImages;
     if (review && review.images.length) {
         reviewImages = (
-            <div className="review-preview-images-container">
-                {images.map((image, i) => {
+                images.map((image, i) => {
                     return (
-                        <div key={i} className="review-preview-image-container">
+                        <React.Fragment key={i}>
                             <div className="review-preview-image-btn-container">
                                 <div
                                     className="review-preview-image-btn"
@@ -208,14 +188,14 @@ const ReviewForm = ({ formType, review }) => {
                                 />
                             </div>
                             <img
-                                className="review-preview-images-image"
+                                className={'review-preview-images-image'}
+                                // src={image.url ? `${image.url}?${Date.now()}` : URL.createObjectURL(image)}
                                 src={image.url ? image.url : URL.createObjectURL(image)}
-                                alt="preview"
+                                alt={'preview'}
                             />
-                        </div>
+                        </React.Fragment>
                     )
-                })}
-            </div>
+                })
         )
     }
 
@@ -223,10 +203,8 @@ const ReviewForm = ({ formType, review }) => {
         e.preventDefault();
         const newImages = [...images];
         const newPrevImages = [...prevImages];
-        // console.log(newImages);
         newImages.splice(i, 1);
         setImages(newImages);
-
         newPrevImages.splice(i, 1);
         setPrevImages(newPrevImages);
         if (newImages.length === 1) {
@@ -238,7 +216,6 @@ const ReviewForm = ({ formType, review }) => {
         e.preventDefault();
         const newImages = [...images];
         const newReviewImages = [...review.images];
-        // console.log(newImages);
         const deletedImage = newImages.splice(i, 1)[0];
         let deletedImageId;
         if (deletedImage.id) {
@@ -267,7 +244,7 @@ const ReviewForm = ({ formType, review }) => {
                 setPrevImage(updatedPreviewImages[idx]?.querySelector('.review-preview-images-image') || updatedPreviewImages[idx - 1]?.querySelector('.review-preview-images-image') || null);
                 newImages.splice(idx, 0, deletedImage);
             }
-            container.querySelector('.preview-image-btn').setAttribute('onclick', `handleImageRemoveEdit(event, ${idx})`);
+            container.querySelector('.review-preview-image-btn').setAttribute('onclick', `handleImageRemoveEdit(event, ${idx})`);
         });
         setPrevImages(newReviewImages?.map(image => ({ url: image.url })));
     };

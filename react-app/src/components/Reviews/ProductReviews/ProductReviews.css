@@ -98,3 +98,7 @@
     padding: 0;
     cursor: pointer;
 }
+
+.see-all-images-modal:hover {
+    color: #c45500;
+}

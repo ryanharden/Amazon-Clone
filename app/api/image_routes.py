@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
-from app.models import User, Product, ProductImage, db
+from app.models import User, Product, ProductImage, db, ReviewImage
 from app.forms import ProductForm
 from .user_routes import user_routes
 import app.s3 as s3
@@ -74,10 +74,20 @@ def upload_product_images():
         image_list.append(image_dict)
     return image_list
 
+# Delete Product Image
 @image_routes.route("/<int:id>", methods=["DELETE"])
 @login_required
 def delete_image(id):
     product_image = ProductImage.query.get(id)
     db.session.delete(product_image)
+    db.session.commit()
+    return {"message": "Successfully Deleted"}
+
+# Delete Review Image
+@image_routes.route("/reviews/<int:id>", methods=["DELETE"])
+@login_required
+def delete_review_image(id):
+    review_image = ReviewImage.query.get(id)
+    db.session.delete(review_image)
     db.session.commit()
     return {"message": "Successfully Deleted"}

@@ -13,7 +13,7 @@ const ProductReviews = ({ product }) => {
     const dispatch = useDispatch();
     const { productId } = useParams();
 
-    // const product = useSelector(state => state.Products.singleProduct);
+    const user = useSelector(state => state.session.user);
 
     const productReviews = useSelector(state => state.Reviews.allReviews);
     // const productReviews = product?.reviews;
@@ -42,7 +42,7 @@ const ProductReviews = ({ product }) => {
     const first4Reviews = productReviewsArr.slice(0, 4);
 
     const reviewItems = productReviewsArr.map((review) => {
-        return <ReviewItem key={review.id} review={review} />
+        return <ReviewItem key={review.id} product={product} review={review} user={user} />
     });
 
     if (!productReviewsArr.length)
