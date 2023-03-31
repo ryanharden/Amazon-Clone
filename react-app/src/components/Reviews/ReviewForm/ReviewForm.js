@@ -28,6 +28,7 @@ const ReviewForm = ({ formType, review }) => {
     const [prevImages, setPrevImages] = useState([]);
     const [prevImage, setPrevImage] = useState(null);
     const [errors, setErrors] = useState([]);
+    const [newImages, setNewImages] = useState([]);
 
     const [loading, setLoading] = useState(false);
 
@@ -62,6 +63,7 @@ const ReviewForm = ({ formType, review }) => {
             rating,
             body,
             headline,
+            images: [...images, ...newImages],
         };
 
         const validationErrors = validateForm(editedReview);
@@ -74,13 +76,12 @@ const ReviewForm = ({ formType, review }) => {
         const newNewReview = await dispatch(editReviewThunk(editedReview));
         if (images.length > 0 && newNewReview) {
             try {
-                if (images.length && newNewReview) {
-                    const formData = new FormData();
-                    images.forEach((image) => {
-                        formData.append("images", image);
-                    })
-                    await dispatch(postReviewImages(newNewReview.id, formData))
-                }
+                const formData = new FormData();
+                images.forEach((image) => {
+                    formData.append("images", image);
+                })
+                await dispatch(postReviewImages(newNewReview.id, formData))
+
             }
             catch (res) {
                 const data = await res.json();
@@ -105,7 +106,7 @@ const ReviewForm = ({ formType, review }) => {
         const imageFiles = Array.from(files);
         if (imageFiles.length > 0) {
             setPrevImages([...prevImages, ...imageFiles]);
-            setImages([...images, ...imageFiles]);
+            setImages([...images, ...newImages, ...imageFiles]);
         }
     }
 
@@ -119,7 +120,7 @@ const ReviewForm = ({ formType, review }) => {
             rating,
             headline,
             body,
-            images
+            images: [...images, ...newImages],
         };
 
         const validationErrors = validateForm(newReview);
@@ -164,7 +165,6 @@ const ReviewForm = ({ formType, review }) => {
                         </div>
                         <img
                             className={'review-preview-images-image'}
-                            // src={image.url ? `${image.url}?${Date.now()}` : URL.createObjectURL(image)}
                             src={image.url ? image.url : URL.createObjectURL(image)}
                             alt={'preview'}
                         />
@@ -181,14 +181,25 @@ const ReviewForm = ({ formType, review }) => {
                 return (
                     <React.Fragment key={i}>
                         <div className="review-preview-image-btn-container">
-                            <div
-                                className="review-preview-image-btn"
-                                onClick={(e) => handleImageRemoveEdit(e, i)}
-                            />
+                            <div className="review-preview-image-btn" onClick={(e) => handleImageRemoveEdit(e, i)} />
                         </div>
-                        <img
-                            className={'review-preview-images-image'}
-                            // src={image.url ? `${image.url}?${Date.now()}` : URL.createObjectURL(image)}
+                        <img className={'review-preview-images-image'}
+                            src={image.url ? image.url : URL.createObjectURL(image)}
+                            alt={'preview'}
+                        />
+                    </React.Fragment>
+                )
+            })
+        )
+    } else if (images.length || newImages.length) {
+        reviewImages = (
+            [...images, ...newImages].map((image, i) => {
+                return (
+                    <React.Fragment key={i}>
+                        <div className="review-preview-image-btn-container">
+                            <div className="review-preview-image-btn" onClick={(e) => handleImageRemoveEdit(e, i)} />
+                        </div>
+                        <img className={'review-preview-images-image'}
                             src={image.url ? image.url : URL.createObjectURL(image)}
                             alt={'preview'}
                         />
@@ -197,6 +208,58 @@ const ReviewForm = ({ formType, review }) => {
             })
         )
     }
+
+
+    // let reviewImages;
+    // if (review && review.images.length) {
+    //     reviewImages = (
+    //         [...images, ...(review.images.length === 1 && images.length === 0 ? [null] : [])].map((image, i) => {
+    //             if (image === null) {
+    //                 return (
+    //                     <React.Fragment key={i}>
+    //                         <div className="review-preview-image-btn-container">
+    //                             <div className="review-preview-image-btn" onClick={(e) => handleImageRemoveEdit(e, 0)} />
+    //                         </div>
+    //                         <img className={'review-preview-images-image'}
+    //                             src={review.images[0].url}
+    //                             alt={'preview'}
+    //                         />
+    //                     </React.Fragment>
+    //                 );
+    //             }
+    //             return (
+    //                 <React.Fragment key={i}>
+    //                     <div className="review-preview-image-btn-container">
+    //                         <div className="review-preview-image-btn" onClick={(e) => handleImageRemoveEdit(e, i)} />
+    //                     </div>
+    //                     <img className={'review-preview-images-image'}
+    //                         src={image.url ? image.url : URL.createObjectURL(image)}
+    //                         alt={'preview'}
+    //                     />
+    //                 </React.Fragment>
+    //             );
+    //         })
+    //     );
+    // } else if (images.length) {
+    //     reviewImages = (
+    //         images.map((image, i) => (
+    //             <React.Fragment key={i}>
+    //                 <div className="review-preview-image-btn-container">
+    //                     <div className="review-preview-image-btn" onClick={(e) => handleImageRemoveEdit(e, i)} />
+    //                 </div>
+    //                 <img className={'review-preview-images-image'}
+    //                     src={image.url ? image.url : URL.createObjectURL(image)}
+    //                     alt={'preview'}
+    //                 />
+    //             </React.Fragment>
+    //         ))
+    //     );
+    // }
+
+
+    // The issue with the previous code was that it wasn't properly handling the case where the review already had images and the user was adding new images.
+    // The reviewImages variable was only being set based on the images state, so it wasn't including any new images added while editing.
+    // The updated code should now include any new images added while editing, as well as display the first image from the review if there are no new images added.
 
     const handleImageRemove = (e, i) => {
         e.preventDefault();
@@ -247,6 +310,57 @@ const ReviewForm = ({ formType, review }) => {
         });
         setPrevImages(newReviewImages?.map(image => ({ url: image.url })));
     };
+
+    // const handleImageRemoveEdit = (e, i) => {
+    //     e.preventDefault();
+    //     const newImages = [...images];
+    //     const newReviewImages = [...review.images];
+    //     const deletedImage = newImages.splice(i, 1)[0];
+    //     let deletedImageId;
+    //     if (deletedImage.id) {
+    //         deletedImageId = deletedImage.id;
+    //     } else {
+    //         const deletedImageUrl = deletedImage.url;
+    //         const matchingReviewImage = newReviewImages.find((img) => img.url === deletedImageUrl);
+    //         deletedImageId = matchingReviewImage?.id;
+    //     }
+    //     newReviewImages.splice(i, 1);
+    //     setImages(newImages);
+    //     dispatch(deleteReviewImageThunk(deletedImageId));
+    //     if (newImages.length === 1) {
+    //         setImage(newImages[0]);
+    //     }
+    //     setPrevImages(newReviewImages); // Update the prevImages state to properly handle the removal of the last image
+
+    //     // Remove the image container from the DOM
+    //     const imageBtnContainer = e.target.closest(".review-preview-image-btn-container");
+    //     if (imageBtnContainer) {
+    //         imageBtnContainer.parentElement.remove();
+    //     }
+    // };
+
+    // const handleImageRemoveEdit = (e, i) => {
+    //     e.preventDefault();
+    //     const newImages = [...images];
+    //     const newReviewImages = [...review.images];
+    //     const deletedImage = newImages.splice(i, 1)[0];
+    //     let deletedImageId;
+    //     if (deletedImage.id) {
+    //         deletedImageId = deletedImage.id;
+    //     } else {
+    //         const deletedImageUrl = deletedImage.url;
+    //         const matchingReviewImage = newReviewImages.find((img) => img.url === deletedImageUrl);
+    //         deletedImageId = matchingReviewImage?.id;
+    //     }
+    //     newReviewImages.splice(i, 1);
+    //     setImages(newImages);
+    //     dispatch(deleteReviewImageThunk(deletedImageId));
+    //     if (newImages.length === 1) {
+    //         setImage(newImages[0]);
+    //     }
+    //     setPrevImages(newReviewImages); // Update the prevImages state to properly handle the removal of the last image
+    // };
+
 
     // Validate the form fields and return an array of error messages
     const validateForm = (form) => {
