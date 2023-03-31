@@ -122,9 +122,11 @@ const ProductReviews = ({ product }) => {
                                     className="review-image-modal"
                                     modalComponent={<ReviewModal review={review} image={review.images[0].url} />}
                                     buttonText={<img className='review-image-image' src={review.images[0].url} />}
-                                />
+                                />;
+                            } else if (review === first4Reviews[first4Reviews.length-1] && review.images.length === 0) {
+                                return <div key={review.id}>No reviews with images yet!</div>;
                             } else {
-                                return "No reviews with images yet!";
+                                return null;
                             }
                         })}
                     </div>
