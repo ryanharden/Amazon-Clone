@@ -73,41 +73,6 @@
     box-shadow: inset -2px 0 0 -1px #f5961d, inset 0 0 0 1px #de7921;
 }
 
-.five-star {
-    width: 20%;
-    height: 100%;
-    background-color: #ff9f43;
-    border-radius: 5px;
-}
-
-.four-star {
-    width: 20%;
-    height: 100%;
-    background-color: #f1c40f;
-    border-radius: 5px;
-}
-
-.three-star {
-    width: 20%;
-    height: 100%;
-    background-color: #f39c12;
-    border-radius: 5px;
-}
-
-.two-star {
-    width: 20%;
-    height: 100%;
-    background-color: #e67e22;
-    border-radius: 5px;
-}
-
-.one-star {
-    width: 20%;
-    height: 100%;
-    background-color: #d35400;
-    border-radius: 5px;
-}
-
 .rating-percent {
     font-size: 12px;
     margin-left: 5px;

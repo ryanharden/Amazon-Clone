@@ -13,6 +13,7 @@
     align-items: center;
     justify-content: space-between;
 }
+
 .review-person-prof {
     display: flex;
     gap: 10px;
@@ -54,6 +55,7 @@
 
 .stars-headline {
     display: flex;
+    /* align-items: center; */
     gap: 10px;
 }
 

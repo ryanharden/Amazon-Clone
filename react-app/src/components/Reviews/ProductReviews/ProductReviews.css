@@ -1,5 +1,11 @@
 .no-reviews-container {
     display: flex;
+    align-items: flex-start;
+    gap: 100px;
+}
+
+.no-reviews-right {
+    display: flex;
     flex-direction: column;
     align-items: center;
     width: 300px;

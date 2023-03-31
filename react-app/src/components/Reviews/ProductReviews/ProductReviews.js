@@ -26,7 +26,7 @@ const ProductReviews = ({ product }) => {
     // }
 
     const productReviewsArr = Object.values(productReviews)
-    // console.log("productReviewsArr: ", productReviewsArr);
+    console.log("productReviewsArr: ", productReviewsArr);
 
     const reviewImages = [];
 
@@ -58,25 +58,30 @@ const ProductReviews = ({ product }) => {
     if (!productReviewsArr.length)
         return (
             <div className='no-reviews-container'>
-                <div className='no-reviews-header'>
-                    There are no reviews yet!
+                <div className='review-data-inside'>
+                    <ReviewData reviews={productReviewsArr} ratingCounts={ratingCounts} />
                 </div>
-                <div className='review-this-product-container'>
-                    <div className="review-this-product">
-                        Review this product
+                <div className='no-reviews-right'>
+                    <div className='no-reviews-header'>
+                        There are no reviews yet!
                     </div>
-                    <div className='share-thoughts'>
-                        Share your thoughts with other customers
+                    <div className='review-this-product-container'>
+                        <div className="review-this-product">
+                            Review this product
+                        </div>
+                        <div className='share-thoughts'>
+                            Share your thoughts with other customers
+                        </div>
+                        {product?.seller.id == user.id ?
+                            <Link to={`/users/${user.id}/products`} className='write-a-review-link'>
+                                You own this product
+                            </Link>
+                            :
+                            <Link to={`/products/${product.id}/writereview`} className='write-a-review-link'>
+                                Write a customer review
+                            </Link>
+                        }
                     </div>
-                    {product?.seller.id == user.id ?
-                     <Link to={`/users/${user.id}/products`} className='write-a-review-link'>
-                        You own this product.
-                    </Link>
-                    :
-                    <Link to={`/products/${product.id}/writereview`} className='write-a-review-link'>
-                        Write a customer review
-                    </Link>
-                    }
                 </div>
             </div>
         )
@@ -94,13 +99,13 @@ const ProductReviews = ({ product }) => {
                         Share your thoughts with other customers
                     </div>
                     {product?.seller.id == user.id ?
-                     <Link to={`/users/${user.id}/products`} className='write-a-review-link'>
-                        You own this product.
-                    </Link>
-                    :
-                    <Link to={`/products/${product.id}/writereview`} className='write-a-review-link'>
-                        Write a customer review
-                    </Link>
+                        <Link to={`/users/${user.id}/products`} className='write-a-review-link'>
+                            You own this product
+                        </Link>
+                        :
+                        <Link to={`/products/${product.id}/writereview`} className='write-a-review-link'>
+                            Write a customer review
+                        </Link>
                     }
                 </div>
             </div>

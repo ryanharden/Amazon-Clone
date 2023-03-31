@@ -1,5 +1,5 @@
 import "./ReviewItem.css";
-import { deleteReviewThunk, getReviewsThunk, deleteReview } from "../../../store/reviews";
+import { deleteReviewThunk, getReviewsThunk, getUserReviewsThunk, deleteReview } from "../../../store/reviews";
 import { useDispatch } from "react-redux";
 import ReviewModal from "../ReviewModal/ReviewModal";
 import OpenModalButton from "../../OpenModalButton";
@@ -16,6 +16,7 @@ const ReviewItem = ({ review, product, user }) => {
     const deleteReview = async () => {
         await dispatch(deleteReviewThunk(review.id));
         dispatch(getReviewsThunk(product.id));
+        dispatch(getUserReviewsThunk());
     }
 
     return (

@@ -26,6 +26,8 @@ import OrderPage from "./components/Orders/OrderPage/OrderPage";
 import ReviewForm from "./components/Reviews/ReviewForm/ReviewForm";
 import CreateReview from "./components/Reviews/CreateReview/CreateReview";
 import EditReview from "./components/Reviews/EditReview/EditReview";
+import UserReviewsPage
+ from "./components/Reviews/UserReviews/UserReviewsPage/UserReviewsPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -80,8 +82,11 @@ function App() {
             <Route path="/orders/current" element={<OrderPage />} />
 
             <Route path="/products/:productId/writereview" element={<CreateReview />} />
+            
+            <Route path="/reviews/current" element={<UserReviewsPage />} />
 
             <Route path="/products/:productId/reviews/:reviewId/editreview" element={<EditReview />} />
+
 
             {/* <Route path={["/users/:userId/products", "/createproduct", "/editproduct/:productId"]}>
             <UserProductPage />

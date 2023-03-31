@@ -7,29 +7,29 @@ const StarsForm = ({ rating }) => {
     let className = "zero";
 
     if (rating >= 4.8) {
-        className = "five";
+        className = "form-five";
     } else if (rating > 4.1) {
-        className = "four_half";
+        className = "form-four_half";
     } else if (rating >= 3.8) {
-        className = "four";
+        className = "form-four";
     } else if (rating > 3.1) {
-        className = "three_half";
+        className = "form-three_half";
     } else if (rating >= 2.8) {
-        className = "three";
+        className = "form-three";
     } else if (rating > 2.1) {
-        className = "two_half";
+        className = "form-two_half";
     } else if (rating >= 1.8) {
-        className = "two";
+        className = "form-two";
     } else if (rating > 1.1) {
-        className = "one_half";
+        className = "form-one_half";
     } else if (rating >= 0.8) {
-        className = "one";
+        className = "form-one";
     } else if (rating > 0.1) {
-        className = "zero_half";
+        className = "form-zero_half";
     } else {
-        className = "zero";
+        className = "form-zero";
     }
 
-    return <div className={`stars ${className}`} />;
+    return <div className={`stars-form ${className}`} />;
 }
 export default StarsForm;

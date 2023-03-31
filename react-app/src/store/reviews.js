@@ -1,7 +1,7 @@
 // Constant Action Types
 
 const GET_REVIEWS = "REVIEWS/GET_REVIEWS";
-// const GET_USER_REVIEWS = "REVIEWs/GET_USER_REVIEWS";
+const GET_USER_REVIEWS = "REVIEWs/GET_USER_REVIEWS";
 // const GET_REVIEW = "REVIEWs/GET_REVIEW";
 const CREATE_REVIEW = "REVIEWS/CREATE_REVIEW";
 const EDIT_REVIEW = "REVIEWS/EDIT_REVIEW";
@@ -15,6 +15,11 @@ const getReviews = (reviews) => ({
     type: GET_REVIEWS,
     reviews
 });
+
+const getUserReviews = (reviews) => ({
+    type: GET_USER_REVIEWS,
+    reviews
+})
 
 const createReview = (review) => ({
     type: CREATE_REVIEW,
@@ -48,6 +53,16 @@ export const getReviewsThunk = (productId) => async (dispatch) => {
     if (res.ok) {
         const reviews = await res.json();
         dispatch(getReviews(reviews))
+        return reviews
+    }
+}
+
+// Get User Reviews
+export const getUserReviewsThunk = () => async (dispatch) => {
+    const res = await fetch("/api/reviews/current");
+    if (res.ok) {
+        const reviews = await res.json();
+        dispatch(getUserReviews(reviews))
         return reviews
     }
 }
@@ -134,7 +149,8 @@ export const deleteReviewImageThunk = (imageId) => async (dispatch) => {
 }
 
 const initialState = {
-    allReviews: {}
+    allReviews: {},
+    userReviews: {}
 }
 
 export default function reviewReducer(state = initialState, action) {
@@ -146,10 +162,15 @@ export default function reviewReducer(state = initialState, action) {
             newState.allReviews = { ...action.reviews }
             return newState
 
+        case GET_USER_REVIEWS:
+            newState = { ...state }
+            newState.userReviews = { ...action.reviews }
+            return newState
+
         // Create Review
         case CREATE_REVIEW:
             newState = { ...state }
-            newState.allReviews = { ...state.allReviews, [action.review.id]: action.review }
+            newState.allReviews = { ...state.allReviews, [action.review?.id]: action.review }
             return newState;
 
         // Edit Review
@@ -161,6 +182,7 @@ export default function reviewReducer(state = initialState, action) {
         // Delete Review
         case DELETE_REVIEW:
             newState = { ...state }
+            delete newState.userReviews[action.reviewId]
             delete newState.allReviews[action.reviewId]
             return newState
 

@@ -19,6 +19,17 @@ def get_reviews(product_id):
     else:
         return {}
 
+# Get Reviews by user id
+@review_routes.route("/current")
+@login_required
+def get_user_reviews():
+    reviews = Review.query.filter(Review.user_id == current_user.id).order_by(Review.created_at).all()
+
+    if reviews:
+        return [review.to_dict() for review in reviews]
+    else:
+        return {}
+
 # Create Review
 @product_routes.route("/<int:product_id>/reviews", methods=["POST"])
 @login_required

@@ -89,6 +89,11 @@ function ProfileButton({ user }) {
                       Manage Orders
                     </div>
                   </Link>
+                  <Link onClick={closeMenu} className="drop-link" to={'/reviews/current'}>
+                    <div className="drop-reviews">
+                      Manage Reviews
+                    </div>
+                  </Link>
                   <div className="drop-logout" onClick={handleLogout}>Sign out</div>
                 </div>
               </>
