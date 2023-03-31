@@ -377,7 +377,8 @@ const ReviewForm = ({ formType, review }) => {
                         <button onClick={() => setLoading(true)} className="form-submit" type="submit">{review && formType === "edit" ? "Save" : "Submit"}</button>
                         {loading && (<div className="loading-spinner"><img src={spinner} className="spinner" /><div className="loading">Loading...</div></div>)}
                         <button className="form-cancel" type="button" onClick={() => {
-                            navigate(`/products/${productId}`);
+                            // navigate(`/products/${productId}`);
+                            navigate(-1);
                         }}
                         >
                             Cancel
