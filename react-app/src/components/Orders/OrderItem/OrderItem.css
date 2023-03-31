@@ -152,3 +152,27 @@
     color: #0F1111;
     text-decoration: none;
 }
+
+@media screen and (max-width: 920px) {
+    .order-write-a-review-link {
+        padding: 7px 20px;
+    }
+}
+
+@media screen and (max-width: 760px) {
+    .order-write-a-review-link {
+        padding: 7px 10px;
+    }
+}
+
+@media screen and (max-width: 680px) {
+    .order-write-a-review-link {
+        padding: 7px 5px;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .order-write-a-review-link {
+        display: none;
+    }
+}

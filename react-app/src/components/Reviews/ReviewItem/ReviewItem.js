@@ -1,6 +1,8 @@
 import "./ReviewItem.css";
-import { deleteReviewThunk, getReviewsThunk, deleteReview } from "../../../store/reviews";
+import { deleteReviewThunk, getReviewsThunk, getUserReviewsThunk, deleteReview } from "../../../store/reviews";
 import { useDispatch } from "react-redux";
+import ReviewModal from "../ReviewModal/ReviewModal";
+import OpenModalButton from "../../OpenModalButton";
 import { Link, useNavigate } from "react-router-dom";
 import Stars from "../Stars/Stars";
 
@@ -14,6 +16,7 @@ const ReviewItem = ({ review, product, user }) => {
     const deleteReview = async () => {
         await dispatch(deleteReviewThunk(review.id));
         dispatch(getReviewsThunk(product.id));
+        dispatch(getUserReviewsThunk());
     }
 
     return (
@@ -54,7 +57,12 @@ const ReviewItem = ({ review, product, user }) => {
                 {review?.body}
             </div>
             <div className="individual-review-images">
-                {review?.images?.length > 0 && review.images.map((image) => <img key={image.id} className="individual-review-image" src={image.url} />)}
+                {review?.images?.length > 0 && review.images.map((image) => <OpenModalButton
+                key={review.id}
+                className="review-image-small-modal"
+                modalComponent={<ReviewModal review={review} image={review.images[0].url} />}
+                buttonText={<img className='individual-review-image' src={image.url} />}
+            />)}
             </div>
         </div>
     )

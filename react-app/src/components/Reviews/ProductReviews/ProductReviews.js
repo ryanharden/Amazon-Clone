@@ -8,13 +8,16 @@ import ReviewModal from '../ReviewModal/ReviewModal';
 import ReviewItem from '../ReviewItem/ReviewItem';
 import AllReviewImages from '../AllReviewImages/AllReviewImages';
 import "./ProductReviews.css";
+import ReviewData from '../ReviewData/ReviewData';
 
 const ProductReviews = ({ product }) => {
     const dispatch = useDispatch();
     const { productId } = useParams();
 
     const user = useSelector(state => state.session.user);
-    
+    // console.log("user.id: ", user.id);
+
+    // console.log("product.seller_id: ", product?.seller.id)
     const productReviews = useSelector(state => state.Reviews.allReviews);
     // const productReviews = product?.reviews;
 
@@ -35,6 +38,13 @@ const ProductReviews = ({ product }) => {
         }
     });
 
+    const ratingCounts = {};
+
+    productReviewsArr.forEach(review => {
+        const rating = review.rating;
+        ratingCounts[rating] = (ratingCounts[rating] || 0) + 1;
+    });
+
     useEffect(() => {
         dispatch(getReviewsThunk(product?.id))
     }, [dispatch, product?.id])
@@ -48,56 +58,91 @@ const ProductReviews = ({ product }) => {
     if (!productReviewsArr.length)
         return (
             <div className='no-reviews-container'>
-                <div className='no-reviews-header'>
-                    There are no reviews yet!
+                <div className='review-data-inside'>
+                    <ReviewData reviews={productReviewsArr} ratingCounts={ratingCounts} />
                 </div>
-                <div className='review-this-product-container'>
-                    <div className="review-this-product">
+                <div className='no-reviews-right'>
+                    <div className='no-reviews-header'>
+                        There are no reviews yet!
+                    </div>
+                    <div className='review-this-product-container'>
+                        <div className="review-this-product">
+                            Review this product
+                        </div>
+                        <div className='share-thoughts'>
+                            Share your thoughts with other customers
+                        </div>
+                        {product?.seller.id == user.id ?
+                            <Link to={`/users/${user.id}/products`} className='write-a-review-link'>
+                                You own this product
+                            </Link>
+                            :
+                            <Link to={`/products/${product.id}/writereview`} className='write-a-review-link'>
+                                Write a customer review
+                            </Link>
+                        }
+                    </div>
+                </div>
+            </div>
+        )
+    return (
+        <div className='product-data-reviews-container'>
+            <div className='review-data-wrapper'>
+                <div className='review-data-inside'>
+                    <ReviewData reviews={productReviewsArr} ratingCounts={ratingCounts} />
+                </div>
+                <div className='review-this-product-container-under'>
+                    <div className="review-this-product-under">
                         Review this product
                     </div>
                     <div className='share-thoughts'>
                         Share your thoughts with other customers
                     </div>
-                    <Link to={`/products/${product.id}/writereview`} className='write-a-review-link'>
-                        Write a customer review
-                    </Link>
+                    {product?.seller.id == user.id ?
+                        <Link to={`/users/${user.id}/products`} className='write-a-review-link'>
+                            You own this product
+                        </Link>
+                        :
+                        <Link to={`/products/${product.id}/writereview`} className='write-a-review-link'>
+                            Write a customer review
+                        </Link>
+                    }
                 </div>
             </div>
-        )
-    return (
-        <div className='product-reviews-container'>
-            <div className='product-reviews-top'>
-                <div className='review-images-header'>
-                    Reviews with images
+            <div className='product-reviews-container'>
+                <div className='product-reviews-top'>
+                    <div className='review-images-header'>
+                        Reviews with images
+                    </div>
+                    <div className='review-images-container'>
+                        {first4Reviews.map((review) => {
+                            if (review.images && review.images.length > 0) {
+                                return <OpenModalButton
+                                    key={review.id}
+                                    className="review-image-modal"
+                                    modalComponent={<ReviewModal review={review} image={review.images[0].url} />}
+                                    buttonText={<img className='review-image-image' src={review.images[0].url} />}
+                                />
+                            } else {
+                                return "No reviews with images yet!";
+                            }
+                        })}
+                    </div>
+                    {reviewImages.length > 0 && <div className='rest-of-images'>
+                        <OpenModalButton
+                            className="see-all-images-modal"
+                            modalComponent={<AllReviewImages images={reviewImages} />}
+                            buttonText="See all customer images"
+                        />
+                    </div>}
                 </div>
-                <div className='review-images-container'>
-                    {first4Reviews.map((review) => {
-                        if (review.images && review.images.length > 0) {
-                            return <OpenModalButton
-                                key={review.id}
-                                className="review-image-modal"
-                                modalComponent={<ReviewModal review={review} image={review.images[0].url} />}
-                                buttonText={<img className='review-image-image' src={review.images[0].url} />}
-                            />
-                        } else {
-                            return "No reviews with images yet!";
-                        }
-                    })}
-                </div>
-                {reviewImages.length > 0 && <div className='rest-of-images'>
-                    <OpenModalButton
-                        className="see-all-images-modal"
-                        modalComponent={<AllReviewImages images={reviewImages} />}
-                        buttonText="See all customer images"
-                    />
-                </div>}
-            </div>
-            <div className='product-reviews-bottom'>
-                <div className='reviews-bottom-header'>
-                    Top reviews from the United States
-                </div>
-                <div className='all-review-items-container'>
-                    {reviewItems}
+                <div className='product-reviews-bottom'>
+                    <div className='reviews-bottom-header'>
+                        Top reviews from the United States
+                    </div>
+                    <div className='all-review-items-container'>
+                        {reviewItems}
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,4 +1,4 @@
-.stars {
+.stars-form {
     background-image: url("https://d1irxr40exwge2.cloudfront.net/stars.png");
     background-repeat: no-repeat;
     align-self: center;
@@ -6,46 +6,46 @@
     width: 95px;
 }
 
-.five {
+.form-five {
     background-position: -99px -366px
 }
 
-.four_half {
+.form-four_half {
     background-position: -390px -462px
 }
 
-.four {
+.form-four {
     background-position: -2px -342px
 }
 
-.three_half {
+.form-three_half {
     background-position: -196px -414px
 }
 
-.three {
+.form-three {
     background-position: -293px -438px
 }
 
-.two_half {
+.form-two_half {
     background-position: -2px -366px
 }
 
-.two {
+.form-two {
     background-position: -99px -390px
 }
 
-.one_half {
+.form-one_half {
     background-position: -293px -462px
 }
 
-.one {
+.form-one {
     background-position: -390px -486px
 }
 
-.zero_half {
+.form-zero_half {
     background-position: -99px -414px
 }
 
-.zero {
+.form-zero {
     background-position: -196px -438px
 }

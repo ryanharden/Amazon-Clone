@@ -8,6 +8,7 @@ import ProductInfo from "./ProductInfo/ProductInfo";
 import ProductReviews from "../../Reviews/ProductReviews/ProductReviews";
 import { getProductThunk } from "../../../store/products";
 import { clearReviews } from "../../../store/reviews";
+import { getProduct } from "../../../store/products";
 
 const ProductShow = () => {
     const dispatch = useDispatch();
@@ -16,10 +17,31 @@ const ProductShow = () => {
 
     const product = useSelector(state => state.Products.singleProduct);
 
+    // useEffect(() => {
+    //     dispatch(clearReviews());
+    //     dispatch(getProductThunk(productId))
+    // }, [dispatch, productId]);
+
     useEffect(() => {
+        let isMounted = true;
         dispatch(clearReviews());
-        dispatch(getProductThunk(productId))
-    }, [dispatch, productId])
+
+        const loadProduct = async () => {
+            const newProduct = await dispatch(getProductThunk(productId));
+            if (isMounted) {
+                // update state only if the component is mounted
+                dispatch(getProduct(newProduct));
+            }
+        };
+
+        loadProduct();
+
+        // cleanup function
+        return () => {
+            isMounted = false;
+        };
+    }, [dispatch, productId]);
+
 
     if (!product || !product.images || !product.images.length) return null;
 

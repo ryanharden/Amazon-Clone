@@ -26,7 +26,7 @@ const getUserProducts = (products) => ({
     products
 })
 
-const getProduct = (product) => ({
+export const getProduct = (product) => ({
     type: GET_PRODUCT,
     product
 })

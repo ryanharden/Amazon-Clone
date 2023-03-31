@@ -17,7 +17,6 @@ class Review(db.Model):
     updated_at = db.Column(db.DateTime, default=datetime.utcnow(), onupdate=datetime.utcnow())
 
     product = db.relationship("Product", back_populates="reviews")
-    # buyer = db.relationship("User", )
     images = db.relationship("ReviewImage", back_populates="review", order_by="ReviewImage.id", cascade="all, delete-orphan")
     user = db.relationship("User", back_populates="reviews")
 

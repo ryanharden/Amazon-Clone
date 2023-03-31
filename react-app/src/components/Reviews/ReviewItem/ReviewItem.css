@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     gap: 6px;
+    margin-top: 30px;
     /* width: 55vw;
     word-wrap: break-word;
     overflow-wrap: break-word; */
@@ -12,6 +13,7 @@
     align-items: center;
     justify-content: space-between;
 }
+
 .review-person-prof {
     display: flex;
     gap: 10px;
@@ -53,6 +55,7 @@
 
 .stars-headline {
     display: flex;
+    /* align-items: center; */
     gap: 10px;
 }
 
@@ -104,4 +107,12 @@
     width: 90px;
     object-fit: fill;
     align-self: flex-start;
+}
+
+.review-image-small-modal {
+    height: 90px;
+    border: none;
+    padding: 0;
+    background: none;
+    cursor: pointer;
 }
