@@ -376,8 +376,8 @@ const ReviewForm = ({ formType, review }) => {
 
         if (!form.headline) {
             errors.push("A headline is required");
-        } else if (form.headline.length > 50) {
-            errors.push("Headline must be less than 50 characters");
+        } else if (form.headline.length > 100) {
+            errors.push("Headline must be less than 100 characters");
         } else if (form.headline.length < 3) {
             errors.push("Headline must be at least 3 characters")
         }
