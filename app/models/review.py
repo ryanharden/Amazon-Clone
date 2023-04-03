@@ -14,7 +14,7 @@ class Review(db.Model):
     headline = db.Column(db.String(50))
     body = db.Column(db.String(5000))
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
-    updated_at = db.Column(db.DateTime, default=datetime.utcnow(), onupdate=datetime.utcnow())
+    # updated_at = db.Column(db.DateTime, default=datetime.utcnow(), onupdate=datetime.utcnow())
 
     product = db.relationship("Product", back_populates="reviews")
     images = db.relationship("ReviewImage", back_populates="review", order_by="ReviewImage.id", cascade="all, delete-orphan")
