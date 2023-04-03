@@ -1,5 +1,5 @@
 .product-info-container {
-    width: 30vw;
+    width: 32vw;
     display: flex;
     flex-direction: column;
     margin-right: 25px;
@@ -90,8 +90,7 @@
     color: rgb(15, 17, 17);
     font-size: 14px;
     line-height: 20px;
-
-    word-break: break-all;
+    word-break: break-word;
 }
 
 .ul-description {
