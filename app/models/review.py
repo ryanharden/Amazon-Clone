@@ -11,7 +11,7 @@ class Review(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     product_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("products.id")), nullable=False)
     rating = db.Column(db.Integer, nullable=False)
-    headline = db.Column(db.String(50))
+    headline = db.Column(db.String(100))
     body = db.Column(db.String(5000))
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
     # updated_at = db.Column(db.DateTime, default=datetime.utcnow(), onupdate=datetime.utcnow())
