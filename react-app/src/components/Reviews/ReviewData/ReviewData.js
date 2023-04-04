@@ -14,7 +14,7 @@ const ReviewData = ({ reviews }) => {
     const fourStarPercentage = Math.round(fourStarReviews.length ? (fourStarReviews.length / totalReviews) * 100 : 0);
     const threeStarPercentage = Math.round(threeStarReviews.length ? (threeStarReviews.length / totalReviews) * 100 : 0);
     const twoStarPercentage = Math.round(twoStarReviews.length ? (twoStarReviews.length / totalReviews) * 100 : 0);
-    const oneStarPercentage = Math.round(oneStarReviews.length ? (oneStarReviews.length / totalReviews) * 100: 0);
+    const oneStarPercentage = Math.round(oneStarReviews.length ? (oneStarReviews.length / totalReviews) * 100 : 0);
 
     let avgRating = 0;
 
@@ -45,7 +45,7 @@ const ReviewData = ({ reviews }) => {
                 </div>
             </div>
             <div className='total-ratings'>
-                {totalReviews} global rating{totalReviews > 1 || totalReviews == 0 && "s"}
+                {totalReviews} global rating{totalReviews !== 1 ? "s" : ""}
             </div>
             <div className="rating-bar">
                 <div className="star-rating">

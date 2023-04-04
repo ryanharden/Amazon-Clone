@@ -55,6 +55,8 @@ const ProductReviews = ({ product }) => {
         return <ReviewItem key={review.id} product={product} review={review} user={user} />
     });
 
+    const hasReviewImages = first4Reviews.some(review => review.images && review.images.length > 0);
+
     if (!productReviewsArr.length)
         return (
             <div className='no-reviews-container'>
@@ -115,7 +117,7 @@ const ProductReviews = ({ product }) => {
                         Reviews with images
                     </div>
                     <div className='review-images-container'>
-                        {first4Reviews.map((review) => {
+                        {/* {first4Reviews.map((review) => {
                             if (review.images && review.images.length > 0) {
                                 return <OpenModalButton
                                     key={review.id}
@@ -124,6 +126,20 @@ const ProductReviews = ({ product }) => {
                                     buttonText={<img className='review-image-image' src={review.images[0].url} />}
                                 />;
                             } else if (review === first4Reviews[first4Reviews.length-1] && review.images.length === 0) {
+                                return <div key={review.id}>No reviews with images yet!</div>;
+                            } else {
+                                return null;
+                            }
+                        })} */}
+                        {first4Reviews.map((review, index) => {
+                            if (review.images && review.images.length > 0) {
+                                return <OpenModalButton
+                                    key={review.id}
+                                    className="review-image-modal"
+                                    modalComponent={<ReviewModal review={review} image={review.images[0].url} />}
+                                    buttonText={<img className='review-image-image' src={review.images[0].url} />}
+                                />;
+                            } else if (index === first4Reviews.length - 1 && !hasReviewImages) {
                                 return <div key={review.id}>No reviews with images yet!</div>;
                             } else {
                                 return null;
