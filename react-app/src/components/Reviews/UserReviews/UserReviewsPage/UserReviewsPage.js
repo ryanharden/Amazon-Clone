@@ -85,7 +85,7 @@ const UserReviewsPage = () => {
                             ))}
                         </div>
                     </div>
-                    <div className="card-container">
+                    <div className="card-container-beauty">
                         <div className="card-title">Beauty & Personal Care</div>
                         <div className="card-image-container">
                             {beautArr.map(product => (
@@ -100,7 +100,7 @@ const UserReviewsPage = () => {
                             ))}
                         </div>
                     </div>
-                    <div className="card-container">
+                    <div className="card-container-appliances">
                         <div className="card-title">Appliances</div>
                         <div className="card-image-container">
                             {appliancesArr.map(product => (

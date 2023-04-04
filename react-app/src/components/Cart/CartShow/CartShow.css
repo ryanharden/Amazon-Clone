@@ -113,7 +113,7 @@
 
 .recommended-for-you {
     font-size: 20px;
-    margin-top: 180px;
+    margin-top: 100px;
     font-weight: 800;
 }
 
@@ -148,4 +148,40 @@
     text-align: center;
     border-radius: 7px;
     margin-top: 20px;
+}
+
+.card-container-beauty, .card-container-appliances {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    width: 23vw;
+    height: 420px;
+    box-shadow: 0 2px 5px 0 rgb(213 217 217 / 55%);
+}
+
+@media screen and (max-width: 1350px) {
+    .card-container {
+       width: 30vw;
+    }
+
+    .card-container-beauty {
+        width: 30vw;
+    }
+    .card-container-appliances {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 1050px) {
+    .card-container {
+       width: 35vw;
+    }
+
+    .card-container-appliances {
+        display: none;
+    }
+
+    .card-container-beauty {
+        display: none;
+    }
 }

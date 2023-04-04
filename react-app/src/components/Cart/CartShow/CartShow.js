@@ -85,7 +85,7 @@ const CartShow = () => {
                             ))}
                         </div>
                     </div>
-                    <div className="card-container">
+                    <div className="card-container-beauty">
                         <div className="card-title">Beauty & Personal Care</div>
                         <div className="card-image-container">
                             {beautArr.map(product => (
@@ -100,7 +100,7 @@ const CartShow = () => {
                             ))}
                         </div>
                     </div>
-                    <div className="card-container">
+                    <div className="card-container-appliances">
                         <div className="card-title">Appliances</div>
                         <div className="card-image-container">
                             {appliancesArr.map(product => (
@@ -131,7 +131,7 @@ const CartShow = () => {
     const cartItemsWithProduct = cartItemsArr.map(cartitem => {
         const product = products[cartitem.product_id];
         if (!product) return null;
-        return <CartItem key={cartitem.id} cartitem={cartitem} product={product} quantity={cartitem.quantity} handleDelete={handleDelete} isDeleted={isDeleted}/>
+        return <CartItem key={cartitem.id} cartitem={cartitem} product={product} quantity={cartitem.quantity} handleDelete={handleDelete} isDeleted={isDeleted} />
     })
     // console.log("cartItemswithProduct: ", cartItemsWithProduct)
 
