@@ -16,6 +16,8 @@ const HomeSlider = ({ slides }) => {
     const allProductsArr = Object.values(allProducts);
     // console.log("allProductsArr: ", allProductsArr);
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [transitionEnabled, setTransitionEnabled] = useState(true);
+
     // const [categoryProducts, setCategoryProducts] = useState([]);
     // const [trendingProducts, setTrendingProducts] = useState([]);
     // const [exploreEssentials, setExploreEssentials] = useState([]);
@@ -63,14 +65,31 @@ const HomeSlider = ({ slides }) => {
         return () => clearTimeout(timer);
     }, [currentIndex, slides.length]);
 
+    // const handlePrevSlide = () => {
+    //     const prevIndex = currentIndex === 0 ? slides.length - 1 : currentIndex - 1;
+    //     setCurrentIndex(prevIndex);
+    // };
+
+    // const handleNextSlide = () => {
+    //     const nextIndex = (currentIndex + 1) % slides.length;
+    //     setCurrentIndex(nextIndex);
+    // };
     const handlePrevSlide = () => {
+        setTransitionEnabled(false);
         const prevIndex = currentIndex === 0 ? slides.length - 1 : currentIndex - 1;
-        setCurrentIndex(prevIndex);
+        setTimeout(() => {
+            setCurrentIndex(prevIndex);
+            setTransitionEnabled(true);
+        }, 50);
     };
 
     const handleNextSlide = () => {
+        setTransitionEnabled(false);
         const nextIndex = (currentIndex + 1) % slides.length;
-        setCurrentIndex(nextIndex);
+        setTimeout(() => {
+            setCurrentIndex(nextIndex);
+            setTransitionEnabled(true);
+        }, 50);
     };
 
     // const getRandomProducts = (n, exclude, allProductsArr) => {
@@ -89,14 +108,23 @@ const HomeSlider = ({ slides }) => {
     // };
 
 
+    // const slideStyle = {
+    //     width: '100%',
+    //     height: '600px',
+    //     backgroundPosition: 'center',
+    //     backgroundSize: 'cover',
+    //     backgroundImage: `url(${slides[currentIndex].url})`,
+    //     transition: "background-image 0.7s ease"
+    // }
     const slideStyle = {
         width: '100%',
         height: '600px',
         backgroundPosition: 'center',
         backgroundSize: 'cover',
         backgroundImage: `url(${slides[currentIndex].url})`,
-        transition: "ease-in-out .7s"
+        transition: transitionEnabled ? "background-image 0.7s ease" : "none"
     }
+
 
     const categoryProductsArr = allProductsArr.filter(product => product.category === 'Rainforest Basics').slice(0, 4);
     const selectedProducts = allProductsArr.filter(product => [12, 44, 34, 55].includes(product.id));
