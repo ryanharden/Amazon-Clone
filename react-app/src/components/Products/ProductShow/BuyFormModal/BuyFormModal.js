@@ -17,7 +17,7 @@ const BuyFormModal = ({ quantity }) => {
     // 1: {id: 1, product_id: 18, quantity: 1, user_id: 1}
     const handleBuy = async () => {
         const cartItems = {1: {product_id: product.id, quantity: quantity, user_id: currentUser.id }}
-        console.log("cartItems buy: ", cartItems);
+        // console.log("cartItems buy: ", cartItems);
         const order = await dispatch(createOrderThunk({ cart: cartItems }));
         if (order) {
             closeModal();

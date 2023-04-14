@@ -26,7 +26,7 @@ const ProductReviews = ({ product }) => {
     // }
 
     const productReviewsArr = Object.values(productReviews)
-    console.log("productReviewsArr: ", productReviewsArr);
+    // console.log("productReviewsArr: ", productReviewsArr);
 
     const reviewImages = [];
 
@@ -52,7 +52,7 @@ const ProductReviews = ({ product }) => {
     const first4Reviews = productReviewsArr.slice(0, 4);
 
     const reviewItems = productReviewsArr.map((review) => {
-        return <ReviewItem key={review.id} product={product} review={review} user={user} />
+        return <ReviewItem key={review.id} product={product} review={review} user={user ? user : ""} />
     });
 
     const hasReviewImages = first4Reviews.some(review => review.images && review.images.length > 0);
@@ -74,8 +74,8 @@ const ProductReviews = ({ product }) => {
                         <div className='share-thoughts'>
                             Share your thoughts with other customers
                         </div>
-                        {product?.seller.id == user.id ?
-                            <Link to={`/users/${user.id}/products`} className='write-a-review-link'>
+                        {user && product?.seller?.id == user?.id ?
+                            <Link to={`/users/${user?.id}/products`} className='write-a-review-link'>
                                 You own this product
                             </Link>
                             :
@@ -100,8 +100,8 @@ const ProductReviews = ({ product }) => {
                     <div className='share-thoughts'>
                         Share your thoughts with other customers
                     </div>
-                    {product?.seller.id == user.id ?
-                        <Link to={`/users/${user.id}/products`} className='write-a-review-link'>
+                    {user && product?.seller?.id == user?.id ?
+                        <Link to={`/users/${user?.id}/products`} className='write-a-review-link'>
                             You own this product
                         </Link>
                         :

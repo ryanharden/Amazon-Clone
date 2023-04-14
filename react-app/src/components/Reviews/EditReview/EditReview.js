@@ -15,7 +15,7 @@ const EditReview = () => {
 
     const reviews = useSelector(state => state.Reviews.allReviews)
     const reviewsArr = Object.values(reviews);
-    console.log("reviews: ", reviews);
+    // console.log("reviews: ", reviews);
 
     useEffect(() => {
         dispatch(getReviewsThunk(productId));
@@ -23,7 +23,7 @@ const EditReview = () => {
 
     const singleReview = reviewsArr.find(review => review.id === parseInt(reviewId));
 
-    console.log("singleReview: ", singleReview);
+    // console.log("singleReview: ", singleReview);
 
 
     // if(!(Object.values(product)).length) return null

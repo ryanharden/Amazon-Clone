@@ -19,7 +19,7 @@ const PlacedOrder = () => {
     const order_images = [];
     order?.order_items?.forEach(item => order_images.push(allProductsArr[item.product_id - 1]?.images[0].url))
 
-    console.log("order.order_items: ", order?.order_items)
+    // console.log("order.order_items: ", order?.order_items)
     // the product_id values in the order are not zero-indexed, while the indexes of the allProductsArr array are zero-indexed. This means that there might be an off-by-one error when accessing the product images in allProductsArr.
     // console.log("order_images: ", order_images);
     useEffect(() => {
