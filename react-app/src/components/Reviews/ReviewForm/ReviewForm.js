@@ -135,7 +135,7 @@ const ReviewForm = ({ formType, review }) => {
             // setLoading(true);
             const newReviewId = await dispatch(createReviewThunk(productId, newReview))
             if (images.length && newReviewId) {
-                console.log("im here: ", images);
+                // console.log("im here: ", images);
                 const formData = new FormData();
                 images.forEach((image) => {
                     formData.append("images", image);
