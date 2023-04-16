@@ -32,6 +32,7 @@
     height: 110px;
     width: 110px;
     object-fit: scale-down;
+    margin-bottom: 10px;
 }
 
 .user-review-page-item-container {
