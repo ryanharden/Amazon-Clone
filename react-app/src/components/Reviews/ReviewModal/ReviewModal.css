@@ -90,3 +90,11 @@
     overflow-wrap: break-word;
     white-space: pre-wrap;
 }
+
+.close-modal-x {
+    /* margin-left: -45px; */
+    cursor: pointer;
+    box-sizing: border-box;
+    border: 2px solid transparent;
+    padding: 2px 4px;
+}

@@ -11,7 +11,8 @@ const ReviewModal = ({ review, image }) => {
     return (
         <div className="review-modal-container">
             <div className="review-modal-top">
-                <div className="review-close" onClick={(e) => closeModal()}>
+                <div onClick={(e) => closeModal()} className='close-modal-x'>
+                    <i className="fa-solid fa-xmark fa-lg"></i>
                 </div>
             </div>
             <div className="review-modal-bottom">
