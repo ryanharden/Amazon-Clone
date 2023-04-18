@@ -8,6 +8,10 @@ const ReviewModal = ({ review, image }) => {
     let reviewDate = new Date(review.created_at);
     reviewDate = reviewDate.toLocaleDateString('en-us', { year: "numeric", month: "long", day: "numeric" });
 
+    // let reviewImages = review.images.map(image => {
+    //     return <
+    // })
+    
     return (
         <div className="review-modal-container">
             <div className="review-modal-top">
@@ -40,6 +44,9 @@ const ReviewModal = ({ review, image }) => {
                     <div className="review-modal-body">
                         {review.body}
                     </div>
+                    // <div className="review-modal-all-images">
+
+                    // </div>
                 </div>
             </div>
         </div>
