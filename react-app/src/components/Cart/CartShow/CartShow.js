@@ -13,13 +13,11 @@ const CartShow = () => {
     const [numCartItems, setNumCartItems] = useState(0);
     const [isDeleted, setIsDeleted] = useState(false);
 
-    // const product = useSelector(state => state.Products.singleProduct);
-    // const sessionUser = useSelector(state => state.session.user);
     const cartItems = useSelector(state => state.CartItems);
     const cartItemsArr = Object.values(cartItems);
     const products = useSelector(state => state.Products.allProducts);
     const allProductsArr = Object.values(products);
-    // console.log("cartItemsArr: ", cartItemsArr);
+
 
     useEffect(() => {
         dispatch(getProductsThunk());
