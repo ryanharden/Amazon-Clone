@@ -7,7 +7,6 @@ import { getCartItemsThunk } from "../../../store/cartitem";
 import vector from "../../../assets/amazon-vector.png";
 
 const CheckoutHeader = ({ numItems }) => {
-    // const [numCartItems, setNumCartItems] = useState(0);
     const dispatch = useDispatch();
     const cartItems = useSelector(state => state.CartItems);
     // console.log("cartItems:", cartItems)
