@@ -13,7 +13,6 @@ const PlacedOrder = () => {
     const allProductsArr = Object.values(products);
     const currentUser = useSelector(state => state.session.user);
     const order = useSelector(state => state.Orders)[0];
-    // console.log("order: ", order);
 
 
     const order_images = [];

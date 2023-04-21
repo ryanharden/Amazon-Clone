@@ -10,7 +10,6 @@ const AllProductsPage = () => {
     const dispatch = useDispatch();
 
     const allProducts = useSelector(state => state.Products.allProducts);
-    // console.log(allProducts);
     const allProductsArr = Object.values(allProducts);
 
     useEffect(() => {

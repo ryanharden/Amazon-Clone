@@ -11,7 +11,6 @@ const SearchBar = () => {
     const dispatch = useDispatch();
 
     const searchParams = useSearchParams()[0];
-    // console.log("searchParams: ", searchParams);
     const keywordsFromUrl = searchParams.get('k');
     // console.log("keywordsFromUrl: ", keywordsFromUrl);
     const [keywords, setKeywords] = useState(keywordsFromUrl ? keywordsFromUrl : "");
