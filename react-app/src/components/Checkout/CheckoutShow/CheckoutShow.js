@@ -14,7 +14,6 @@ const CheckoutShow = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const cartItems = useSelector(state => state.CartItems);
-    console.log("cartItems: ", cartItems);
     const currentUser = useSelector(state => state.session.user);
     const cartItemsArr = Object.values(cartItems);
     const [totalPrice, setTotalPrice] = useState(0);

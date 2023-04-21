@@ -16,13 +16,6 @@ const CheckoutHeader = ({ numItems }) => {
         dispatch(getCartItemsThunk())
     }, [dispatch])
     const [numCartItems, setNumCartItems] = useState(0);
-    // const products = useSelector(state => state.Products.allProducts);
-
-    // useEffect(() => {
-    //     cartItemsArr.forEach(item => {
-    //         dispatch(getProductThunk(item.product_id))
-    //     })
-    // }, [dispatch, cartItems])
 
     useEffect(() => {
         setNumCartItems(cartItemsArr.reduce((acc, curr) => acc + curr.quantity, 0));
