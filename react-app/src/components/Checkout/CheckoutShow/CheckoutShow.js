@@ -51,7 +51,7 @@ const CheckoutShow = () => {
         let total = 0;
         cartItemsArr?.forEach(item => {
             const product = products[item.product_id];
-            // console.log("total-product", product);
+
             if (product) {
                 total += product.price * item.quantity;
                 // console.log("total: ", total);

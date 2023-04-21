@@ -20,14 +20,6 @@ const SearchBar = () => {
         setKeywords(keywordsFromUrl ? keywordsFromUrl : "");
     }, [location, keywordsFromUrl]);
 
-    // const handleSearch = async (e) => {
-    //     if (e) e.preventDefault();
-    //     if (keywords) {
-    //         navigate(`/s?k=${keywords.replace(" ", "+")}`);
-    //     } else {
-    //         navigate("/");
-    //     }
-    // }
 
     const handleSearch = async (e) => {
         if (e) e.preventDefault();

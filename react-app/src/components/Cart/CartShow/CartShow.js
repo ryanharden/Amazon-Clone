@@ -37,7 +37,7 @@ const CartShow = () => {
         setNumCartItems(cartItemsArr.reduce((acc, curr) => acc + curr.quantity, 0));
     }, [cartItems, products]);
 
-    // console.log("cartItems(show):", cartItems);
+
     const basicsArr = allProductsArr.filter(product => product.category === 'Rainforest Basics').slice(0, 4);
     const electronicsArr = allProductsArr.filter(product => product.category === 'Electronics').slice(0, 4);
     const beautArr = allProductsArr.filter(product => product.category === 'Beauty & Personal Care').slice(0, 4);
