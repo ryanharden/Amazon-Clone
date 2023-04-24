@@ -8,10 +8,15 @@ const ReviewModal = ({ review, image }) => {
     let reviewDate = new Date(review.created_at);
     reviewDate = reviewDate.toLocaleDateString('en-us', { year: "numeric", month: "long", day: "numeric" });
 
+    // let reviewImages = review.images.map(image => {
+    //     return <
+    // })
+    
     return (
         <div className="review-modal-container">
             <div className="review-modal-top">
-                <div className="review-close" onClick={(e) => closeModal()}>
+                <div onClick={(e) => closeModal()} className='close-modal-x'>
+                    <i className="fa-solid fa-xmark fa-lg"></i>
                 </div>
             </div>
             <div className="review-modal-bottom">
@@ -39,6 +44,9 @@ const ReviewModal = ({ review, image }) => {
                     <div className="review-modal-body">
                         {review.body}
                     </div>
+                    // <div className="review-modal-all-images">
+
+                    // </div>
                 </div>
             </div>
         </div>

@@ -37,15 +37,6 @@
     border-bottom: 1px solid rgb(0, 0, 0, 0.2);
 }
 
-.close {
-    background-image: url("https://d1irxr40exwge2.cloudfront.net/x-icon.png");
-    opacity: .64;
-    min-width: 15px;
-    height: 9px;
-    background-position: -297px -5px;
-    align-self: center;
-    cursor: pointer;
-}
 
 .arriving {
     font-size: 18px;

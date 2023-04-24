@@ -11,7 +11,6 @@ const SearchBar = () => {
     const dispatch = useDispatch();
 
     const searchParams = useSearchParams()[0];
-    // console.log("searchParams: ", searchParams);
     const keywordsFromUrl = searchParams.get('k');
     // console.log("keywordsFromUrl: ", keywordsFromUrl);
     const [keywords, setKeywords] = useState(keywordsFromUrl ? keywordsFromUrl : "");
@@ -20,14 +19,6 @@ const SearchBar = () => {
         setKeywords(keywordsFromUrl ? keywordsFromUrl : "");
     }, [location, keywordsFromUrl]);
 
-    // const handleSearch = async (e) => {
-    //     if (e) e.preventDefault();
-    //     if (keywords) {
-    //         navigate(`/s?k=${keywords.replace(" ", "+")}`);
-    //     } else {
-    //         navigate("/");
-    //     }
-    // }
 
     const handleSearch = async (e) => {
         if (e) e.preventDefault();

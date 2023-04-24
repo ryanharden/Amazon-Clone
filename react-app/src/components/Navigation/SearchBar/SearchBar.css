@@ -26,6 +26,9 @@
     border-bottom-right-radius: 0;
 }
 
+input.search-bar:focus {
+    border: none;
+}
 
 .search-bar-icon-container {
     position: relative;

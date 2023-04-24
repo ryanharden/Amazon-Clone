@@ -13,13 +13,11 @@ const CartShow = () => {
     const [numCartItems, setNumCartItems] = useState(0);
     const [isDeleted, setIsDeleted] = useState(false);
 
-    // const product = useSelector(state => state.Products.singleProduct);
-    // const sessionUser = useSelector(state => state.session.user);
     const cartItems = useSelector(state => state.CartItems);
     const cartItemsArr = Object.values(cartItems);
     const products = useSelector(state => state.Products.allProducts);
     const allProductsArr = Object.values(products);
-    // console.log("cartItemsArr: ", cartItemsArr);
+
 
     useEffect(() => {
         dispatch(getProductsThunk());
@@ -30,17 +28,16 @@ const CartShow = () => {
         let total = 0;
         cartItemsArr.forEach(item => {
             const product = products[item.product_id];
-            // console.log("total-product", product);
+
             if (product) {
                 total += product.price * item.quantity;
-                // console.log("total: ", total);
             }
         });
         setTotalPrice(total);
         setNumCartItems(cartItemsArr.reduce((acc, curr) => acc + curr.quantity, 0));
     }, [cartItems, products]);
 
-    // console.log("cartItems(show):", cartItems);
+
     const basicsArr = allProductsArr.filter(product => product.category === 'Rainforest Basics').slice(0, 4);
     const electronicsArr = allProductsArr.filter(product => product.category === 'Electronics').slice(0, 4);
     const beautArr = allProductsArr.filter(product => product.category === 'Beauty & Personal Care').slice(0, 4);

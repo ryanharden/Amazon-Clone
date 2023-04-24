@@ -43,7 +43,7 @@ function HomePage() {
     const bookProducts = allProductsArr.filter(product => product.category === "Books")
     const phones = allProductsArr.filter(product => product.category === "Cell Phones")
     const computers = allProductsArr.filter(product => product.category === "Computers")
-    // console.log(bookProducts);
+
     const phoneComputerArr = [ ...phones, ...computers];
     const productsPerPage = 5;
     const phoneNumPages = Math.ceil(phoneComputerArr.length/ productsPerPage)

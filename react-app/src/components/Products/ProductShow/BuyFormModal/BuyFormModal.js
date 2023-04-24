@@ -31,7 +31,8 @@ const BuyFormModal = ({ quantity }) => {
                 <div className="buy-now-modal-header">
                     Buy now: {product.name}
                 </div>
-                <div className="close" onClick={(e) => closeModal()}>
+                <div onClick={(e) => closeModal()} className='close-modal-x'>
+                    <i className="fa-solid fa-xmark fa-lg"></i>
                 </div>
             </div>
             <div className="buy-form-product">
