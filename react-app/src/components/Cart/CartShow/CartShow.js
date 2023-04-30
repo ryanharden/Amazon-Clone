@@ -130,7 +130,6 @@ const CartShow = () => {
         if (!product) return null;
         return <CartItem key={cartitem.id} cartitem={cartitem} product={product} quantity={cartitem.quantity} handleDelete={handleDelete} isDeleted={isDeleted} />
     })
-    // console.log("cartItemswithProduct: ", cartItemsWithProduct)
 
     return (
         <div className="cart-container">
