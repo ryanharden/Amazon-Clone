@@ -13,7 +13,7 @@ const OrderPage = () => {
     const dispatch = useDispatch();
 
     const orders = useSelector(state => state.Orders);
-    // console.log("orders: ", orders);
+
     const ordersArr = Object.values(orders);
     const products = useSelector(state => state.Products.allProducts);
     // console.log("products: ", products);

@@ -12,9 +12,7 @@ const HomeSlider = ({ slides }) => {
     // const navigate = useNavigate();
     const user = useSelector(state => state.session.user);
     const allProducts = useSelector(state => state.Products.allProducts);
-    // console.log(allProducts);
     const allProductsArr = Object.values(allProducts);
-    // console.log("allProductsArr: ", allProductsArr);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [transitionEnabled, setTransitionEnabled] = useState(true);
 
