@@ -42,7 +42,6 @@ const CheckoutShow = () => {
             const productsInCart = cartItemsArr.forEach(item => {
                 dispatch(getProductThunk(item.product_id))
             })
-            // console.log("productsInCart: ", productsInCart);
         }
     }, [dispatch, cartItemsArr])
 

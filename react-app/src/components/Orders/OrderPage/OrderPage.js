@@ -36,7 +36,6 @@ const OrderPage = () => {
         return order.order_items
     })
 
-    // console.log('orderItemsArr: ', orderItemsArr)
 
     const orderItemsWithProduct = ordersArr.map(order => {
         return order.order_items.map(item => {

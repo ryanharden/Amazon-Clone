@@ -129,7 +129,6 @@ const ProductForm = ({ formType, product }) => {
         if (imageFiles.length > 0) {
             setPrevImages([...prevImages, ...imageFiles]);
             setImages([...images, ...imageFiles]);
-            // console.log("prevImages: ", prevImages)
         }
     }
 
