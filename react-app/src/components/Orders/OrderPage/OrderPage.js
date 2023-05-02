@@ -13,12 +13,12 @@ const OrderPage = () => {
     const dispatch = useDispatch();
 
     const orders = useSelector(state => state.Orders);
-    // console.log("orders: ", orders);
+
     const ordersArr = Object.values(orders);
     const products = useSelector(state => state.Products.allProducts);
     // console.log("products: ", products);
     const allProductsArr = Object.values(products);
-    // console.log("allProductsArr: ", allProductsArr);
+
     const currentUser = useSelector(state => state.session.user);
 
 
@@ -36,7 +36,6 @@ const OrderPage = () => {
         return order.order_items
     })
 
-    // console.log('orderItemsArr: ', orderItemsArr)
 
     const orderItemsWithProduct = ordersArr.map(order => {
         return order.order_items.map(item => {

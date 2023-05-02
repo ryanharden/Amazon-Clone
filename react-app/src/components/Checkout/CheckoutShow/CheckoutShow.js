@@ -27,7 +27,6 @@ const CheckoutShow = () => {
     }
 
     const handleOrder = async () => {
-        // console.log('handleOrder called');
         await dispatch(createOrderThunk({cart: cartItems}));
         dispatch(emptyCartThunk())
         navigate('/placedorder')
@@ -43,7 +42,6 @@ const CheckoutShow = () => {
             const productsInCart = cartItemsArr.forEach(item => {
                 dispatch(getProductThunk(item.product_id))
             })
-            // console.log("productsInCart: ", productsInCart);
         }
     }, [dispatch, cartItemsArr])
 
@@ -54,7 +52,6 @@ const CheckoutShow = () => {
 
             if (product) {
                 total += product.price * item.quantity;
-                // console.log("total: ", total);
             }
         });
         setTotalPrice(total);

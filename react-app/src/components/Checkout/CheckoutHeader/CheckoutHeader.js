@@ -9,7 +9,7 @@ import vector from "../../../assets/amazon-vector.png";
 const CheckoutHeader = ({ numItems }) => {
     const dispatch = useDispatch();
     const cartItems = useSelector(state => state.CartItems);
-    // console.log("cartItems:", cartItems)
+
     const cartItemsArr = Object.values(cartItems);
 
     useEffect(() => {
@@ -20,7 +20,7 @@ const CheckoutHeader = ({ numItems }) => {
     useEffect(() => {
         setNumCartItems(cartItemsArr.reduce((acc, curr) => acc + curr.quantity, 0));
     }, [cartItems])
-    // console.log("numItems: ", numItems);
+
     return (
         <div className="checkout-header-container">
             <div className="checkout-header">
