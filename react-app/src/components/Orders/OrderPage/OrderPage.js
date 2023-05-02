@@ -18,7 +18,7 @@ const OrderPage = () => {
     const products = useSelector(state => state.Products.allProducts);
     // console.log("products: ", products);
     const allProductsArr = Object.values(products);
-    // console.log("allProductsArr: ", allProductsArr);
+
     const currentUser = useSelector(state => state.session.user);
 
 

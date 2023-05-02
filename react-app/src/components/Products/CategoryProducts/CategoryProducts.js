@@ -11,7 +11,6 @@ const CategoryProducts = () => {
     const {category} = useParams();
 
     const allProducts = useSelector(state => state.Products.allProducts);
-    // console.log(allProducts);
     const allProductsArr = Object.values(allProducts);
 
     const categoryProducts = allProductsArr.filter(product => product.category.replace(/\s+/g, '') === category)
