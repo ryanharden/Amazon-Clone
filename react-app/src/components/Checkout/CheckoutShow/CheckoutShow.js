@@ -52,7 +52,6 @@ const CheckoutShow = () => {
 
             if (product) {
                 total += product.price * item.quantity;
-                // console.log("total: ", total);
             }
         });
         setTotalPrice(total);
