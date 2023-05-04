@@ -43,10 +43,8 @@ const OrderPage = () => {
             return { ...item, product }; // add item and product to array element
         });
     }).flat();
-    // console.log("orderItemsWithProduct: ", orderItemsWithProduct)
 
     const allOrders = ordersArr.map(order => <Order key={order.id} order={order} currentUser={currentUser} orderItemsWithProduct={orderItemsWithProduct} />)
-    // console.log("allOrders: ", allOrders);
 
     if (!orders.length)
         return (
