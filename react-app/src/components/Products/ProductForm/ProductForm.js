@@ -89,10 +89,7 @@ const ProductForm = ({ formType, product }) => {
             return;
         }
 
-
-        // console.log("editedProduct: ", editedProduct)
         const newNewProduct = await dispatch(editProductThunk(editedProduct));
-        // console.log("newNewProduct: ", newNewProduct)
         if (images.length > 0 && newNewProduct) {
             try {
                 if (images.length && newNewProduct) {
