@@ -116,7 +116,7 @@ const ProductForm = ({ formType, product }) => {
             setErrors(["Invalid file type, please try again"]);
             return;
         }
-        // console.log("files: ", files);
+
         if (images.length + files.length > 6) {
             setErrors(["A product can have a max of 6 images"]);
             return;
@@ -229,7 +229,7 @@ const ProductForm = ({ formType, product }) => {
         e.preventDefault();
         const newImages = [...images];
         const newPrevImages = [...prevImages];
-        // console.log(newImages);
+
         newImages.splice(i, 1);
         setImages(newImages);
 
