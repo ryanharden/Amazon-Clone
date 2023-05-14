@@ -17,7 +17,7 @@ const ProductReviews = ({ product }) => {
     const user = useSelector(state => state.session.user);
     // console.log("user.id: ", user.id);
 
-    // console.log("product.seller_id: ", product?.seller.id)
+  
     const productReviews = useSelector(state => state.Reviews.allReviews);
     // const productReviews = product?.reviews;
 

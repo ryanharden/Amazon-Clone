@@ -121,7 +121,7 @@ export const createProductThunk = (productData) => async (dispatch) => {
 
     if (res.ok) {
         const product = await res.json();
-        // console.log("product: ", product);
+
         dispatch(createProduct(product));
         return product.id;
     } else {
@@ -157,7 +157,6 @@ export const editProductThunk = (product) => async (dispatch) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(product)
     });
-    // console.log("storeRes: ", res)
 
     if (res.ok) {
         const product = await res.json();
