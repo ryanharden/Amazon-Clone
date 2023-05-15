@@ -100,7 +100,7 @@ export const getProductThunk = (productId) => async (dispatch) => {
 
     if (res.ok) {
         const product = await res.json();
-        // console.log("product-store: ", product);
+
         dispatch(getProduct(product));
         return product
     } else {
@@ -147,7 +147,6 @@ export const postProductImages = (productId, formData) => async dispatch => {
     }
 
 
-    // console.log("product: ", product)
 }
 
 // Edit a Product
