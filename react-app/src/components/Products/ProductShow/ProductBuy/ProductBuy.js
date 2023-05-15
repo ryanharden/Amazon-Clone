@@ -16,7 +16,7 @@ const ProductBuy = ({ product }) => {
     const navigate = useNavigate();
 
     const currentUser = useSelector(state => state.session.user);
-    // console.log(currentUser.id, product.seller.id)
+
     const [quantity, setQuantity] = useState(1);
 
     const addToCart = async () => {

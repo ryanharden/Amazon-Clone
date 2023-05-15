@@ -122,7 +122,7 @@ const ProductForm = ({ formType, product }) => {
             return;
         }
         const imageFiles = Array.from(files);
-        // console.log("imageFiles: ", imageFiles)
+      
         if (imageFiles.length > 0) {
             setPrevImages([...prevImages, ...imageFiles]);
             setImages([...images, ...imageFiles]);
