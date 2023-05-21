@@ -159,7 +159,7 @@ export const editProductThunk = (product) => async (dispatch) => {
 
     if (res.ok) {
         const product = await res.json();
-        // console.log("store-product: ", product)
+        
         dispatch(editProduct(product));
         return product
     } else {
