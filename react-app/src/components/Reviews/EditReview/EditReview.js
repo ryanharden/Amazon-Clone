@@ -10,9 +10,6 @@ const EditReview = () => {
     const dispatch = useDispatch();
     const {productId, reviewId} = useParams();
 
-    // console.log("reviewId: ", reviewId);
-    // console.log("productId: ", productId);
-
     const reviews = useSelector(state => state.Reviews.allReviews)
     const reviewsArr = Object.values(reviews);
     // console.log("reviews: ", reviews);

@@ -100,7 +100,7 @@ export const getProductThunk = (productId) => async (dispatch) => {
 
     if (res.ok) {
         const product = await res.json();
-        // console.log("product-store: ", product);
+
         dispatch(getProduct(product));
         return product
     } else {
@@ -121,7 +121,7 @@ export const createProductThunk = (productData) => async (dispatch) => {
 
     if (res.ok) {
         const product = await res.json();
-        // console.log("product: ", product);
+
         dispatch(createProduct(product));
         return product.id;
     } else {
@@ -147,7 +147,6 @@ export const postProductImages = (productId, formData) => async dispatch => {
     }
 
 
-    // console.log("product: ", product)
 }
 
 // Edit a Product
@@ -157,11 +156,10 @@ export const editProductThunk = (product) => async (dispatch) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(product)
     });
-    // console.log("storeRes: ", res)
 
     if (res.ok) {
         const product = await res.json();
-        // console.log("store-product: ", product)
+        
         dispatch(editProduct(product));
         return product
     } else {

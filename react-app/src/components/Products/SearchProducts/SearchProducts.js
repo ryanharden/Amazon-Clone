@@ -9,7 +9,6 @@ import FilterBar from '../../Filters/FilterBar/FilterBar';
 const SearchProducts = () => {
     const dispatch = useDispatch();
     const searchParams = useSearchParams()[0];
-    // console.log("searchParams: ", searchParams);
     const keywordsFromUrl = searchParams.get('k');
 
     const searchProducts = useSelector(state => state.Products.searchProducts);

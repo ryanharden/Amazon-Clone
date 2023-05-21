@@ -89,10 +89,7 @@ const ProductForm = ({ formType, product }) => {
             return;
         }
 
-
-        // console.log("editedProduct: ", editedProduct)
         const newNewProduct = await dispatch(editProductThunk(editedProduct));
-        // console.log("newNewProduct: ", newNewProduct)
         if (images.length > 0 && newNewProduct) {
             try {
                 if (images.length && newNewProduct) {
@@ -119,13 +116,13 @@ const ProductForm = ({ formType, product }) => {
             setErrors(["Invalid file type, please try again"]);
             return;
         }
-        // console.log("files: ", files);
+
         if (images.length + files.length > 6) {
             setErrors(["A product can have a max of 6 images"]);
             return;
         }
         const imageFiles = Array.from(files);
-        // console.log("imageFiles: ", imageFiles)
+
         if (imageFiles.length > 0) {
             setPrevImages([...prevImages, ...imageFiles]);
             setImages([...images, ...imageFiles]);
@@ -144,7 +141,7 @@ const ProductForm = ({ formType, product }) => {
             inventory,
             images
         };
-        // console.log("newProduct: ", newProduct)
+   
 
         const validationErrors = validateForm(newProduct);
         if (validationErrors.length > 0) {
@@ -232,7 +229,7 @@ const ProductForm = ({ formType, product }) => {
         e.preventDefault();
         const newImages = [...images];
         const newPrevImages = [...prevImages];
-        // console.log(newImages);
+
         newImages.splice(i, 1);
         setImages(newImages);
 

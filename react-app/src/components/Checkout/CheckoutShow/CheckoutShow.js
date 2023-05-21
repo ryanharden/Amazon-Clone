@@ -66,9 +66,6 @@ const CheckoutShow = () => {
             if (!product) return null;
             return <CheckoutItem key={cartitem.id} product={product} quantity={cartitem.quantity} cartItem={cartitem} />
         });
-    // console.log("cartItemsWithProduct: ", cartItemsWithProduct)
-
-    // console.log("cartItemsArr: ", cartItemsArr)
 
     if (!cartItemsWithProduct.length) return null;
 

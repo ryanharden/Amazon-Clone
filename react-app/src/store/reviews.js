@@ -129,7 +129,6 @@ export const postReviewImages = (reviewId, formData) => async (dispatch) => {
     }
 
 
-    // console.log("product: ", product)
 }
 
 // Delete Review Image
