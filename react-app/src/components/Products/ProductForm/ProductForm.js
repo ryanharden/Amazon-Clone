@@ -141,7 +141,7 @@ const ProductForm = ({ formType, product }) => {
             inventory,
             images
         };
-   
+
 
         const validationErrors = validateForm(newProduct);
         if (validationErrors.length > 0) {
@@ -244,7 +244,7 @@ const ProductForm = ({ formType, product }) => {
         e.preventDefault();
         const newImages = [...images];
         const newProductImages = [...product.images];
-        // console.log(newImages);
+   
         const deletedImage = newImages.splice(i, 1)[0];
         let deletedImageId;
         if (deletedImage.id) {
