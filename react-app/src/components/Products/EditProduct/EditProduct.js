@@ -11,7 +11,7 @@ const EditProduct = () =>{
 
     const product = useSelector(state => state.Products.singleProduct)
     const dispatch = useDispatch();
-    // console.log("product: ", product);
+
 
     useEffect(() => {
         dispatch(getProductThunk(productId));

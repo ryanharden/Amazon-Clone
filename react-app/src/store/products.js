@@ -142,7 +142,6 @@ export const postProductImages = (productId, formData) => async dispatch => {
         const images = await res.json();
         return images
     } else {
-        // console.log("res: ", res);
         return res.errors;
     }
 
@@ -159,7 +158,7 @@ export const editProductThunk = (product) => async (dispatch) => {
 
     if (res.ok) {
         const product = await res.json();
-        
+
         dispatch(editProduct(product));
         return product
     } else {

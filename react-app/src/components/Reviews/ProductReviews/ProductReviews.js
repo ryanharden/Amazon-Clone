@@ -15,9 +15,8 @@ const ProductReviews = ({ product }) => {
     const { productId } = useParams();
 
     const user = useSelector(state => state.session.user);
-    // console.log("user.id: ", user.id);
 
-  
+
     const productReviews = useSelector(state => state.Reviews.allReviews);
     // const productReviews = product?.reviews;
 

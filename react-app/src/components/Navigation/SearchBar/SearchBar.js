@@ -12,7 +12,7 @@ const SearchBar = () => {
 
     const searchParams = useSearchParams()[0];
     const keywordsFromUrl = searchParams.get('k');
-    // console.log("keywordsFromUrl: ", keywordsFromUrl);
+
     const [keywords, setKeywords] = useState(keywordsFromUrl ? keywordsFromUrl : "");
 
     useEffect(() => {
