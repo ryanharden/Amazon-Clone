@@ -154,7 +154,6 @@ const ProductForm = ({ formType, product }) => {
             setErrors(["Must upload at least one image along with product"]);
         }
 
-        // console.log("images: ", images);
         if (images.length) {
             try {
                 // setLoading(true);
@@ -244,7 +243,7 @@ const ProductForm = ({ formType, product }) => {
         e.preventDefault();
         const newImages = [...images];
         const newProductImages = [...product.images];
-   
+
         const deletedImage = newImages.splice(i, 1)[0];
         let deletedImageId;
         if (deletedImage.id) {

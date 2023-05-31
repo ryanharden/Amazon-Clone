@@ -16,7 +16,7 @@ const AllUserProducts = () => {
     if (Object.values(userProducts).length) {
         userProductsArr = Object.values(userProducts);
         userProductItems = userProductsArr.map(product => {
-            // console.log("product: ", product)
+
             return <UserProductItem key={product.id} product={product} />
         });
     }
