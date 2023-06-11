@@ -25,7 +25,7 @@ const ProductReviews = ({ product }) => {
     // }
 
     const productReviewsArr = Object.values(productReviews)
-    // console.log("productReviewsArr: ", productReviewsArr);
+
 
     const reviewImages = [];
 
