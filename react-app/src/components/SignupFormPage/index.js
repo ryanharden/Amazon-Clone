@@ -76,6 +76,7 @@ function SignupFormPage() {
           <label className="sign-up-label">
             Email
             <input
+              id="email-input"
               className="sign-up-input"
               type="text"
               value={email}
@@ -86,6 +87,7 @@ function SignupFormPage() {
           <label className="sign-up-label">
             First Name
             <input
+              id="first-name-input"
               className="sign-up-input"
               type="text"
               value={firstName}
@@ -96,6 +98,7 @@ function SignupFormPage() {
           <label className="sign-up-label">
             Last Name
             <input
+              id="last-name-input"
               className="sign-up-input"
               type="text"
               value={lastName}
@@ -106,6 +109,7 @@ function SignupFormPage() {
           <label className="sign-up-label">
             Password
             <input
+              id="password-input"
               className="sign-up-input"
               type="password"
               value={password}
@@ -116,6 +120,7 @@ function SignupFormPage() {
           <label className="sign-up-label">
             Confirm Password
             <input
+              id="confirm-password-input"
               className="sign-up-input"
               type="password"
               value={confirmPassword}
@@ -123,7 +128,7 @@ function SignupFormPage() {
               required
             />
           </label>
-          <button className="continue-button" type="submit">Continue</button>
+          <button id="submit-button" className="continue-button" type="submit">Continue</button>
           <div className="sign-in-terms">
             By creating an account, you agree to Rainforest Retail's Conditions of Use and Privacy Notice.
           </div>

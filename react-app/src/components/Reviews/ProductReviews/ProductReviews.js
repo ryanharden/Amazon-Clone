@@ -9,6 +9,7 @@ import ReviewItem from '../ReviewItem/ReviewItem';
 import AllReviewImages from '../AllReviewImages/AllReviewImages';
 import "./ProductReviews.css";
 import ReviewData from '../ReviewData/ReviewData';
+import LoginFormPage from '../../LoginFormPage';
 
 const ProductReviews = ({ product }) => {
     const dispatch = useDispatch();
@@ -78,7 +79,7 @@ const ProductReviews = ({ product }) => {
                                 You own this product
                             </Link>
                             :
-                            <Link to={`/products/${product.id}/writereview`} className='write-a-review-link'>
+                            <Link to={user? `/products/${product.id}/writereview` : '/login'} className='write-a-review-link'>
                                 Write a customer review
                             </Link>
                         }
@@ -104,7 +105,7 @@ const ProductReviews = ({ product }) => {
                             You own this product
                         </Link>
                         :
-                        <Link to={`/products/${product.id}/writereview`} className='write-a-review-link'>
+                        <Link to={user? `/products/${product.id}/writereview` : '/login'} className='write-a-review-link'>
                             Write a customer review
                         </Link>
                     }
