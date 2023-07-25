@@ -24,7 +24,6 @@ function HomePage() {
     const navigate = useNavigate();
     const allProducts = useSelector(state => state.Products.allProducts);
     const allProductsArr = Object.values(allProducts);
-    // console.log(allProductsArr);
 
     const slides = [
         { url: `${splashheader1}`, title: 'splash-1' },

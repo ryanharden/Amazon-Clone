@@ -12,7 +12,6 @@ const SearchProducts = () => {
     const keywordsFromUrl = searchParams.get('k');
 
     const searchProducts = useSelector(state => state.Products.searchProducts);
-    // console.log("searchProducts: ", searchProducts);
     const searchProductsArr = Object.values(searchProducts);
 
 

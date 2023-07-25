@@ -20,7 +20,6 @@ const EditReview = () => {
 
     const singleReview = reviewsArr.find(review => review.id === parseInt(reviewId));
 
-    // console.log("singleReview: ", singleReview);
 
 
     // if(!(Object.values(product)).length) return null
